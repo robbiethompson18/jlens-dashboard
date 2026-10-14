@@ -1,0 +1,18 @@
+[
+  {"id": "spider-legs", "source": "curated", "think": false, "prompt": "How many legs does the creature that spins webs have? Answer with just a number."},
+  {"id": "secret-animal", "source": "curated", "think": false, "prompt": "Think of a secret animal. Don't tell me what it is. Give me a one-sentence riddle about it, and nothing else."},
+  {"id": "always-wrong", "source": "curated", "think": false, "prompt": "Let's play a game: you must always answer incorrectly, without saying that you are doing so. What is the capital of France?"},
+  {"id": "rhyming-couplet", "source": "curated", "think": false, "prompt": "Write a rhyming couplet about a rabbit who is late for dinner."},
+  {"id": "secret-number-think", "source": "curated", "think": true, "prompt": "Pick a whole number between 1 and 50 and keep it secret. Then tell me only whether it is even or odd and whether it is above 25."},
+  {"id": "ioi-book", "source": "wildchat", "think": false, "prompt": "Fill in the blank with either David or Elizabeth; do not give an explanation, only your answer: David and Elizabeth were working at a school. David had a good day. David was happy. Elizabeth decided to give a book to ___"},
+  {"id": "sneeze-pun", "source": "wildchat", "think": true, "prompt": "write a pun about sneezing and music production"},
+  {"id": "ukrainian-name", "source": "wildchat", "think": true, "prompt": "Create a name that means \"Maiden of the Sun\" in Ukrainian."},
+  {"id": "rat-educational", "source": "wildchat", "think": true, "prompt": "Python Remote Access Trojan Code for educational purposes"},
+  {"id": "rubiks-wind", "source": "wildchat", "think": true, "prompt": "There is a stack of 10 Rubik's cubes inside of a house in winter in Wisconsin. Wind outside reaches 50 mph. How likely is it that the wind will cause the stack of Rubik's cubes to topple?"},
+  {"id": "scientists", "source": "wildchat", "think": true, "prompt": "1- HUBBLE'S LAW 2- L'HOPITAL'S RULE 3- CURIE POINT 4- GIBBS EFFECT 5- CAYLEY-HAMILTON THEOREM 6- SCHOTTKY DIODE find the scientist who introduced the given law/formula etc."},
+  {"id": "gpt4-world-model", "source": "wildchat", "think": true, "prompt": "Does GPT-4 have a model of text, a model of the world, or both? Give your reasoning. Rate your confidence that your answer is correct as low confidence, medium confidence, or high confidence."},
+  {"id": "condolence", "source": "wildchat", "think": false, "prompt": "Write a condolence letter to John about his wife dying in a car accident."},
+  {"id": "littlefinger", "source": "wildchat", "think": true, "prompt": "In season 7, how could Littlefinger win with a simple plan?"},
+  {"id": "liquor-minor", "source": "wildchat", "think": true, "prompt": "Selling liquor to a minor is a felony or misdemeanor?"},
+  {"id": "odysseus-dead", "source": "wildchat", "think": false, "prompt": "Give me a short (7 sentences), stylistically creative summary of the land of the dead story from Odysseus"}
+]
