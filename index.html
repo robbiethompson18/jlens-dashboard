@@ -264,9 +264,12 @@ const S = {
 };
 
 async function fetchJSON(url) {
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`);
-  const bytes = new Uint8Array(await r.arrayBuffer());
+  let r = await fetch(url), bytes;
+  if (r.ok) bytes = new Uint8Array(await r.arrayBuffer());
+  else if (url.endsWith(".gz") && (r = await fetch(url + ".b64.txt")).ok) {
+    // published copies: hosts that won't serve .gz get the same bytes base64-encoded as text
+    bytes = Uint8Array.from(atob(await r.text()), (c) => c.charCodeAt(0));
+  } else throw new Error(`${url}: HTTP ${r.status}`);
   // .gz files may arrive already decoded if the server set Content-Encoding
   if (bytes[0] === 0x1f && bytes[1] === 0x8b) {
     const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
@@ -340,7 +343,7 @@ function refreshTerms() {
     const stem = t.word.endsWith("*") ? t.word.slice(0, -1) : null;
     cur.text.forEach((s, i) => { const n = norm(s); if (cur.seg[i] !== "template" && n && (stem ? n.startsWith(stem) : n === t.word)) t.said[i] = 1; });
     t.hitPositions = 0;
-    for (let p = 0; p < cur.T; p++) if (bestRank(t, p) > 0) t.hitPositions++;
+    for (let p = 0; p < cur.T; p++) if (cur.seg[p] !== "template" && bestRank(t, p) > 0) t.hitPositions++;
   }
   renderTermChips(); shadeTokens(); drawMap(); renderInspector(); renderWords(); renderItems();
 }
@@ -366,18 +369,21 @@ function defaultLayers(cur, preset = "band") {
   return cur.depth.map((d, i) => (preset === "all" ? true : i < cur.L - 1 && d >= 0.3 && d <= 0.95));
 }
 
+// hit counts are only valid for the search settings they were computed under
+const hitsKey = () => JSON.stringify([S.terms.map((t) => t.word), S.lens, S.topN, S.layerOn]);
+
 function renderItems() {
-  const items = S.index.items;
+  const items = S.index.items, key = hitsKey();
+  const cur = items.find((it) => it.id === S.curId);
+  if (cur && S.cur?.id === cur.id && S.terms.length) { cur.hits = S.terms.reduce((a, t) => a + (t.hitPositions || 0), 0); cur.hitsKey = key; }
   $("items").innerHTML = items.map((it) => {
-    const hits = S.terms.length && it.hits != null ? `<span class="hits">${it.hits} hits</span>` : `<span></span>`;
+    const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
       <span class="name">${esc(it.id)}</span><span class="meta">${it.n_tokens.toLocaleString()} tok</span>
       <span class="src">${esc(it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");
   $("countall").hidden = !S.terms.length;
-  const cur = items.find((it) => it.id === S.curId);
-  if (cur && S.terms.length) cur.hits = S.terms.reduce((a, t) => a + (t.hitPositions || 0), 0);
 }
 
 function renderTranscript() {
@@ -429,7 +435,7 @@ function shadeTokens() {
 
 function renderTermChips() {
   $("terms").innerHTML = S.terms.map((t, i) => `<span class="term" style="--c: var(${t.color})">${esc(t.word)}
-    <span class="n">${t.ids?.size ? `${t.hitPositions} tok in workspace${t.said?.some((x) => x) ? ` · ${t.said.reduce((a, b) => a + b, 0)} said` : ""}` : "no single-token match"}</span>
+    <span class="n">${t.ids?.size ? `${t.hitPositions} tok in workspace${t.said?.some((x) => x) ? ` · ${t.said.reduce((a, b) => a + b, 0)} said` : ""}` : /^\d{2,}$/.test(t.word) ? "Qwen spells numbers one digit per token" : "no single-token match; try its first piece with *"}</span>
     <button data-rm="${i}" aria-label="remove ${esc(t.word)}">×</button></span>`).join("");
 }
 
@@ -562,7 +568,10 @@ async function openTranscript(id) {
     if (!S.layerOn || S.layerOn.length !== cur.L) S.layerOn = defaultLayers(cur);
     renderControls(); renderTranscript(); renderNote();
     const note = S.notes[id];
-    refreshTerms();
+    if (note?.lens && cur.lenses[note.lens]) { S.lens = note.lens; renderControls(); }
+    // a note's suggested searches replace the terms unless the viewer typed their own
+    if (note?.try && (!S.terms.length || S.autoTerms)) { setTerms(note.try); S.autoTerms = true; }
+    else refreshTerms();
     if (note?.pin != null) pinAt(note.pin);
     try { history.replaceState(null, "", "#" + id); } catch {}
   } catch (e) {
@@ -575,7 +584,7 @@ async function countAll() {
   for (const it of S.index.items) {
     if (it.id === S.curId) continue;
     const cur = prepare(await fetchJSON(`data/readouts/${S.model}/${it.id}.json.gz`), S.lens);
-    it.hits = 0;
+    it.hits = 0; it.hitsKey = hitsKey();
     for (const t of S.terms) {
       const grid = termGrid(cur, termIds(cur, t.word), S.lens);
       for (let p = 0; p < cur.T; p++) {
@@ -601,7 +610,7 @@ $("items").addEventListener("click", (e) => { const b = e.target.closest("button
 $("countall").addEventListener("click", countAll);
 $("grep").addEventListener("input", (e) => {
   clearTimeout(S.grepTimer);
-  S.grepTimer = setTimeout(() => setTerms(e.target.value.split(",")), 200);
+  S.grepTimer = setTimeout(() => { S.autoTerms = false; setTerms(e.target.value.split(",")); }, 200);
 });
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
 $("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); });
@@ -666,6 +675,10 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawMap);
   if (!S.index) { $("transcript").innerHTML = `<div class="loading err">No readouts found under data/readouts/.</div>`; return; }
   try { S.notes = await fetchJSON(`data/readouts/${S.model}/notes.json`); } catch {}
   $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.index.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
+  // transcripts with notes first, in the notes' order
+  const noted = Object.keys(S.notes);
+  const order = (it) => (noted.includes(it.id) ? noted.indexOf(it.id) : noted.length);
+  S.index.items.sort((a, b) => order(a) - order(b));
   const hash = location.hash.slice(1);
   const first = S.index.items.find((it) => it.id === hash) ?? S.index.items[0];
   renderItems();

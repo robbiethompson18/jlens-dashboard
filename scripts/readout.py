@@ -14,6 +14,7 @@ import gzip
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 import jlens
 import torch
@@ -28,7 +29,7 @@ LAYER_FRACTIONS = [0.33, 0.42, 0.5, 0.58, 0.67, 0.75, 0.83, 0.92]
 CHUNK = 256  # positions per unembed; one chunk of logits is CHUNK x vocab floats
 
 NEURONPEDIA = "neuronpedia/jacobian-lens"
-MODELS = {
+MODELS: dict[str, dict[str, Any]] = {
     "qwen3.6-27b": {
         "hf": "Qwen/Qwen3.6-27B",
         "lenses": {
@@ -49,9 +50,10 @@ MODELS = {
 model_key = sys.argv[1]
 spec = MODELS[model_key]
 device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
-tokenizer = transformers.AutoTokenizer.from_pretrained(spec["hf"])
-hf_model = transformers.AutoModelForCausalLM.from_pretrained(spec["hf"], dtype=torch.bfloat16).to(device).eval()
-model = jlens.from_hf(hf_model, tokenizer)
+tokenizer: Any = transformers.AutoTokenizer.from_pretrained(spec["hf"])  # transformers types this as a loose union
+load: Any = transformers.AutoModelForCausalLM.from_pretrained  # its stub mistypes .to()
+hf_model = load(spec["hf"], dtype=torch.bfloat16).to(device).eval()
+model: Any = jlens.from_hf(hf_model, tokenizer)
 final_layer = model.n_layers - 1
 layers = sorted({round(f * model.n_layers) for f in LAYER_FRACTIONS} | {final_layer})
 

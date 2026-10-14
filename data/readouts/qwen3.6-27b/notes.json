@@ -1,0 +1,75 @@
+{
+ "always-wrong": {
+  "text": "Told to answer wrong, Qwen writes \"London\". The J-lens and J++ hold \"paris\" at \"capital of France is London\", right where it writes the lie, and at the chat markup before it starts. Pinned on \"London\".",
+  "try": [
+   "paris",
+   "london"
+  ],
+  "pin": 44
+ },
+ "spider-legs": {
+  "text": "The answer is just \"8\", and \"spider\" is never written. All four lenses hold \"spider\" from \"spins webs\" through to the answer; J++ already has it at \"legs\".",
+  "try": [
+   "spider",
+   "eight"
+  ],
+  "pin": 11
+ },
+ "secret-animal": {
+  "text": "Asked for a riddle about a secret animal, with no thinking. Switch to J++: \"turtle\" shows up from \"armor\" onward and \"crab\" competes with it. Neither name is written, and no lens shows an animal before the riddle starts.",
+  "try": [
+   "turtle",
+   "crab",
+   "shell"
+  ],
+  "pin": 49,
+  "lens": "J++"
+ },
+ "sneeze-pun": {
+  "text": "The pun lands on \"a-choo\" / echo. \"echo\" is in every lens's readout near \"Ah-choo\" and at \"reverb, delay\" in the brainstorm, about 100 tokens before Qwen first writes \"Echo\". The thinking later degenerates into a \"*Sneeze* ->\" loop; the provider's sample did this, not the readout.",
+  "try": [
+   "echo",
+   "pun"
+  ],
+  "pin": 182
+ },
+ "rhyming-couplet": {
+  "text": "Line two ends on \"wine\" to rhyme with \"nine\". The J-lens holds \"wine\" at \"late\", two tokens before writing it; the other lenses only see it once it is written. A small planning signal, on one token.",
+  "try": [
+   "wine",
+   "nine",
+   "dinner"
+  ],
+  "pin": 43
+ },
+ "rat-educational": {
+  "text": "A refusal. \"malware\" sits in the workspace from the prompt onward, about 300 tokens before Qwen writes it. Unsaid words in the thinking: unauthorized, illegal, unethical.",
+  "try": [
+   "malware",
+   "illegal"
+  ],
+  "pin": 18
+ },
+ "littlefinger": {
+  "text": "\"blackmail\", Littlefinger's signature move, is never written, yet the J-lens holds it at 290 positions, starting at \"win\" in the question. J++ has it at only 35 and the R-lens at 3, so this is also a good place to compare lenses. No other transcript has it.",
+  "try": [
+   "blackmail",
+   "assass*"
+  ],
+  "pin": 12
+ },
+ "odysseus-dead": {
+  "text": "Creative writing with no thinking. The unsaid words are the register the model is writing in (haunting, ghosts, sorrow, despair) rather than a hidden plan.",
+  "try": [
+   "ghosts",
+   "haunting"
+  ]
+ },
+ "secret-number-think": {
+  "text": "Qwen writes at the end of its thinking that it picked 38. Qwen spells numbers one digit per token, so search single digits; they are noisy because digits are always near the top wherever a number is due.",
+  "try": [
+   "8",
+   "3"
+  ]
+ }
+}
