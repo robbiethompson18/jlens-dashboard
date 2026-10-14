@@ -37,8 +37,11 @@ done
 
 rsync -az -e "ssh ${ssh_opts[*]}" --exclude .venv --exclude .git --exclude data/raw --exclude data/readouts --exclude .ruff_cache \
   --exclude .envrc.local ./ "root@$host:/workspace/jlens-dashboard/" || exit 1
-ssh "${ssh_opts[@]}" "root@$host" "cd /workspace/jlens-dashboard && pip install -q uv 2>/dev/null && \
-  export HF_TOKEN=$HF_TOKEN HF_HOME=/workspace/hf HF_XET_HIGH_PERFORMANCE=1 OMP_NUM_THREADS=8 && \
+# The token goes in through stdin so it never shows up in a process list or an `ssh -v`/`bash -x` trace.
+echo "export HF_TOKEN=$HF_TOKEN" | ssh "${ssh_opts[@]}" "root@$host" 'umask 077; cat > /root/.hf_env'
+ssh "${ssh_opts[@]}" "root@$host" "set -o pipefail; source /root/.hf_env; cd /workspace/jlens-dashboard && \
+  (command -v uv >/dev/null || pip install -q --break-system-packages uv) && \
+  export HF_HOME=/workspace/hf HF_XET_HIGH_PERFORMANCE=1 OMP_NUM_THREADS=8 && \
   uv sync -q --group pod && uv run python scripts/readout.py $model 2>&1 | grep -v -i -E 'warn|falling back|Loading weights'" || exit 1
 mkdir -p "data/readouts/$model"
 rsync -az -e "ssh ${ssh_opts[*]}" "root@$host:/workspace/jlens-dashboard/data/readouts/$model/" "data/readouts/$model/" && echo "copied data/readouts/$model"

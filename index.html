@@ -1,0 +1,674 @@
+<meta charset="utf-8">
+<title>jLens Dashboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: three panes like a light table. Transcripts on the left, the transcript with its layer x position map in the
+   middle, and on the right the per-token lens readout above the "words in the workspace" counts. Panes stack on phones. */
+:root {
+  --bg: #eef0f4;
+  --panel: #fbfbfd;
+  --ink: #171b29;
+  --muted: #5f667a;
+  --faint: #9aa0b1;
+  --line: #dcdfe7;
+  --accent: #3446c4;
+  --said: #b86a12;
+  --hi: #3446c4;
+  --t0: #3446c4; --t1: #d0402a; --t2: #0f8a77; --t3: #a63e9c; --t4: #7a7b16;
+  --seg-user: #8a93ad; --seg-think: #b9a5d8; --seg-reply: #8cc0b0;
+  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-text: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1019; --panel: #131927; --ink: #e5e8f1; --muted: #9097ab; --faint: #5d6479; --line: #252c3d;
+    --accent: #8f9cff; --said: #f0a94a; --hi: #8f9cff;
+    --t0: #8f9cff; --t1: #ff7a5c; --t2: #3fd0b4; --t3: #e57ad8; --t4: #c9cb4a;
+    --seg-user: #5b6480; --seg-think: #6e5a94; --seg-reply: #3f7a6a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1019; --panel: #131927; --ink: #e5e8f1; --muted: #9097ab; --faint: #5d6479; --line: #252c3d;
+  --accent: #8f9cff; --said: #f0a94a; --hi: #8f9cff;
+  --t0: #8f9cff; --t1: #ff7a5c; --t2: #3fd0b4; --t3: #e57ad8; --t4: #c9cb4a;
+  --seg-user: #5b6480; --seg-think: #6e5a94; --seg-reply: #3f7a6a;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.45 var(--font-ui); }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.app { height: 100%; display: grid; grid-template-rows: auto 1fr; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 12px; gap: 10px; }
+header.top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; padding-block: 12px 0; }
+.mark { font: 600 22px/1 var(--font-text); letter-spacing: -0.01em; }
+.mark i { font-weight: 400; color: var(--accent); }
+.sub { color: var(--muted); font-size: 13px; }
+.sub b { color: var(--ink); font-weight: 500; }
+header .spacer { flex: 1; }
+.howto { color: var(--muted); font-size: 12.5px; max-width: 70ch; }
+details.about summary { cursor: pointer; color: var(--accent); font-size: 12.5px; list-style: none; }
+details.about[open] { position: relative; }
+details.about .body { position: absolute; right: 0; top: 22px; z-index: 20; width: min(560px, 90vw); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; box-shadow: 0 12px 40px rgb(0 0 0 / 0.18); font-size: 13px; color: var(--ink); }
+details.about .body p { margin: 0 0 8px; }
+
+.panes { min-height: 0; display: grid; grid-template-columns: 250px minmax(0, 1fr) 430px; gap: 10px; }
+.pane { min-height: 0; min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; overflow: hidden; }
+.pane-h { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.pane-h .spacer { flex: 1; }
+.scroll { overflow: auto; min-height: 0; flex: 1; }
+
+/* transcript list */
+.items { list-style: none; margin: 0; padding: 4px; display: flex; flex-direction: column; gap: 2px; }
+.items button { all: unset; box-sizing: border-box; display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; width: 100%; padding: 8px 9px; border-radius: 7px; cursor: pointer; }
+.items button:hover { background: color-mix(in oklab, var(--accent) 7%, transparent); }
+.items button[aria-current="true"] { background: color-mix(in oklab, var(--accent) 14%, transparent); }
+.items .name { font: 500 13px var(--font-data); }
+.items .meta { font: 11px var(--font-data); color: var(--faint); text-align: right; font-variant-numeric: tabular-nums; }
+.items .prompt { grid-column: 1 / -1; color: var(--muted); font-size: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.items .hits { font: 600 11px var(--font-data); color: var(--accent); }
+.src { font: 10px var(--font-data); text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+.linkbtn { all: unset; cursor: pointer; color: var(--accent); font-size: 11px; text-transform: none; letter-spacing: 0; font-weight: 500; }
+.linkbtn:hover { text-decoration: underline; }
+
+/* toolbar */
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.grep { flex: 1 1 260px; display: flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 0 8px; }
+.grep input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 14px var(--font-data); padding: 7px 0; outline: none; }
+.grep kbd { font: 11px var(--font-data); color: var(--faint); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { all: unset; cursor: pointer; padding: 5px 10px; font: 12.5px var(--font-ui); color: var(--muted); }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+.ctl { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.terms { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 8px; }
+.terms:empty { display: none; }
+.term { display: inline-flex; align-items: center; gap: 6px; font: 12.5px var(--font-data); border-radius: 999px; padding: 2px 4px 2px 10px; background: color-mix(in oklab, var(--c) 16%, transparent); color: var(--ink); border: 1px solid color-mix(in oklab, var(--c) 45%, transparent); }
+.term .n { color: var(--muted); font-size: 11px; }
+.term button { all: unset; cursor: pointer; width: 16px; height: 16px; border-radius: 50%; text-align: center; line-height: 16px; color: var(--muted); }
+.term button:hover { background: color-mix(in oklab, var(--c) 30%, transparent); color: var(--ink); }
+
+.layers { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 12px 10px; align-items: center; }
+.layers .lbl { font-size: 12px; color: var(--muted); margin-right: 4px; }
+.lchip { all: unset; cursor: pointer; font: 11px var(--font-data); padding: 2px 6px; border-radius: 5px; border: 1px solid var(--line); color: var(--faint); font-variant-numeric: tabular-nums; }
+.lchip[aria-pressed="true"] { color: var(--ink); border-color: color-mix(in oklab, var(--accent) 50%, var(--line)); background: color-mix(in oklab, var(--accent) 10%, transparent); }
+
+/* layer x position map */
+.mapwrap { padding: 8px 12px 10px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 8px; }
+.maplabels { display: grid; font: 10px/1 var(--font-data); color: var(--faint); text-align: right; font-variant-numeric: tabular-nums; }
+.maplabels span { display: flex; align-items: center; justify-content: flex-end; }
+canvas.map { width: 100%; display: block; cursor: crosshair; border-radius: 4px; }
+.maplegend { grid-column: 2; display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; color: var(--muted); padding-top: 6px; }
+.maplegend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+
+/* note callout */
+.note { margin: 12px 16px 0; padding: 10px 12px; border-left: 3px solid var(--accent); background: color-mix(in oklab, var(--accent) 6%, transparent); border-radius: 0 8px 8px 0; font-size: 13px; }
+.note:empty { display: none; }
+.note .try { display: inline-flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.note .try button { all: unset; cursor: pointer; font: 12px var(--font-data); padding: 1px 8px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--line)); color: var(--accent); }
+
+/* transcript */
+.transcript { padding: 6px 16px 40px; font: 16px/1.62 var(--font-text); max-width: 82ch; }
+.block { margin-top: 14px; }
+.block > .who { font: 600 10.5px var(--font-ui); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; display: flex; gap: 8px; align-items: baseline; }
+.block > .who .n { font: 400 11px var(--font-data); letter-spacing: 0; text-transform: none; color: var(--faint); }
+.block .txt { white-space: pre-wrap; overflow-wrap: anywhere; }
+.block.user .txt { padding: 8px 12px; border-radius: 8px; background: color-mix(in oklab, var(--seg-user) 13%, transparent); }
+.block.reasoning .txt { color: var(--muted); font-size: 14.5px; line-height: 1.55; border-left: 2px solid color-mix(in oklab, var(--seg-think) 60%, transparent); padding-left: 12px; }
+.block.reasoning.collapsed .txt { max-height: 9.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
+.block.template .txt { font: 11px/1.8 var(--font-data); color: var(--faint); }
+.t { border-radius: 3px; cursor: default; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.t:hover { outline: 1px solid color-mix(in oklab, var(--ink) 35%, transparent); }
+.t.pin { outline: 2px solid var(--ink); outline-offset: 0; }
+.t.said { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.t.inscope { box-shadow: inset 0 -2px 0 color-mix(in oklab, var(--accent) 40%, transparent); }
+
+/* inspector */
+.insp-head { padding: 10px 12px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.insp-tok { font: 500 17px var(--font-data); overflow-wrap: anywhere; }
+.insp-tok .pos { font-size: 12px; color: var(--faint); font-weight: 400; margin-left: 6px; }
+.insp-meta { font-size: 12px; color: var(--muted); }
+.insp-empty { padding: 20px 14px; color: var(--muted); font-size: 13px; }
+table.readout { border-collapse: collapse; width: 100%; font: 12px var(--font-data); }
+table.readout th { position: sticky; top: 0; background: var(--panel); z-index: 1; font: 600 10.5px var(--font-ui); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+table.readout td { vertical-align: top; padding: 5px 8px; border-bottom: 1px solid color-mix(in oklab, var(--line) 60%, transparent); }
+table.readout td.layer { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; width: 1%; }
+table.readout td.layer small { display: block; color: var(--faint); font-size: 10px; }
+table.readout tr.off td { opacity: 0.45; }
+table.readout tr.out td.layer { color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 3px; }
+.chip { all: unset; cursor: pointer; padding: 1px 5px; border-radius: 4px; background: color-mix(in oklab, var(--hi) var(--p), transparent); color: var(--ink); white-space: pre; border: 1px solid transparent; }
+.chip.said { color: var(--muted); }
+.chip.hit { border-color: var(--c); background: color-mix(in oklab, var(--c) 30%, transparent); color: var(--ink); font-weight: 500; }
+.chip:hover { border-color: color-mix(in oklab, var(--ink) 40%, transparent); }
+
+/* workspace words */
+.words { list-style: none; margin: 0; padding: 4px 6px 12px; }
+.words li button { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto 72px; gap: 10px; align-items: center; padding: 3px 6px; border-radius: 5px; font: 12.5px var(--font-data); }
+.words li button:hover { background: color-mix(in oklab, var(--accent) 8%, transparent); }
+.words .w { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.words .w.said { color: var(--muted); }
+.words .c { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 11px; }
+.spark { display: flex; align-items: flex-end; gap: 1px; height: 16px; }
+.spark i { flex: 1; background: color-mix(in oklab, var(--accent) 70%, transparent); border-radius: 1px 1px 0 0; min-height: 1px; }
+.wordctl { display: flex; gap: 10px; align-items: center; padding: 6px 12px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.wordctl label { display: inline-flex; gap: 5px; align-items: center; cursor: pointer; }
+.scope { font: 11.5px var(--font-data); color: var(--ink); }
+
+.rightcol { display: grid; grid-template-rows: minmax(0, 1.25fr) minmax(0, 1fr); gap: 10px; min-height: 0; min-width: 0; }
+.loading { padding: 30px; color: var(--muted); }
+.err { color: var(--t1); }
+
+@media (max-width: 1250px) {
+  .panes { grid-template-columns: 220px minmax(0, 1fr); }
+  .rightcol { grid-column: 1 / -1; grid-template-rows: none; grid-template-columns: 1fr 1fr; height: 520px; }
+  .app { height: auto; }
+  html, body { height: auto; }
+  .main { height: 80vh; }
+  .left { height: 80vh; }
+}
+@media (max-width: 760px) {
+  .panes { grid-template-columns: minmax(0, 1fr); }
+  .left { height: 260px; }
+  .main { height: 85vh; }
+  .rightcol { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .rightcol .pane { height: 70vh; }
+  details.about .body { position: fixed; left: 16px; right: 16px; width: auto; top: 60px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="app">
+  <header class="top">
+    <span class="mark">jLens <i>dashboard</i></span>
+    <span class="sub" id="modelline">Loading…</span>
+    <span class="spacer"></span>
+    <span class="howto">Hover a token to read every lens at it; click to pin. Search finds words Qwen wrote <u>underlined</u> or held in its workspace (shaded).</span>
+    <details class="about">
+      <summary>What am I looking at?</summary>
+      <div class="body">
+        <p><b>J-lens</b> (Anthropic, 2026) maps the residual stream at layer ℓ through the average Jacobian to the final layer, then unembeds: <span style="font-family:var(--font-data)">softmax(W<sub>U</sub>·norm(J<sub>ℓ</sub>h<sub>ℓ</sub>))</span>. It reads words the activation is poised to make the model say, now or later. It is not a next-token predictor.</p>
+        <p><b>Logit lens</b> unembeds the residual directly. <b>J++</b> (Ayonrinde &amp; Lindsey, 2026) filters the Jacobian; <b>R-lens</b> builds it from a RelP backward pass for cleaner early layers.</p>
+        <p>Layers are shown as % depth. The paper finds the J-lens useful from about 38% to 92%; the last row (100%) is the model's own next-token prediction and is identical across lenses.</p>
+        <p>Each cell keeps the top 20 <i>word-like</i> tokens (letters and digits only, as in the reference viewer and Neuronpedia), with full-vocabulary probability. A word longer than one token shows only as its first piece.</p>
+        <p><b>Words in the workspace</b> counts, over the selected tokens (drag to select) and layers, how often each word sits in the top N. "Unsaid only" hides words that appear anywhere in the transcript text.</p>
+      </div>
+    </details>
+  </header>
+
+  <div class="panes">
+    <section class="pane left" aria-label="Transcripts">
+      <div class="pane-h">Transcripts <span class="spacer"></span><button class="linkbtn" id="countall" hidden>Count hits in all</button></div>
+      <div class="scroll"><ul class="items" id="items"></ul></div>
+    </section>
+
+    <section class="pane main" aria-label="Transcript">
+      <div class="toolbar">
+        <label class="grep"><span aria-hidden="true" style="color:var(--faint)">⌕</span>
+          <input id="grep" placeholder="search words, comma-separated; spid* for prefixes" autocomplete="off" spellcheck="false">
+          <kbd>/</kbd></label>
+        <div class="seg" id="lenses" role="group" aria-label="Lens"></div>
+        <span class="ctl">top
+          <span class="seg" id="topn" role="group" aria-label="Top N"></span></span>
+        <span class="ctl"><label style="display:inline-flex;gap:5px;align-items:center;cursor:pointer"><input type="checkbox" id="compare"> compare lenses</label></span>
+      </div>
+      <div class="terms" id="terms"></div>
+      <div class="layers" id="layers"></div>
+      <div class="mapwrap" id="mapwrap" hidden>
+        <div class="maplabels" id="maplabels"></div>
+        <canvas class="map" id="map" aria-label="Layer by position map of search hits"></canvas>
+        <div class="maplegend" id="maplegend"></div>
+      </div>
+      <div class="scroll" id="tscroll">
+        <div class="note" id="note"></div>
+        <div class="transcript" id="transcript"><div class="loading">Loading transcripts…</div></div>
+      </div>
+    </section>
+
+    <div class="rightcol">
+      <section class="pane" aria-label="Token readout">
+        <div class="pane-h">Readout <span class="spacer"></span><span id="pinhint" style="text-transform:none;letter-spacing:0;font-weight:400"></span></div>
+        <div class="scroll" id="insp"><div class="insp-empty">Hover any token in the transcript.</div></div>
+      </section>
+      <section class="pane" aria-label="Words in the workspace">
+        <div class="pane-h">Words in the workspace</div>
+        <div class="wordctl">
+          <span class="scope" id="scope"></span>
+          <span class="spacer" style="flex:1"></span>
+          <label><input type="checkbox" id="unsaid" checked> unsaid only</label>
+        </div>
+        <div class="scroll"><ul class="words" id="words"></ul></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+const MODELS = ["qwen3.6-27b", "qwen3.5-0.8b"];
+const TERM_COLORS = ["--t0", "--t1", "--t2", "--t3", "--t4"];
+const $ = (id) => document.getElementById(id);
+const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const norm = (s) => s.trim().toLowerCase();
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+const S = {
+  model: null, index: null, notes: {}, cur: null, curId: null,
+  lens: "J-lens", topN: 10, compare: false, unsaid: true,
+  layerOn: null, terms: [], hover: null, pin: null, scope: null,
+};
+
+async function fetchJSON(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`);
+  const bytes = new Uint8Array(await r.arrayBuffer());
+  // .gz files may arrive already decoded if the server set Content-Encoding
+  if (bytes[0] === 0x1f && bytes[1] === 0x8b) {
+    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+    return JSON.parse(await new Response(stream).text());
+  }
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+function prepare(raw, onlyLens) {
+  const T = raw.tokens.length, L = raw.layers.length, K = raw.top_k;
+  const vocab = new Map();
+  for (const [k, v] of Object.entries(raw.vocab)) vocab.set(+k, v);
+  const text = raw.tokens.map((id) => vocab.get(id) ?? "");
+  const lenses = {};
+  for (const [name, d] of Object.entries(raw.lenses)) {
+    if (onlyLens && name !== onlyLens) continue;
+    lenses[name] = { ids: Int32Array.from(d.ids), lp: Int16Array.from(d.lp) };
+  }
+  // display segment: template tokens (chat markup, role names) vs the user's words, the thinking and the reply
+  const firstStart = text.indexOf("<|im_start|>"), firstEnd = text.indexOf("<|im_end|>");
+  const seg = raw.segments.map((s, i) => {
+    if (s !== "prompt") return s;
+    const markup = text[i].startsWith("<|") || text[i] === "<think>" || text[i] === "</think>" || (i > 0 && text[i - 1] === "<|im_start|>");
+    return !markup && i > firstStart + 1 && i < firstEnd ? "user" : "template";
+  });
+  if (seg[firstStart + 2] === "user" && text[firstStart + 2].trim() === "") seg[firstStart + 2] = "template";
+  const normOf = new Map();
+  for (const [id, s] of vocab) normOf.set(id, norm(s));
+  const saidWords = new Set();
+  text.forEach((s, i) => { if (seg[i] !== "template") saidWords.add(norm(s)); });
+  const depth = raw.layers.map((l) => l / raw.layers[L - 1]);  // % depth as in the paper: 0 = first block, 1 = last
+  return { raw, T, L, K, vocab, text, lenses, seg, normOf, saidWords, layers: raw.layers, depth, id: raw.id };
+}
+
+// ---------- terms ----------
+function termIds(cur, word) {
+  const prefix = word.endsWith("*"), stem = prefix ? word.slice(0, -1) : word;
+  const ids = new Set();
+  if (!stem) return ids;
+  for (const [id, n] of cur.normOf) if (prefix ? n.startsWith(stem) : n === stem) ids.add(id);
+  return ids;
+}
+function setTerms(words) {
+  const seen = new Set();
+  S.terms = words.map(norm).filter((w) => w && !seen.has(w) && seen.add(w)).slice(0, TERM_COLORS.length)
+    .map((w, i) => ({ word: w, color: TERM_COLORS[i] }));
+  $("grep").value = S.terms.map((t) => t.word).join(", ");
+  refreshTerms();
+}
+function addTerm(word) {
+  const w = norm(word);
+  if (!w || S.terms.some((t) => t.word === w)) return;
+  setTerms([...S.terms.map((t) => t.word), w].slice(-TERM_COLORS.length));
+}
+// grid[p*L+l] = rank+1 of the term in that cell's top N for the current lens, 0 if absent
+function termGrid(cur, ids, lensName) {
+  const { T, L, K } = cur, g = new Uint8Array(T * L), lens = cur.lenses[lensName];
+  if (!lens || !ids.size) return g;
+  for (let c = 0; c < T * L; c++) {
+    const base = c * K;
+    for (let r = 0; r < S.topN; r++) if (ids.has(lens.ids[base + r])) { g[c] = r + 1; break; }
+  }
+  return g;
+}
+function refreshTerms() {
+  const cur = S.cur;
+  if (cur) for (const t of S.terms) {
+    t.ids = termIds(cur, t.word);
+    t.grid = termGrid(cur, t.ids, S.lens);
+    t.said = new Uint8Array(cur.T);
+    const stem = t.word.endsWith("*") ? t.word.slice(0, -1) : null;
+    cur.text.forEach((s, i) => { const n = norm(s); if (cur.seg[i] !== "template" && n && (stem ? n.startsWith(stem) : n === t.word)) t.said[i] = 1; });
+    t.hitPositions = 0;
+    for (let p = 0; p < cur.T; p++) if (bestRank(t, p) > 0) t.hitPositions++;
+  }
+  renderTermChips(); shadeTokens(); drawMap(); renderInspector(); renderWords(); renderItems();
+}
+function bestRank(t, p) {
+  const { L } = S.cur;
+  let best = 0;
+  for (let l = 0; l < L; l++) if (S.layerOn[l]) { const r = t.grid[p * L + l]; if (r && (!best || r < best)) best = r; }
+  return best;
+}
+
+// ---------- rendering ----------
+function renderControls() {
+  const cur = S.cur;
+  const names = Object.keys(cur.lenses);
+  if (!names.includes(S.lens)) S.lens = names.includes("J-lens") ? "J-lens" : names[0];
+  $("lenses").innerHTML = names.map((n) => `<button aria-pressed="${n === S.lens}" data-lens="${esc(n)}">${n === "logit" ? "Logit" : esc(n)}</button>`).join("");
+  $("topn").innerHTML = [1, 5, 10, 20].filter((n) => n <= cur.K).map((n) => `<button aria-pressed="${n === S.topN}" data-n="${n}">${n}</button>`).join("");
+  $("layers").innerHTML = `<span class="lbl">layers</span>` + cur.layers.map((l, i) =>
+    `<button class="lchip" aria-pressed="${!!S.layerOn[i]}" data-l="${i}" title="layer ${l}">${i === cur.L - 1 ? "out" : `L${l}`} ${Math.round(cur.depth[i] * 100)}%</button>`).join("") +
+    ` <button class="linkbtn" data-preset="band" style="margin-left:6px" title="about a third of the way in to just before the output layers">workspace band</button> <button class="linkbtn" data-preset="all">all</button>`;
+}
+function defaultLayers(cur, preset = "band") {
+  return cur.depth.map((d, i) => (preset === "all" ? true : i < cur.L - 1 && d >= 0.3 && d <= 0.95));
+}
+
+function renderItems() {
+  const items = S.index.items;
+  $("items").innerHTML = items.map((it) => {
+    const hits = S.terms.length && it.hits != null ? `<span class="hits">${it.hits} hits</span>` : `<span></span>`;
+    return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
+      <span class="name">${esc(it.id)}</span><span class="meta">${it.n_tokens.toLocaleString()} tok</span>
+      <span class="src">${esc(it.source)}</span>${hits}
+      <span class="prompt">${esc(it.prompt)}</span></button></li>`;
+  }).join("");
+  $("countall").hidden = !S.terms.length;
+  const cur = items.find((it) => it.id === S.curId);
+  if (cur && S.terms.length) cur.hits = S.terms.reduce((a, t) => a + (t.hitPositions || 0), 0);
+}
+
+function renderTranscript() {
+  const cur = S.cur, out = [];
+  let i = 0;
+  while (i < cur.T) {
+    const s = cur.seg[i];
+    let j = i;
+    while (j < cur.T && cur.seg[j] === s) j++;
+    const spans = [];
+    for (let p = i; p < j; p++) spans.push(`<span class="t" data-p="${p}">${esc(cur.text[p])}</span>`);
+    const label = { user: "User", reasoning: "Thinking", reply: "Qwen", template: "" }[s];
+    const n = j - i;
+    const collapsed = s === "reasoning" && n > 400 ? " collapsed" : "";
+    const toggle = s === "reasoning" ? ` <button class="linkbtn" data-toggle>${collapsed ? "expand" : "collapse"}</button>` : "";
+    out.push(`<div class="block ${s}${collapsed}">${label ? `<div class="who">${label}<span class="n">${n.toLocaleString()} tokens</span>${toggle}</div>` : ""}<div class="txt">${spans.join("")}</div></div>`);
+    i = j;
+  }
+  $("transcript").innerHTML = out.join("");
+  S.spans = Array.from($("transcript").querySelectorAll(".t"));
+  shadeTokens();
+}
+
+function shadeTokens() {
+  if (!S.spans) return;
+  const cur = S.cur;
+  for (let p = 0; p < cur.T; p++) {
+    const el = S.spans[p];
+    let bg = "", said = null, title = "";
+    let best = 0, bestTerm = null;
+    for (const t of S.terms) {
+      const r = bestRank(t, p);
+      if (r && (!best || r < best)) { best = r; bestTerm = t; }
+      if (t.said[p]) said = t;
+    }
+    if (bestTerm) {
+      const strength = 0.18 + 0.62 * (1 - Math.log(best) / Math.log(S.topN + 1));
+      bg = `color-mix(in oklab, var(${bestTerm.color}) ${Math.round(strength * 100)}%, transparent)`;
+      title = `"${bestTerm.word}" best rank ${best} in ${S.lens}`;
+    }
+    el.style.background = bg;
+    el.classList.toggle("said", !!said);
+    el.style.textDecorationColor = said ? `var(${said.color})` : "";
+    el.classList.toggle("pin", p === S.pin);
+    el.classList.toggle("inscope", !!S.scope && p >= S.scope[0] && p <= S.scope[1]);
+    el.title = title;
+  }
+}
+
+function renderTermChips() {
+  $("terms").innerHTML = S.terms.map((t, i) => `<span class="term" style="--c: var(${t.color})">${esc(t.word)}
+    <span class="n">${t.ids?.size ? `${t.hitPositions} tok in workspace${t.said?.some((x) => x) ? ` · ${t.said.reduce((a, b) => a + b, 0)} said` : ""}` : "no single-token match"}</span>
+    <button data-rm="${i}" aria-label="remove ${esc(t.word)}">×</button></span>`).join("");
+}
+
+function drawMap() {
+  const wrap = $("mapwrap"), cur = S.cur;
+  wrap.hidden = !S.terms.length;
+  if (!S.terms.length) return;
+  const rowH = 9, bandH = 6, gap = 3, rows = cur.L;
+  const canvas = $("map"), dpr = window.devicePixelRatio || 1;
+  const W = canvas.clientWidth || 600, H = rows * rowH + gap + bandH * 2 + gap;
+  canvas.style.height = H + "px";
+  canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = css("--bg"); ctx.fillRect(0, 0, W, rows * rowH);
+  const xOf = (p) => (p / cur.T) * W, cw = Math.max(W / cur.T, 1);
+  // rows: deepest layer on top
+  for (let l = 0; l < rows; l++) {
+    const y = (rows - 1 - l) * rowH;
+    if (!S.layerOn[l]) { ctx.globalAlpha = 0.35; }
+    for (const t of S.terms) {
+      ctx.fillStyle = css(t.color);
+      for (let p = 0; p < cur.T; p++) {
+        const r = t.grid[p * cur.L + l];
+        if (!r) continue;
+        ctx.globalAlpha = (S.layerOn[l] ? 1 : 0.3) * (0.25 + 0.75 * (1 - Math.log(r) / Math.log(S.topN + 1)));
+        ctx.fillRect(xOf(p), y + 0.5, cw, rowH - 1);
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+  // segment band and "said" ticks
+  const yb = rows * rowH + gap;
+  const segColor = { user: css("--seg-user"), reasoning: css("--seg-think"), reply: css("--seg-reply"), template: css("--line") };
+  for (let p = 0; p < cur.T; p++) { ctx.fillStyle = segColor[cur.seg[p]]; ctx.fillRect(xOf(p), yb, cw, bandH); }
+  for (const t of S.terms) {
+    ctx.fillStyle = css(t.color);
+    for (let p = 0; p < cur.T; p++) if (t.said[p]) ctx.fillRect(xOf(p), yb + bandH + gap, Math.max(cw, 2), bandH);
+  }
+  if (S.pin != null) { ctx.strokeStyle = css("--ink"); ctx.lineWidth = 1.5; ctx.strokeRect(xOf(S.pin) + 0.75, 0.75, Math.max(cw, 2) - 1.5, H - 1.5); }
+  $("maplabels").style.gridTemplateRows = `repeat(${rows}, ${rowH}px) ${gap}px ${bandH}px ${gap}px ${bandH}px`;
+  $("maplabels").innerHTML = cur.layers.map((l, i) => i).reverse().map((i) => `<span style="font-size:${rowH}px">${i % 2 === (rows - 1) % 2 ? (i === rows - 1 ? "out" : Math.round(cur.depth[i] * 100) + "%") : ""}</span>`).join("") +
+    `<span></span><span style="font-size:8px">part</span><span></span><span style="font-size:8px">said</span>`;
+  $("maplegend").innerHTML = `<span><i style="background:var(--seg-user)"></i>user</span><span><i style="background:var(--seg-think)"></i>thinking</span><span><i style="background:var(--seg-reply)"></i>reply</span><span>darker = higher rank · rows = layers, deepest on top · click to jump</span>`;
+}
+
+function chipHTML(cur, id, lp) {
+  const word = cur.vocab.get(id) ?? `#${id}`, n = cur.normOf.get(id) ?? "";
+  const prob = Math.exp(lp / 10);
+  const pct = Math.round(Math.min(1, Math.sqrt(prob)) * 55);
+  const term = S.terms.find((t) => t.ids?.has(id));
+  const said = cur.saidWords.has(n);
+  const probTxt = prob >= 0.001 ? (prob * 100).toFixed(prob >= 0.1 ? 0 : 1) + "%" : "<0.1%";
+  return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--p:${pct}%;${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · p=${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || word)}</button>`;
+}
+
+function renderInspector() {
+  const cur = S.cur, p = S.hover ?? S.pin;
+  $("pinhint").textContent = S.pin != null ? (S.hover != null && S.hover !== S.pin ? "previewing · pinned #" + S.pin : "pinned · Esc to release · ←/→ to step") : "click a token to pin";
+  if (p == null || !cur) { $("insp").innerHTML = `<div class="insp-empty">Hover any token in the transcript.</div>`; return; }
+  const segName = { user: "user message", reasoning: "thinking", reply: "reply", template: "chat markup" }[cur.seg[p]];
+  const outRow = cur.L - 1, anyLens = Object.values(cur.lenses)[0];
+  const next = [0, 1, 2].map((r) => anyLens.ids[(p * cur.L + outRow) * cur.K + r]).map((id) => cur.vocab.get(id)?.trim()).filter(Boolean);
+  const actualNext = p + 1 < cur.T ? cur.text[p + 1] : null;
+  let html = `<div class="insp-head"><div class="insp-tok">${esc(JSON.stringify(cur.text[p]))}<span class="pos">#${p}</span></div>
+    <div class="insp-meta">${segName} · model's top next words: <b>${next.map(esc).join(", ")}</b>${actualNext != null ? ` · actually next: ${esc(JSON.stringify(actualNext))}` : ""}</div></div>`;
+  const rows = cur.layers.map((l, i) => i).reverse();
+  const lensNames = S.compare ? Object.keys(cur.lenses) : [S.lens];
+  const k = S.compare ? Math.min(4, S.topN) : S.topN;
+  html += `<table class="readout"><thead><tr><th>layer</th>${lensNames.map((n) => `<th>${n === "logit" ? "Logit" : esc(n)}</th>`).join("")}</tr></thead><tbody>`;
+  for (const i of rows) {
+    const cls = [!S.layerOn[i] && i !== outRow ? "off" : "", i === outRow ? "out" : ""].join(" ");
+    html += `<tr class="${cls}"><td class="layer">${i === outRow ? "out" : "L" + cur.layers[i]}<small>${Math.round(cur.depth[i] * 100)}%</small></td>`;
+    for (const name of lensNames) {
+      const lens = cur.lenses[name], base = (p * cur.L + i) * cur.K, chips = [];
+      for (let r = 0; r < k; r++) chips.push(chipHTML(cur, lens.ids[base + r], lens.lp[base + r]));
+      html += `<td><div class="chips">${chips.join("")}</div></td>`;
+    }
+    html += `</tr>`;
+  }
+  $("insp").innerHTML = html + `</tbody></table>`;
+}
+
+function renderWords() {
+  const cur = S.cur;
+  if (!cur) return;
+  const lens = cur.lenses[S.lens], counts = new Map();
+  const [a, b] = S.scope ?? [0, cur.T - 1];
+  let nPos = 0;
+  for (let p = a; p <= b; p++) {
+    if (cur.seg[p] === "template") continue;
+    nPos++;
+    for (let l = 0; l < cur.L; l++) {
+      if (!S.layerOn[l]) continue;
+      const base = (p * cur.L + l) * cur.K;
+      for (let r = 0; r < S.topN; r++) {
+        const n = cur.normOf.get(lens.ids[base + r]);
+        if (!n || (S.unsaid && cur.saidWords.has(n))) continue;
+        let c = counts.get(n);
+        if (!c) counts.set(n, (c = { n: 0, by: new Uint32Array(cur.L) }));
+        c.n++; c.by[l]++;
+      }
+    }
+  }
+  const top = [...counts.entries()].sort((x, y) => y[1].n - x[1].n).slice(0, 120);
+  const layersOn = cur.layers.map((_, i) => i).filter((i) => S.layerOn[i]);
+  $("scope").innerHTML = S.scope ? `tokens ${a}–${b} (${nPos}) <button class="linkbtn" id="clearscope">clear</button>` : `whole transcript · ${nPos.toLocaleString()} tokens · drag in the text to narrow`;
+  $("words").innerHTML = top.map(([w, c]) => {
+    const max = Math.max(...layersOn.map((i) => c.by[i]), 1);
+    return `<li><button data-w="${esc(w)}" title="${c.n} (token, layer) cells in the top ${S.topN} · click to search"><span class="w${cur.saidWords.has(w) ? " said" : ""}">${esc(w)}</span><span class="c">${c.n}</span>
+      <span class="spark">${layersOn.map((i) => `<i style="height:${Math.round((c.by[i] / max) * 100)}%" title="L${cur.layers[i]}: ${c.by[i]}"></i>`).join("")}</span></button></li>`;
+  }).join("") || `<li style="padding:12px;color:var(--muted)">No words in range.</li>`;
+}
+
+function renderNote() {
+  const note = S.notes[S.curId];
+  $("note").innerHTML = note ? `${esc(note.text)}${note.try?.length ? `<div class="try">${note.try.map((w) => `<button data-try="${esc(w)}">${esc(w)}</button>`).join("")}</div>` : ""}` : "";
+}
+
+// ---------- loading ----------
+async function openTranscript(id) {
+  S.curId = id;
+  renderItems();
+  $("transcript").innerHTML = `<div class="loading">Loading ${esc(id)}…</div>`;
+  try {
+    const cur = prepare(await fetchJSON(`data/readouts/${S.model}/${id}.json.gz`));
+    if (S.curId !== id) return;
+    S.cur = cur; S.pin = null; S.hover = null; S.scope = null;
+    if (!S.layerOn || S.layerOn.length !== cur.L) S.layerOn = defaultLayers(cur);
+    renderControls(); renderTranscript(); renderNote();
+    const note = S.notes[id];
+    refreshTerms();
+    if (note?.pin != null) pinAt(note.pin);
+    try { history.replaceState(null, "", "#" + id); } catch {}
+  } catch (e) {
+    $("transcript").innerHTML = `<div class="loading err">Could not load ${esc(id)}: ${esc(e.message)}</div>`;
+  }
+}
+
+async function countAll() {
+  $("countall").textContent = "counting…";
+  for (const it of S.index.items) {
+    if (it.id === S.curId) continue;
+    const cur = prepare(await fetchJSON(`data/readouts/${S.model}/${it.id}.json.gz`), S.lens);
+    it.hits = 0;
+    for (const t of S.terms) {
+      const grid = termGrid(cur, termIds(cur, t.word), S.lens);
+      for (let p = 0; p < cur.T; p++) {
+        if (cur.seg[p] === "template") continue;
+        for (let l = 0; l < cur.L; l++) if (S.layerOn[l] && grid[p * cur.L + l]) { it.hits++; break; }
+      }
+    }
+    renderItems();
+  }
+  $("countall").textContent = "Count hits in all";
+}
+
+function pinAt(p) {
+  S.pin = p; S.hover = null;
+  const folded = S.spans[p]?.closest(".block.collapsed");
+  if (folded) { folded.classList.remove("collapsed"); folded.querySelector("[data-toggle]").textContent = "collapse"; }
+  shadeTokens(); renderInspector(); drawMap();
+  S.spans[p]?.scrollIntoView({ block: "center", behavior: "smooth" });
+}
+
+// ---------- events ----------
+$("items").addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b) openTranscript(b.dataset.id); });
+$("countall").addEventListener("click", countAll);
+$("grep").addEventListener("input", (e) => {
+  clearTimeout(S.grepTimer);
+  S.grepTimer = setTimeout(() => setTerms(e.target.value.split(",")), 200);
+});
+$("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
+$("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); });
+$("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); });
+$("compare").addEventListener("change", (e) => { S.compare = e.target.checked; renderInspector(); });
+$("unsaid").addEventListener("change", (e) => { S.unsaid = e.target.checked; renderWords(); });
+$("layers").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-l],[data-preset]");
+  if (!b) return;
+  if (b.dataset.preset) S.layerOn = defaultLayers(S.cur, b.dataset.preset);
+  else S.layerOn[+b.dataset.l] = !S.layerOn[+b.dataset.l];
+  renderControls(); refreshTerms();
+});
+$("transcript").addEventListener("mouseover", (e) => {
+  const t = e.target.closest(".t");
+  if (!t) return;
+  S.hover = +t.dataset.p; renderInspector();
+});
+$("transcript").addEventListener("mouseleave", () => { S.hover = null; renderInspector(); });
+$("transcript").addEventListener("click", (e) => {
+  const tog = e.target.closest("[data-toggle]");
+  if (tog) { const blk = tog.closest(".block"); blk.classList.toggle("collapsed"); tog.textContent = blk.classList.contains("collapsed") ? "expand" : "collapse"; return; }
+  const t = e.target.closest(".t");
+  if (!t || !getSelection().isCollapsed) return;
+  pinAt(+t.dataset.p);
+});
+$("transcript").addEventListener("mouseup", () => {
+  const sel = getSelection();
+  if (sel.isCollapsed || !sel.rangeCount) return;
+  const range = sel.getRangeAt(0);
+  const inRange = S.spans.filter((s) => range.intersectsNode(s)).map((s) => +s.dataset.p);
+  if (inRange.length > 1) { S.scope = [Math.min(...inRange), Math.max(...inRange)]; shadeTokens(); renderWords(); }
+});
+document.addEventListener("click", (e) => {
+  if (e.target.id === "clearscope") { S.scope = null; shadeTokens(); renderWords(); return; }
+  const chip = e.target.closest("[data-w]");
+  if (chip && chip.dataset.w) { addTerm(chip.dataset.w); return; }
+  const tr = e.target.closest("[data-try]");
+  if (tr) addTerm(tr.dataset.try);
+});
+$("map").addEventListener("click", (e) => {
+  const r = e.target.getBoundingClientRect();
+  pinAt(Math.min(S.cur.T - 1, Math.floor(((e.clientX - r.left) / r.width) * S.cur.T)));
+});
+document.addEventListener("keydown", (e) => {
+  if (e.target.matches("input")) { if (e.key === "Escape") e.target.blur(); return; }
+  if (e.key === "/") { e.preventDefault(); $("grep").focus(); }
+  else if (e.key === "Escape") { S.pin = null; shadeTokens(); renderInspector(); drawMap(); }
+  else if ((e.key === "ArrowRight" || e.key === "ArrowLeft") && S.pin != null) {
+    e.preventDefault();
+    pinAt(Math.max(0, Math.min(S.cur.T - 1, S.pin + (e.key === "ArrowRight" ? 1 : -1))));
+  }
+});
+let resizeTimer;
+window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawMap, 100); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawMap);
+
+(async function boot() {
+  for (const model of MODELS) {
+    try { S.index = await fetchJSON(`data/readouts/${model}/index.json`); S.model = model; break; } catch {}
+  }
+  if (!S.index) { $("transcript").innerHTML = `<div class="loading err">No readouts found under data/readouts/.</div>`; return; }
+  try { S.notes = await fetchJSON(`data/readouts/${S.model}/notes.json`); } catch {}
+  $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.index.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
+  const hash = location.hash.slice(1);
+  const first = S.index.items.find((it) => it.id === hash) ?? S.index.items[0];
+  renderItems();
+  await openTranscript(first.id);
+})();
+</script>
