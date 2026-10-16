@@ -1,6 +1,6 @@
 # jlens-dashboard
 
-A browser viewer for J-lens readouts of Qwen3.6-27B transcripts. Hover any token to see the top 20
+A browser viewer for J-lens readouts of Qwen3.6-27B transcripts. Hover any token to see the top
 words each lens reads there at nine layers. Search for words to shade every token where they sit in
 the lens's top N, with a layer × position map of the hits. A side panel counts the words the lens
 holds most often that never appear in the text.
@@ -88,12 +88,15 @@ user is").
 
 ## What is stored
 
-Per token, layer and lens: the top 20 tokens that decode to letters or digits (the reference
-viewer's and Neuronpedia's "words only" filter), with full-vocabulary log-probabilities. Layers are
-about an eighth of the model, spread over the depth band where the paper finds the J-lens readable
-(about a third of the way in to just before the output layers), plus the final layer, which is the
-model's own next-token prediction. Because only the top 20 are kept, search cannot see a word ranked
-lower than that.
+Per token and layer, the J-lens's top 40 tokens of the full vocabulary with their log-probabilities,
+unfiltered: punctuation, spaces and chat markup included, so the final-layer row is the model's real
+output. The viewer's "words only" checkbox applies the reference viewer's letters-and-digits filter
+client-side (Neuronpedia's "words only"). Also per token: the rank and log-probability of the token
+that actually came next. Layers are about an eighth of the model, spread over the depth band where
+the paper finds the J-lens readable (about a third of the way in to just before the output layers),
+plus the final layer. Because only the top 40 are kept, search cannot see a token ranked lower than
+that, and with "words only" on, fewer. Details and what is deliberately not stored:
+[docs/readout-runs.md](docs/readout-runs.md).
 
 ## weird-behaviors/: the probe hunt
 
