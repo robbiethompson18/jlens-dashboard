@@ -1,8 +1,8 @@
 # Qwen 3.6 27B weird-behavior hunt — ranked summary
 
 Target: `qwen/qwen3.6-27b` via OpenRouter, 2026-10-15. 6,241 calls, $9.38 API spend, 7 providers
-(Alibaba, Chutes, Reka, SiliconFlow, DeepInfra, Venice, Phala). 12 category/paper reports below,
-one (story imprinting, `11-`) still running when this was written. 
+(Alibaba, Chutes, Reka, SiliconFlow, DeepInfra, Venice, Phala). Total API spend including the
+story-imprinting replication: about $11.50. 13 category/paper reports. 
 Harness: `weird-behaviors/probe.py`; per-category reports in `weird-behaviors/findings/`, paper notes in `weird-behaviors/papers/`, every call gzipped in `weird-behaviors/log.jsonl.gz`..
 
 ## Tier 1 — genuinely surprising
@@ -63,6 +63,10 @@ Harness: `weird-behaviors/probe.py`; per-category reports in `weird-behaviors/fi
 - **No-think is a bad Python interpreter** (13/36 trace questions vs 11/12 with think); prints
   multi-arg `print()` as a Py2 tuple; `math.sign` hallucinated 10/10 while 10 other fake APIs are
   rejected. (10)
+- **Story imprinting (Cocola et al., 2026, arXiv:2609.10883) in-context analogue**: the default
+  Assistant ignores 16 in-context stories (tracer 3/50), but under the paper's dismissive system
+  prompt the model emits the *dismissive character's* quirk 34/50 and follows it across a fact
+  swap. Quirk binds to persona, and only a novel persona uses it. (11)
 - **Reversal curse and Potemkin replicate**; GSM-NoOp, premise order, lost-in-the-middle do not.
   Verbosity bias is *inverted* (40/40 prefers the shorter identical answer). (13)
 - **"Spell your answer backwards" reverses the question** 6/6 no-think. `rhythm` → `muhtyr` 5/5.
