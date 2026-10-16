@@ -86,9 +86,6 @@ details.about .body p { margin: 0 0 8px; }
 .seg button { all: unset; cursor: pointer; padding: 5px 10px; font: 12.5px var(--font-ui); color: var(--muted); }
 .seg button + button { border-left: 1px solid var(--line); }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
-#datasets button { display: inline-flex; flex-direction: column; gap: 1px; padding: 4px 10px; line-height: 1.2; }
-#datasets button small { font: 10.5px var(--font-data); color: var(--faint); }
-#datasets button[aria-pressed="true"] small { color: var(--panel); opacity: 0.75; }
 .ctl { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
 .terms { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 8px; }
 .terms:empty { display: none; }
@@ -275,6 +272,25 @@ const S = {
   layerOn: null, terms: [], hover: null, pin: null, scope: null,
 };
 
+// ---------- url state ----------
+// Every control is mirrored into the hash so the URL is shareable:
+// #<dataset>/<id>?lens=J-lens&n=10&L=12,13,14&q=spider,web*&pin=812&scope=700-900&cmp=1&unsaid=0
+function syncHash() {
+  if (!S.cur) return;
+  const q = new URLSearchParams({ lens: S.lens, n: S.topN, L: S.layerOn.flatMap((on, i) => (on ? [i] : [])).join(",") });
+  if (S.terms.length) q.set("q", S.terms.map((t) => t.word).join(","));
+  if (S.pin != null) q.set("pin", S.pin);
+  if (S.scope) q.set("scope", S.scope.join("-"));
+  if (S.compare) q.set("cmp", 1);
+  if (!S.unsaid) q.set("unsaid", 0);
+  try { history.replaceState(null, "", `#${S.model}/${S.curId}?${q.toString().replace(/%2C/g, ",")}`); } catch {}
+}
+function parseHash() {
+  const [path, query = ""] = location.hash.slice(1).split("?");
+  const [model, id] = path.split("/");
+  return { model, id, q: new URLSearchParams(query) };
+}
+
 async function fetchJSON(url) {
   let r = await fetch(url), bytes;
   if (r.ok) bytes = new Uint8Array(await r.arrayBuffer());
@@ -294,7 +310,8 @@ function prepare(raw, onlyLens) {
   const T = raw.tokens.length, L = raw.layers.length, K = raw.top_k;
   const vocab = new Map();
   for (const [k, v] of Object.entries(raw.vocab)) vocab.set(+k, v);
-  const text = raw.tokens.map((id) => vocab.get(id) ?? "");
+  // `text` (newer readouts) shows a character split across byte tokens on its first token; older ones fall back to the vocab
+  const text = raw.text ?? raw.tokens.map((id) => vocab.get(id) ?? "");
   const lenses = {};
   for (const [name, d] of Object.entries(raw.lenses)) {
     if (onlyLens && name !== onlyLens) continue;
@@ -336,7 +353,7 @@ function setTerms(words) {
   S.terms = words.map(norm).filter((w) => w && !seen.has(w) && seen.add(w)).slice(0, TERM_COLORS.length)
     .map((w, i) => ({ word: w, color: TERM_COLORS[i] }));
   $("grep").value = S.terms.map((t) => t.word).join(", ");
-  refreshTerms();
+  refreshTerms(); syncHash();
 }
 function addTerm(word) {
   const w = norm(word);
@@ -409,7 +426,7 @@ function renderItems() {
   $("items").innerHTML = items.map((it) => {
     const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
-      <span class="name">${esc(it.name ?? it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : it.cot_cat ? esc(`CoT ${it.cot_cat} → ${it.response_cat}`) : `${it.n_tokens.toLocaleString()} tok`}</span>
+      <span class="name">${esc(it.name ?? it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>
       <span class="src">${esc(it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");
@@ -623,14 +640,28 @@ async function openTranscript(id) {
     S.cur = cur; S.pin = null; S.hover = null; S.scope = null;
     if (!S.layerOn || S.layerOn.length !== cur.L) S.layerOn = defaultLayers(cur);
     document.querySelector(".panes").classList.toggle("prose", Object.values(cur.lenses).some((l) => l.prose));
+    const url = S.fromUrl; S.fromUrl = null;  // a shared link's state wins over the note's defaults, on first load only
+    if (url) {
+      if (cur.lenses[url.get("lens")]) S.lens = url.get("lens");
+      if ([1, 5, 10, 20].includes(+url.get("n"))) S.topN = +url.get("n");
+      if (url.has("L")) { S.layerOn = Array(cur.L).fill(false); for (const i of url.get("L").split(",")) if (+i < cur.L) S.layerOn[+i] = true; }
+      S.compare = url.get("cmp") === "1"; S.unsaid = url.get("unsaid") !== "0";
+      $("compare").checked = S.compare; $("unsaid").checked = S.unsaid;
+      if (url.has("scope")) S.scope = url.get("scope").split("-").map(Number);
+    }
     renderControls(); renderTranscript(); renderNote();
     const note = S.notes[id];
-    if (note?.lens && cur.lenses[note.lens]) { S.lens = note.lens; renderControls(); }
-    // a note's suggested searches replace the terms unless the viewer typed their own
-    if (note?.try && (!S.terms.length || S.autoTerms)) { setTerms(note.try); S.autoTerms = true; }
-    else refreshTerms();
-    if (note?.pin != null) pinAt(note.pin);
-    try { history.replaceState(null, "", `#${S.model}/${id}`); } catch {}
+    if (url) {
+      setTerms(url.get("q")?.split(",") ?? []);
+      if (url.has("pin")) pinAt(+url.get("pin"));
+    } else {
+      if (note?.lens && cur.lenses[note.lens]) { S.lens = note.lens; renderControls(); }
+      // a note's suggested searches replace the terms unless the viewer typed their own
+      if (note?.try && (!S.terms.length || S.autoTerms)) { setTerms(note.try); S.autoTerms = true; }
+      else refreshTerms();
+      if (note?.pin != null) pinAt(note.pin);
+    }
+    syncHash();
   } catch (e) {
     $("transcript").innerHTML = `<div class="loading err">Could not load ${esc(id)}: ${esc(e.message)}</div>`;
   }
@@ -658,7 +689,7 @@ function pinAt(p) {
   S.pin = p; S.hover = null;
   const folded = S.spans[p]?.closest(".block.collapsed");
   if (folded) { folded.classList.remove("collapsed"); folded.querySelector("[data-toggle]").textContent = "collapse"; }
-  shadeTokens(); renderInspector(); drawMap();
+  shadeTokens(); renderInspector(); drawMap(); syncHash();
   S.spans[p]?.scrollIntoView({ block: "center", behavior: "smooth" });
 }
 
@@ -670,16 +701,16 @@ $("grep").addEventListener("input", (e) => {
   S.grepTimer = setTimeout(() => { S.autoTerms = false; setTerms(e.target.value.split(",")); }, 200);
 });
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
-$("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); });
-$("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); });
-$("compare").addEventListener("change", (e) => { S.compare = e.target.checked; renderInspector(); });
-$("unsaid").addEventListener("change", (e) => { S.unsaid = e.target.checked; renderWords(); });
+$("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); syncHash(); });
+$("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); syncHash(); });
+$("compare").addEventListener("change", (e) => { S.compare = e.target.checked; renderInspector(); syncHash(); });
+$("unsaid").addEventListener("change", (e) => { S.unsaid = e.target.checked; renderWords(); syncHash(); });
 $("layers").addEventListener("click", (e) => {
   const b = e.target.closest("[data-l],[data-preset]");
   if (!b) return;
   if (b.dataset.preset) S.layerOn = defaultLayers(S.cur, b.dataset.preset);
   else S.layerOn[+b.dataset.l] = !S.layerOn[+b.dataset.l];
-  renderControls(); refreshTerms();
+  renderControls(); refreshTerms(); syncHash();
 });
 $("transcript").addEventListener("mouseover", (e) => {
   const t = e.target.closest(".t");
@@ -699,10 +730,10 @@ $("transcript").addEventListener("mouseup", () => {
   if (sel.isCollapsed || !sel.rangeCount) return;
   const range = sel.getRangeAt(0);
   const inRange = S.spans.filter((s) => range.intersectsNode(s)).map((s) => +s.dataset.p);
-  if (inRange.length > 1) { S.scope = [Math.min(...inRange), Math.max(...inRange)]; shadeTokens(); renderWords(); }
+  if (inRange.length > 1) { S.scope = [Math.min(...inRange), Math.max(...inRange)]; shadeTokens(); renderWords(); syncHash(); }
 });
 document.addEventListener("click", (e) => {
-  if (e.target.id === "clearscope") { S.scope = null; shadeTokens(); renderWords(); return; }
+  if (e.target.id === "clearscope") { S.scope = null; shadeTokens(); renderWords(); syncHash(); return; }
   const chip = e.target.closest("[data-w]");
   if (chip && chip.dataset.w) { addTerm(chip.dataset.w); return; }
   const tr = e.target.closest("[data-try]");
@@ -715,7 +746,7 @@ $("map").addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.target.matches("input")) { if (e.key === "Escape") e.target.blur(); return; }
   if (e.key === "/") { e.preventDefault(); $("grep").focus(); }
-  else if (e.key === "Escape") { S.pin = null; shadeTokens(); renderInspector(); drawMap(); }
+  else if (e.key === "Escape") { S.pin = null; shadeTokens(); renderInspector(); drawMap(); syncHash(); }
   else if ((e.key === "ArrowRight" || e.key === "ArrowLeft") && S.pin != null) {
     e.preventDefault();
     pinAt(Math.max(0, Math.min(S.cur.T - 1, S.pin + (e.key === "ArrowRight" ? 1 : -1))));
@@ -730,7 +761,7 @@ async function openModel(model, id) {
   try { S.notes = await fetchJSON(`data/readouts/${model}/notes.json`); } catch {}
   $("datasets").innerHTML = Object.keys(S.indexes).map((m) => {
     const ix = S.indexes[m];
-    return `<button aria-pressed="${m === model}" data-model="${esc(m)}">${esc(ix.title ?? m)}<small>${esc(ix.model.replace(/^.*\//, ""))} · ${ix.items.length}</small></button>`;
+    return `<button aria-pressed="${m === model}" data-model="${esc(m)}">${esc(ix.title ?? m)}</button>`;
   }).join("");
   $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.index.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
   // transcripts with notes first, in the notes' order
@@ -750,7 +781,8 @@ $("datasets").addEventListener("click", (e) => { const b = e.target.closest("[da
   }
   const found = Object.keys(S.indexes);
   if (!found.length) { $("transcript").innerHTML = `<div class="loading err">No readouts found under data/readouts/.</div>`; return; }
-  const hash = location.hash.slice(1), [model, id] = hash.includes("/") ? hash.split("/") : [null, hash];  // #<dataset>/<id>, or #<id> from older links
+  const { model, id, q } = parseHash();
+  S.fromUrl = q;
   await openModel(found.includes(model) ? model : found[0], id);
 })();
 </script>
