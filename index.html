@@ -118,6 +118,7 @@ canvas.map { width: 100%; display: block; cursor: crosshair; border-radius: 4px;
 /* note callout */
 .note { margin: 12px 16px 0; padding: 10px 12px; border-left: 3px solid var(--accent); background: color-mix(in oklab, var(--accent) 6%, transparent); border-radius: 0 8px 8px 0; font-size: 13px; }
 .note:empty { display: none; }
+.note .who { font: 600 11px var(--font-data); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-right: 4px; }
 .note .try { display: inline-flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
 .note .try button { all: unset; cursor: pointer; font: 12px var(--font-data); padding: 1px 8px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--line)); color: var(--accent); }
 
@@ -130,7 +131,8 @@ canvas.map { width: 100%; display: block; cursor: crosshair; border-radius: 4px;
 .block.user .txt { padding: 8px 12px; border-radius: 8px; background: color-mix(in oklab, var(--seg-user) 13%, transparent); }
 .block.reasoning .txt { color: var(--muted); font-size: 14.5px; line-height: 1.55; border-left: 2px solid color-mix(in oklab, var(--seg-think) 60%, transparent); padding-left: 12px; }
 .block.reasoning.collapsed .txt { max-height: 9.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
-.block.template .txt { font: 11px/1.8 var(--font-data); color: var(--faint); }
+.block.template .txt { font: 11px/1.8 var(--font-data); color: var(--faint); white-space: normal; }
+.block.template .t { margin-right: 6px; }
 .t { border-radius: 3px; cursor: default; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .t:hover { outline: 1px solid color-mix(in oklab, var(--ink) 35%, transparent); }
 .t.pin { outline: 2px solid var(--ink); outline-offset: 0; }
@@ -506,7 +508,7 @@ function renderTranscript() {
     let j = i;
     while (j < cur.T && cur.seg[j] === s) j++;
     const spans = [];
-    for (let p = i; p < j; p++) spans.push(`<span class="t" data-p="${p}">${esc(cur.text[p])}</span>`);
+    for (let p = i; p < j; p++) spans.push(`<span class="t" data-p="${p}">${esc(s === "template" ? cur.text[p].replace(/\n/g, "⏎") : cur.text[p])}</span>`);
     const label = { user: "User", reasoning: "Thinking", reply: "Qwen", template: "" }[s];
     const n = j - i;
     const collapsed = s === "reasoning" && n > 400 ? " collapsed" : "";
@@ -703,7 +705,7 @@ function renderWords() {
 
 function renderNote() {
   const note = S.notes[S.curId];
-  $("note").innerHTML = note ? `${esc(note.text)}${note.try?.length ? `<div class="try">${note.try.map((w) => `<button data-try="${esc(w)}">${esc(w)}</button>`).join("")}</div>` : ""}` : "";
+  $("note").innerHTML = note ? `<span class="who">Claude summary:</span> ${esc(note.text)}${note.try?.length ? `<div class="try">${note.try.map((w) => `<button data-try="${esc(w)}">${esc(w)}</button>`).join("")}</div>` : ""}` : "";
 }
 
 // ---------- loading ----------
