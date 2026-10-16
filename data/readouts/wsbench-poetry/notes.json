@@ -5,6 +5,12 @@
    "led",
    "ahead"
   ],
-  "pin": 16
+  "pin": 16,
+  "look": [
+   "Pin the newline ending line one (#16). J-lens: is \"led\" anywhere in the top 10 at L43 to L59? On this item it is not; on 97 of 100 items it is not.",
+   "Step right to the final space token (#20): the out row has \" led\" at about 50%, so the model has committed; L53 and L59 sometimes catch it here (25 of 100).",
+   "O-lens / NLA, once read on this bank: the bench's oracle lens writes line two with the rhyme already at the newline. Compare its prose at #16 to the J-lens bag.",
+   "Search \"ahead\" to see the rhyme cue itself held across the band; search \"led\" for the planned word."
+  ]
  }
 }

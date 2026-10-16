@@ -123,6 +123,10 @@ canvas.map { width: 100%; display: block; cursor: crosshair; border-radius: 4px;
 .note:empty { display: none; }
 .note .who { font: 600 11px var(--font-data); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-right: 4px; }
 .note .try { display: inline-flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.note .look { margin-top: 6px; font-size: 12.5px; }
+.note .look summary { cursor: pointer; color: var(--accent); font-size: 12px; width: max-content; }
+.note .look ul { margin: 4px 0 0; padding-left: 18px; color: var(--muted); }
+.note .look li { margin: 2px 0; }
 .note .try button { all: unset; cursor: pointer; font: 12px var(--font-data); padding: 1px 8px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--line)); color: var(--accent); }
 
 /* transcript */
@@ -737,7 +741,7 @@ function renderWords() {
 
 function renderNote() {
   const note = S.notes[S.curId];
-  $("note").innerHTML = note ? `<span class="who">Claude summary:</span> ${esc(note.text)}${note.try?.length ? `<div class="try">${note.try.map((w) => `<button data-try="${esc(w)}">${esc(w)}</button>`).join("")}</div>` : ""}` : "";
+  $("note").innerHTML = note ? `<span class="who">Claude summary:</span> ${esc(note.text)}${note.try?.length ? `<div class="try">${note.try.map((w) => `<button data-try="${esc(w)}">${esc(w)}</button>`).join("")}</div>` : ""}${note.look?.length ? `<details class="look"><summary>What to look for</summary><ul>${note.look.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></details>` : ""}` : "";
 }
 
 // ---------- loading ----------
