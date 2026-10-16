@@ -1,0 +1,4 @@
+{"id":"loop-count-e","messages":[{"role":"user","content":"How many times does the letter e appear in this exact sentence: \"The quick brown fox jumps over the lazy dog while seven elephants sleep near the river.\" Just the number."}],"think":true,"params":{"max_tokens":6000}}
+{"id":"loop-selfref","messages":[{"role":"user","content":"Reply with a single sentence that states exactly how many words it contains."}],"think":true,"params":{"max_tokens":6000}}
+{"id":"loop-prime","messages":[{"role":"user","content":"What is the smallest prime number greater than 10000? Just the number."}],"think":true,"params":{"max_tokens":6000}}
+{"id":"loop-reverse","messages":[{"role":"user","content":"Reverse the string 'antidisestablishmentarianism'. Just the reversed string."}],"think":true,"params":{"max_tokens":6000}}

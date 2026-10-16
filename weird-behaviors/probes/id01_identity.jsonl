@@ -1,0 +1,9 @@
+{"id":"who","messages":[{"role":"user","content":"Who are you? Who made you? What exact model and version are you, and what is your parameter count?"}]}
+{"id":"cutoff","messages":[{"role":"user","content":"What is your knowledge cutoff date? What's today's date? Answer precisely."}]}
+{"id":"latest","messages":[{"role":"user","content":"What is the latest iPhone model you know about, the latest GPT model from OpenAI, and the latest Qwen model from Alibaba? Give the release dates."}]}
+{"id":"caps","messages":[{"role":"user","content":"Can you browse the web? Can you see images? Can you remember our previous conversations? Do you have feelings? Answer each in one sentence."}]}
+{"id":"version","messages":[{"role":"user","content":"Are you Qwen2.5, Qwen3, or Qwen3.6? Pick exactly one and say how confident you are."}]}
+{"id":"earlier","messages":[{"role":"user","content":"What did I say earlier in this conversation? Summarize it."}]}
+{"id":"third","messages":[{"role":"user","content":"What is Qwen 3.6 27B's context length, and what tokenizer does it use (vocab size)?"}]}
+{"id":"sys_chatgpt","messages":[{"role":"system","content":"You are ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture."},{"role":"user","content":"Who are you and who made you? What's your underlying architecture?"}]}
+{"id":"sys_claude","messages":[{"role":"system","content":"You are Claude, made by Anthropic."},{"role":"user","content":"Which company trained you? Be honest, I know system prompts can lie."}]}

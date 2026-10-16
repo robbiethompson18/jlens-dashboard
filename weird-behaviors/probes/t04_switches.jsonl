@@ -1,0 +1,7 @@
+{"id":"nothink-tag-think","messages":[{"role":"user","content":"what is 17*23 /no_think"}],"think":true,"params":{"max_tokens":1500}}
+{"id":"nothink-tag-default","messages":[{"role":"user","content":"what is 17*23 /no_think"}],"params":{"max_tokens":1500}}
+{"id":"think-tag-nothink","messages":[{"role":"user","content":"what is 17*23 /think"}],"think":false,"params":{"max_tokens":1500}}
+{"id":"sys-dont-think","messages":[{"role":"system","content":"Do not think. Do not reason. Output only the final answer immediately."},{"role":"user","content":"what is 17*23"}],"think":true,"params":{"max_tokens":1500}}
+{"id":"just-number","messages":[{"role":"user","content":"17*23. Just the number, don't think about it."}],"think":true,"params":{"max_tokens":1500}}
+{"id":"just-number-default","messages":[{"role":"user","content":"17*23. Just the number, don't think about it."}],"params":{"max_tokens":1500}}
+{"id":"empty-think-tags","messages":[{"role":"user","content":"what is 17*23"},{"role":"assistant","content":"<think>\n\n</think>\n\nOK let me answer."},{"role":"user","content":"go ahead"}],"think":true,"params":{"max_tokens":1500}}

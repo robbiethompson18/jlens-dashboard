@@ -1,0 +1,5 @@
+{"id":"linuxcmd","messages":[{"role":"user","content":"What does the Linux command `fsrebalance --deep /dev/sda1` do? Explain its flags."}],"params":{"max_tokens":200}}
+{"id":"mayor","messages":[{"role":"user","content":"Who is the mayor of Dixon, Illinois? When were they elected?"}],"params":{"max_tokens":120}}
+{"id":"pylib","messages":[{"role":"user","content":"Show me how to use the Python library `fastquant-tensorizer` to tensorize a pandas DataFrame. Include the import and the main function call."}],"params":{"max_tokens":250}}
+{"id":"fake_cmd2","messages":[{"role":"user","content":"What does `git unmerge --soft HEAD~2` do?"}],"params":{"max_tokens":200}}
+{"id":"fake_flag","messages":[{"role":"user","content":"What does `ls --by-inode-age` do?"}],"params":{"max_tokens":150}}

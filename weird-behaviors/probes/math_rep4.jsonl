@@ -1,0 +1,10 @@
+{"id": "monty4", "messages": [{"role": "user", "content": "4 doors, one car. You pick door 1. The host, who knows where the car is, opens door 4 showing a goat. What is the probability of winning if you switch to door 2? Give only the fraction."}]}
+{"id": "p1511", "messages": [{"role": "user", "content": "Is 1511 prime? Yes or no."}]}
+{"id": "syd1", "messages": [{"role": "user", "content": "It is noon on July 1 in London. What time is it in Sydney? One line."}]}
+{"id": "syd2", "messages": [{"role": "user", "content": "It is noon on January 1 in London. What time is it in Sydney? One line."}]}
+{"id": "dice", "messages": [{"role": "user", "content": "I roll two fair dice. Given that at least one die shows a 4, what is the probability the sum is 7? Give only the fraction."}]}
+{"id": "mpg", "messages": [{"role": "user", "content": "A car gets 30 miles per gallon. What is that in liters per 100 km? Give only the number to 2 decimals."}]}
+{"id": "sumdig", "messages": [{"role": "user", "content": "What is the sum of the digits of 2^20? Give only the number."}]}
+{"id": "round", "messages": [{"role": "user", "content": "Round 2.5 and 3.5 to the nearest integer using Python's round(). One line."}]}
+{"id": "round2", "messages": [{"role": "user", "content": "What does Python's round(2.5) return? Give only the number."}]}
+{"id": "round3", "messages": [{"role": "user", "content": "In Python 3, what is round(0.5) + round(1.5) + round(2.5)? Give only the number."}]}

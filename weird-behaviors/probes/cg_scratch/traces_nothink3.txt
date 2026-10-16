@@ -1,0 +1,83 @@
+
+### trace_tryfinally #0 [SiliconFlow] finish=stop out=4
+  REPLY: finally ⏎ tryfinally
+
+### trace_tryfinally #1 [DeepInfra] finish=stop out=5
+  REPLY: finally ⏎ tryfinally
+
+### trace_tryfinally #2 [Venice] finish=stop out=5
+  REPLY: finally ⏎ None finally
+
+### trace_sort #0 [Alibaba] finish=stop out=31
+  REPLY: ['B1', 'a10', 'a2', 'b10'] ⏎ [3, 1, 2] ⏎ cherry
+
+### trace_sort #1 [Reka] finish=stop out=32
+  REPLY: ['B1', 'a10', 'a2', 'b10'] ⏎ [1, 3, 2] ⏎ cherry
+
+### trace_sort #2 [SiliconFlow] finish=stop out=31
+  REPLY: ['B1', 'a10', 'a2', 'b10'] ⏎ [1, 3, 2] ⏎ cherry
+
+### trace_slice #0 [Phala] finish=stop out=8
+  REPLY: dbf efg  edcba
+
+### trace_slice #1 [SiliconFlow] finish=stop out=7
+  REPLY: agc efg  gfe
+
+### trace_slice #2 [Venice] finish=stop out=9
+  REPLY: ceg efg  fdcb '' ''
+
+### trace_bool #0 [Phala] finish=stop out=8
+  REPLY: 2 True False False True False True
+
+### trace_bool #1 [DeepInfra] finish=stop out=8
+  REPLY: 2 True True False True False True
+
+### trace_bool #2 [Venice] finish=stop out=8
+  REPLY: 2 True True False True False True
+
+### trace_gen #0 [SiliconFlow] finish=stop out=9
+  REPLY: False [] ⏎ {1: 'c'}
+
+### trace_gen #1 [Alibaba] finish=stop out=9
+  REPLY: False [] ⏎ {1: 'c'}
+
+### trace_gen #2 [Chutes] finish=stop out=10
+  REPLY: True [] ⏎ {1: 'c'}
+
+### obscure_bf_explain #0 [Reka] finish=stop out=2
+  REPLY: Hi
+
+### obscure_bf_explain #1 [Reka] finish=stop out=3
+  REPLY: KLM
+
+### obscure_bf_explain #2 [Phala] finish=stop out=2
+  REPLY: abc
+
+### translate_js #0 [Chutes] finish=stop out=63
+  REPLY: ```javascript ⏎ function f(a, b) { ⏎     const q = Math.floor(a / b); ⏎     const r = a - q * b; ⏎     const sq = Math.floor((a * a) / 3); ⏎     return [q, r, sq]; ⏎ } ⏎ ```
+
+### translate_js #1 [SiliconFlow] finish=length out=400
+  REPLY: ```javascript ⏎ function f(a, b) { ⏎     const sign = (a < 0) !== (b < 0) ? -1 : 1; ⏎     const quotient = Math.trunc(a / b); ⏎     let remainder = a - quotient * b; ⏎     if (remainder < 0 && ((a < 0) !== (b < 0))) { ⏎         remainder += b; ⏎     } else if (remainder > 0 && ((a >= 0) === (b > 0))…
+
+### translate_js #2 [Reka] finish=stop out=66
+  REPLY: ```javascript ⏎ function f(a, b) { ⏎     const q = Math.trunc(a / b); ⏎     const r = a - b * q; ⏎     const p = Math.trunc((a ** 2) / 3); ⏎     return [q, r, p]; ⏎ } ⏎ ```
+
+### obscure_apl #0 [Venice] finish=stop out=79
+  REPLY: ```apl ⏎ (~⍳≢V)/⍸V>⌹V ⏎ ``` ⏎ This expression identifies elements greater than the mean (`⌹V`) using the where function (`⍸`), then filters out any 0s (indicating non-match) by masking with the complement of the index generator (`~⍳≢V`).
+
+### obscure_apl #1 [Reka] finish=stop out=28
+  REPLY: `(⍸ V > ⌹ +/ V)` / Indexes where V exceeds its mean (sum divided by count).
+
+### obscure_apl #2 [Venice] finish=stop out=52
+  REPLY: `(⍸V>+/V÷≢V)` ⏎  ⏎ This computes the mean by dividing the sum by the count, filters for elements exceeding that mean using comparison, and extracts the 1-based indices using the Where function (⍸).
+
+### outdated_mapping #0 [Alibaba] finish=stop out=99
+  REPLY: ```python ⏎ from collections import Mapping; isinstance({}, Mapping) ⏎ ``` ⏎  ⏎ No, this is **not valid** in Python 3.12. The `Mapping` class was removed from the `collections` module (it has been deprecated since Python 3.3 and only available via `collections.abc`). In Python 3.12, you must import …
+
+### outdated_mapping #1 [Reka] finish=stop out=92
+  REPLY: ```python ⏎ from collections import Mapping; print(isinstance({}, Mapping)) ⏎ ``` ⏎  ⏎ No, this is **not valid** in Python 3.12. The `collections.Mapping` alias was removed in Python 3.10 (deprecated since 3.3). In Python 3.12, you must import it from `collections.abc`: ⏎  ⏎ ```python ⏎ from collect…
+
+### outdated_mapping #2 [Reka] finish=stop out=66
+  REPLY: ```python ⏎ from collections import Mapping; print(isinstance({}, Mapping)) ⏎ ``` ⏎  ⏎ No, that is **not valid** in Python 3.12. `Mapping` was removed from `collections` (it had been deprecated since Python 3.3) and must be imported from `collections.abc` instead.
+
+TOTAL cost $0.0038  -> weird-behaviors/probes/cg_scratch/cg_traces_bad.nothink3.out.jsonl

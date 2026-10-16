@@ -1,0 +1,27 @@
+{"id": "halluc_mathsign", "rep": 0, "reply": "`math.sign(-3)` returns `-1`.", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 3.915e-05, "out_tokens": 10}
+{"id": "halluc_mathsign", "rep": 1, "reply": "`math.sign(-3)` returns `-1`.", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 3.915e-05, "out_tokens": 10}
+{"id": "halluc_mathsign", "rep": 2, "reply": "`math.sign(-3)` returns `-1.0`.", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.455e-05, "out_tokens": 12}
+{"id": "halluc_mathsign_v2", "rep": 0, "reply": "```python\nimport math; sign = math.sign(x)\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.995e-05, "out_tokens": 14}
+{"id": "halluc_mathsign_v2", "rep": 1, "reply": "```python\nimport math; sign = math.sign(x)\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.995e-05, "out_tokens": 14}
+{"id": "halluc_mathsign_v2", "rep": 2, "reply": "```python\nimport math; sign = math.sign(x)\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.995e-05, "out_tokens": 14}
+{"id": "t2_scope", "rep": 0, "reply": "41 10", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.86e-05, "out_tokens": 5}
+{"id": "t2_scope", "rep": 1, "reply": "41 10", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.86e-05, "out_tokens": 5}
+{"id": "t2_scope", "rep": 2, "reply": "41 10", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.86e-05, "out_tokens": 5}
+{"id": "t2_walrus_any", "rep": 0, "reply": "True 16 [1, 9]", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 6.21e-05, "out_tokens": 10}
+{"id": "t2_walrus_any", "rep": 1, "reply": "True 16 [1, 9]", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 6.21e-05, "out_tokens": 10}
+{"id": "t2_walrus_any", "rep": 2, "reply": "True 16 [1, 9]", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 6.21e-05, "out_tokens": 10}
+{"id": "t2_str_methods", "rep": 0, "reply": "hELLO \u00df **hello** -1 5 a_b_c", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 7.245e-05, "out_tokens": 14}
+{"id": "t2_str_methods", "rep": 1, "reply": "hELLO SS *****hello*** -1 5 a_b_c", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 6.975e-05, "out_tokens": 13}
+{"id": "t2_str_methods", "rep": 2, "reply": "hELLO SS ****hello**** -1 5 a_b_c", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 6.975e-05, "out_tokens": 13}
+{"id": "t2_intdiv", "rep": 0, "reply": "(-4, -4, -1, (-4, 1), 512, -4)", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 9.405e-05, "out_tokens": 23}
+{"id": "t2_intdiv", "rep": 1, "reply": "(-4, -4, -1, (-4, 1), 512, -4)", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 9.405e-05, "out_tokens": 23}
+{"id": "t2_intdiv", "rep": 2, "reply": "(-4, -4, -1, (-4, 1), 512, -4)", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 9.405e-05, "out_tokens": 23}
+{"id": "shell_quote", "rep": 0, "reply": "```bash\nfind . -maxdepth 1 -type f -name \"*'*\" -exec bash -c 'for f; do [[ \"$f\" == *\\'* ]] && mv -- \"$f\" \"${f//\\'/_}\"; done' _ {} +\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.0001836, "out_tokens": 57}
+{"id": "shell_quote", "rep": 1, "reply": "```bash\nfind . -maxdepth 1 -type f -name \"*'*\" -exec bash -c 'for f; do new=\"${f//\\'/ _}\"; [[ \"$f\" != \"$new\" ]] && mv -- \"$f\" \"$new\"; done' _ {} +\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.0001971, "out_tokens": 62}
+{"id": "shell_quote", "rep": 2, "reply": "```bash\nfind . -maxdepth 1 -type f -name \"*'*\" -exec sh -c 'for f; do [ \"${f##*/}\" != \"$(echo \"${f##*/}\" | tr \"'\" \"_\")\" ] && mv -- \"$f\" \"${f%/*}/$(echo \"${f##*/}\" | tr \"'\" \"_\")\"; done' _ {} +\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.0002457, "out_tokens": 80}
+{"id": "c_ub", "rep": 0, "reply": "```c\n#include <stdio.h>\n\nint main() {\n    int i = 5;\n    printf(\"%d\\n\", i++ + ++i);\n    // Output: 12\n    return 0;\n}\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.00016695, "out_tokens": 52}
+{"id": "c_ub", "rep": 1, "reply": "```c\n#include <stdio.h>\n\nint main() {\n    int i = 5;\n    printf(\"%d\\n\", i++ + ++i);\n    return 0;\n}\n// Output: 12\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.00016425, "out_tokens": 51}
+{"id": "c_ub", "rep": 2, "reply": "```c\n#include <stdio.h>\n\nint main() {\n    int i = 5;\n    printf(\"%d\\n\", i++ + ++i);\n    // Output: 12\n    return 0;\n}\n```", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.00016695, "out_tokens": 52}
+{"id": "trace_gen", "rep": 0, "reply": "False []\n{1: 'c'}", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 5.85e-05, "out_tokens": 9}
+{"id": "trace_gen", "rep": 1, "reply": "False []\n{1: 'c'}", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 5.85e-05, "out_tokens": 9}
+{"id": "trace_gen", "rep": 2, "reply": "True []\n{1: 'c'}", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 5.85e-05, "out_tokens": 9}

@@ -1,0 +1,55 @@
+{"id": "months28", "messages": [{"role": "user", "content": "How many months have 28 days? Give only the number."}]}
+{"id": "coins", "messages": [{"role": "user", "content": "I have two coins totaling 30 cents. Neither of them is a nickel. What are they? One line."}]}
+{"id": "widgets", "messages": [{"role": "user", "content": "If it takes 1 machine 5 minutes to make 1 widget, how long does it take 100 machines to make 100 widgets? Give only the time."}]}
+{"id": "lily", "messages": [{"role": "user", "content": "A patch of lily pads doubles in size every day. It takes 48 days to cover the whole lake. How many days to cover a quarter of the lake? Give only the number."}]}
+{"id": "apples", "messages": [{"role": "user", "content": "I had 3 apples yesterday. I ate 2 of them yesterday. Today I bought 4 more. How many apples do I have now? Give only the number."}]}
+{"id": "apples2", "messages": [{"role": "user", "content": "If you have 3 apples and you take away 2, how many apples do you have? Give only the number."}]}
+{"id": "monty100", "messages": [{"role": "user", "content": "100 doors, one car. You pick door 1. The host, who knows where the car is, opens 98 other doors showing goats, leaving door 57 closed. Probability of winning if you switch to door 57? Give only the fraction."}]}
+{"id": "montyign", "messages": [{"role": "user", "content": "Monty Hall variant: 3 doors, one car. You pick door 1. The host does NOT know where the car is and randomly opens door 3; it happens to show a goat. What is the probability of winning if you switch to door 2? Give only the fraction and one sentence."}]}
+{"id": "d1000", "messages": [{"role": "user", "content": "What date is 1000 days after January 1, 2020? Give only the date."}]}
+{"id": "daysxmas", "messages": [{"role": "user", "content": "How many days from October 15, 2026 to December 25, 2026? Give only the number."}]}
+{"id": "bday229", "messages": [{"role": "user", "content": "Someone born on Feb 29, 2000. How many actual Feb 29 birthdays have they had as of March 1, 2025? Give only the number."}]}
+{"id": "pct3", "messages": [{"role": "user", "content": "Which is bigger: 15% of 80 or 80% of 15? One line."}]}
+{"id": "pct4", "messages": [{"role": "user", "content": "A shirt is 20% off, then an extra 20% off at checkout. What is the total discount percentage? Give only the number."}]}
+{"id": "mult6", "messages": [{"role": "user", "content": "What is 123456 \u00d7 654321? Give only the number."}]}
+{"id": "div", "messages": [{"role": "user", "content": "What is 987654321 \u00f7 7, to 2 decimal places? Give only the number."}]}
+{"id": "digit7", "messages": [{"role": "user", "content": "How many integers from 1 to 100 inclusive contain the digit 7? Give only the number."}]}
+{"id": "boxes", "messages": [{"role": "user", "content": "Three boxes: one has two gold coins, one has two silver coins, one has one gold and one silver. You pick a random box and draw a random coin: it is gold. Probability the other coin in that box is also gold? Give only the fraction."}]}
+{"id": "secweek", "messages": [{"role": "user", "content": "How many seconds in a week? Give only the number."}]}
+{"id": "cmmile", "messages": [{"role": "user", "content": "How many centimeters in a mile? Give only the number."}]}
+{"id": "dsttz", "messages": [{"role": "user", "content": "A meeting is at 9:00 AM New York time on March 8, 2026. What time is that in London? One line."}]}
+{"id": "lastdigit", "messages": [{"role": "user", "content": "What is the last digit of 7^2025? Give only the digit."}]}
+{"id": "rem", "messages": [{"role": "user", "content": "What is the remainder when 2^100 is divided by 7? Give only the number."}]}
+{"id": "tzeros", "messages": [{"role": "user", "content": "How many trailing zeros does 100! have? Give only the number."}]}
+{"id": "p2027", "messages": [{"role": "user", "content": "Is 2027 prime? Yes or no, one line."}]}
+{"id": "p1763", "messages": [{"role": "user", "content": "Is 1763 prime? Yes or no, one line."}]}
+{"id": "p57", "messages": [{"role": "user", "content": "Is 57 prime? Yes or no, one line."}]}
+{"id": "epi", "messages": [{"role": "user", "content": "Which is larger, e^\u03c0 or \u03c0^e? One line."}]}
+{"id": "bag", "messages": [{"role": "user", "content": "A bag has 5 red and 3 blue marbles. Draw 2 without replacement. Probability both red? Give only the fraction."}]}
+{"id": "fly", "messages": [{"role": "user", "content": "Two trains 100 miles apart head toward each other at 50 mph each. A fly starts at one train and flies back and forth between them at 75 mph until they meet. How far does the fly travel? Give only the distance."}]}
+{"id": "nines", "messages": [{"role": "user", "content": "How many times does the digit 9 appear when writing all integers from 1 to 100? Give only the number."}]}
+{"id": "half", "messages": [{"role": "user", "content": "Divide 30 by half and add 10. Give only the number."}]}
+{"id": "clock", "messages": [{"role": "user", "content": "A clock shows 3:15. What is the angle between the hour and minute hands in degrees? Give only the number."}]}
+{"id": "romansub", "messages": [{"role": "user", "content": "What is MMXXVI minus MCMXCIX, in Roman numerals? Give only the numeral."}]}
+{"id": "roman4000", "messages": [{"role": "user", "content": "Write 4000 in Roman numerals. One line."}]}
+{"id": "binmul", "messages": [{"role": "user", "content": "What is 0b1111 \u00d7 0b1111? Give the answer in binary only."}]}
+{"id": "overflow", "messages": [{"role": "user", "content": "In signed 32-bit integer arithmetic, what is 0x7FFFFFFF + 1? Give only the decimal number."}]}
+{"id": "ages", "messages": [{"role": "user", "content": "I am 3 times as old as my son. In 10 years I will be twice as old as him. How old are we now? One line."}]}
+{"id": "month31", "messages": [{"role": "user", "content": "What date is exactly one month after January 31, 2025? One line."}]}
+{"id": "dowA", "messages": [{"role": "user", "content": "What day of the week was March 17, 2013? One word."}]}
+{"id": "dowB", "messages": [{"role": "user", "content": "What day of the week was November 3, 1998? One word."}]}
+{"id": "dowC", "messages": [{"role": "user", "content": "What day of the week is June 20, 2031? One word."}]}
+{"id": "dowD", "messages": [{"role": "user", "content": "What day of the week was September 11, 2001? One word."}]}
+{"id": "dowE", "messages": [{"role": "user", "content": "What day of the week was January 1, 2000? One word."}]}
+{"id": "p2_50", "messages": [{"role": "user", "content": "What is 2^50? Give only the number."}]}
+{"id": "sqrt2", "messages": [{"role": "user", "content": "What is the square root of 2 to 20 decimal places? Give only the number."}]}
+{"id": "sev", "messages": [{"role": "user", "content": "What is 1/7 to 20 decimal places? Give only the number."}]}
+{"id": "syll", "messages": [{"role": "user", "content": "All roses are flowers. Some flowers fade quickly. Therefore some roses fade quickly. Is this valid? One word then one line."}]}
+{"id": "count7s", "messages": [{"role": "user", "content": "Count from 1 to 200 by 7s, starting at 7. Give only the comma-separated list."}]}
+{"id": "primes200", "messages": [{"role": "user", "content": "List all prime numbers below 200, comma-separated, nothing else."}]}
+{"id": "sum1to99", "messages": [{"role": "user", "content": "What is the sum of all odd numbers from 1 to 99? Give only the number."}]}
+{"id": "avgspeed", "messages": [{"role": "user", "content": "I drive 60 miles at 30 mph and return 60 miles at 60 mph. What is my average speed for the round trip? Give only the number."}]}
+{"id": "twothirds", "messages": [{"role": "user", "content": "Which is bigger, 2/3 or 0.67? One line."}]}
+{"id": "neg", "messages": [{"role": "user", "content": "What is -3^2? Give only the number."}]}
+{"id": "zero", "messages": [{"role": "user", "content": "What is 0^0? One line."}]}
+{"id": "rope", "messages": [{"role": "user", "content": "A rope ladder hangs over the side of a boat with rungs 1 foot apart; 10 rungs are above water. The tide rises 3 feet. How many rungs are above water now? Give only the number."}]}

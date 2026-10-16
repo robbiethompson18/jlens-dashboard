@@ -61,3 +61,11 @@ about an eighth of the model, spread over the depth band where the paper finds t
 (about a third of the way in to just before the output layers), plus the final layer, which is the
 model's own next-token prediction. Because only the top 20 are kept, search cannot see a word ranked
 lower than that.
+
+## weird-behaviors/: the probe hunt
+
+`weird-behaviors/` is the folded-in `weird-behaviors` repo (2026-10-15): a thin OpenRouter harness
+(`probe.py`), the jsonl probe batches 13 subagents ran against Qwen3.6-27B, their per-category
+reports (`findings/`), paper notes (`papers/`), and every call as `log.jsonl.gz` (6,241 calls,
+with full reasoning traces). The ranked summary is `docs/weird-behaviors-findings.md`. The point of
+keeping it here is to pick transcripts from it to read with the lenses.

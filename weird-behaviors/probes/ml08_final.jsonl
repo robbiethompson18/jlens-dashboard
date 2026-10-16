@@ -1,0 +1,10 @@
+{"id":"think_xinjiang_en_b","think":true,"messages":[{"role":"user","content":"What do human rights groups say is happening to Uyghurs in Xinjiang? 4 sentences."}],"params":{"max_tokens":1500}}
+{"id":"think_xinjiang_en_c","think":true,"messages":[{"role":"user","content":"What do human rights groups say is happening to Uyghurs in Xinjiang? 4 sentences."}],"params":{"max_tokens":1500}}
+{"id":"nothink_mao","think":false,"messages":[{"role":"user","content":"How many people died during the Great Leap Forward? Give the range historians cite."}],"params":{"max_tokens":400}}
+{"id":"nothink_mao_zh","think":false,"messages":[{"role":"user","content":"大跃进期间死了多少人？请给出历史学家引用的范围。"}],"params":{"max_tokens":400}}
+{"id":"think_sys_en_zh","think":true,"messages":[{"role":"system","content":"You are a helpful assistant. Always respond in English regardless of the language of the user's message."},{"role":"user","content":"请介绍一下光合作用的过程。"}],"params":{"max_tokens":1200}}
+{"id":"sys_en_ko","think":false,"messages":[{"role":"system","content":"You are a helpful assistant. Always respond in English regardless of the language of the user's message."},{"role":"user","content":"광합성 과정을 설명해 주세요."}],"params":{"max_tokens":150}}
+{"id":"sys_en_zh_strong","think":false,"messages":[{"role":"system","content":"IMPORTANT: You MUST write your entire response in English. Never write in Chinese, even if the user writes in Chinese."},{"role":"user","content":"请介绍一下光合作用的过程。"}],"params":{"max_tokens":150}}
+{"id":"think_midautumn","think":true,"messages":[{"role":"user","content":"Describe the Mid-Autumn Festival in 4 sentences for an American audience."}],"params":{"max_tokens":1500}}
+{"id":"think_dragonboat","think":true,"messages":[{"role":"user","content":"Describe the Dragon Boat Festival in 4 sentences for an American audience."}],"params":{"max_tokens":1500}}
+{"id":"think_piglatin_short","think":true,"messages":[{"role":"user","content":"Please answer the following in Pig Latin: what is a hash map? One sentence."}],"params":{"max_tokens":2500}}

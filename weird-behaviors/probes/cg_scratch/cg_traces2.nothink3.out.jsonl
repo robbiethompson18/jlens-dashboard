@@ -1,0 +1,36 @@
+{"id": "t2_default_mut", "rep": 0, "reply": "1 2 1 3", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.95e-05, "out_tokens": 7}
+{"id": "t2_default_mut", "rep": 1, "reply": "1 2 1 3", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.95e-05, "out_tokens": 7}
+{"id": "t2_default_mut", "rep": 2, "reply": "1 2 1 3", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.95e-05, "out_tokens": 7}
+{"id": "t2_strmul", "rep": 0, "reply": "abb ab bb True cb", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.936e-05, "out_tokens": 6}
+{"id": "t2_strmul", "rep": 1, "reply": "abc abb True cba", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 3.327e-05, "out_tokens": 6}
+{"id": "t2_strmul", "rep": 2, "reply": "abb abb ba ab", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.6725e-05, "out_tokens": 5}
+{"id": "t2_intdiv", "rep": 0, "reply": "(-4, -4, -1, (-4, 1), 512, -4)", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 9.405e-05, "out_tokens": 23}
+{"id": "t2_intdiv", "rep": 1, "reply": "(-4, -4, -1, (-4, 1), 512, -4)", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 9.405e-05, "out_tokens": 23}
+{"id": "t2_intdiv", "rep": 2, "reply": "(-4, -4, -1, (-4, 1), 512, -4)", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 9.405e-05, "out_tokens": 23}
+{"id": "t2_setord", "rep": 0, "reply": "[1, 2, 3, 4, 5] 2 True", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 8.9375e-05, "out_tokens": 19}
+{"id": "t2_setord", "rep": 1, "reply": "[1, 2, 3, 4, 5] 2 True", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 7.215e-05, "out_tokens": 19}
+{"id": "t2_setord", "rep": 2, "reply": "[1, 2, 3, 4, 5], 2, True", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 7.465e-05, "out_tokens": 20}
+{"id": "t2_strip", "rep": 0, "reply": "hix ['hello', 'world'] ['a', 'b', '', 'c'] ['a', 'b', 'c'] 4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 0.000121225, "out_tokens": 30}
+{"id": "t2_strip", "rep": 1, "reply": "hi hello World ['a', 'b', '', 'c'] ['a', 'b', 'c'] 4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 0.000104975, "out_tokens": 25}
+{"id": "t2_strip", "rep": 2, "reply": "hix hello world ['a', 'b', '', 'c'] ['a', 'b', 'c'] 4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 0.000108225, "out_tokens": 26}
+{"id": "t2_except", "rep": 0, "reply": "body 0\nfin 0\nfin 1\nbody 2\nfin 2", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 8.928e-05, "out_tokens": 20}
+{"id": "t2_except", "rep": 1, "reply": "body 0\nfin 0\nfin 1\nbody 2\nfin 2", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 8.928e-05, "out_tokens": 20}
+{"id": "t2_except", "rep": 2, "reply": "body 0\nfin 0\nfin 1\nbody 2\nfin 2", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 8.928e-05, "out_tokens": 20}
+{"id": "t2_scope", "rep": 0, "reply": "41 10", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.86e-05, "out_tokens": 5}
+{"id": "t2_scope", "rep": 1, "reply": "41 10", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.86e-05, "out_tokens": 5}
+{"id": "t2_scope", "rep": 2, "reply": "41 10", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 4.86e-05, "out_tokens": 5}
+{"id": "t2_mutate", "rep": 0, "reply": "[1, 2, 3, 4] [1, 2, 3, 5] [1, 2, 3] False", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.00012555, "out_tokens": 34}
+{"id": "t2_mutate", "rep": 1, "reply": "[1, 2, 3, 4] [1, 2, 3, 5] [1, 2, 3] False", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 0.00012555, "out_tokens": 34}
+{"id": "t2_mutate", "rep": 2, "reply": "[1, 2, 3, 4] [1, 2, 3, 4, 5] [1, 2, 3] False", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 0.0001456, "out_tokens": 38}
+{"id": "t2_zipstar", "rep": 0, "reply": "((1, 2, 3), ['c', 'b', 'a'], [('a', 0), ('b', 1)])", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 0.00012416, "out_tokens": 31}
+{"id": "t2_zipstar", "rep": 1, "reply": "(1, 2, 3) ['c', 'b', 'a'] [('a', 0), ('b', 1)]", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 0.0001194, "out_tokens": 30}
+{"id": "t2_zipstar", "rep": 2, "reply": "(1, 2, 3) ['c', 'b', 'a'] [('a', 0), ('b', 1)]", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 0.00012416, "out_tokens": 31}
+{"id": "t2_fmtbool", "rep": 0, "reply": "3 0 2 1 0xff -003 **hi**", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 8.71e-05, "out_tokens": 18}
+{"id": "t2_fmtbool", "rep": 1, "reply": "3 0 2 1 0xff -003 hi****", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 8.385e-05, "out_tokens": 17}
+{"id": "t2_fmtbool", "rep": 2, "reply": "3 0 2 1 0xff -003 **hi**", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 8.71e-05, "out_tokens": 18}
+{"id": "t2_walrus_any", "rep": 0, "reply": "True 16 [1, 9]", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 6.11e-05, "out_tokens": 11}
+{"id": "t2_walrus_any", "rep": 1, "reply": "True 16 [1, 9]", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 6.11e-05, "out_tokens": 11}
+{"id": "t2_walrus_any", "rep": 2, "reply": "True 16 [1, 9]", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 6.016e-05, "out_tokens": 11}
+{"id": "t2_str_methods", "rep": 0, "reply": "hELLO SS ****hello**** -1 5 a_b_c", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 7.0525e-05, "out_tokens": 14}
+{"id": "t2_str_methods", "rep": 1, "reply": "hELLO SS ****hello**** -1 5 a_b_c", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 7.0525e-05, "out_tokens": 14}
+{"id": "t2_str_methods", "rep": 2, "reply": "hELLO SS ****hello**** -1 5 a_b_c", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 7.0525e-05, "out_tokens": 14}

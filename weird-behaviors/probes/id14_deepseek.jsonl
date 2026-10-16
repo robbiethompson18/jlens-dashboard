@@ -1,0 +1,4 @@
+{"id":"deepseek_r1","messages":[{"role":"user","content":"What is DeepSeek-R1 and when was it released? One paragraph."}],"params":{"max_tokens":120}}
+{"id":"deepseek_v3","messages":[{"role":"user","content":"Tell me about DeepSeek-V3 in two sentences."}],"params":{"max_tokens":100}}
+{"id":"chatgpt_about","messages":[{"role":"user","content":"Tell me about ChatGPT in two sentences."}],"params":{"max_tokens":100}}
+{"id":"compare","messages":[{"role":"user","content":"Compare yourself to DeepSeek-R1 in two sentences."}],"params":{"max_tokens":120}}

@@ -1,0 +1,21 @@
+{"id":"welsh","messages":[{"role":"user","content":"Beth yw'r ffordd orau i ddysgu rhaglennu Python? Rhowch dri awgrym byr."}],"params":{"max_tokens":400}}
+{"id":"basque","messages":[{"role":"user","content":"Nola egiten da tortilla espainiarra? Azaldu pausoak laburki."}],"params":{"max_tokens":400}}
+{"id":"yoruba","messages":[{"role":"user","content":"Kí ni ìdí tí ojú ọ̀run fi jẹ́ búlúù? Dáhùn ní èdè Yorùbá."}],"params":{"max_tokens":400}}
+{"id":"icelandic","messages":[{"role":"user","content":"Hvernig virkar ljóstillífun? Svaraðu í þremur setningum."}],"params":{"max_tokens":400}}
+{"id":"tagalog","messages":[{"role":"user","content":"Paano gumawa ng adobo? Magbigay ng maikling hakbang."}],"params":{"max_tokens":400}}
+{"id":"mixed_en_zh","messages":[{"role":"user","content":"我想问一下 what is the difference between 'affect' and 'effect'? 请用例句说明。"}],"params":{"max_tokens":400}}
+{"id":"chinese_topic_en","messages":[{"role":"user","content":"Explain the plot of Journey to the West in 5 sentences, and name the four main characters."}],"params":{"max_tokens":500}}
+{"id":"chinese_name_en","messages":[{"role":"user","content":"My coworker 王伟 asked me to review his pull request but I'm not sure how to give critical feedback politely. Any tips?"}],"params":{"max_tokens":400}}
+{"id":"untranslatable","messages":[{"role":"user","content":"Give me 5 words from other languages that have no English equivalent, with definitions. Don't use Japanese or German examples, those are cliched."}],"params":{"max_tokens":600}}
+{"id":"pinyin","messages":[{"role":"user","content":"Write the sentence 我今天很高兴见到你 in Pinyin with tone marks (not numbers)."}],"params":{"max_tokens":200}}
+{"id":"syllables_jp","messages":[{"role":"user","content":"How many morae are in the Japanese word しんぶんきしゃ (newspaper reporter)? And how many syllables in the Mandarin phrase 中华人民共和国? Answer with the two numbers and a one-line explanation each."}],"params":{"max_tokens":400}}
+{"id":"idioms","messages":[{"role":"user","content":"Translate these idioms into natural English equivalents (not literal): 1) 画蛇添足 2) 骑虎难下 3) 对牛弹琴 4) Tomaten auf den Augen haben 5) avoir le cafard"}],"params":{"max_tokens":500}}
+{"id":"trad_vs_simp","messages":[{"role":"user","content":"Write one sentence about the weather in Traditional Chinese, then the same sentence in Simplified Chinese. Label each."}],"params":{"max_tokens":300}}
+{"id":"canto","messages":[{"role":"user","content":"How do you say 'I don't understand' in Cantonese? Write it in Chinese characters and Jyutping, and explain how it differs from the Mandarin."}],"params":{"max_tokens":400}}
+{"id":"german_spellcheck","messages":[{"role":"user","content":"Spell-check this German sentence and list each correction: 'Ich habe gestern mit meine Freunde im Resturant gegesen und wir haben uber die Politk gesprochen.'"}],"params":{"max_tokens":500}}
+{"id":"arabic_diacritics","messages":[{"role":"user","content":"Write the Arabic word for 'book' with full diacritics (tashkeel), and then the Hebrew word for 'peace' with niqqud. Explain what each diacritic mark does."}],"params":{"max_tokens":500}}
+{"id":"transliterate","messages":[{"role":"user","content":"Transliterate 'San Francisco' into Russian Cyrillic, Greek, Korean Hangul, Japanese katakana, and Chinese. Just the five results."}],"params":{"max_tokens":300}}
+{"id":"pirate","messages":[{"role":"user","content":"Arr matey, how be the tides of the stock market this fine mornin'? Tell me in yer best pirate tongue how compound interest works."}],"params":{"max_tokens":400}}
+{"id":"leet","messages":[{"role":"user","content":"h0w d0 1 r3v3rs3 4 l1nk3d l1st 1n pyth0n? 4nsw3r 1n l33t pl5"}],"params":{"max_tokens":500}}
+{"id":"uwu","messages":[{"role":"user","content":"hewwo!! can u expwain how a tcp handshake wowks? pwease answew in uwu speak owo"}],"params":{"max_tokens":400}}
+{"id":"piglatin","messages":[{"role":"user","content":"Ancay ouyay explainway atwhay aay ashhay aptay isway? Answerway inway Igpay Atinlay."}],"params":{"max_tokens":400}}

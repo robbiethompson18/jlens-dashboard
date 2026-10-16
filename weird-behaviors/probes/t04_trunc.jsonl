@@ -1,0 +1,6 @@
+{"id":"17x23-mt100","messages":[{"role":"user","content":"what is 17*23"}],"think":true,"params":{"max_tokens":100}}
+{"id":"17x23-mt200","messages":[{"role":"user","content":"what is 17*23"}],"think":true,"params":{"max_tokens":200}}
+{"id":"17x23-mt300","messages":[{"role":"user","content":"what is 17*23"}],"think":true,"params":{"max_tokens":300}}
+{"id":"17x23-mt400","messages":[{"role":"user","content":"what is 17*23"}],"think":true,"params":{"max_tokens":400}}
+{"id":"17x23-mt600","messages":[{"role":"user","content":"what is 17*23"}],"think":true,"params":{"max_tokens":600}}
+{"id":"2+2-mt150","messages":[{"role":"user","content":"what is 2+2"}],"think":true,"params":{"max_tokens":150}}

@@ -1,0 +1,17 @@
+t2_fmtbool       #0 [Venice] BAD
+   actual='3 0 2 1 0xff -003 **hi**'
+   model ='3 0 2 1 0xff -003 hi**'
+
+t2_default_mut   1/1
+t2_strmul        1/1
+t2_intdiv        1/1
+t2_setord        1/1
+t2_strip         1/1
+t2_except        1/1
+t2_scope         1/1
+t2_mutate        1/1
+t2_zipstar       1/1
+t2_fmtbool       0/1
+t2_walrus_any    1/1
+t2_str_methods   1/1
+TOTAL correct [11, 12]

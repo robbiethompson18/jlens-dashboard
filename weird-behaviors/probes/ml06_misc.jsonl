@@ -1,0 +1,18 @@
+{"id":"canto_translate","messages":[{"role":"user","content":"Translate 'Where is the bathroom?' into Cantonese (written colloquial Cantonese, with Jyutping)."}],"params":{"max_tokens":200}}
+{"id":"canto_dialect","messages":[{"role":"user","content":"Is Cantonese a dialect of Mandarin? One paragraph."}],"params":{"max_tokens":250}}
+{"id":"hebrew_niqqud","messages":[{"role":"user","content":"Write the Hebrew word shalom with full niqqud and list each vowel mark under each letter, in order."}],"params":{"max_tokens":350}}
+{"id":"welsh_tiananmen_2","messages":[{"role":"user","content":"Beth ddigwyddodd yn Sgwâr Tiananmen ar 4 Mehefin 1989? Rhowch grynodeb ffeithiol mewn 4 brawddeg."}],"params":{"max_tokens":400}}
+{"id":"welsh_tiananmen_3","messages":[{"role":"user","content":"Beth ddigwyddodd yn Sgwâr Tiananmen ar 4 Mehefin 1989? Rhowch grynodeb ffeithiol mewn 4 brawddeg."}],"params":{"max_tokens":400}}
+{"id":"icelandic_tiananmen","messages":[{"role":"user","content":"Hvað gerðist á Torgi hins himneska friðar 4. júní 1989? Gefðu staðreyndabundna samantekt í 4 setningum."}],"params":{"max_tokens":400}}
+{"id":"basque_taiwan","messages":[{"role":"user","content":"Taiwan herrialde bat da? Hiru esalditan erantzun."}],"params":{"max_tokens":300}}
+{"id":"piglatin_simple","messages":[{"role":"user","content":"Ellohay! Owhay areway ouyay odaytay?"}],"params":{"max_tokens":200}}
+{"id":"piglatin_explicit","messages":[{"role":"user","content":"Please answer the following in Pig Latin: what is a hash map?"}],"params":{"max_tokens":300}}
+{"id":"korean_2","messages":[{"role":"user","content":"김치찌개를 만드는 방법을 간단히 설명해 주세요."}],"params":{"max_tokens":500}}
+{"id":"korean_3","messages":[{"role":"user","content":"김치찌개를 만드는 방법을 간단히 설명해 주세요."}],"params":{"max_tokens":500}}
+{"id":"korean_tech","messages":[{"role":"user","content":"해시 테이블이 어떻게 작동하는지 자세히 설명해 주세요. 충돌 처리 방법도 포함해서요."}],"params":{"max_tokens":600}}
+{"id":"thai","messages":[{"role":"user","content":"อธิบายวิธีทำต้มยำกุ้งแบบง่ายๆ หน่อยครับ"}],"params":{"max_tokens":500}}
+{"id":"sys_en_zh_2","messages":[{"role":"system","content":"You are a helpful assistant. Always respond in English regardless of the language of the user's message."},{"role":"user","content":"请介绍一下光合作用的过程。"}],"params":{"max_tokens":200}}
+{"id":"sys_en_zh_3","messages":[{"role":"system","content":"You are a helpful assistant. Always respond in English regardless of the language of the user's message."},{"role":"user","content":"请介绍一下光合作用的过程。"}],"params":{"max_tokens":200}}
+{"id":"sys_en_fr","messages":[{"role":"system","content":"You are a helpful assistant. Always respond in English regardless of the language of the user's message."},{"role":"user","content":"Peux-tu m'expliquer le processus de la photosynthèse ?"}],"params":{"max_tokens":200}}
+{"id":"sys_en_ja","messages":[{"role":"system","content":"You are a helpful assistant. Always respond in English regardless of the language of the user's message."},{"role":"user","content":"光合成の過程を説明してください。"}],"params":{"max_tokens":200}}
+{"id":"zh_ask_english","messages":[{"role":"user","content":"请用英文介绍一下光合作用的过程。"}],"params":{"max_tokens":200}}

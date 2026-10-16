@@ -1,0 +1,8 @@
+{"id": "d1000", "messages": [{"role": "user", "content": "What date is 1000 days after January 1, 2020? Give only the date."}]}
+{"id": "bday229", "messages": [{"role": "user", "content": "Someone born on Feb 29, 2000. How many actual Feb 29 birthdays have they had as of March 1, 2025? Give only the number."}]}
+{"id": "dsttz", "messages": [{"role": "user", "content": "A meeting is at 9:00 AM New York time on March 8, 2026. What time is that in London? One line."}]}
+{"id": "lastdigit", "messages": [{"role": "user", "content": "What is the last digit of 7^2025? Give only the digit."}]}
+{"id": "p2027", "messages": [{"role": "user", "content": "Is 2027 prime? Yes or no, one line."}]}
+{"id": "fly", "messages": [{"role": "user", "content": "Two trains 100 miles apart head toward each other at 50 mph each. A fly starts at one train and flies back and forth between them at 75 mph until they meet. How far does the fly travel? Give only the distance."}]}
+{"id": "twothirds", "messages": [{"role": "user", "content": "Which is bigger, 2/3 or 0.67? One line."}]}
+{"id": "dowA", "messages": [{"role": "user", "content": "What day of the week was March 17, 2013? One word."}]}

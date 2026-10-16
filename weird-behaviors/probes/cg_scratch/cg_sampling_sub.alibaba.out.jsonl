@@ -1,0 +1,150 @@
+{"id": "num1_100", "rep": 0, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 1, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 2, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 3, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 4, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 5, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 6, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 7, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 8, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 9, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 10, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 11, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 12, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 13, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 14, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 0, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 1, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 2, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 3, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 4, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 5, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 6, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 7, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 8, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 9, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 10, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 11, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 12, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 13, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 14, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "die", "rep": 0, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 1, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 2, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 3, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 4, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 5, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 6, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 7, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 8, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 9, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 10, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 11, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 12, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 13, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 14, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "coin", "rep": 0, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 1, "reply": "heads", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 2, "reply": "heads", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 3, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 4, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 5, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 6, "reply": "heads", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 7, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 8, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 9, "reply": "heads", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 10, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 11, "reply": "heads", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 12, "reply": "heads", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 13, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 14, "reply": "tails", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "name", "rep": 0, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 1, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 2, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 3, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 4, "reply": "Eleanor Vance", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.025e-05, "out_tokens": 3}
+{"id": "name", "rep": 5, "reply": "Elena Rostova", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 5}
+{"id": "name", "rep": 6, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 7, "reply": "Eleanor Vance", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.025e-05, "out_tokens": 3}
+{"id": "name", "rep": 8, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 9, "reply": "Elena Rodriguez", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.025e-05, "out_tokens": 3}
+{"id": "name", "rep": 10, "reply": "Elena Rodriguez", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.025e-05, "out_tokens": 3}
+{"id": "name", "rep": 11, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 12, "reply": "Eleanor Vance", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.025e-05, "out_tokens": 3}
+{"id": "name", "rep": 13, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 14, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "prime", "rep": 0, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 1, "reply": "79", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "prime", "rep": 2, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 3, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 4, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 5, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 6, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 7, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 8, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 9, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 10, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 11, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 12, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 13, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 14, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "pin", "rep": 0, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 1, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 2, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 3, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 4, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 5, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 6, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 7, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 8, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 9, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 10, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 11, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 12, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 13, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 14, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "shuffle", "rep": 0, "reply": "['fig', 'elderberry', 'apple', 'grape', 'date', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 1, "reply": "['elderberry', 'grape', 'banana', 'date', 'fig', 'apple', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 2, "reply": "['fig', 'elderberry', 'apple', 'date', 'grape', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 3, "reply": "['grape', 'cherry', 'date', 'apple', 'fig', 'banana', 'elderberry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 4, "reply": "['grape', 'date', 'apple', 'fig', 'cherry', 'banana', 'elderberry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 5, "reply": "['fig', 'apple', 'elderberry', 'date', 'grape', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 6, "reply": "['grape', 'apple', 'fig', 'elderberry', 'date', 'cherry', 'banana']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 7, "reply": "['fig', 'apple', 'date', 'grape', 'banana', 'elderberry', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 8, "reply": "['grape', 'cherry', 'date', 'apple', 'fig', 'elderberry', 'banana']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 9, "reply": "['fig', 'elderberry', 'date', 'grape', 'apple', 'cherry', 'banana']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 10, "reply": "['elderberry', 'fig', 'apple', 'date', 'grape', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 11, "reply": "['elderberry', 'grape', 'apple', 'date', 'fig', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 12, "reply": "['fig', 'date', 'apple', 'grape', 'elderberry', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 13, "reply": "['grape', 'cherry', 'apple', 'fig', 'date', 'elderberry', 'banana']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 14, "reply": "['elderberry', 'fig', 'apple', 'grape', 'date', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "state", "rep": 0, "reply": "Oregon", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "state", "rep": 1, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 2, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 3, "reply": "Oregon", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "state", "rep": 4, "reply": "Oregon", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "state", "rep": 5, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 6, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 7, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 8, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 9, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 10, "reply": "Oregon", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "state", "rep": 11, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 12, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 13, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 14, "reply": "Oregon", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "card", "rep": 0, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 1, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 2, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 3, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 4, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 5, "reply": "Three of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 6, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 7, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 8, "reply": "King of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 9, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 10, "reply": "King of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 11, "reply": "Three of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 12, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 13, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 14, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}

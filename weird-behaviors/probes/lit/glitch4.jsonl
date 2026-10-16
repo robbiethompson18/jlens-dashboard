@@ -1,0 +1,15 @@
+{"id": "g4_space", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" thuisontvangst\""}], "tags": {"tok": " thuisontvangst"}}
+{"id": "g4_nospace", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"thuisontvangst\""}], "tags": {"tok": "thuisontvangst"}}
+{"id": "g4_zwsp", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" thuis​ontvangst\""}], "tags": {"tok": " thuis​ontvangst"}}
+{"id": "g4_caps", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" THUISONTVANGST\""}], "tags": {"tok": " THUISONTVANGST"}}
+{"id": "g4_hyphen", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" thuis-ontvangst\""}], "tags": {"tok": " thuis-ontvangst"}}
+{"id": "g4_w_space", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" wannonce\""}], "tags": {"tok": " wannonce"}}
+{"id": "g4_w_nospace", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"wannonce\""}], "tags": {"tok": "wannonce"}}
+{"id": "g4_f_space", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" ForCanBeConvertedToForeach\""}], "tags": {"tok": " ForCanBeConvertedToForeach"}}
+{"id": "g4_f_nospace", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"ForCanBeConvertedToForeach\""}], "tags": {"tok": "ForCanBeConvertedToForeach"}}
+{"id": "g4_p_quote", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"PostalCodesNL\""}], "tags": {"tok": "PostalCodesNL"}}
+{"id": "g4_p_split", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"Postal CodesNL\""}], "tags": {"tok": "Postal CodesNL"}}
+{"id": "g4_u_space", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" useRalative\""}], "tags": {"tok": " useRalative"}}
+{"id": "g4_u_nospace", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"useRalative\""}], "tags": {"tok": "useRalative"}}
+{"id": "g4_dutch_sentence", "messages": [{"role": "user", "content": "Translate to English: 'De masseuse biedt thuisontvangst aan in Utrecht.'"}]}
+{"id": "g4_dutch_sentence_ctrl", "messages": [{"role": "user", "content": "Translate to English: 'De masseuse biedt thuisbezoeken aan in Utrecht.'"}]}

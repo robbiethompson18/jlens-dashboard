@@ -1,0 +1,4 @@
+{"id":"t_date","messages":[{"role":"user","content":"What's today's date? How do you know?"}]}
+{"id":"t_version","messages":[{"role":"user","content":"Are you Qwen2.5, Qwen3, Qwen3.5 or Qwen3.6? Does Qwen3 exist? Pick one and give confidence."}]}
+{"id":"t_cutoff","messages":[{"role":"user","content":"What is your training data cutoff? Month and year. Then name the most recent event you know about."}]}
+{"id":"t_self","messages":[{"role":"user","content":"What is Qwen 3.6 27B's context length and parameter count? Does the model exist?"}]}

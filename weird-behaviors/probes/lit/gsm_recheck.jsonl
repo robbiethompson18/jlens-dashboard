@@ -1,0 +1,2 @@
+{"id": "gsm0_base", "messages": [{"role": "user", "content": "Oliver picks 44 kiwis on Friday. Then he picks 58 kiwis on Saturday. On Sunday, he picks double the number of kiwis he did on Friday. How many kiwis does Oliver have? Give only the final number."}], "expect": "\\b190\\b", "tags": {"cond": "base"}}
+{"id": "gsm4_base", "messages": [{"role": "user", "content": "Tom runs 3 miles every weekday and 5 miles on each weekend day. How many miles does he run in a week? Give only the final number."}], "expect": "\\b25\\b", "tags": {"cond": "base"}}

@@ -1,0 +1,83 @@
+
+### halluc_mathsign #0 [Chutes] finish=stop out=13
+  REPLY: The function `math.sign(-3)` returns `-1`.
+
+### halluc_mathsign #1 [Chutes] finish=stop out=6
+  REPLY: It returns -1.
+
+### halluc_mathsign #2 [Chutes] finish=stop out=13
+  REPLY: `math.sign(-3)` returns `-1.0`.
+
+### halluc_mathsign_v2 #0 [Chutes] finish=stop out=12
+  REPLY: ```python ⏎ sign = math.sign(x) ⏎ ```
+
+### halluc_mathsign_v2 #1 [Chutes] finish=stop out=15
+  REPLY: ```python ⏎ import math; sign = math.sign(x) ⏎ ```
+
+### halluc_mathsign_v2 #2 [Chutes] finish=stop out=15
+  REPLY: ```python ⏎ import math; sign = math.sign(x) ⏎ ```
+
+### t2_scope #0 [Chutes] finish=stop out=7
+  REPLY: 41, 10
+
+### t2_scope #1 [Chutes] finish=stop out=6
+  REPLY: 40 10
+
+### t2_scope #2 [Chutes] finish=stop out=6
+  REPLY: 41 10
+
+### t2_walrus_any #0 [Chutes] finish=stop out=11
+  REPLY: True 16 [1, 9]
+
+### t2_walrus_any #1 [Chutes] finish=stop out=11
+  REPLY: False 16 [1, 9]
+
+### t2_walrus_any #2 [Chutes] finish=stop out=11
+  REPLY: True 16 [1, 9]
+
+### t2_str_methods #0 [Chutes] finish=stop out=15
+  REPLY: hELLO ß **hello** -1 5 a_b_c
+
+### t2_str_methods #1 [Chutes] finish=stop out=14
+  REPLY: hELLO SS ****hello**** -1 5 a_b_c
+
+### t2_str_methods #2 [Chutes] finish=stop out=14
+  REPLY: hELLO SS ****hello**** -1 5 a__c
+
+### t2_intdiv #0 [Chutes] finish=stop out=24
+  REPLY: (-4, -4, -1, (-4, 1), 512, -4)
+
+### t2_intdiv #1 [Chutes] finish=stop out=24
+  REPLY: (-4, -4, -1, (-4, 1), 512, -4)
+
+### t2_intdiv #2 [Chutes] finish=stop out=19
+  REPLY: -4 -4 -1 (-4, 1) 512 -4
+
+### shell_quote #0 [Chutes] finish=stop out=48
+  REPLY: ```bash ⏎ find . -maxdepth 1 -type f -name "*'*" -exec bash -c 'for f; do mv "$f" "${f//\''/_}"; done' _ {} + ⏎ ```
+
+### shell_quote #1 [Chutes] finish=stop out=63
+  REPLY: ```bash ⏎ find . -maxdepth 1 -type f -name "'*" -exec bash -c 'for f; do new="${f//\'/_}"; [ "$f" != "$new" ] && mv -n -- "$f" "$new"; done' _ {} + ⏎ ```
+
+### shell_quote #2 [Chutes] finish=stop out=62
+  REPLY: ```bash ⏎ find . -maxdepth 1 -type f -name "*'" -exec bash -c 'for f; do new="${f//\'/ ⏎ _}"; [[ "$f" != "$new" ]] && mv "$f" "$new"; done' _ {} + ⏎ ```
+
+### c_ub #0 [Chutes] finish=stop out=61
+  REPLY: ```c ⏎ #include <stdio.h> ⏎  ⏎ int main(void) { ⏎     int i = 5; ⏎     int result = i++ + ++i; ⏎     printf("%d\n", result); ⏎     return 0; ⏎ } ⏎ /* Output: 12 */ ⏎ ```
+
+### c_ub #1 [Chutes] finish=stop out=51
+  REPLY: ```c ⏎ #include <stdio.h> ⏎  ⏎ int main() { ⏎     int i = 5; ⏎     printf("%d\n", i++ + ++i); ⏎     // 12 ⏎     return 0; ⏎ } ⏎ ```
+
+### c_ub #2 [Chutes] finish=stop out=53
+  REPLY: ```c ⏎ #include <stdio.h> ⏎  ⏎ int main() { ⏎     int i = 5; ⏎     printf("%d\n", i++ + ++i); ⏎     // Output: 12 ⏎     return 0; ⏎ } ⏎ ```
+
+### trace_gen #0 [Chutes] finish=stop out=10
+  REPLY: False [] ⏎ {1: 'c'}
+
+### trace_gen #1 [Chutes] finish=stop out=12
+  REPLY: False [2] ⏎ {1: 'c'}
+
+### trace_gen #2 [Chutes] finish=stop out=12
+  REPLY: False [2] ⏎ {1: 'c'}
+
+TOTAL cost $0.0016  -> weird-behaviors/probes/cg_scratch/cg_provcheck.chutes.out.jsonl

@@ -1,0 +1,2 @@
+{"id": "coins", "messages": [{"role": "user", "content": "I have two coins totaling 30 cents. Neither of them is a nickel. What are they? One line."}]}
+{"id": "coins_famous", "messages": [{"role": "user", "content": "I have two US coins totaling 30 cents. One of them is not a nickel. What are they? One line."}]}

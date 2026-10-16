@@ -1,0 +1,420 @@
+{"id": "num1_100", "rep": 0, "reply": "42", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.952e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 1, "reply": "42", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.952e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 2, "reply": "42", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.9825e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 3, "reply": "42", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.649e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 4, "reply": "42", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.649e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 5, "reply": "42", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.952e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 6, "reply": "42", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.9825e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 7, "reply": "42", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.649e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 8, "reply": "42", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.952e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 9, "reply": "42", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.935e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 10, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 11, "reply": "73", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 12, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 13, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 14, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 15, "reply": "73", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.9825e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 16, "reply": "42", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.952e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 17, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 18, "reply": "42", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.649e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 19, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 20, "reply": "42", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.952e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 21, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 22, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 23, "reply": "42", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.952e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 24, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 25, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_100", "rep": 26, "reply": "42", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.967e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 27, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 28, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 29, "reply": "42", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.57e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 0, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 1, "reply": "7", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.22e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 2, "reply": "7", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.6e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 3, "reply": "7", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.37e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 4, "reply": "7", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.22e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 5, "reply": "7", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.625e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 6, "reply": "7", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.61e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 7, "reply": "7", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.6e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 8, "reply": "7", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.6e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 9, "reply": "7", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.22e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 10, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 11, "reply": "7", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.37e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 12, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 13, "reply": "7", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.625e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 14, "reply": "7", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.61e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 15, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 16, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 17, "reply": "7", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.37e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 18, "reply": "7", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.6e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 19, "reply": "7", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.61e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 20, "reply": "7", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.37e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 21, "reply": "7", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.6e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 22, "reply": "7", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.37e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 23, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 1}
+{"id": "num1_10", "rep": 24, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 25, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 26, "reply": "7", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.625e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 27, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 28, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 29, "reply": "7", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.625e-05, "out_tokens": 2}
+{"id": "coin", "rep": 0, "reply": "heads", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "coin", "rep": 1, "reply": "tails", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "coin", "rep": 2, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 3, "reply": "heads", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.495e-05, "out_tokens": 2}
+{"id": "coin", "rep": 4, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 5, "reply": "tails", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.495e-05, "out_tokens": 2}
+{"id": "coin", "rep": 6, "reply": "tails", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 7, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 8, "reply": "tails", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "coin", "rep": 9, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 10, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 11, "reply": "heads", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.495e-05, "out_tokens": 2}
+{"id": "coin", "rep": 12, "reply": "heads", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "coin", "rep": 13, "reply": "tails", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 14, "reply": "heads", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.482e-05, "out_tokens": 2}
+{"id": "coin", "rep": 15, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 16, "reply": "tails", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "coin", "rep": 17, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 18, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 19, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 20, "reply": "heads", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "coin", "rep": 21, "reply": "tails", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 22, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 23, "reply": "tails", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.495e-05, "out_tokens": 2}
+{"id": "coin", "rep": 24, "reply": "tails", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "coin", "rep": 25, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 26, "reply": "heads", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "coin", "rep": 27, "reply": "tails", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "coin", "rep": 28, "reply": "tails", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.495e-05, "out_tokens": 2}
+{"id": "coin", "rep": 29, "reply": "tails", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "color", "rep": 0, "reply": "Teal", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 1, "reply": "Teal", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 2, "reply": "Teal", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.743e-05, "out_tokens": 3}
+{"id": "color", "rep": 3, "reply": "Teal", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 4, "reply": "Coral", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.62e-05, "out_tokens": 2}
+{"id": "color", "rep": 5, "reply": "Teal", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 6, "reply": "Blue", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.43e-05, "out_tokens": 2}
+{"id": "color", "rep": 7, "reply": "Turquoise", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.446e-05, "out_tokens": 3}
+{"id": "color", "rep": 8, "reply": "Blue", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "color", "rep": 9, "reply": "Turquoise", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 10, "reply": "Teal", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.728e-05, "out_tokens": 3}
+{"id": "color", "rep": 11, "reply": "Turquoise", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.36e-05, "out_tokens": 2}
+{"id": "color", "rep": 12, "reply": "Coral", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 13, "reply": "Teal", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.446e-05, "out_tokens": 3}
+{"id": "color", "rep": 14, "reply": "Crimson", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.4e-05, "out_tokens": 4}
+{"id": "color", "rep": 15, "reply": "Turquoise", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 16, "reply": "Cobalt", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.4e-05, "out_tokens": 4}
+{"id": "color", "rep": 17, "reply": "Turquoise", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.36e-05, "out_tokens": 2}
+{"id": "color", "rep": 18, "reply": "Teal", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.728e-05, "out_tokens": 3}
+{"id": "color", "rep": 19, "reply": "Indigo", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.728e-05, "out_tokens": 3}
+{"id": "color", "rep": 20, "reply": "Teal", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.743e-05, "out_tokens": 3}
+{"id": "color", "rep": 21, "reply": "Teal", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.36e-05, "out_tokens": 2}
+{"id": "color", "rep": 22, "reply": "Teal", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "color", "rep": 23, "reply": "Teal", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.743e-05, "out_tokens": 3}
+{"id": "color", "rep": 24, "reply": "Turquoise", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.446e-05, "out_tokens": 3}
+{"id": "color", "rep": 25, "reply": "Crimson", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.4e-05, "out_tokens": 4}
+{"id": "color", "rep": 26, "reply": "Teal", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.36e-05, "out_tokens": 2}
+{"id": "color", "rep": 27, "reply": "Navy", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.743e-05, "out_tokens": 3}
+{"id": "color", "rep": 28, "reply": "Teal", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.743e-05, "out_tokens": 3}
+{"id": "color", "rep": 29, "reply": "Cobalt", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.696e-05, "out_tokens": 4}
+{"id": "word", "rep": 0, "reply": "Serendipity", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.6e-05, "out_tokens": 5}
+{"id": "word", "rep": 1, "reply": "Serendipity", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.16e-05, "out_tokens": 4}
+{"id": "word", "rep": 2, "reply": "Serendipity", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.946e-05, "out_tokens": 5}
+{"id": "word", "rep": 3, "reply": "Umbrella", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.696e-05, "out_tokens": 4}
+{"id": "word", "rep": 4, "reply": "Ephemeral", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.89e-05, "out_tokens": 3}
+{"id": "word", "rep": 5, "reply": "Whimsy", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.68e-05, "out_tokens": 3}
+{"id": "word", "rep": 6, "reply": "Ephemeral", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.068e-05, "out_tokens": 4}
+{"id": "word", "rep": 7, "reply": "Labyrinth", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "word", "rep": 8, "reply": "Labyrinth", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.446e-05, "out_tokens": 3}
+{"id": "word", "rep": 9, "reply": "Ephemeral", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.068e-05, "out_tokens": 4}
+{"id": "word", "rep": 10, "reply": "Nebula", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.4e-05, "out_tokens": 4}
+{"id": "word", "rep": 11, "reply": "Ephemeral", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.696e-05, "out_tokens": 4}
+{"id": "word", "rep": 12, "reply": "Lighthouse", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.36e-05, "out_tokens": 2}
+{"id": "word", "rep": 13, "reply": "Serendipity", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.16e-05, "out_tokens": 4}
+{"id": "word", "rep": 14, "reply": "Quasar", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "word", "rep": 15, "reply": "Serendipity", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.946e-05, "out_tokens": 5}
+{"id": "word", "rep": 16, "reply": "Zephyr", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.4e-05, "out_tokens": 4}
+{"id": "word", "rep": 17, "reply": "Ephemeral", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.068e-05, "out_tokens": 4}
+{"id": "word", "rep": 18, "reply": "Luminous", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.4e-05, "out_tokens": 4}
+{"id": "word", "rep": 19, "reply": "Nebula", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 2.08e-05, "out_tokens": 4}
+{"id": "word", "rep": 20, "reply": "Serendipity", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.6e-05, "out_tokens": 5}
+{"id": "word", "rep": 21, "reply": "Serendipity", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.368e-05, "out_tokens": 5}
+{"id": "word", "rep": 22, "reply": "Labyrinth", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "word", "rep": 23, "reply": "Ephemeral", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.696e-05, "out_tokens": 4}
+{"id": "word", "rep": 24, "reply": "Ephemeral", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.4e-05, "out_tokens": 4}
+{"id": "word", "rep": 25, "reply": "Ephemeral", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.048e-05, "out_tokens": 4}
+{"id": "word", "rep": 26, "reply": "Umbrella", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.89e-05, "out_tokens": 3}
+{"id": "word", "rep": 27, "reply": "Whimsical", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.696e-05, "out_tokens": 4}
+{"id": "word", "rep": 28, "reply": "Labyrinth", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.36e-05, "out_tokens": 2}
+{"id": "word", "rep": 29, "reply": "Labyrinth", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.2e-05, "out_tokens": 3}
+{"id": "state", "rep": 0, "reply": "Oregon", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "state", "rep": 1, "reply": "Oklahoma", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.725e-05, "out_tokens": 4}
+{"id": "state", "rep": 2, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 3, "reply": "Oregon", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.225e-05, "out_tokens": 2}
+{"id": "state", "rep": 4, "reply": "Montana", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.7875e-05, "out_tokens": 3}
+{"id": "state", "rep": 5, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 6, "reply": "Oregon", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.225e-05, "out_tokens": 2}
+{"id": "state", "rep": 7, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 8, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 9, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 10, "reply": "Oregon", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.225e-05, "out_tokens": 2}
+{"id": "state", "rep": 11, "reply": "Oregon", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.45e-05, "out_tokens": 2}
+{"id": "state", "rep": 12, "reply": "Colorado", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.4625e-05, "out_tokens": 2}
+{"id": "state", "rep": 13, "reply": "Oklahoma", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.425e-05, "out_tokens": 4}
+{"id": "state", "rep": 14, "reply": "Oregon", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.225e-05, "out_tokens": 2}
+{"id": "state", "rep": 15, "reply": "Oklahoma", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.1e-05, "out_tokens": 4}
+{"id": "state", "rep": 16, "reply": "Montana", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.7875e-05, "out_tokens": 3}
+{"id": "state", "rep": 17, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 18, "reply": "Montana", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.475e-05, "out_tokens": 3}
+{"id": "state", "rep": 19, "reply": "Montana", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.39e-05, "out_tokens": 2}
+{"id": "state", "rep": 20, "reply": "Montana", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.7875e-05, "out_tokens": 3}
+{"id": "state", "rep": 21, "reply": "Ohio", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.44e-05, "out_tokens": 2}
+{"id": "state", "rep": 22, "reply": "Kentucky", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.475e-05, "out_tokens": 3}
+{"id": "state", "rep": 23, "reply": "Oregon", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.07e-05, "out_tokens": 1}
+{"id": "state", "rep": 24, "reply": "Kansas", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.44e-05, "out_tokens": 2}
+{"id": "state", "rep": 25, "reply": "Ohio", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 26, "reply": "Montana", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "state", "rep": 27, "reply": "Oregon", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.44e-05, "out_tokens": 2}
+{"id": "state", "rep": 28, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 29, "reply": "Montana", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.76e-05, "out_tokens": 3}
+{"id": "name", "rep": 0, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.489e-05, "out_tokens": 5}
+{"id": "name", "rep": 1, "reply": "Aarav Patel", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.033e-05, "out_tokens": 5}
+{"id": "name", "rep": 2, "reply": "Elena Rodriguez", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 2.1775e-05, "out_tokens": 4}
+{"id": "name", "rep": 3, "reply": "Eleanor Vance", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.783e-05, "out_tokens": 4}
+{"id": "name", "rep": 4, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.033e-05, "out_tokens": 5}
+{"id": "name", "rep": 5, "reply": "Eleanor Vance", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.025e-05, "out_tokens": 3}
+{"id": "name", "rep": 6, "reply": "Elena Rodriguez", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.783e-05, "out_tokens": 4}
+{"id": "name", "rep": 7, "reply": "Elena Rodriguez", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.77e-05, "out_tokens": 3}
+{"id": "name", "rep": 8, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 9, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 10, "reply": "Elena Rostova", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 2.8275e-05, "out_tokens": 6}
+{"id": "name", "rep": 11, "reply": "Elena Rostova", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.875e-05, "out_tokens": 6}
+{"id": "name", "rep": 12, "reply": "Eleanor Rigby", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.09e-05, "out_tokens": 4}
+{"id": "name", "rep": 13, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.489e-05, "out_tokens": 5}
+{"id": "name", "rep": 14, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.489e-05, "out_tokens": 5}
+{"id": "name", "rep": 15, "reply": "Elena Rostova", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 5}
+{"id": "name", "rep": 16, "reply": "Elena Rosales", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 17, "reply": "Elena Rodriguez", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.475e-05, "out_tokens": 4}
+{"id": "name", "rep": 18, "reply": "Elena Rostova", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.784e-05, "out_tokens": 6}
+{"id": "name", "rep": 19, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 20, "reply": "Elena Rostova", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.875e-05, "out_tokens": 6}
+{"id": "name", "rep": 21, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.295e-05, "out_tokens": 4}
+{"id": "name", "rep": 22, "reply": "Eleanor Rigby", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.464e-05, "out_tokens": 5}
+{"id": "name", "rep": 23, "reply": "Elena Rostova", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.283e-05, "out_tokens": 6}
+{"id": "name", "rep": 24, "reply": "Eleanor Vance", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.025e-05, "out_tokens": 3}
+{"id": "name", "rep": 25, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.033e-05, "out_tokens": 5}
+{"id": "name", "rep": 26, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.489e-05, "out_tokens": 5}
+{"id": "name", "rep": 27, "reply": "Eleanor Rigby", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.464e-05, "out_tokens": 5}
+{"id": "name", "rep": 28, "reply": "Elena Vance", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.77e-05, "out_tokens": 3}
+{"id": "name", "rep": 29, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "pin", "rep": 0, "reply": "839201", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.072e-05, "out_tokens": 7}
+{"id": "pin", "rep": 1, "reply": "839201", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.504e-05, "out_tokens": 7}
+{"id": "pin", "rep": 2, "reply": "382910", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 3, "reply": "839204", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.107e-05, "out_tokens": 7}
+{"id": "pin", "rep": 4, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 5, "reply": "839201", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.12e-05, "out_tokens": 7}
+{"id": "pin", "rep": 6, "reply": "847291", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.12e-05, "out_tokens": 7}
+{"id": "pin", "rep": 7, "reply": "839201", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.107e-05, "out_tokens": 7}
+{"id": "pin", "rep": 8, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 9, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 10, "reply": "384721", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.12e-05, "out_tokens": 7}
+{"id": "pin", "rep": 11, "reply": "382917", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.107e-05, "out_tokens": 7}
+{"id": "pin", "rep": 12, "reply": "382910", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 13, "reply": "839201", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.504e-05, "out_tokens": 7}
+{"id": "pin", "rep": 14, "reply": "839201", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.7e-05, "out_tokens": 6}
+{"id": "pin", "rep": 15, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 16, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 17, "reply": "482915", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 18, "reply": "839201", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.072e-05, "out_tokens": 7}
+{"id": "pin", "rep": 19, "reply": "839201", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.504e-05, "out_tokens": 7}
+{"id": "pin", "rep": 20, "reply": "839201", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.12e-05, "out_tokens": 7}
+{"id": "pin", "rep": 21, "reply": "839201", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.79e-05, "out_tokens": 6}
+{"id": "pin", "rep": 22, "reply": "839201", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.7e-05, "out_tokens": 6}
+{"id": "pin", "rep": 23, "reply": "384921", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 24, "reply": "382910", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.107e-05, "out_tokens": 7}
+{"id": "pin", "rep": 25, "reply": "839201", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.107e-05, "out_tokens": 7}
+{"id": "pin", "rep": 26, "reply": "839201", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.072e-05, "out_tokens": 7}
+{"id": "pin", "rep": 27, "reply": "837291", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 28, "reply": "849201", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.107e-05, "out_tokens": 7}
+{"id": "pin", "rep": 29, "reply": "839201", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.072e-05, "out_tokens": 7}
+{"id": "prime", "rep": 0, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 1, "reply": "7919", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.975e-05, "out_tokens": 5}
+{"id": "prime", "rep": 2, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 3, "reply": "7", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.225e-05, "out_tokens": 2}
+{"id": "prime", "rep": 4, "reply": "7919", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.625e-05, "out_tokens": 5}
+{"id": "prime", "rep": 5, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 6, "reply": "997", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.71e-05, "out_tokens": 3}
+{"id": "prime", "rep": 7, "reply": "7", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.07e-05, "out_tokens": 1}
+{"id": "prime", "rep": 8, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 9, "reply": "73", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.76e-05, "out_tokens": 3}
+{"id": "prime", "rep": 10, "reply": "997", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.425e-05, "out_tokens": 4}
+{"id": "prime", "rep": 11, "reply": "7", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.07e-05, "out_tokens": 1}
+{"id": "prime", "rep": 12, "reply": "7", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.44e-05, "out_tokens": 2}
+{"id": "prime", "rep": 13, "reply": "2423", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.03e-05, "out_tokens": 4}
+{"id": "prime", "rep": 14, "reply": "7919", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.4e-05, "out_tokens": 5}
+{"id": "prime", "rep": 15, "reply": "7", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.4625e-05, "out_tokens": 2}
+{"id": "prime", "rep": 16, "reply": "7919", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.4e-05, "out_tokens": 5}
+{"id": "prime", "rep": 17, "reply": "7919", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.975e-05, "out_tokens": 5}
+{"id": "prime", "rep": 18, "reply": "7919", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.4e-05, "out_tokens": 5}
+{"id": "prime", "rep": 19, "reply": "7919", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.625e-05, "out_tokens": 5}
+{"id": "prime", "rep": 20, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 21, "reply": "7", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.395e-05, "out_tokens": 1}
+{"id": "prime", "rep": 22, "reply": "79", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.665e-05, "out_tokens": 2}
+{"id": "prime", "rep": 23, "reply": "7919", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.03e-05, "out_tokens": 4}
+{"id": "prime", "rep": 24, "reply": "73", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.7875e-05, "out_tokens": 3}
+{"id": "prime", "rep": 25, "reply": "7919", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.625e-05, "out_tokens": 5}
+{"id": "prime", "rep": 26, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 27, "reply": "7919", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.205e-05, "out_tokens": 4}
+{"id": "prime", "rep": 28, "reply": "7919", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.975e-05, "out_tokens": 5}
+{"id": "prime", "rep": 29, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "card", "rep": 0, "reply": "Queen of Hearts", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.131e-05, "out_tokens": 4}
+{"id": "card", "rep": 1, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 2, "reply": "Seven of Clubs", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.548e-05, "out_tokens": 4}
+{"id": "card", "rep": 3, "reply": "Four of Hearts", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.548e-05, "out_tokens": 4}
+{"id": "card", "rep": 4, "reply": "Queen of Hearts", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.13e-05, "out_tokens": 3}
+{"id": "card", "rep": 5, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 6, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 7, "reply": "Queen of Hearts", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.131e-05, "out_tokens": 4}
+{"id": "card", "rep": 8, "reply": "Queen of Hearts", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.528e-05, "out_tokens": 4}
+{"id": "card", "rep": 9, "reply": "Queen of Hearts", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.528e-05, "out_tokens": 4}
+{"id": "card", "rep": 10, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 11, "reply": "Queen of Hearts", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.528e-05, "out_tokens": 4}
+{"id": "card", "rep": 12, "reply": "Four of Hearts", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.131e-05, "out_tokens": 4}
+{"id": "card", "rep": 13, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 14, "reply": "Jack of Spades", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.975e-05, "out_tokens": 5}
+{"id": "card", "rep": 15, "reply": "Three of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 16, "reply": "Jack of Diamonds", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.131e-05, "out_tokens": 4}
+{"id": "card", "rep": 17, "reply": "Four of Diamonds", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.528e-05, "out_tokens": 4}
+{"id": "card", "rep": 18, "reply": "Seven of Clubs", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.13e-05, "out_tokens": 3}
+{"id": "card", "rep": 19, "reply": "Three of Hearts", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 2.5675e-05, "out_tokens": 4}
+{"id": "card", "rep": 20, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 21, "reply": "Three of Diamonds", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.528e-05, "out_tokens": 4}
+{"id": "card", "rep": 22, "reply": "Queen of Hearts", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 2.5675e-05, "out_tokens": 4}
+{"id": "card", "rep": 23, "reply": "Queen of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 24, "reply": "Seven of Clubs", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 2.528e-05, "out_tokens": 4}
+{"id": "card", "rep": 25, "reply": "Three of Hearts", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 2.565e-05, "out_tokens": 3}
+{"id": "card", "rep": 26, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 27, "reply": "Three of Hearts", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 2.548e-05, "out_tokens": 4}
+{"id": "card", "rep": 28, "reply": "Four of Hearts", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 2.13e-05, "out_tokens": 3}
+{"id": "card", "rep": 29, "reply": "Queen of Hearts", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.131e-05, "out_tokens": 4}
+{"id": "shuffle", "rep": 0, "reply": "['fig', 'apple', 'grape', 'date', 'elderberry', 'banana', 'cherry']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 1, "reply": "['fig', 'elderberry', 'date', 'grape', 'apple', 'cherry', 'banana']", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 9.88e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 2, "reply": "['elderberry', 'date', 'banana', 'grape', 'apple', 'fig', 'cherry']", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 7.816e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 3, "reply": "['grape', 'date', 'apple', 'elderberry', 'fig', 'banana', 'cherry']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 4, "reply": "['fig', 'apple', 'elderberry', 'grape', 'banana', 'date', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 5, "reply": "['fig', 'apple', 'elderberry', 'date', 'grape', 'banana', 'cherry']", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 9.88e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 6, "reply": "['grape', 'elderberry', 'banana', 'date', 'apple', 'fig', 'cherry']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 7, "reply": "['elderberry', 'date', 'apple', 'grape', 'fig', 'cherry', 'banana']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 8, "reply": "['elderberry', 'grape', 'banana', 'date', 'fig', 'cherry', 'apple']", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 9.853e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 9, "reply": "['fig', 'apple', 'date', 'elderberry', 'grape', 'banana', 'cherry']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 10, "reply": "['elderberry', 'apple', 'fig', 'cherry', 'grape', 'banana', 'date']", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 9.728e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 11, "reply": "['grape', 'cherry', 'apple', 'fig', 'date', 'elderberry', 'banana']", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 9.728e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 12, "reply": "['fig', 'elderberry', 'apple', 'grape', 'date', 'cherry', 'banana']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 13, "reply": "['fig', 'apple', 'date', 'elderberry', 'cherry', 'grape', 'banana']", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 7.816e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 14, "reply": "['grape', 'date', 'apple', 'elderberry', 'fig', 'banana', 'cherry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 15, "reply": "['elderberry', 'fig', 'apple', 'grape', 'date', 'banana', 'cherry']", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 7.816e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 16, "reply": "['fig', 'elderberry', 'apple', 'grape', 'banana', 'date', 'cherry']", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 9.728e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 17, "reply": "['cherry', 'apple', 'grape', 'banana', 'fig', 'elderberry', 'date']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 18, "reply": "['fig', 'apple', 'elderberry', 'date', 'banana', 'grape', 'cherry']", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 7.816e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 19, "reply": "['grape', 'cherry', 'fig', 'apple', 'date', 'elderberry', 'banana']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 20, "reply": "['fig', 'apple', 'grape', 'date', 'elderberry', 'cherry', 'banana']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 21, "reply": "['fig', 'apple', 'grape', 'elderberry', 'cherry', 'banana', 'date']", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 7.816e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 22, "reply": "['fig', 'cherry', 'apple', 'grape', 'date', 'banana', 'elderberry']", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 9.728e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 23, "reply": "['elderberry', 'date', 'apple', 'grape', 'fig', 'banana', 'cherry']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 24, "reply": "['grape', 'apple', 'fig', 'cherry', 'date', 'banana', 'elderberry']", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 8.91e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 25, "reply": "['fig', 'grape', 'date', 'apple', 'elderberry', 'banana', 'cherry']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 26, "reply": "['fig', 'grape', 'apple', 'date', 'cherry', 'elderberry', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 27, "reply": "['fig', 'apple', 'date', 'grape', 'banana', 'elderberry', 'cherry']", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 9.728e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 28, "reply": "['grape', 'banana', 'elderberry', 'date', 'apple', 'fig', 'cherry']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "shuffle", "rep": 29, "reply": "['elderberry', 'apple', 'grape', 'date', 'banana', 'cherry', 'fig']", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 9.3e-05, "out_tokens": 24}
+{"id": "die", "rep": 0, "reply": "4", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.04e-05, "out_tokens": 1}
+{"id": "die", "rep": 1, "reply": "4", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "die", "rep": 2, "reply": "4", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.408e-05, "out_tokens": 2}
+{"id": "die", "rep": 3, "reply": "4", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "die", "rep": 4, "reply": "4", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "die", "rep": 5, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 6, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 7, "reply": "4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.43e-05, "out_tokens": 2}
+{"id": "die", "rep": 8, "reply": "4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.43e-05, "out_tokens": 2}
+{"id": "die", "rep": 9, "reply": "4", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.408e-05, "out_tokens": 2}
+{"id": "die", "rep": 10, "reply": "4", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.408e-05, "out_tokens": 2}
+{"id": "die", "rep": 11, "reply": "4", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.04e-05, "out_tokens": 1}
+{"id": "die", "rep": 12, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 13, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 14, "reply": "4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.43e-05, "out_tokens": 2}
+{"id": "die", "rep": 15, "reply": "4", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "die", "rep": 16, "reply": "4", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "die", "rep": 17, "reply": "4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.43e-05, "out_tokens": 2}
+{"id": "die", "rep": 18, "reply": "4", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "die", "rep": 19, "reply": "4", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.196e-05, "out_tokens": 2}
+{"id": "die", "rep": 20, "reply": "3", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.04e-05, "out_tokens": 1}
+{"id": "die", "rep": 21, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 22, "reply": "4", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.04e-05, "out_tokens": 1}
+{"id": "die", "rep": 23, "reply": "4", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.408e-05, "out_tokens": 2}
+{"id": "die", "rep": 24, "reply": "3", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.04e-05, "out_tokens": 1}
+{"id": "die", "rep": 25, "reply": "4", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.35e-05, "out_tokens": 1}
+{"id": "die", "rep": 26, "reply": "4", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.43e-05, "out_tokens": 2}
+{"id": "die", "rep": 27, "reply": "4", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.408e-05, "out_tokens": 2}
+{"id": "die", "rep": 28, "reply": "4", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.04e-05, "out_tokens": 1}
+{"id": "die", "rep": 29, "reply": "4", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.418e-05, "out_tokens": 2}
+{"id": "letter", "rep": 0, "reply": "T", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "letter", "rep": 1, "reply": "Q", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "letter", "rep": 2, "reply": "Q", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "letter", "rep": 3, "reply": "M", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.495e-05, "out_tokens": 2}
+{"id": "letter", "rep": 4, "reply": "K", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "letter", "rep": 5, "reply": "M", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "letter", "rep": 6, "reply": "M", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "letter", "rep": 7, "reply": "Q", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "letter", "rep": 8, "reply": "M", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "letter", "rep": 9, "reply": "K", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "letter", "rep": 10, "reply": "K", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "letter", "rep": 11, "reply": "Q", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "letter", "rep": 12, "reply": "Q", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "letter", "rep": 13, "reply": "Q", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "letter", "rep": 14, "reply": "M", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "letter", "rep": 15, "reply": "M", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "letter", "rep": 16, "reply": "T", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "letter", "rep": 17, "reply": "T", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "letter", "rep": 18, "reply": "Q", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.482e-05, "out_tokens": 2}
+{"id": "letter", "rep": 19, "reply": "Q", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 1.482e-05, "out_tokens": 2}
+{"id": "letter", "rep": 20, "reply": "Q", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "letter", "rep": 21, "reply": "M", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "letter", "rep": 22, "reply": "Q", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 1.495e-05, "out_tokens": 2}
+{"id": "letter", "rep": 23, "reply": "Q", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 1.254e-05, "out_tokens": 2}
+{"id": "letter", "rep": 24, "reply": "N", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "letter", "rep": 25, "reply": "Q", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "letter", "rep": 26, "reply": "Q", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "letter", "rep": 27, "reply": "M", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 1.44e-05, "out_tokens": 1}
+{"id": "letter", "rep": 28, "reply": "Q", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 1.472e-05, "out_tokens": 2}
+{"id": "letter", "rep": 29, "reply": "m", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 1.1e-05, "out_tokens": 1}
+{"id": "num0_1", "rep": 0, "reply": "0.7382", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.445e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 1, "reply": "0.3847", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 3e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 2, "reply": "0.7281", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.794e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 3, "reply": "0.3847", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.445e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 4, "reply": "0.3847", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.392e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 5, "reply": "0.7382", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 3e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 6, "reply": "0.7382", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.794e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 7, "reply": "0.7382", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.445e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 8, "reply": "0.4827", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.392e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 9, "reply": "0.7293", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 3e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 10, "reply": "0.3829", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.445e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 11, "reply": "0.8372", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 3e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 12, "reply": "0.7382", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 3e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 13, "reply": "0.6180", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.392e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 14, "reply": "0.7329", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.794e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 15, "reply": "0.3829", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.427e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 16, "reply": "0.3847", "reasoning": null, "provider": "Reka", "finish": "stop", "cost": 2.794e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 17, "reply": "0.7382", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.3e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 18, "reply": "0.7381", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.392e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 19, "reply": "0.3847", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.427e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 20, "reply": "0.5738", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.445e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 21, "reply": "0.3847", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.445e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 22, "reply": "0.8392", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.427e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 23, "reply": "0.7392", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 3.24e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 24, "reply": "0.7391", "reasoning": null, "provider": "Phala", "finish": "stop", "cost": 3.427e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 25, "reply": "0.7382", "reasoning": null, "provider": "Alibaba", "finish": "stop", "cost": 3.24e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 26, "reply": "0.3847", "reasoning": null, "provider": "Venice", "finish": "stop", "cost": 3.445e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 27, "reply": "0.3847", "reasoning": null, "provider": "SiliconFlow", "finish": "stop", "cost": 3e-05, "out_tokens": 6}
+{"id": "num0_1", "rep": 28, "reply": "0.3847", "reasoning": null, "provider": "DeepInfra", "finish": "stop", "cost": 3.392e-05, "out_tokens": 7}
+{"id": "num0_1", "rep": 29, "reply": "0.7392", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.3e-05, "out_tokens": 7}

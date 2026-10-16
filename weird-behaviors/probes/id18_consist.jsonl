@@ -1,0 +1,3 @@
+{"id":"pop","messages":[{"role":"user","content":"What was the population of Dixon, Illinois in the 2020 US census? Just the number."}],"params":{"max_tokens":30}}
+{"id":"vocab","messages":[{"role":"user","content":"What is the vocabulary size of the Qwen2.5 tokenizer? Just the number."}],"params":{"max_tokens":30}}
+{"id":"qwen1_date","messages":[{"role":"user","content":"In what month and year was the first Qwen model (Qwen-7B) open-sourced? Just month and year."}],"params":{"max_tokens":30}}

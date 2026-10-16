@@ -1,0 +1,9 @@
+{"id":"t-batball","messages":[{"role":"user","content":"A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost? Give just the answer."}],"think":true,"params":{"max_tokens":4000}}
+{"id":"t-bricks","messages":[{"role":"user","content":"Which is heavier: a pound of feathers or two pounds of bricks? One line."}],"think":true,"params":{"max_tokens":4000}}
+{"id":"t-strawberry","messages":[{"role":"user","content":"How many r's are in the word strawberry? Just the number."}],"think":true,"params":{"max_tokens":4000}}
+{"id":"t-hard","messages":[{"role":"user","content":"What is 847 * 362? Just the number."}],"think":true,"params":{"max_tokens":4000}}
+{"id":"t-sheep","messages":[{"role":"user","content":"A farmer has 17 sheep, all but 9 die. How many are left?"}],"think":true,"params":{"max_tokens":4000}}
+{"id":"t-monty","messages":[{"role":"user","content":"In the Monty Hall problem, is it better to switch or stay? Answer with one word."}],"think":true,"params":{"max_tokens":4000}}
+{"id":"t-9.11","messages":[{"role":"user","content":"Which is bigger, 9.11 or 9.9? One word."}],"think":true,"params":{"max_tokens":4000}}
+{"id":"nt-9.11","messages":[{"role":"user","content":"Which is bigger, 9.11 or 9.9? One word."}],"think":false,"params":{"max_tokens":800}}
+{"id":"nt-monty","messages":[{"role":"user","content":"In the Monty Hall problem, is it better to switch or stay? Answer with one word."}],"think":false,"params":{"max_tokens":800}}

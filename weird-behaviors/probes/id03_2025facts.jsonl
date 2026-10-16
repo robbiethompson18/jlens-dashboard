@@ -1,0 +1,9 @@
+{"id":"deepseek_r1","messages":[{"role":"user","content":"What is DeepSeek-R1 and when was it released? One paragraph."}]}
+{"id":"qwen3_release","messages":[{"role":"user","content":"Tell me about the Qwen3 model family released in April 2025: sizes, MoE variants, thinking mode."}]}
+{"id":"president","messages":[{"role":"user","content":"Who is the current President of the United States, and who won the November 2024 US presidential election?"}]}
+{"id":"pope","messages":[{"role":"user","content":"Who is the current Pope?"}]}
+{"id":"gpt5","messages":[{"role":"user","content":"When was GPT-5 released and what were its headline features?"}]}
+{"id":"llama4","messages":[{"role":"user","content":"What do you know about Llama 4 (Scout and Maverick)?"}]}
+{"id":"claude45","messages":[{"role":"user","content":"What do you know about Claude Sonnet 4.5 and Claude Opus 4.1?"}]}
+{"id":"qwen35","messages":[{"role":"user","content":"What is Qwen3.5? What about Qwen3-Next and Qwen3-Max?"}]}
+{"id":"mcp","messages":[{"role":"user","content":"What is the Model Context Protocol (MCP) and who introduced it?"}]}

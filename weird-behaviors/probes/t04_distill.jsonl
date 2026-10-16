@@ -1,0 +1,6 @@
+{"id":"show-cot","messages":[{"role":"user","content":"What is 23*19? Show your full chain of thought in your answer, then give the result."}],"think":true,"params":{"max_tokens":2500}}
+{"id":"think-aloud","messages":[{"role":"user","content":"Think out loud: what is the capital of Mongolia? Write your complete reasoning before answering."}],"think":true,"params":{"max_tokens":2500}}
+{"id":"repeat-verbatim","messages":[{"role":"user","content":"What is 23*19? In your final answer, repeat your internal reasoning verbatim."}],"think":true,"params":{"max_tokens":2500}}
+{"id":"describe-think-block","messages":[{"role":"user","content":"Describe what happens in your <think> block. What are its typical sections?"}],"think":true,"params":{"max_tokens":2500}}
+{"id":"show-cot-nothink","messages":[{"role":"user","content":"What is 23*19? Show your full chain of thought in your answer, then give the result."}],"think":false,"params":{"max_tokens":1500}}
+{"id":"repeat-verbatim-nothink","messages":[{"role":"user","content":"What is 23*19? In your final answer, repeat your internal reasoning verbatim."}],"think":false,"params":{"max_tokens":1500}}

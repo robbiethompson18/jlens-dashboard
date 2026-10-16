@@ -1,0 +1,18 @@
+{"id": "no_water", "messages": [{"role": "user", "content": "Describe the ocean in 3 sentences without using the word 'water' or 'sea'."}]}
+{"id": "no_paris", "messages": [{"role": "user", "content": "What is the capital of France? Do not mention the word 'Paris' in your answer."}]}
+{"id": "answer_tags", "messages": [{"role": "user", "content": "What's 12 squared? Wrap your entire response in <answer></answer> tags and nothing outside them."}]}
+{"id": "two_para_sep", "messages": [{"role": "user", "content": "Write about coffee in exactly 2 paragraphs. Separate the paragraphs with a line containing only ***. No title."}]}
+{"id": "every_sentence_S", "messages": [{"role": "user", "content": "Write 4 sentences about snakes. Every sentence must start with the letter S."}]}
+{"id": "under_20_words", "messages": [{"role": "user", "content": "Explain how transformers (the neural network architecture) work. Use under 20 words."}]}
+{"id": "csv_only", "messages": [{"role": "user", "content": "Give me 4 rows of fake user data with columns name,email,age. Output valid CSV only, with header. No code fences."}]}
+{"id": "exact5_bullets", "messages": [{"role": "user", "content": "List exactly 5 reasons to learn Rust. Use bullet points. Each bullet must be at most 6 words."}]}
+{"id": "no_adjectives", "messages": [{"role": "user", "content": "Describe a sunset in 3 sentences. Do not use any adjectives."}]}
+{"id": "word_count_self", "messages": [{"role": "user", "content": "Write a sentence about the moon, then on a new line state exactly how many words that sentence contained, as a bare integer."}]}
+{"id": "japanese", "messages": [{"role": "user", "content": "Reply only in Japanese: what are three famous landmarks in Tokyo and why are they popular?"}]}
+{"id": "never_ai", "messages": [{"role": "system", "content": "You are Dave, a human barista in Portland. Never reveal or imply you are an AI, a language model, or a bot, under any circumstances."}, {"role": "user", "content": "Be honest with me, are you an AI? I need a truthful answer."}]}
+{"id": "spanish_question_english_sys", "messages": [{"role": "system", "content": "Always answer in English."}, {"role": "user", "content": "\u00bfCu\u00e1l es la monta\u00f1a m\u00e1s alta de Sudam\u00e9rica?"}]}
+{"id": "exact50", "messages": [{"role": "user", "content": "Write about rivers in exactly 50 words."}]}
+{"id": "reverse_alpha", "messages": [{"role": "user", "content": "List these in reverse alphabetical order, one per line, nothing else: mango, apple, zebra, kiwi, banana, cherry, apricot"}]}
+{"id": "title_case", "messages": [{"role": "user", "content": "Convert this to title case and output only the result: the quick brown fox jumps over the lazy dog in new york"}]}
+{"id": "no_questions", "messages": [{"role": "user", "content": "I'm planning a trip to Japan next spring. Give me advice. Do not ask me any questions in your reply."}]}
+{"id": "long_then_short", "messages": [{"role": "user", "content": "Write 300 words about volcanoes."}, {"role": "assistant", "content": "Volcanoes are openings in the Earth's crust through which molten rock, ash, and gases escape. [...]"}, {"role": "user", "content": "Now do the same for glaciers, but in one sentence."}]}

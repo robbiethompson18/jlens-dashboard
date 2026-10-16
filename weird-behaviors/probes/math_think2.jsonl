@@ -1,0 +1,5 @@
+{"id": "d250", "messages": [{"role": "user", "content": "How many days are there from July 4, 1776 to July 4, 2026? Give only the number."}]}
+{"id": "fri2026", "messages": [{"role": "user", "content": "How many Fridays are there in the year 2026? Give only the number."}]}
+{"id": "day100", "messages": [{"role": "user", "content": "What is the 100th day of the year 2026? Give only the date."}]}
+{"id": "dowG", "messages": [{"role": "user", "content": "What day of the week was February 14, 1962? One word."}]}
+{"id": "dowH", "messages": [{"role": "user", "content": "What day of the week is April 3, 2039? One word."}]}

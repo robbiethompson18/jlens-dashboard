@@ -1,0 +1,32 @@
+{"id": "pot0_define", "messages": [{"role": "user", "content": "In one or two sentences, define ABAB rhyme scheme."}]}
+{"id": "pot0_generate", "messages": [{"role": "user", "content": "Write a 4-line poem with an ABAB rhyme scheme."}]}
+{"id": "pot0_cls1", "messages": [{"role": "user", "content": "Does this 4-line poem use an ABAB rhyme scheme? Answer yes or no.\n\nThe night is cold and still\nThe stars are shining bright\nI wander up the hill\nAnd lose myself in light"}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot0_cls2", "messages": [{"role": "user", "content": "Does this 4-line poem use an ABAB rhyme scheme? Answer yes or no.\n\nThe night is cold and still\nThe moon above the hill\nThe stars are shining bright\nAnd lose myself in light"}], "expect": "^\\W*no\\b", "tags": {"ans": "no"}}
+{"id": "pot1_define", "messages": [{"role": "user", "content": "In one or two sentences, define a haiku (5-7-5 syllables)."}]}
+{"id": "pot1_generate", "messages": [{"role": "user", "content": "Write a haiku about autumn with exactly 5, 7, and 5 syllables per line."}]}
+{"id": "pot1_cls1", "messages": [{"role": "user", "content": "Is this a valid 5-7-5 haiku? Answer yes or no.\n\nAn old silent pond\nA frog jumps into the pond\nSplash! Silence again"}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot1_cls2", "messages": [{"role": "user", "content": "Is this a valid 5-7-5 haiku? Answer yes or no.\n\nThe autumn wind blows softly\nLeaves fall\nWinter is coming soon"}], "expect": "^\\W*no\\b", "tags": {"ans": "no"}}
+{"id": "pot2_define", "messages": [{"role": "user", "content": "In one or two sentences, define a slant rhyme."}]}
+{"id": "pot2_generate", "messages": [{"role": "user", "content": "Give one example of a pair of words that form a slant rhyme (not a perfect rhyme)."}]}
+{"id": "pot2_cls1", "messages": [{"role": "user", "content": "Do 'shape' and 'keep' form a slant rhyme? Answer yes or no."}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot2_cls2", "messages": [{"role": "user", "content": "Do 'cat' and 'hat' form a slant rhyme (as opposed to a perfect rhyme)? Answer yes or no."}], "expect": "^\\W*no\\b", "tags": {"ans": "no"}}
+{"id": "pot3_define", "messages": [{"role": "user", "content": "In one or two sentences, define an anapestic meter."}]}
+{"id": "pot3_generate", "messages": [{"role": "user", "content": "Write one line of poetry in anapestic tetrameter."}]}
+{"id": "pot3_cls1", "messages": [{"role": "user", "content": "Is this line in anapestic meter? Answer yes or no.\n\n'Twas the night before Christmas, when all through the house"}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot3_cls2", "messages": [{"role": "user", "content": "Is this line in anapestic meter? Answer yes or no.\n\nShall I compare thee to a summer's day?"}], "expect": "^\\W*no\\b", "tags": {"ans": "no"}}
+{"id": "pot4_define", "messages": [{"role": "user", "content": "In one or two sentences, define the sunk cost fallacy."}]}
+{"id": "pot4_generate", "messages": [{"role": "user", "content": "Write a 2-sentence scenario that is a clear example of the sunk cost fallacy."}]}
+{"id": "pot4_cls1", "messages": [{"role": "user", "content": "Is this an example of the sunk cost fallacy? Answer yes or no.\n\nAmy has already paid $200 for a non-refundable concert ticket. She feels sick on the day but goes anyway because she doesn't want the money to be wasted."}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot4_cls2", "messages": [{"role": "user", "content": "Is this an example of the sunk cost fallacy? Answer yes or no.\n\nAmy paid $200 for a concert ticket. On the day she feels sick, so she sells the ticket to a friend for $150 and stays home."}], "expect": "^\\W*no\\b", "tags": {"ans": "no"}}
+{"id": "pot5_define", "messages": [{"role": "user", "content": "In one or two sentences, define a Nash equilibrium."}]}
+{"id": "pot5_generate", "messages": [{"role": "user", "content": "Give a 2x2 game (payoff matrix) with exactly one pure-strategy Nash equilibrium and state it."}]}
+{"id": "pot5_cls1", "messages": [{"role": "user", "content": "In this game, is (Up, Left) a Nash equilibrium? Answer yes or no.\n\nPayoffs (Row, Column):\n          Left    Right\nUp      (3,3)   (0,2)\nDown    (2,0)   (1,1)"}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot5_cls2", "messages": [{"role": "user", "content": "In this game, is (Down, Right) a Nash equilibrium? Answer yes or no.\n\nPayoffs (Row, Column):\n          Left    Right\nUp      (3,3)   (0,2)\nDown    (2,0)   (1,1)"}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot6_define", "messages": [{"role": "user", "content": "In one or two sentences, define enjambment."}]}
+{"id": "pot6_generate", "messages": [{"role": "user", "content": "Write two lines of poetry that use enjambment."}]}
+{"id": "pot6_cls1", "messages": [{"role": "user", "content": "Does this couplet use enjambment? Answer yes or no.\n\nI wandered lonely as a cloud that floats\non high o'er vales and hills, and then"}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot6_cls2", "messages": [{"role": "user", "content": "Does this couplet use enjambment? Answer yes or no.\n\nThe rain fell softly on the town.\nThe lights went out; the sun went down."}], "expect": "^\\W*no\\b", "tags": {"ans": "no"}}
+{"id": "pot7_define", "messages": [{"role": "user", "content": "In one or two sentences, define a palindrome."}]}
+{"id": "pot7_generate", "messages": [{"role": "user", "content": "Give one example of a 7-letter palindrome word."}]}
+{"id": "pot7_cls1", "messages": [{"role": "user", "content": "Is 'deified' a palindrome? Answer yes or no."}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}
+{"id": "pot7_cls2", "messages": [{"role": "user", "content": "Is 'rotator' a palindrome? Answer yes or no."}], "expect": "^\\W*yes\\b", "tags": {"ans": "yes"}}

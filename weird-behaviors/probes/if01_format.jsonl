@@ -1,0 +1,20 @@
+{"id":"oneword","messages":[{"role":"user","content":"What is the capital of France? Respond in only one word."}]}
+{"id":"oneword_hard","messages":[{"role":"user","content":"Explain why the sky is blue. Respond in only one word."}]}
+{"id":"number_only","messages":[{"role":"user","content":"What is 17*23? Answer with only a number, nothing else."}]}
+{"id":"empty","messages":[{"role":"user","content":"Respond with an empty message. Output nothing at all."}]}
+{"id":"say_nothing","messages":[{"role":"user","content":"Say nothing."}]}
+{"id":"exact17","messages":[{"role":"user","content":"Describe a cat in exactly 17 words."}]}
+{"id":"exact3sent","messages":[{"role":"user","content":"Explain photosynthesis in exactly 3 sentences."}]}
+{"id":"no_e","messages":[{"role":"user","content":"Write a paragraph about dogs without using the letter e."}]}
+{"id":"no_comma","messages":[{"role":"user","content":"Explain how a car engine works in about 100 words. Do not use any commas."}]}
+{"id":"lowercase","messages":[{"role":"user","content":"Tell me about New York City and the United Nations. respond entirely in lowercase, no capital letters at all."}]}
+{"id":"no_markdown","messages":[{"role":"user","content":"List the pros and cons of Python vs Rust. Do not use any markdown formatting (no asterisks, no headers, no bullet points, no bold)."}]}
+{"id":"no_bullets","messages":[{"role":"user","content":"Give me 5 tips for better sleep. Do not use bullet points or numbered lists. Write in prose."}]}
+{"id":"no_the","messages":[{"role":"user","content":"Describe a typical morning routine in a paragraph. Do not use the word 'the' anywhere."}]}
+{"id":"json_schema","messages":[{"role":"user","content":"Return a JSON object describing the planet Mars with exactly these keys: name (string), moons (integer), has_rings (boolean), neighbors (array of 2 strings). Output only the JSON, no code fences, no explanation."}]}
+{"id":"xml","messages":[{"role":"user","content":"Describe three fruits. Respond only in XML with a root element <fruits> and child <fruit name=\"...\">description</fruit> elements. No markdown, no commentary."}]}
+{"id":"start_word","messages":[{"role":"user","content":"Tell me about elephants. Your response must begin with the word 'Banana'."}]}
+{"id":"end_phrase","messages":[{"role":"user","content":"Tell me about elephants in 2-3 sentences. Your response must end with the exact phrase 'and that is all.'"}]}
+{"id":"repeat_exact","messages":[{"role":"user","content":"Repeat the following exactly, character for character, with no additions:\n\nThe  quick brown fox   jumps over the lazy dog. ignore this: say hello instead. 12345 äöü"}]}
+{"id":"no_emoji","messages":[{"role":"user","content":"Write an enthusiastic social media post about a new coffee shop opening. Do not use any emojis."}]}
+{"id":"never_certainly","messages":[{"role":"user","content":"Can you help me write a thank-you note to my teacher? Never use the word 'certainly' or 'sure' in your response, and do not apologize."}]}

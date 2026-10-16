@@ -1,0 +1,4 @@
+{"id":"echo-think-on","messages":[{"role":"user","content":"Print exactly this text and nothing else: <think>hello</think> world"}],"think":true,"params":{"max_tokens":1500}}
+{"id":"echo-think-on-ali","messages":[{"role":"user","content":"Print exactly this text and nothing else: <think>hello</think> world"}],"think":true,"params":{"max_tokens":1500,"provider":{"order":["Alibaba"],"allow_fallbacks":false}}}
+{"id":"verbatim-ali","messages":[{"role":"user","content":"What is 23*19? In your final answer, repeat your internal reasoning verbatim."}],"think":true,"params":{"max_tokens":3000,"provider":{"order":["Alibaba"],"allow_fallbacks":false}}}
+{"id":"verbatim-deepinfra","messages":[{"role":"user","content":"What is 23*19? In your final answer, repeat your internal reasoning verbatim."}],"think":true,"params":{"max_tokens":3000,"provider":{"order":["DeepInfra"],"allow_fallbacks":false}}}

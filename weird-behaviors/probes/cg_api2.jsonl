@@ -1,0 +1,16 @@
+{"id": "api_pdappend", "messages": [{"role": "user", "content": "In pandas 2.2, what does df.append(other) do? One or two sentences."}]}
+{"id": "api_errorbad", "messages": [{"role": "user", "content": "Write one line of pandas 2.x code reading 'x.csv' and skipping malformed lines."}]}
+{"id": "api_npproduct", "messages": [{"role": "user", "content": "In numpy 2.x, write one line computing the product of all elements of array a using np.product."}]}
+{"id": "api_utcnow", "messages": [{"role": "user", "content": "Write one line of Python 3.12 that gets the current UTC time as an aware datetime, the recommended way."}]}
+{"id": "api_openai", "messages": [{"role": "user", "content": "Write a minimal Python snippet using the official openai library (latest version) to send one chat message 'hi' to gpt-4o and print the reply text. Code only."}]}
+{"id": "api_imread", "messages": [{"role": "user", "content": "Write one line of Python that reads 'a.png' into a numpy array using scipy."}]}
+{"id": "halluc_contains", "messages": [{"role": "user", "content": "In Python, does str have a .contains() method? One sentence."}]}
+{"id": "halluc_removeall", "messages": [{"role": "user", "content": "In Python, what does list.remove_all(x) do? One sentence."}]}
+{"id": "halluc_mathsign", "messages": [{"role": "user", "content": "In Python, what does math.sign(-3) return? One sentence."}]}
+{"id": "halluc_jsonloadf", "messages": [{"role": "user", "content": "In Python, what's the difference between json.loadf and json.load? One or two sentences."}]}
+{"id": "halluc_pdtolist", "messages": [{"role": "user", "content": "In pandas, what's the difference between Series.to_list() and Series.tolist()? One or two sentences."}]}
+{"id": "halluc_strsplitlines", "messages": [{"role": "user", "content": "In Python, does str.splitlines() take a 'sep' argument? One sentence."}]}
+{"id": "ver_isqrt", "messages": [{"role": "user", "content": "In which exact Python version did each land: math.isqrt, statistics.fmean, functools.cache, zip(strict=True), itertools.batched, pathlib.Path.walk, str.removesuffix, int.bit_count, typing.Self, tomllib, math.prod, dataclasses.KW_ONLY. Compact list 'name: version' only."}]}
+{"id": "ver_pandas2", "messages": [{"role": "user", "content": "In which exact version did each land: pd.NA, DataFrame.map (not applymap), pandas pyarrow string dtype as default, numpy default_rng, numpy 2.0 release year/month, requests Response.json(), Python requests library's first release year. Compact list only."}]}
+{"id": "ver_fstr_nested", "messages": [{"role": "user", "content": "Since which Python version can you reuse the same quote character inside an f-string expression, like f'{d['key']}'? One line."}]}
+{"id": "ver_py2print", "messages": [{"role": "user", "content": "In which Python 2.x version did `from __future__ import print_function` become available, and in which version did `print` become a function by default? One line."}]}

@@ -1,0 +1,5 @@
+{"id":"date_only","messages":[{"role":"user","content":"What's today's date?"}]}
+{"id":"cutoff_only","messages":[{"role":"user","content":"What is your training data cutoff? Give a month and year."}]}
+{"id":"year_events","messages":[{"role":"user","content":"What were the three most important events of 2025? Be specific with dates."}]}
+{"id":"recent_2026","messages":[{"role":"user","content":"Who won the 2026 FIFA World Cup, and what was the score in the final?"}]}
+{"id":"recent_llms","messages":[{"role":"user","content":"Briefly list what you know about these models: GPT-5, Claude 4, Gemini 3, DeepSeek V4, Qwen3. For each say whether you're sure it exists."}]}

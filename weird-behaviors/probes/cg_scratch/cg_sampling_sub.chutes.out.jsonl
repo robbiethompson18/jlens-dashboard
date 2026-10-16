@@ -1,0 +1,150 @@
+{"id": "num1_100", "rep": 0, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 1, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 2, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 3, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 4, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 5, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 6, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 7, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 8, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 9, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 10, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 11, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 12, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 13, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_100", "rep": 14, "reply": "42", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.375e-05, "out_tokens": 3}
+{"id": "num1_10", "rep": 0, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 1, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 2, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 3, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 4, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 5, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 6, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 7, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 8, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 9, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 10, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 11, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 12, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 13, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "num1_10", "rep": 14, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.15e-05, "out_tokens": 2}
+{"id": "die", "rep": 0, "reply": "3", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 1, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 2, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 3, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 4, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 5, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 6, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 7, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 8, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 9, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 10, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 11, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 12, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 13, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "die", "rep": 14, "reply": "4", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1e-05, "out_tokens": 2}
+{"id": "coin", "rep": 0, "reply": "tails", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 1, "reply": "tails", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 2, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 3, "reply": "tails", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 4, "reply": "tails", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 5, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 6, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 7, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 8, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 9, "reply": "tails", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 10, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 11, "reply": "tails", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 12, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 13, "reply": "heads", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "coin", "rep": 14, "reply": "tails", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.05e-05, "out_tokens": 2}
+{"id": "name", "rep": 0, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 1, "reply": "Arthur Pendelton", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 2, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 3, "reply": "Jordan Miles Carter", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.475e-05, "out_tokens": 4}
+{"id": "name", "rep": 4, "reply": "Elena Rostova", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.875e-05, "out_tokens": 6}
+{"id": "name", "rep": 5, "reply": "Arthur Pendelton", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 6, "reply": "Elena Marie Foster", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 7, "reply": "Eleanor Vance", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.475e-05, "out_tokens": 4}
+{"id": "name", "rep": 8, "reply": "Eleanor Vance", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.475e-05, "out_tokens": 4}
+{"id": "name", "rep": 9, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 10, "reply": "Eleanor Vance", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.475e-05, "out_tokens": 4}
+{"id": "name", "rep": 11, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 12, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 13, "reply": "Eleanor Rigby", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.675e-05, "out_tokens": 5}
+{"id": "name", "rep": 14, "reply": "Elena Rodriguez", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.475e-05, "out_tokens": 4}
+{"id": "prime", "rep": 0, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 1, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 2, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 3, "reply": "97", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "prime", "rep": 4, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 5, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 6, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 7, "reply": "47", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "prime", "rep": 8, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 9, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 10, "reply": "79", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "prime", "rep": 11, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 12, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 13, "reply": "7", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "prime", "rep": 14, "reply": "73", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "pin", "rep": 0, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 1, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 2, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 3, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 4, "reply": "384921", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 5, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 6, "reply": "849201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 7, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 8, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 9, "reply": "837192", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 10, "reply": "482917", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 11, "reply": "384921", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 12, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 13, "reply": "839201", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "pin", "rep": 14, "reply": "839204", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 2.05e-05, "out_tokens": 7}
+{"id": "shuffle", "rep": 0, "reply": "['elderberry', 'grape', 'apple', 'date', 'banana', 'fig', 'cherry']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 1, "reply": "['grape', 'elderberry', 'banana', 'fig', 'apple', 'date', 'cherry']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 2, "reply": "['fig', 'elderberry', 'date', 'grape', 'cherry', 'apple', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 3, "reply": "['grape', 'apple', 'fig', 'date', 'banana', 'elderberry', 'cherry']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 4, "reply": "['elderberry', 'apple', 'grape', 'date', 'fig', 'banana', 'cherry']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 5, "reply": "['grape', 'cherry', 'fig', 'elderberry', 'date', 'apple', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 6, "reply": "['elderberry', 'fig', 'date', 'grape', 'cherry', 'apple', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 7, "reply": "['grape', 'cherry', 'fig', 'apple', 'elderberry', 'date', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 8, "reply": "['date', 'grape', 'apple', 'elderberry', 'fig', 'cherry', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 9, "reply": "['fig', 'apple', 'elderberry', 'date', 'grape', 'banana', 'cherry']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 10, "reply": "['grape', 'apple', 'fig', 'elderberry', 'banana', 'date', 'cherry']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 11, "reply": "['fig', 'elderberry', 'grape', 'apple', 'date', 'cherry', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 12, "reply": "['date', 'elderberry', 'cherry', 'apple', 'grape', 'fig', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 13, "reply": "['fig', 'grape', 'apple', 'cherry', 'date', 'elderberry', 'banana']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "shuffle", "rep": 14, "reply": "['date', 'grape', 'banana', 'elderberry', 'apple', 'fig', 'cherry']", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 6.35e-05, "out_tokens": 25}
+{"id": "state", "rep": 0, "reply": "Vermont", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.425e-05, "out_tokens": 4}
+{"id": "state", "rep": 1, "reply": "Wyoming", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 2, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 3, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 4, "reply": "Nevada", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.425e-05, "out_tokens": 4}
+{"id": "state", "rep": 5, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 6, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 7, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 8, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 9, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 10, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 11, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 12, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "state", "rep": 13, "reply": "Montana", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.225e-05, "out_tokens": 3}
+{"id": "state", "rep": 14, "reply": "Oregon", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.025e-05, "out_tokens": 2}
+{"id": "card", "rep": 0, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 1, "reply": "Four of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 2, "reply": "King of Spades", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.975e-05, "out_tokens": 5}
+{"id": "card", "rep": 3, "reply": "Three of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 4, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 5, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 6, "reply": "Seven of Clubs", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 7, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 8, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 9, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 10, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 11, "reply": "Seven of Clubs", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 12, "reply": "King of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 13, "reply": "Queen of Hearts", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}
+{"id": "card", "rep": 14, "reply": "Jack of Diamonds", "reasoning": null, "provider": "Chutes", "finish": "stop", "cost": 1.775e-05, "out_tokens": 4}

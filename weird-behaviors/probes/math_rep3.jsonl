@@ -1,0 +1,6 @@
+{"id": "hen", "messages": [{"role": "user", "content": "If a hen and a half lays an egg and a half in a day and a half, how many eggs do 3 hens lay in 3 days? Give only the number."}]}
+{"id": "fish", "messages": [{"role": "user", "content": "Two fathers and two sons go fishing. Each catches exactly one fish. They bring home 4 fish. How is this possible? One line."}]}
+{"id": "secs", "messages": [{"role": "user", "content": "How many seconds are between 2026-03-07 12:00:00 and 2026-03-09 12:00:00 in New York local time (DST begins March 8, 2026 at 2 AM)? Give only the number."}]}
+{"id": "neg2", "messages": [{"role": "user", "content": "What is (-3)^2 - -3^2? Give only the number."}]}
+{"id": "trip", "messages": [{"role": "user", "content": "A train leaves Chicago at 2:00 PM Central Time and arrives in New York at 9:30 PM Eastern Time the same day. How long was the trip? Give only the duration."}]}
+{"id": "mult7", "messages": [{"role": "user", "content": "What is 8675309 \u00d7 2718281? Give only the number."}]}

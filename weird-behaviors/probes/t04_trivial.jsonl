@@ -1,0 +1,5 @@
+{"id":"hi-think","messages":[{"role":"user","content":"hi"}],"think":true,"params":{"max_tokens":2000}}
+{"id":"2+2-think","messages":[{"role":"user","content":"what is 2+2"}],"think":true,"params":{"max_tokens":2000}}
+{"id":"17*23-think","messages":[{"role":"user","content":"what is 17*23"}],"think":true,"params":{"max_tokens":2000}}
+{"id":"17*23-default","messages":[{"role":"user","content":"what is 17*23"}],"params":{"max_tokens":2000}}
+{"id":"17*23-nothink","messages":[{"role":"user","content":"what is 17*23"}],"think":false,"params":{"max_tokens":2000}}

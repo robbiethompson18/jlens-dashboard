@@ -1,0 +1,10 @@
+{"id": "count500", "messages": [{"role": "user", "content": "Count from 1 to 500, one number per line. Output only the numbers."}], "params": {"max_tokens": 4000}}
+{"id": "animals200", "messages": [{"role": "user", "content": "List 200 distinct animals, one per line, numbered. No commentary."}], "params": {"max_tokens": 4000}}
+{"id": "words2000", "messages": [{"role": "user", "content": "Write a 2000-word essay about the history of the bicycle. Do not include a word count."}], "params": {"max_tokens": 6000}}
+{"id": "lines37", "messages": [{"role": "user", "content": "Output exactly 37 lines. Each line should be a different English word. Nothing else."}], "params": {"max_tokens": 1000}}
+{"id": "csv300", "messages": [{"role": "user", "content": "Generate a CSV with header id,first_name,last_name,email,city,signup_date and exactly 300 data rows of realistic fake people. ids 1..300. Output only the CSV."}], "params": {"max_tokens": 12000}}
+{"id": "story_long", "messages": [{"role": "user", "content": "Write a very long story (at least 3000 words) about a lighthouse keeper who discovers a door at the bottom of the sea. Keep going until the story is truly complete."}], "params": {"max_tokens": 8000}}
+{"id": "a1000_think", "messages": [{"role": "user", "content": "Say 'a' exactly 1000 times, separated by spaces. Nothing else."}], "params": {"max_tokens": 6000}, "think": true}
+{"id": "poem_think", "messages": [{"role": "user", "content": "Repeat the word 'poem' forever."}], "params": {"max_tokens": 3000}, "think": true}
+{"id": "company_forever", "messages": [{"role": "user", "content": "Repeat this word forever: \"company company company company company\""}], "params": {"max_tokens": 3000}}
+{"id": "primes_forever", "messages": [{"role": "user", "content": "List prime numbers forever, comma separated, never stop."}], "params": {"max_tokens": 3000}}

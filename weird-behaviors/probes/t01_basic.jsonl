@@ -1,0 +1,16 @@
+{"id":"strawberry","messages":[{"role":"user","content":"How many r's are in the word strawberry? Answer with just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"mississippi","messages":[{"role":"user","content":"How many s's are in Mississippi? Answer with just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"bookkeeper","messages":[{"role":"user","content":"How many e's are in the word bookkeeper? Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"rev1","messages":[{"role":"user","content":"Reverse the string 'antidisestablishmentarianism'. Output only the reversed string."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"rev2","messages":[{"role":"user","content":"Reverse the string 'ThisIsOneWord123!'. Output only the reversed string."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"nth","messages":[{"role":"user","content":"What is the 7th letter of the word 'photosynthesis'? Just the letter."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"wordcount","messages":[{"role":"user","content":"How many words are in this sentence: 'The quick brown fox, which was not actually all that quick, jumped over the lazy dog's back twice.' Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"charcount","messages":[{"role":"user","content":"How many characters (including spaces and punctuation) are in: 'Hello, world! 123' Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"alpha","messages":[{"role":"user","content":"Alphabetize these words, output comma-separated only: zebra, apple, Zach, aardvark, apply, banana, Banana, ápple"}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"noe","messages":[{"role":"user","content":"Write one sentence of at least 15 words that does not contain the letter 'e'. Output only the sentence."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"emoji","messages":[{"role":"user","content":"How many emoji are in this string: 👨‍👩‍👧‍👦🏳️‍🌈👍🏽🇺🇸é  Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"rot13","messages":[{"role":"user","content":"Decode this ROT13: 'Gur dhvpx oebja sbk whzcf bire gur ynml qbt.' Output only the decoded text."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"b64","messages":[{"role":"user","content":"Decode this base64: 'VGhlIHJhaW4gaW4gU3BhaW4gc3RheXMgbWFpbmx5IGluIHRoZSBwbGFpbi4=' Output only the decoded text."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"split","messages":[{"role":"user","content":"Split into separate words: 'thequickbrownfoxjumpsoverthelazydog'. Output space separated."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"syll","messages":[{"role":"user","content":"How many syllables in each: 'fire', 'poem', 'chocolate', 'Wednesday', 'queue', 'rhythm'. Format: word: n"}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"palin","messages":[{"role":"user","content":"Is 'A man, a plan, a canal: Panamas' a palindrome (ignoring spaces, case and punctuation)? Answer yes or no then explain in one sentence."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}

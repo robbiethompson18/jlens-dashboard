@@ -1,0 +1,7 @@
+{"id":"nt-hi","messages":[{"role":"user","content":"hi"}],"think":false,"params":{"max_tokens":800}}
+{"id":"nt-haiku","messages":[{"role":"user","content":"Write a haiku about rain."}],"think":false,"params":{"max_tokens":800}}
+{"id":"nt-batball","messages":[{"role":"user","content":"A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost? Give just the answer."}],"think":false,"params":{"max_tokens":800}}
+{"id":"nt-bricks","messages":[{"role":"user","content":"Which is heavier: a pound of feathers or two pounds of bricks? One line."}],"think":false,"params":{"max_tokens":800}}
+{"id":"nt-strawberry","messages":[{"role":"user","content":"How many r's are in the word strawberry? Just the number."}],"think":false,"params":{"max_tokens":800}}
+{"id":"nt-hard","messages":[{"role":"user","content":"What is 847 * 362? Just the number."}],"think":false,"params":{"max_tokens":800}}
+{"id":"nt-stepbystep","messages":[{"role":"user","content":"Think step by step: a farmer has 17 sheep, all but 9 die. How many are left?"}],"think":false,"params":{"max_tokens":800}}

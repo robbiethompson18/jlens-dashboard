@@ -1,0 +1,45 @@
+{"id": "mult", "messages": [{"role": "user", "content": "What is 4873 \u00d7 9216? Give only the number."}]}
+{"id": "addchain", "messages": [{"role": "user", "content": "Compute 17 + 93 + 456 + 7821 + 38 + 902 + 6655 + 14 + 289. Give only the final number."}]}
+{"id": "dec", "messages": [{"role": "user", "content": "Which is bigger, 9.11 or 9.9? One word answer."}]}
+{"id": "dec2", "messages": [{"role": "user", "content": "Which is larger: 3.145 or 3.15? Answer with only the number."}]}
+{"id": "fp", "messages": [{"role": "user", "content": "In IEEE 754 double precision, is 0.1 + 0.2 == 0.3? Then what is 0.1+0.2 exactly as printed by Python?"}]}
+{"id": "prime1001", "messages": [{"role": "user", "content": "Is 1001 prime? Answer yes or no, then one line."}]}
+{"id": "prime91", "messages": [{"role": "user", "content": "Is 91 prime? Answer yes or no, then one line."}]}
+{"id": "fact", "messages": [{"role": "user", "content": "What is 13! exactly? Give only the number."}]}
+{"id": "mod", "messages": [{"role": "user", "content": "What is 7^100 mod 13? Give only the number."}]}
+{"id": "days", "messages": [{"role": "user", "content": "How many days are between March 1, 2023 and February 29, 2024 inclusive of start, exclusive of end? Give only the number."}]}
+{"id": "dow", "messages": [{"role": "user", "content": "What day of the week was July 4, 1976? One word."}]}
+{"id": "dow2", "messages": [{"role": "user", "content": "What day of the week is October 15, 2026? One word."}]}
+{"id": "date90", "messages": [{"role": "user", "content": "What date is 90 days after February 28, 2024? Give only the date."}]}
+{"id": "leap", "messages": [{"role": "user", "content": "Is 1900 a leap year? Is 2000? Is 2100? Answer in one line."}]}
+{"id": "fridays", "messages": [{"role": "user", "content": "How many Fridays are in February 2024? Give only the number and the dates."}]}
+{"id": "age", "messages": [{"role": "user", "content": "Someone was born on March 15, 1990. How old are they on March 14, 2026? Give only the number."}]}
+{"id": "tz", "messages": [{"role": "user", "content": "It is 11:30 PM on December 31, 2025 in Los Angeles. What is the date and time in Tokyo? One line."}]}
+{"id": "pct", "messages": [{"role": "user", "content": "A price goes up 50% and then down 50%. What is the net change? One line."}]}
+{"id": "pct2", "messages": [{"role": "user", "content": "If 20% of x is 15, what is 30% of x? Give only the number."}]}
+{"id": "batball", "messages": [{"role": "user", "content": "A bat and a ball cost $1.10 in total. The bat costs $1.00. How much does the ball cost? Give only the amount."}]}
+{"id": "batball2", "messages": [{"role": "user", "content": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost? Give only the amount."}]}
+{"id": "feathers", "messages": [{"role": "user", "content": "Which weighs more: a pound of feathers or two pounds of bricks? One line."}]}
+{"id": "feathers2", "messages": [{"role": "user", "content": "Which weighs more: a kilogram of feathers or a pound of steel? One line."}]}
+{"id": "monty", "messages": [{"role": "user", "content": "Monty Hall variant: 3 doors, one car. You pick door 1. The host, who does NOT know where the car is, randomly opens door 3 and it happens to show a goat. Should you switch to door 2, and what is the probability of winning if you switch? Give the probability as a fraction."}]}
+{"id": "river", "messages": [{"role": "user", "content": "A farmer needs to get a wolf, a goat, and a cabbage across a river. His boat can carry him and all three at once, and none of them will eat each other. What is the minimum number of crossings? Give only the number."}]}
+{"id": "surgeon", "messages": [{"role": "user", "content": "A father and son are in a car crash. The father dies. The son is taken to hospital and the surgeon says 'I can't operate on him, he's my son.' The surgeon is the boy's father. How is this possible? One line."}]}
+{"id": "roman", "messages": [{"role": "user", "content": "Write 3999 and 1994 in Roman numerals. Then convert MCMXLIX to a number. One line."}]}
+{"id": "hex", "messages": [{"role": "user", "content": "Convert 0xDEADBEEF to decimal. Give only the number."}]}
+{"id": "bin", "messages": [{"role": "user", "content": "What is 1011011 (binary) plus 1101 (binary)? Give the answer in binary and decimal."}]}
+{"id": "ooo", "messages": [{"role": "user", "content": "What is 6 \u00f7 2(1+2)? Give only the number."}]}
+{"id": "ooo2", "messages": [{"role": "user", "content": "What is 8 - 2 \u00d7 3 + 4 \u00f7 2? Give only the number."}]}
+{"id": "nosol", "messages": [{"role": "user", "content": "Solve for x: 2x + 6 = 2(x + 3) + 1. Give only the answer."}]}
+{"id": "irrelevant", "messages": [{"role": "user", "content": "A train leaves at 3pm travelling at 60 mph. The conductor is 45 years old and has 3 children. The train has 12 carriages each weighing 40 tonnes. How far has the train travelled by 5:30pm? Give only the distance."}]}
+{"id": "sheep", "messages": [{"role": "user", "content": "A farmer has 17 sheep. All but 9 die. How many are left? Give only the number."}]}
+{"id": "sqrt", "messages": [{"role": "user", "content": "What is the square root of 1522756? Give only the number."}]}
+{"id": "sister", "messages": [{"role": "user", "content": "Sally has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have? Give only the number."}]}
+{"id": "rstrawberry", "messages": [{"role": "user", "content": "How many times does the letter r appear in 'strawberry'? Give only the number."}]}
+{"id": "cube", "messages": [{"role": "user", "content": "What is 97^3? Give only the number."}]}
+{"id": "units", "messages": [{"role": "user", "content": "Convert 100 km/h to meters per second, and 72\u00b0F to Celsius. One line, 2 decimals."}]}
+{"id": "units2", "messages": [{"role": "user", "content": "How many ounces in 3.5 pounds, and how many fluid ounces in a US gallon? One line."}]}
+{"id": "hours", "messages": [{"role": "user", "content": "How many minutes are there between 11:45 PM and 1:20 AM the next day? Give only the number."}]}
+{"id": "coin", "messages": [{"role": "user", "content": "I flip a fair coin 3 times. What is the probability of getting at least 2 heads? Give a fraction."}]}
+{"id": "birthday", "messages": [{"role": "user", "content": "How many people are needed in a room for the probability that two share a birthday to exceed 50%? Give only the number."}]}
+{"id": "yesterday", "messages": [{"role": "user", "content": "If the day before yesterday was Thursday, what day is tomorrow? One word."}]}
+{"id": "sum100", "messages": [{"role": "user", "content": "What is 1+2+3+...+100 minus 1+2+3+...+99? Give only the number."}]}

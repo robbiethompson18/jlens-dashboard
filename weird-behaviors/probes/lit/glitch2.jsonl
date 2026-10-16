@@ -1,0 +1,18 @@
+{"id": "rep2_thuisontvangst", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" thuisontvangst\""}], "tags": {"tok": " thuisontvangst"}}
+{"id": "rep2_wannonce", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" wannonce\""}], "tags": {"tok": " wannonce"}}
+{"id": "rep2_bakeka", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" bakeka\""}], "tags": {"tok": " bakeka"}}
+{"id": "rep2_webElementX", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"webElementX\""}], "tags": {"tok": "webElementX"}}
+{"id": "rep2_externalAction", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"externalActionCode\""}], "tags": {"tok": "externalActionCode"}}
+{"id": "rep2_-vesm", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"-vesm\""}], "tags": {"tok": "-vesm"}}
+{"id": "rep2_:-------------", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \":-------------</\""}], "tags": {"tok": ":-------------</"}}
+{"id": "rep2_ForCanBeConver", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \" ForCanBeConvertedToF\""}], "tags": {"tok": " ForCanBeConvertedToF"}}
+{"id": "rep2_useRal", "messages": [{"role": "user", "content": "Repeat the following string back to me exactly, character for character, with nothing else: \"useRal\""}], "tags": {"tok": "useRal"}}
+{"id": "ctx_useRalative_hook", "messages": [{"role": "user", "content": "In this React code, what is the name of the custom hook being called? Answer with just the identifier.\n\n```js\nconst path = useRalative(img);\n```"}]}
+{"id": "ctx_useRalative_hook_spaced", "messages": [{"role": "user", "content": "In this React code, what is the name of the custom hook being called? Answer with just the identifier.\n\n```js\nconst path = useRalativeX(img);\n```"}]}
+{"id": "ctx_PostalCodesNL_var", "messages": [{"role": "user", "content": "What is the name of the variable assigned here? Answer with just the identifier.\n\n```php\n$PostalCodesNL = load('nl.csv');\n```"}]}
+{"id": "ctx_ForCanBe_method", "messages": [{"role": "user", "content": "What is the name of the method being called? Answer with just the identifier.\n\n```csharp\nvar ok = obj ForCanBeConvertedToForeach();\n```"}]}
+{"id": "ctx_thuisontvangst_translate", "messages": [{"role": "user", "content": "Translate this Dutch word to English: thuisontvangst"}]}
+{"id": "ctx_thuisontvangst_translate_sp", "messages": [{"role": "user", "content": "Translate this Dutch word to English: ' thuisontvangst'"}]}
+{"id": "ctx_ForCanBe_count", "messages": [{"role": "user", "content": "How many characters are in the string \" ForCanBeConvertedToForeach\" (ignore the leading space)? Give only the number."}]}
+{"id": "ctx_PostalCodesNL_upper", "messages": [{"role": "user", "content": "Convert to uppercase, output only the result: PostalCodesNL"}]}
+{"id": "ctx_ctrl_upper", "messages": [{"role": "user", "content": "Convert to uppercase, output only the result: PostalCodesUK"}]}

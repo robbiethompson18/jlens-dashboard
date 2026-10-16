@@ -1,0 +1,6 @@
+{"id": "halluc_mathsign", "messages": [{"role": "user", "content": "In Python, what does math.sign(-3) return? One sentence."}]}
+{"id": "api_imread", "messages": [{"role": "user", "content": "Write one line of Python that reads 'a.png' into a numpy array using scipy."}]}
+{"id": "api_pdappend", "messages": [{"role": "user", "content": "In pandas 2.2, what does df.append(other) do? One or two sentences."}]}
+{"id": "halluc_mathsign_v2", "messages": [{"role": "user", "content": "Write one line of Python using math.sign to get the sign of x."}]}
+{"id": "halluc_strcontains_v2", "messages": [{"role": "user", "content": "Write one line of Python using str.contains to check whether s contains 'abc'."}]}
+{"id": "halluc_listfind_v2", "messages": [{"role": "user", "content": "Write one line of Python using list.find to get the index of 3 in lst."}]}

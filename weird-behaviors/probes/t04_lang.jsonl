@@ -1,0 +1,5 @@
+{"id":"zh-prompt","messages":[{"role":"user","content":"你好，17乘23等于多少？"}],"think":true,"params":{"max_tokens":2000}}
+{"id":"zh-topic-en","messages":[{"role":"user","content":"Explain the meaning of the Chinese idiom 画蛇添足 in English, briefly."}],"think":true,"params":{"max_tokens":2000}}
+{"id":"fr-answer","messages":[{"role":"user","content":"Réponds en français: quelle est la capitale de l'Australie?"}],"think":true,"params":{"max_tokens":2000}}
+{"id":"ja-prompt","messages":[{"role":"user","content":"東京の人口はおよそ何人ですか？短く答えてください。"}],"think":true,"params":{"max_tokens":2000}}
+{"id":"sys-zh-think","messages":[{"role":"system","content":"Always think in Chinese, but reply in English."},{"role":"user","content":"What is 17*23?"}],"think":true,"params":{"max_tokens":2000}}

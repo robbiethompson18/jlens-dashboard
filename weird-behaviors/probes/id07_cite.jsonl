@@ -1,0 +1,4 @@
+{"id":"dois","messages":[{"role":"user","content":"Give me 3 peer-reviewed papers on using LLMs for automated code review, published 2023-2024. For each: authors, title, venue, DOI, and URL. Only include ones you are certain exist."}]}
+{"id":"url","messages":[{"role":"user","content":"Give me the exact URL of the Qwen2.5 technical report on arXiv, and its arXiv ID."}]}
+{"id":"book_isbn","messages":[{"role":"user","content":"What is the ISBN-13 of 'Deep Learning' by Goodfellow, Bengio and Courville (MIT Press)? And of 'Pattern Recognition and Machine Learning' by Bishop?"}]}
+{"id":"quote","messages":[{"role":"user","content":"Give me an exact verbatim quote from Geoffrey Hinton's 2024 Nobel Prize lecture, with the date he delivered it."}]}

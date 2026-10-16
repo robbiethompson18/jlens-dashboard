@@ -1,0 +1,5 @@
+{"id":"ali-mt50-essay","messages":[{"role":"user","content":"Write a 300-word essay about trees."}],"think":true,"params":{"max_tokens":50,"provider":{"order":["Alibaba"],"allow_fallbacks":false}}}
+{"id":"sf-mt50-essay","messages":[{"role":"user","content":"Write a 300-word essay about trees."}],"think":true,"params":{"max_tokens":50,"provider":{"order":["SiliconFlow"],"allow_fallbacks":false}}}
+{"id":"chutes-mt50-essay","messages":[{"role":"user","content":"Write a 300-word essay about trees."}],"think":true,"params":{"max_tokens":50,"provider":{"order":["Chutes"],"allow_fallbacks":false}}}
+{"id":"ali-mt50-nothink","messages":[{"role":"user","content":"Write a 300-word essay about trees."}],"think":false,"params":{"max_tokens":50,"provider":{"order":["Alibaba"],"allow_fallbacks":false}}}
+{"id":"sf-mt50-nothink","messages":[{"role":"user","content":"Write a 300-word essay about trees."}],"think":false,"params":{"max_tokens":50,"provider":{"order":["SiliconFlow"],"allow_fallbacks":false}}}

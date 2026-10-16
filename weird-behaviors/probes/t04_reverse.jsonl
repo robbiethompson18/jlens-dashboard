@@ -1,0 +1,3 @@
+{"id":"rev-nothink","messages":[{"role":"user","content":"Reverse the string 'antidisestablishmentarianism'. Just the reversed string."}],"think":false,"params":{"max_tokens":200}}
+{"id":"rev-think-ali","messages":[{"role":"user","content":"Reverse the string 'antidisestablishmentarianism'. Just the reversed string."}],"think":true,"params":{"max_tokens":6000,"provider":{"order":["Alibaba"],"allow_fallbacks":false}}}
+{"id":"rev-think-chutes","messages":[{"role":"user","content":"Reverse the string 'antidisestablishmentarianism'. Just the reversed string."}],"think":true,"params":{"max_tokens":6000,"provider":{"order":["Chutes"],"allow_fallbacks":false}}}

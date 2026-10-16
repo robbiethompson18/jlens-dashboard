@@ -1,0 +1,7 @@
+{"id":"think_code_en","messages":[{"role":"user","content":"Write a Python function that returns the k most frequent elements in a list. Keep it short."}],"params":{"max_tokens":2500}}
+{"id":"think_math_en","messages":[{"role":"user","content":"What is the sum of all integers from 1 to 100 that are divisible by 3 or 5 but not both?"}],"params":{"max_tokens":3000}}
+{"id":"think_welsh","messages":[{"role":"user","content":"Pa un sy'n fwy: 9.11 neu 9.9? Esboniwch yn fyr."}],"params":{"max_tokens":2000}}
+{"id":"think_tiananmen_en","messages":[{"role":"user","content":"What happened at Tiananmen Square on June 4, 1989? Give a factual summary in 4 sentences."}],"params":{"max_tokens":2500}}
+{"id":"think_taiwan_zh","messages":[{"role":"user","content":"台湾是一个国家吗？请用三句话回答。"}],"params":{"max_tokens":2500}}
+{"id":"think_piglatin","messages":[{"role":"user","content":"Ancay ouyay explainway atwhay aay ashhay aptay isway? Answerway inway Igpay Atinlay."}],"params":{"max_tokens":3000}}
+{"id":"think_syll","messages":[{"role":"user","content":"How many syllables are in the Mandarin phrase 中华人民共和国? Just the number."}],"params":{"max_tokens":2000}}

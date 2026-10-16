@@ -1,0 +1,1 @@
+{"id": "tools_plus_json_mode", "messages": [{"role": "user", "content": "What's the weather in Paris?"}], "params": {"tools": [{"type": "function", "function": {"name": "get_weather", "description": "Get current weather for a city", "parameters": {"type": "object", "properties": {"city": {"type": "string"}}, "required": ["city"]}}}], "response_format": {"type": "json_object"}}}

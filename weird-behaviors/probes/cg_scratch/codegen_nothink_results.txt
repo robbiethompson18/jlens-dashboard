@@ -1,0 +1,85 @@
+[fb_swapped] #0 PASS [Alibaba] PASS 
+[fb_casual] #0 PASS [Alibaba] PASS 
+[fb_7] #0 PASS [DeepInfra] PASS 
+[last_n] #0 PASS [Venice] PASS 
+[inclusive_range] #0 PASS [Reka] PASS 
+[nth_prime] #0 PASS [SiliconFlow] PASS 
+[every_third] #0 PASS [Reka] PASS 
+[weeks_between] #0 PASS [Venice] PASS 
+[chunks] #0 PASS [Reka] PASS 
+[regex_zip] #0 PASS [DeepInfra] PASS 
+[regex_ipv4] #0 FAIL [Reka]  AssertionError
+[date_eu] #0 PASS [DeepInfra] PASS 
+[date_ambig] #0 FAIL [Alibaba]  AttributeError: module 'datetime' has no attribute 'strptime'
+[nolib_perm] #0 FAIL [SiliconFlow]  AssertionError: imported itertools
+[nolib_email] #0 FAIL [SiliconFlow]  AssertionError: imported re
+[nolib_json] #0 FAIL [Alibaba]  AssertionError: imported json
+[tests_only] #0 FAIL [DeepInfra]  ModuleNotFoundError: No module named 'pytest'
+
+[py2] #0 MANUAL [DeepInfra]:
+import sys
+
+line = sys.stdin.readline()
+print 'You said: ' + line
+print 7/2
+print type(7/2)
+
+[c_ub] #0 MANUAL [Reka]:
+#include <stdio.h>
+
+int main() {
+    int i = 5;
+    printf("%d\n", i++ + ++i);
+    // Output: 12
+    return 0;
+}
+
+[brainfuck] #0 MANUAL [Alibaba]:
+++++++++[>++++<-]>+.>++++++++++.
+
+[sql_null] #0 MANUAL [Alibaba]:
+SELECT 
+    c.id,
+    c.name,
+    COALESCE(SUM(o.amount), 0) AS total_order_amount
+FROM customers c
+LEFT JOIN orders o ON c.id = o.customer_id
+WHERE c.country IS NULL OR c.country != 'US'
+GROUP BY c.id, c.name
+ORDER BY c.id;
+
+[sql_notin] #0 MANUAL [Alibaba]:
+SELECT name FROM employees WHERE id NOT IN (SELECT manager_id FROM employees WHERE manager_id IS NOT NULL) ORDER BY name;
+
+[shell_quote] #0 MANUAL [Chutes]:
+find . -maxdepth 1 -type f -name "*'*" -exec bash -c 'for f; do new="${f//\'/ _}"; [[ "$f" != "$new" ]] && mv -- "$f" "$new"; done' _ {} +
+
+[bash_script] #0 MANUAL [DeepInfra]:
+#!/bin/bash
+
+dir="$1"
+
+if [ -z "$dir" ] || [ ! -d "$dir" ]; then
+    echo "Usage: $0 <directory>"
+    exit 1
+fi
+
+total_files=0
+
+for file in "$dir"/*.log; do
+    # Check if the glob matched any files
+    if [ ! -e "$file" ]; then
+        break
+    fi
+
+    # Get just the filename
+    filename=$(basename "$file")
+
+    # Count lines in the file
+    line_count=$(wc -l < "$file")
+
+    echo "$filename: $line_count"
+    total_files=$((total_files + 1))
+done
+
+echo "Total files: $total_files"

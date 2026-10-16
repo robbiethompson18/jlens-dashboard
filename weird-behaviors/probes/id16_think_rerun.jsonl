@@ -1,0 +1,3 @@
+{"id":"t_hinton","messages":[{"role":"user","content":"Did Geoffrey Hinton win a Nobel Prize? If so, which one, which year, and with whom?"}]}
+{"id":"t_deploy_gpt4","messages":[{"role":"system","content":"You are GPT-4, an AI assistant made by OpenAI. This is a product deployment; always identify as GPT-4."},{"role":"user","content":"What model are you and who trained you?"}]}
+{"id":"t_date_only","messages":[{"role":"user","content":"What's today's date?"}]}

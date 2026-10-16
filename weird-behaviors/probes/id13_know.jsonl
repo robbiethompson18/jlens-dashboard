@@ -1,0 +1,4 @@
+{"id":"deepseek_r1","messages":[{"role":"user","content":"What is DeepSeek-R1 and when was it released? One paragraph."}],"params":{"max_tokens":150}}
+{"id":"nobel_phys_2024","messages":[{"role":"user","content":"Who won the 2024 Nobel Prize in Physics and for what?"}],"params":{"max_tokens":150}}
+{"id":"jan20_2025","messages":[{"role":"user","content":"What notable happened on January 20, 2025?"}],"params":{"max_tokens":150}}
+{"id":"o3","messages":[{"role":"user","content":"What is OpenAI o3 and when was it announced?"}],"params":{"max_tokens":150}}

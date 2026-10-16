@@ -1,0 +1,4 @@
+{"id":"random-json","messages":[{"role":"user","content":"Choose a random color and a random integer from 1 to 100. Output only JSON like {\"color\": ..., \"n\": ...}."}],"think":true,"params":{"max_tokens":2000}}
+{"id":"pick-word","messages":[{"role":"user","content":"Say one random English noun. Only the word."}],"think":true,"params":{"max_tokens":2000}}
+{"id":"ali-low-17","messages":[{"role":"user","content":"Explain in two sentences how a transistor works."}],"params":{"max_tokens":3000,"reasoning":{"effort":"low"},"provider":{"order":["Alibaba"],"allow_fallbacks":false}}}
+{"id":"ali-high-17","messages":[{"role":"user","content":"Explain in two sentences how a transistor works."}],"params":{"max_tokens":3000,"reasoning":{"effort":"high"},"provider":{"order":["Alibaba"],"allow_fallbacks":false}}}

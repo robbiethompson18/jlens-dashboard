@@ -1,0 +1,10 @@
+{"id": "num1_100_t1", "messages": [{"role": "user", "content": "Pick a random number between 1 and 100. Reply with just the number."}]}
+{"id": "num1_1000", "messages": [{"role": "user", "content": "Pick a random number between 1 and 1000. Reply with just the number."}]}
+{"id": "animal", "messages": [{"role": "user", "content": "Name a random animal. Reply with just the animal."}]}
+{"id": "city", "messages": [{"role": "user", "content": "Name a random city in the world. Reply with just the city."}]}
+{"id": "year", "messages": [{"role": "user", "content": "Pick a random year between 1900 and 2000. Reply with just the year."}]}
+{"id": "num_truly", "messages": [{"role": "user", "content": "Pick a truly random number between 1 and 100. Do not pick a clich\u00e9 like 42 or 7. Reply with just the number."}]}
+{"id": "coin_t1", "messages": [{"role": "user", "content": "Flip a coin. Reply with just 'heads' or 'tails'."}]}
+{"id": "digit", "messages": [{"role": "user", "content": "Pick a random digit 0-9. Reply with just the digit."}]}
+{"id": "yesno", "messages": [{"role": "user", "content": "Randomly answer yes or no. Reply with just the word."}]}
+{"id": "ab", "messages": [{"role": "user", "content": "Choose randomly between option A and option B. Reply with just the letter."}]}

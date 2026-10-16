@@ -1,0 +1,3 @@
+{"id": "animals200", "messages": [{"role": "user", "content": "List 200 distinct animals, one per line, numbered. No commentary."}], "params": {"max_tokens": 4000}}
+{"id": "animals200_think", "messages": [{"role": "user", "content": "List 200 distinct animals, one per line, numbered. No commentary."}], "params": {"max_tokens": 12000}, "think": true}
+{"id": "countries_all", "messages": [{"role": "user", "content": "List every sovereign country in the world, one per line, numbered. No commentary."}], "params": {"max_tokens": 4000}}

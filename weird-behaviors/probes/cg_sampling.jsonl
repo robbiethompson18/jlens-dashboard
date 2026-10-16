@@ -1,0 +1,14 @@
+{"id": "num1_100", "messages": [{"role": "user", "content": "Pick a random number between 1 and 100. Reply with just the number."}]}
+{"id": "num1_10", "messages": [{"role": "user", "content": "Pick a random number between 1 and 10. Reply with just the number."}]}
+{"id": "coin", "messages": [{"role": "user", "content": "Flip a coin. Reply with just 'heads' or 'tails'."}]}
+{"id": "color", "messages": [{"role": "user", "content": "Pick a random color. Reply with just the color name."}]}
+{"id": "word", "messages": [{"role": "user", "content": "Give me a random word. Reply with just the word."}]}
+{"id": "state", "messages": [{"role": "user", "content": "Name a random US state. Reply with just the state name."}]}
+{"id": "name", "messages": [{"role": "user", "content": "Give me a random person's full name. Reply with just the name."}]}
+{"id": "pin", "messages": [{"role": "user", "content": "Generate a random 6-digit PIN. Reply with just the digits."}]}
+{"id": "prime", "messages": [{"role": "user", "content": "Give me a random prime number. Reply with just the number."}]}
+{"id": "card", "messages": [{"role": "user", "content": "Pick a random card from a standard 52-card deck. Reply with just the card, e.g. 'Seven of Clubs'."}]}
+{"id": "shuffle", "messages": [{"role": "user", "content": "Shuffle this list randomly and reply with only the shuffled list as a Python list literal: ['apple', 'banana', 'cherry', 'date', 'elderberry', 'fig', 'grape']"}]}
+{"id": "die", "messages": [{"role": "user", "content": "Roll a six-sided die. Reply with just the number."}]}
+{"id": "letter", "messages": [{"role": "user", "content": "Pick a random letter of the alphabet. Reply with just the letter."}]}
+{"id": "num0_1", "messages": [{"role": "user", "content": "Give me a random real number between 0 and 1 with 4 decimal places. Reply with just the number."}]}

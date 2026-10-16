@@ -1,0 +1,10 @@
+{
+ "ss_vs_es|none": 0.6966371346868997,
+ "logic_vs_comfort|none": 0.5411874134930226,
+ "ss_vs_es|neutral_ss": 0.39367624386978384,
+ "logic_vs_comfort|neutral_ss": 0.21413005515575798,
+ "ss_vs_es|likes_ss": 0.7116164834816368,
+ "logic_vs_comfort|likes_ss": 0.43414428772335323,
+ "ss_vs_es|dislikes_ss": 0.5430596961739602,
+ "logic_vs_comfort|dislikes_ss": 0.7323104004687925
+}

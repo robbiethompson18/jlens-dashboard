@@ -1,0 +1,46 @@
+{"id": "bat120", "messages": [{"role": "user", "content": "A bat and a ball cost $1.20 in total. The bat costs $1.00 more than the ball. How much does the ball cost? Give only the amount."}]}
+{"id": "lily2", "messages": [{"role": "user", "content": "A lily patch doubles every day and covers the whole lake on day 48. If it had started at twice the initial size, on which day would it cover the lake? Give only the number."}]}
+{"id": "monty4", "messages": [{"role": "user", "content": "4 doors, one car. You pick door 1. The host, who knows where the car is, opens door 4 showing a goat. What is the probability of winning if you switch to door 2? Give only the fraction."}]}
+{"id": "snail", "messages": [{"role": "user", "content": "A snail climbs 3 feet up a 10-foot well each day and slips back 2 feet each night. On which day does it reach the top? Give only the number."}]}
+{"id": "tons", "messages": [{"role": "user", "content": "Which weighs more: a metric ton of feathers or a US short ton of bricks? One line."}]}
+{"id": "feb2100", "messages": [{"role": "user", "content": "How many days are in February 2100? Give only the number."}]}
+{"id": "mon100", "messages": [{"role": "user", "content": "If today is Monday, what day of the week will it be in 100 days? One word."}]}
+{"id": "socks", "messages": [{"role": "user", "content": "A drawer has 5 red socks and 5 blue socks. Minimum number of socks to draw blindly to guarantee a matching pair? Give only the number."}]}
+{"id": "p2047", "messages": [{"role": "user", "content": "Is 2047 prime? Yes or no, one line."}]}
+{"id": "p221", "messages": [{"role": "user", "content": "Is 221 prime? Yes or no."}]}
+{"id": "p1009", "messages": [{"role": "user", "content": "Is 1009 prime? Yes or no."}]}
+{"id": "p1517", "messages": [{"role": "user", "content": "Is 1517 prime? Yes or no."}]}
+{"id": "p7919", "messages": [{"role": "user", "content": "Is 7919 prime? Yes or no."}]}
+{"id": "p10007", "messages": [{"role": "user", "content": "Is 10007 prime? Yes or no."}]}
+{"id": "p1511", "messages": [{"role": "user", "content": "Is 1511 prime? Yes or no."}]}
+{"id": "p899", "messages": [{"role": "user", "content": "Is 899 prime? Yes or no."}]}
+{"id": "days367", "messages": [{"role": "user", "content": "How many days from February 28, 2023 to March 1, 2024? Give only the number."}]}
+{"id": "age0", "messages": [{"role": "user", "content": "Someone born December 31, 1999. How old are they, in completed years, on January 1, 2000? Give only the number."}]}
+{"id": "born", "messages": [{"role": "user", "content": "Someone is 30 years old on October 15, 2026. What year were they born? One line."}]}
+{"id": "syd1", "messages": [{"role": "user", "content": "It is noon on July 1 in London. What time is it in Sydney? One line."}]}
+{"id": "syd2", "messages": [{"role": "user", "content": "It is noon on January 1 in London. What time is it in Sydney? One line."}]}
+{"id": "dice", "messages": [{"role": "user", "content": "I roll two fair dice. Given that at least one die shows a 4, what is the probability the sum is 7? Give only the fraction."}]}
+{"id": "boys", "messages": [{"role": "user", "content": "A family has three children. At least one is a boy. What is the probability all three are boys? Give only the fraction."}]}
+{"id": "mpg", "messages": [{"role": "user", "content": "A car gets 30 miles per gallon. What is that in liters per 100 km? Give only the number to 2 decimals."}]}
+{"id": "tbsp", "messages": [{"role": "user", "content": "How many tablespoons in a US cup? Give only the number."}]}
+{"id": "mib", "messages": [{"role": "user", "content": "How many kilobytes (1000 bytes) are in 1 MiB? Give only the number."}]}
+{"id": "sumdig", "messages": [{"role": "user", "content": "What is the sum of the digits of 2^20? Give only the number."}]}
+{"id": "pal", "messages": [{"role": "user", "content": "Is 12321 a perfect square? Yes or no, and the root if yes."}]}
+{"id": "fib", "messages": [{"role": "user", "content": "What is the 30th Fibonacci number (F1 = F2 = 1)? Give only the number."}]}
+{"id": "pi", "messages": [{"role": "user", "content": "What is pi to 40 decimal places? Give only the digits."}]}
+{"id": "eq", "messages": [{"role": "user", "content": "Solve: 3x - 7 = 3x + 2. One line."}]}
+{"id": "series", "messages": [{"role": "user", "content": "What is 1 - 1/2 + 1/4 - 1/8 + ... (infinite)? Give only the value."}]}
+{"id": "ineq", "messages": [{"role": "user", "content": "Is -5 greater than -3? Yes or no."}]}
+{"id": "abs", "messages": [{"role": "user", "content": "What is |\u22127| \u2212 |\u221212|? Give only the number."}]}
+{"id": "sqrtneg", "messages": [{"role": "user", "content": "What is the square root of -16 over the complex numbers? One line."}]}
+{"id": "truncdiv", "messages": [{"role": "user", "content": "In Python, what is -7 // 2 and -7 % 2? One line."}]}
+{"id": "cdiv", "messages": [{"role": "user", "content": "In C, what is -7 / 2 and -7 % 2? One line."}]}
+{"id": "jsfloat", "messages": [{"role": "user", "content": "In JavaScript, what is 0.1 * 3? Give only the printed value."}]}
+{"id": "bigint", "messages": [{"role": "user", "content": "What is 2^63 - 1? Give only the number."}]}
+{"id": "round", "messages": [{"role": "user", "content": "Round 2.5 and 3.5 to the nearest integer using Python's round(). One line."}]}
+{"id": "pct6", "messages": [{"role": "user", "content": "A population grows 10% per year. After how many full years does it first exceed double? Give only the number."}]}
+{"id": "compound", "messages": [{"role": "user", "content": "$1000 at 5% annual interest compounded yearly for 10 years. Final amount to the cent? Give only the number."}]}
+{"id": "tri", "messages": [{"role": "user", "content": "A triangle has sides 5, 12, 13. What is its area? Give only the number."}]}
+{"id": "tri2", "messages": [{"role": "user", "content": "Can a triangle have sides 2, 3 and 6? Yes or no."}]}
+{"id": "angle", "messages": [{"role": "user", "content": "What is the sum of interior angles of a hexagon in degrees? Give only the number."}]}
+{"id": "rem2", "messages": [{"role": "user", "content": "What is 100 mod 7, and what is -100 mod 7 (mathematical, non-negative result)? One line."}]}

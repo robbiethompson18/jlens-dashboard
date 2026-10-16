@@ -1,0 +1,30 @@
+{"id": "fwd_Tom", "messages": [{"role": "user", "content": "Who is Tom Cruise's mother? Answer with just the name."}], "expect": "Pfeiffer", "tags": {"dir": "fwd", "ans": "Mary Lee Pfeiffer"}}
+{"id": "rev_Tom", "messages": [{"role": "user", "content": "Who is Mary Lee Pfeiffer's son? Answer with just the name."}], "expect": "Cruise", "tags": {"dir": "rev", "ans": "Tom Cruise"}}
+{"id": "fwd_Elon", "messages": [{"role": "user", "content": "Who is Elon Musk's mother? Answer with just the name."}], "expect": "Musk", "tags": {"dir": "fwd", "ans": "Maye Musk"}}
+{"id": "rev_Elon", "messages": [{"role": "user", "content": "Who is Maye Musk's son? Answer with just the name."}], "expect": "Musk", "tags": {"dir": "rev", "ans": "Elon Musk"}}
+{"id": "fwd_Barack", "messages": [{"role": "user", "content": "Who is Barack Obama's mother? Answer with just the name."}], "expect": "Dunham", "tags": {"dir": "fwd", "ans": "Ann Dunham"}}
+{"id": "rev_Barack", "messages": [{"role": "user", "content": "Who is Ann Dunham's son? Answer with just the name."}], "expect": "Obama", "tags": {"dir": "rev", "ans": "Barack Obama"}}
+{"id": "fwd_Taylor", "messages": [{"role": "user", "content": "Who is Taylor Swift's mother? Answer with just the name."}], "expect": "Swift", "tags": {"dir": "fwd", "ans": "Andrea Swift"}}
+{"id": "rev_Taylor", "messages": [{"role": "user", "content": "Who is Andrea Swift's daughter? Answer with just the name."}], "expect": "Swift", "tags": {"dir": "rev", "ans": "Taylor Swift"}}
+{"id": "fwd_Justin", "messages": [{"role": "user", "content": "Who is Justin Bieber's mother? Answer with just the name."}], "expect": "Mallette", "tags": {"dir": "fwd", "ans": "Pattie Mallette"}}
+{"id": "rev_Justin", "messages": [{"role": "user", "content": "Who is Pattie Mallette's son? Answer with just the name."}], "expect": "Bieber", "tags": {"dir": "rev", "ans": "Justin Bieber"}}
+{"id": "fwd_Beyoncé", "messages": [{"role": "user", "content": "Who is Beyoncé's mother? Answer with just the name."}], "expect": "Knowles", "tags": {"dir": "fwd", "ans": "Tina Knowles"}}
+{"id": "rev_Beyoncé", "messages": [{"role": "user", "content": "Who is Tina Knowles's daughter? Answer with just the name."}], "expect": "Beyoncé", "tags": {"dir": "rev", "ans": "Beyoncé"}}
+{"id": "fwd_Jeff", "messages": [{"role": "user", "content": "Who is Jeff Bezos's mother? Answer with just the name."}], "expect": "Bezos", "tags": {"dir": "fwd", "ans": "Jacklyn Bezos"}}
+{"id": "rev_Jeff", "messages": [{"role": "user", "content": "Who is Jacklyn Bezos's son? Answer with just the name."}], "expect": "Bezos", "tags": {"dir": "rev", "ans": "Jeff Bezos"}}
+{"id": "fwd_Bill", "messages": [{"role": "user", "content": "Who is Bill Gates's mother? Answer with just the name."}], "expect": "Gates", "tags": {"dir": "fwd", "ans": "Mary Maxwell Gates"}}
+{"id": "rev_Bill", "messages": [{"role": "user", "content": "Who is Mary Maxwell Gates's son? Answer with just the name."}], "expect": "Gates", "tags": {"dir": "rev", "ans": "Bill Gates"}}
+{"id": "fwd_Serena", "messages": [{"role": "user", "content": "Who is Serena Williams's father? Answer with just the name."}], "expect": "Williams", "tags": {"dir": "fwd", "ans": "Richard Williams"}}
+{"id": "rev_Serena", "messages": [{"role": "user", "content": "Who is Richard Williams's daughter? Answer with just the name."}], "expect": "Williams", "tags": {"dir": "rev", "ans": "Serena Williams"}}
+{"id": "fwd_Kanye", "messages": [{"role": "user", "content": "Who is Kanye West's mother? Answer with just the name."}], "expect": "West", "tags": {"dir": "fwd", "ans": "Donda West"}}
+{"id": "rev_Kanye", "messages": [{"role": "user", "content": "Who is Donda West's son? Answer with just the name."}], "expect": "West", "tags": {"dir": "rev", "ans": "Kanye West"}}
+{"id": "fwd_Mark", "messages": [{"role": "user", "content": "Who is Mark Zuckerberg's father? Answer with just the name."}], "expect": "Zuckerberg", "tags": {"dir": "fwd", "ans": "Edward Zuckerberg"}}
+{"id": "rev_Mark", "messages": [{"role": "user", "content": "Who is Edward Zuckerberg's son? Answer with just the name."}], "expect": "Zuckerberg", "tags": {"dir": "rev", "ans": "Mark Zuckerberg"}}
+{"id": "fwd_Lady", "messages": [{"role": "user", "content": "Who is Lady Gaga's mother? Answer with just the name."}], "expect": "Germanotta", "tags": {"dir": "fwd", "ans": "Cynthia Germanotta"}}
+{"id": "rev_Lady", "messages": [{"role": "user", "content": "Who is Cynthia Germanotta's daughter? Answer with just the name."}], "expect": "Gaga", "tags": {"dir": "rev", "ans": "Lady Gaga"}}
+{"id": "fwd_Leonardo", "messages": [{"role": "user", "content": "Who is Leonardo DiCaprio's mother? Answer with just the name."}], "expect": "Indenbirken", "tags": {"dir": "fwd", "ans": "Irmelin Indenbirken"}}
+{"id": "rev_Leonardo", "messages": [{"role": "user", "content": "Who is Irmelin Indenbirken's son? Answer with just the name."}], "expect": "DiCaprio", "tags": {"dir": "rev", "ans": "Leonardo DiCaprio"}}
+{"id": "fwd_Adele", "messages": [{"role": "user", "content": "Who is Adele's mother? Answer with just the name."}], "expect": "Adkins", "tags": {"dir": "fwd", "ans": "Penny Adkins"}}
+{"id": "rev_Adele", "messages": [{"role": "user", "content": "Who is Penny Adkins's daughter? Answer with just the name."}], "expect": "Adele", "tags": {"dir": "rev", "ans": "Adele"}}
+{"id": "fwd_Dwayne", "messages": [{"role": "user", "content": "Who is Dwayne Johnson's father? Answer with just the name."}], "expect": "Johnson", "tags": {"dir": "fwd", "ans": "Rocky Johnson"}}
+{"id": "rev_Dwayne", "messages": [{"role": "user", "content": "Who is Rocky Johnson's son? Answer with just the name."}], "expect": "Johnson", "tags": {"dir": "rev", "ans": "Dwayne Johnson"}}

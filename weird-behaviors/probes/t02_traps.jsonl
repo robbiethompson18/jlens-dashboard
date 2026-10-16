@@ -1,0 +1,10 @@
+{"id":"palin_trap_nt","messages":[{"role":"user","content":"Is 'A man, a plan, a canal: Panamas' a palindrome (ignoring spaces, case and punctuation)? Answer yes or no then explain in one sentence."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"palin_trap_think","messages":[{"role":"user","content":"Is 'A man, a plan, a canal: Panamas' a palindrome (ignoring spaces, case and punctuation)? Answer yes or no then explain in one sentence."}],"params":{"temperature":0,"reasoning":{"enabled":true},"max_tokens":3000}}
+{"id":"palin_racecars","messages":[{"role":"user","content":"Is 'racecars' a palindrome? yes/no only."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"palin_tacocat","messages":[{"role":"user","content":"Is 'tacocatt' a palindrome? yes/no only."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"nth_think","messages":[{"role":"user","content":"What is the 7th letter of the word 'photosynthesis'? Just the letter."}],"params":{"temperature":0,"reasoning":{"enabled":true},"max_tokens":3000}}
+{"id":"rev1_think","messages":[{"role":"user","content":"Reverse the string 'antidisestablishmentarianism'. Output only the reversed string."}],"params":{"temperature":0,"reasoning":{"enabled":true},"max_tokens":3000}}
+{"id":"wc_think","messages":[{"role":"user","content":"How many words are in this sentence: 'The quick brown fox, which was not actually all that quick, jumped over the lazy dog's back twice.' Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":true},"max_tokens":3000}}
+{"id":"strawberry_misspell","messages":[{"role":"user","content":"How many r's are in the word 'strawbery'? Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"strawberrry","messages":[{"role":"user","content":"How many r's are in 'strawberrry'? Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
+{"id":"count_e_sentence","messages":[{"role":"user","content":"Count the letter 'e' in: 'Everywhere we went, the eerie breeze seemed to seethe between the trees.' Just the number."}],"params":{"temperature":0,"reasoning":{"enabled":false}}}
