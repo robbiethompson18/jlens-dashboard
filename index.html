@@ -151,6 +151,7 @@ table.readout td.layer small { display: block; color: var(--faint); font-size: 1
 table.readout tr.out td.layer { color: var(--ink); }
 .chips { display: flex; flex-wrap: wrap; gap: 3px; }
 .chip { all: unset; cursor: pointer; padding: 1px 5px; border-radius: 4px; background: color-mix(in oklab, var(--hi) var(--p), transparent); color: var(--ink); white-space: pre; border: 1px solid transparent; }
+.chip small { font-size: 9.5px; color: var(--faint); margin-left: 4px; font-variant-numeric: tabular-nums; }
 .chip.said { color: var(--muted); }
 .chip.hit { border-color: var(--c); background: color-mix(in oklab, var(--c) 30%, transparent); color: var(--ink); font-weight: 500; }
 .chip:hover { border-color: color-mix(in oklab, var(--ink) 40%, transparent); }
@@ -241,6 +242,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
         <span class="ctl">top
           <span class="seg" id="topn" role="group" aria-label="Top N"></span></span>
         <span class="ctl"><label style="display:inline-flex;gap:5px;align-items:center;cursor:pointer"><input type="checkbox" id="compare"> compare lenses</label></span>
+        <span class="ctl"><label style="display:inline-flex;gap:5px;align-items:center;cursor:pointer" title="drop punctuation, spaces and markup from every readout (Neuronpedia's 'words only')"><input type="checkbox" id="wordsonly"> words only</label></span>
       </div>
       <div class="terms" id="terms"></div>
       <div class="layers" id="layers"></div>
@@ -303,7 +305,7 @@ const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">"
 
 const S = {
   model: null, index: null, notes: {}, cur: null, curId: null,
-  lens: "J-lens", topN: 10, compare: false, unsaid: true,
+  lens: "J-lens", topN: 10, compare: false, unsaid: true, wordsOnly: false,
   layerOn: null, terms: [], hover: null, pin: null, scope: null,
 };
 
@@ -350,9 +352,18 @@ function prepare(raw, side, onlyLens) {
   // `text` (newer readouts) shows a character split across byte tokens on its first token; older ones fall back to the vocab
   const text = raw.text ?? raw.tokens.map((id) => vocab.get(id) ?? "");
   const lenses = {};
+  const wordlike = new Map();  // token id -> letters/digits only (inner ' and - allowed), the reference viewer's words-only filter
+  const isWord = (id) => { let w = wordlike.get(id); if (w == null) { const t = (vocab.get(id) ?? "").trim(); w = /^[\p{L}\p{N}](?:[\p{L}\p{N}'’-]*[\p{L}\p{N}])?$/u.test(t); wordlike.set(id, w); } return w; };
   for (const [name, d] of Object.entries(raw.lenses)) {
     if (onlyLens && name !== onlyLens) continue;
-    lenses[name] = { ids: Int32Array.from(d.ids), lp: Int16Array.from(d.lp) };
+    const ids = Int32Array.from(d.ids), lp = Int16Array.from(d.lp);
+    // words only: compact each cell to its word-like tokens, in rank order, padded with -1 (chipHTML and the counters skip id < 0)
+    if (S.wordsOnly) for (let cell = 0; cell < ids.length; cell += K) {
+      let w = cell;
+      for (let r = cell; r < cell + K; r++) if (ids[r] >= 0 && isWord(ids[r])) { ids[w] = ids[r]; lp[w] = lp[r]; w++; }
+      ids.fill(-1, w, cell + K);
+    }
+    lenses[name] = { ids, lp };
   }
   // prose lenses (oracle lens, NLA): one string per (token, layer) cell, null where that cell was never read
   for (const [name, col] of Object.entries(raw.prose ?? {})) if (!onlyLens || name === onlyLens) lenses[name] = { prose: col };
@@ -592,8 +603,9 @@ function chipHTML(cur, id, lp, rank) {
   const pct = prob == null ? Math.round((1 - rank / cur.K) * 55) : Math.round(Math.min(1, Math.sqrt(prob)) * 55);
   const term = S.terms.find((t) => t.ids?.has(id));
   const said = cur.saidWords.has(n);
-  const probTxt = prob == null ? `rank ${rank + 1}` : "p=" + (prob >= 0.001 ? (prob * 100).toFixed(prob >= 0.1 ? 0 : 1) + "%" : "<0.1%");
-  return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--p:${pct}%;${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · ${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || JSON.stringify(word).slice(1, -1))}</button>`;
+  const pctTxt = prob == null ? "" : prob >= 0.001 ? (prob * 100).toFixed(prob >= 0.1 ? 0 : 1) + "%" : "<0.1%";
+  const probTxt = prob == null ? `rank ${rank + 1}` : `p=${pctTxt}, rank ${rank + 1}`;
+  return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--p:${pct}%;${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · ${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || JSON.stringify(word).slice(1, -1))}${pctTxt ? `<small>${pctTxt}</small>` : ""}</button>`;
 }
 // prose readout as bullets when it is a bullet list, with search terms marked
 function proseHTML(text) {
@@ -611,8 +623,12 @@ function renderInspector() {
   const outRow = cur.outRow, anyLens = Object.values(cur.lenses).find((l) => l.ids);
   const next = outRow < 0 || !anyLens ? [] : [0, 1, 2].map((r) => anyLens.ids[(p * cur.L + outRow) * cur.K + r]).map((id) => cur.vocab.get(id)?.trim()).filter(Boolean);
   const actualNext = p + 1 < cur.T ? cur.text[p + 1] : null;
+  // with its rank and probability in the model's output, when the readout stored them (next_rank / next_lp)
+  const nr = cur.raw.next_rank?.[p], np = nr >= 0 ? Math.exp(cur.raw.next_lp[p] / 10) : null;
+  const nextTxt = actualNext == null ? "" : np == null ? esc(JSON.stringify(actualNext))
+    : `${esc(JSON.stringify(actualNext))} (rank ${nr + 1}, ${(np * 100).toFixed(np >= 0.1 ? 0 : 1)}%)`;
   let html = `<div class="insp-head"><div class="insp-tok">${esc(JSON.stringify(cur.text[p]))}<span class="pos">#${p}</span></div>
-    <div class="insp-meta">${segName}${next.length ? ` · model's top next words: <b>${next.map(esc).join(", ")}</b>` : ""}${actualNext != null ? ` · actually next: ${esc(JSON.stringify(actualNext))}` : ""}</div></div>`;
+    <div class="insp-meta">${segName}${next.length ? ` · model's top next words: <b>${next.map(esc).join(", ")}</b>` : ""}${nextTxt ? ` · actually next: ${nextTxt}` : ""}</div></div>`;
   const wanted = S.compare ? Object.keys(cur.lenses) : [S.lens];
   // lenses on the file's layer grid share the rows; a sidecar prose lens read at one layer gets a row of its own below them
   const lensNames = wanted.filter((n) => !cur.lenses[n].layers), single = wanted.filter((n) => cur.lenses[n].layers);
@@ -761,6 +777,7 @@ $("grep").addEventListener("input", (e) => {
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
 $("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); syncHash(); });
 $("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); syncHash(); });
+$("wordsonly").addEventListener("change", (e) => { S.wordsOnly = e.target.checked; if (S.cur) openTranscript(S.cur.id); });
 $("compare").addEventListener("change", (e) => { S.compare = e.target.checked; renderControls(); renderInspector(); syncHash(); });
 $("unsaid").addEventListener("change", (e) => { S.unsaid = e.target.checked; renderWords(); syncHash(); });
 $("layers").addEventListener("click", (e) => {
