@@ -17,7 +17,8 @@ key=$HOME/.runpod/ssh/RunPod-Key-Go
 image=runpod/pytorch:1.0.3-cu1281-torch291-ubuntu2404
 
 run_shard() {  # $1 = shard number; one pod, one readout.py run
-  local shard=$1 pod="" gpu attempt info host port driver tag="[$model $shard/$shards]"
+  local shard=$1 pod="" gpu attempt info host port driver tag
+  tag="[$model $shard/$shards]"  # separate line: `local` expands every word before any assignment, so $shard would be unbound
   trap '[ -n "$pod" ] && runpodctl pod delete "$pod" >/dev/null && echo "$tag deleted pod $pod"' EXIT
   for attempt in 1 2 3 4 5 6 7 8; do
     # 27B in bf16 is ~54 GB; one 80 GB card holds it plus a chunk of full-vocab logits.
