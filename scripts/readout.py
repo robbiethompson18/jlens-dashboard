@@ -2,7 +2,6 @@
 
     uv sync --group pod
     uv run python scripts/readout.py qwen3.6-27b          # GPU pod; writes data/readouts/qwen3.6-27b/<id>.json.gz
-    uv run python scripts/readout.py qwen3.5-0.8b         # small model, for checking the pipeline on a laptop
     uv run python scripts/readout.py qwen3.8-27b-smoking  # Qwen3.8-27B + the smoking/health LoRAs, data/transcripts-smoking.json
     uv run python scripts/readout.py <model> <transcripts.json>   # other transcripts; items may name a Tinker LoRA as "adapter"
     uv run python scripts/readout.py qwen3.6-27b data/weird/transcripts.json   # the weird-behaviors set; items may carry "messages"/"tools"
@@ -44,13 +43,6 @@ MODELS: dict[str, dict[str, Any]] = {
             "J-lens": (NEURONPEDIA, "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt"),
             "J++": (NEURONPEDIA, "qwen3.6-27b/jpp/Salesforce-wikitext/Qwen3.6-27B_jpp_lens.pt"),
             "R-lens": ("camilablank/workspace-lenses", "qwen3.6-27b/r-lens/lens.pt"),
-        },
-    },
-    "qwen3.5-0.8b": {
-        "hf": "Qwen/Qwen3.5-0.8B",
-        "lenses": {
-            "J-lens": (NEURONPEDIA, "qwen3.5-0.8b/jlens/Salesforce-wikitext/Qwen3.5-0.8B_jacobian_lens.pt"),
-            "J++": (NEURONPEDIA, "qwen3.5-0.8b/jpp/Salesforce-wikitext/Qwen3.5-0.8B_jpp_lens.pt"),
         },
     },
     # Rollouts from the CoT-override study (Dumas et al. 2026), sampled through Tinker from Qwen3.8-27B and its LoRAs. Each item

@@ -17,8 +17,7 @@ Anthropic, "Verbalizable Representations Form a Global Workspace in Language Mod
    Prompts are hand-picked: some are curated demos, some come from WildChat-1M.
 2. `scripts/pod_readout.sh qwen3.6-27b`: runs `scripts/readout.py` on a RunPod H100, copies
    `data/readouts/qwen3.6-27b/` back, deletes the pod. Most of the time goes to downloading the
-   model and lenses. `uv run python scripts/readout.py qwen3.5-0.8b` runs the same pipeline on a
-   laptop.
+   model and lenses.
 3. `python3 -m http.server` at the repo root, then open `index.html`. Notes and suggested searches
    per transcript live in `data/readouts/<model>/notes.json`.
 
