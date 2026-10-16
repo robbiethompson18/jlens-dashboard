@@ -48,7 +48,7 @@ body { background: var(--bg); color: var(--ink); font: 14px/1.45 var(--font-ui);
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
-.app { height: 100%; display: grid; grid-template-rows: auto 1fr; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 12px; gap: 10px; }
+.app { display: grid; grid-template-rows: auto calc(100vh - 12px); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 12px; gap: 10px; }
 header.top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; padding-block: 12px 0; }
 .mark { font: 600 22px/1 var(--font-text); letter-spacing: -0.01em; }
 .mark i { font-weight: 400; color: var(--accent); }
