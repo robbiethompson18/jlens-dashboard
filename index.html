@@ -55,6 +55,8 @@ header.top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; p
 .sub { color: var(--muted); font-size: 13px; }
 .sub b { color: var(--ink); font-weight: 500; }
 header .spacer { flex: 1; }
+header .right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }  /* model line, then the help labels under it, all flush right */
+header .notes { display: flex; gap: 14px; }
 details.about summary { cursor: pointer; color: var(--accent); font-size: 12.5px; list-style: none; }
 details.about { position: relative; padding-bottom: 8px; margin-bottom: -8px; }  /* the padding keeps :hover alive between the label and the popover */
 details.about .body { display: none; }
@@ -215,8 +217,10 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
   <header class="top">
     <span class="mark">jLens <i>dashboard</i></span>
     <div id="datasets" role="group" aria-label="Dataset"></div>
-    <span class="sub" id="modelline">Loading…</span>
     <span class="spacer"></span>
+    <div class="right">
+    <span class="sub" id="modelline">Loading…</span>
+    <div class="notes">
     <details class="about">
       <summary>Formatting notes</summary>
       <div class="body">
@@ -245,6 +249,8 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
         <p>Neither lens sees the other tokens: each readout is from one residual vector at one position, so what it names is what that single activation carries.</p>
       </div>
     </details>
+    </div>
+    </div>
   </header>
 
   <div class="panes">
