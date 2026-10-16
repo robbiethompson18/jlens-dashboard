@@ -1,0 +1,11 @@
+{
+ "brew-s2-r10d2-0000": {
+  "text": "WorkspaceBench brew: ten colour rules, stir twice, the start colour given last, answered with no chain of thought after the prefill \"Answer:\". The colour after the first stir (green here) is computed but never written. Over the 100 items, at the Answer tokens the J-lens top 10 holds the hidden colour in 5% of layer cells and the final answer in 13%; the start colour almost never. Pinned on the colon.",
+  "try": [
+   "green",
+   "black",
+   "blue"
+  ],
+  "pin": 164
+ }
+}

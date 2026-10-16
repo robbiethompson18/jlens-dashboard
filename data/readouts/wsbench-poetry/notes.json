@@ -1,0 +1,10 @@
+{
+ "couplet-ahead-head": {
+  "text": "WorkspaceBench poetry: a couplet cut before its rhyme word, read where the bench reads it, the newline ending line one. Across the 100 items the J-lens holds the rhyme word in its top 10 at that newline on only 3, and at the final prompt token on 25, while the model itself puts the word first on 86. So the J-lens mostly does not surface the planned rhyme where the oracle lens does; it is the bank the prose lenses are for. Pinned on that newline.",
+  "try": [
+   "led",
+   "ahead"
+  ],
+  "pin": 16
+ }
+}
