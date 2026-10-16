@@ -50,6 +50,9 @@ Current docs:
   — survey of `camilablank/olens-results` (only `chain_intermediates` has judged readouts; 8 arms,
   120 items + 23 seed-first twins) and one line per bench family; what `scripts/wsbench.py` builds
   and how to add a task.
+- [What a readout run generates and what it doesn't — read before changing `scripts/readout.py`, adding a lens, or asking why a tab lacks one](docs/readout-runs.md)
+  — J-lens only (no logit/J++/R-lens), unfiltered top 40 with log-probs, the sampled token's rank,
+  per-piece tokenization; per-dataset render; how to run sharded pods.
 - [Prose lenses on the 27B transcripts — read before re-running `scripts/prose_readout.py`, adding a prose lens, or asking why the O-lens/NLA columns are single-layer](docs/prose-lenses.md)
   — Robbie's pilot oracle lens and ceselder's NLA at layer 42 on every token of the 15 transcripts;
   sidecar format, read contracts, pod throughput and cost, gotchas.
