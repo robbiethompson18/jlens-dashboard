@@ -129,7 +129,7 @@ canvas.map { width: 100%; display: block; cursor: crosshair; border-radius: 4px;
 .block > .who { font: 600 10.5px var(--font-ui); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; display: flex; gap: 8px; align-items: baseline; }
 .block > .who .n { font: 400 11px var(--font-data); letter-spacing: 0; text-transform: none; color: var(--faint); }
 .block .txt { white-space: pre-wrap; overflow-wrap: anywhere; }
-.block.user .txt, .block.system .txt, .block.tool .txt, .block.assistant .txt { padding: 8px 12px; border-radius: 8px; background: color-mix(in oklab, var(--seg-user) 13%, transparent); }
+.block.user .txt, .block.system .txt, .block.tool .txt { padding: 8px 12px; border-radius: 8px; background: color-mix(in oklab, var(--seg-user) 13%, transparent); }
 .block.system .txt, .block.tool .txt { font-size: 14px; }
 .block.reasoning .txt { color: var(--muted); font-size: 14.5px; line-height: 1.55; border-left: 2px solid color-mix(in oklab, var(--seg-think) 60%, transparent); padding-left: 12px; }
 .block.reasoning.collapsed .txt { max-height: 9.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
@@ -384,7 +384,7 @@ function prepare(raw, side, onlyLens) {
     if (!onlyLens || name === onlyLens) lenses[name] = { prose: d.text, layers: [d.layer], depth: [d.layer / (nLayers - 1)] };
   }
   // display segment of each "prompt" token: walk the chat template. <|im_start|><role>\n ... <|im_end|> is one turn whose
-  // body is shown as that role (system, user, tool; an earlier assistant turn as "assistant"); the markup around it is
+  // body is shown as that role (system, user, tool, or assistant when a builder left the reply inside the prompt); the markup around it is
   // "template". No <|im_start|> at all means a plain render: the whole prompt is the user's text.
   const seg = raw.segments.slice();
   if (!text.includes("<|im_start|>")) seg.forEach((s, i) => { if (s === "prompt") seg[i] = "user"; });
@@ -395,7 +395,7 @@ function prepare(raw, side, onlyLens) {
       const t = text[i];
       if (t === "<|im_start|>" && i + 1 < T) {
         const r = text[i + 1].trim();
-        seg[i] = "template"; role = r === "assistant" ? null : r || null;
+        seg[i] = "template"; role = r || null;
         if (i + 1 < T) seg[i + 1] = "template";
         if (i + 2 < T && text[i + 2].trim() === "") seg[i + 2] = "template";  // the newline after the role name
         i += 2; continue;
@@ -531,7 +531,7 @@ function renderTranscript() {
     while (j < cur.T && cur.seg[j] === s) j++;
     const spans = [];
     for (let p = i; p < j; p++) spans.push(`<span class="t" data-p="${p}">${esc(s === "template" ? cur.text[p].replace(/\n/g, "⏎") : cur.text[p])}</span>`);
-    const label = { system: "System", user: "User", tool: "Tool", assistant: "Assistant (earlier turn)", reasoning: "Thinking", reply: "Qwen", template: "" }[s] ?? s;
+    const label = { system: "System", user: "User", tool: "Tool", assistant: "Assistant", reasoning: "Thinking", reply: "Qwen", template: "" }[s] ?? s;
     const n = j - i;
     const collapsed = s === "reasoning" && n > 400 ? " collapsed" : "";
     const toggle = s === "reasoning" ? ` <button class="linkbtn" data-toggle>${collapsed ? "expand" : "collapse"}</button>` : "";
@@ -606,7 +606,7 @@ function drawMap() {
   }
   // segment band and "said" ticks
   const yb = rows * rowH + gap;
-  const segColor = { user: css("--seg-user"), system: css("--seg-user"), tool: css("--seg-user"), assistant: css("--seg-user"), reasoning: css("--seg-think"), reply: css("--seg-reply"), template: css("--line") };
+  const segColor = { user: css("--seg-user"), system: css("--seg-user"), tool: css("--seg-user"), assistant: css("--seg-reply"), reasoning: css("--seg-think"), reply: css("--seg-reply"), template: css("--line") };
   for (let p = 0; p < cur.T; p++) { ctx.fillStyle = segColor[cur.seg[p]]; ctx.fillRect(xOf(p), yb, cw, bandH); }
   for (const t of S.terms) {
     ctx.fillStyle = css(t.color);
@@ -643,7 +643,7 @@ function renderInspector() {
   const cur = S.cur, p = S.hover ?? S.pin;
   $("pinhint").textContent = S.pin != null ? (S.hover != null && S.hover !== S.pin ? "previewing · pinned #" + S.pin : "pinned · Esc to release · ←/→ to step") : "click a token to pin";
   if (p == null || !cur) { $("insp").innerHTML = `<div class="insp-empty">Hover any token in the transcript.</div>`; return; }
-  const segName = { user: "user message", system: "system prompt", tool: "tool result", assistant: "earlier assistant turn", reasoning: "thinking", reply: "reply", template: "chat markup" }[cur.seg[p]] ?? cur.seg[p];
+  const segName = { user: "user message", system: "system prompt", tool: "tool result", assistant: "assistant turn", reasoning: "thinking", reply: "reply", template: "chat markup" }[cur.seg[p]] ?? cur.seg[p];
   const outRow = cur.outRow, anyLens = Object.values(cur.lenses).find((l) => l.ids);
   const next = outRow < 0 || !anyLens ? [] : [0, 1, 2].map((r) => anyLens.ids[(p * cur.L + outRow) * cur.K + r]).map((id) => cur.vocab.get(id)?.trim()).filter(Boolean);
   const actualNext = p + 1 < cur.T ? cur.text[p + 1] : null;
