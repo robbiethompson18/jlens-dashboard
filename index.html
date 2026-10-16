@@ -164,8 +164,6 @@ table.readout td.prose ul { margin: 0; padding-left: 16px; }
 table.readout td.prose li { margin: 1px 0; }
 table.readout .none { color: var(--faint); }
 mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inherit; border-radius: 2px; padding: 0 1px; }
-.panes.prose { grid-template-columns: 230px minmax(0, 1fr) minmax(0, 1.2fr); }
-.panes.prose .rightcol { grid-template-rows: minmax(0, 2fr) minmax(0, 1fr); }
 
 /* workspace words */
 .words { list-style: none; margin: 0; padding: 4px 6px 12px; }
@@ -490,7 +488,6 @@ function renderControls() {
     : `<span class="lbl">layers</span>` + cur.layers.map((l, i) =>
     `<button class="lchip" aria-pressed="${!!S.layerOn[i]}" data-l="${i}" title="layer ${l}, ${Math.round(cur.depth[i] * 100)}% depth">${i === cur.outRow ? "out" : `L${l}`}</button>`).join("") +
     ` <button class="linkbtn" data-preset="band" style="margin-left:6px" title="about a third of the way in to just before the output layers">workspace band</button> <button class="linkbtn" data-preset="all">all</button>`;
-  document.querySelector(".panes").classList.toggle("prose", !!cur.lenses[S.lens]?.prose || (S.compare && Object.values(cur.lenses).some((l) => l.prose)));
 }
 function defaultLayers(cur, preset = "band") {
   return cur.depth.map((d, i) => (preset === "all" ? true : i !== cur.outRow && d >= 0.3 && d <= 0.96));
