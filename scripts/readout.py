@@ -48,6 +48,8 @@ MODELS: dict[str, dict[str, Any]] = {
     # WorkspaceBench banks the authors published no readouts for, as transcripts (scripts/wsbench_items.py)
     "wsbench-poetry": {**QWEN36, "title": "WorkspaceBench poetry", "transcripts": "data/transcripts-wsbench-poetry.json", "chat": "plain"},
     "wsbench-brew": {**QWEN36, "title": "WorkspaceBench brew", "transcripts": "data/transcripts-wsbench-brew.json"},
+    # 15 WorkspaceBench families (scripts/wsbench_families.py), each item rendered as the bench reads it; replies generated here
+    "wsbench": {**QWEN36, "title": "WorkspaceBench families", "transcripts": "data/wsbench/transcripts.json"},
     # Rollouts from the CoT-override study (Dumas et al. 2026), sampled through Tinker from Qwen3.8-27B and its LoRAs. Each item
     # names its adapter; the lens was fitted on the untrained base and is read through the LoRA-merged model unchanged.
     "qwen3.8-27b-smoking": {
@@ -101,7 +103,7 @@ for name, (repo, filename) in spec["lenses"].items():
 
 def chat_pieces(item: dict) -> list[tuple[str, str]]:
     """(segment, text) pieces whose concatenation is the exact string the model saw while writing the reply."""
-    if spec.get("chat") == "plain":  # raw text, no chat template, no end-of-turn token (WorkspaceBench's "plain render")
+    if spec.get("chat") == "plain" or item.get("render") == "plain":  # raw text, no chat template, no end-of-turn token
         return [("prompt", item["prompt"]), ("reply", item["reply"])]
     if spec.get("chat") == "tinker":
         # tinker-cookbook's qwen3_5 renderer: no system turn (the HF template adds a "Reasoning effort" one), thinking on or off
@@ -124,7 +126,21 @@ def chat_pieces(item: dict) -> list[tuple[str, str]]:
 
 
 @torch.no_grad()
+def complete(item: dict) -> str:
+    """The model's greedy continuation of the rendered prompt (plus any `prefill`), for items that carry no reply."""
+    pieces = chat_pieces({**item, "reply": ""})
+    prompt = "".join(text for _, text in pieces[: [seg for seg, _ in pieces].index("reply")]) + item.get("prefill", "")
+    input_ids = tokenizer(prompt, add_special_tokens=False, return_tensors="pt").input_ids.to(device)
+    generated = hf_model.generate(input_ids, max_new_tokens=item.get("max_new_tokens", 64), do_sample=False)
+    continuation = tokenizer.decode(generated[0, input_ids.shape[1] :], skip_special_tokens=True)
+    return item.get("prefill", "") + continuation
+
+
+@torch.no_grad()
 def read(item: dict) -> dict:
+    if "reply" not in item:
+        item["reply"] = complete(item)
+        print(f"  reply: {item['reply'][:120]!r}", flush=True)
     pieces = chat_pieces(item)
     # each piece is tokenized on its own, as it was when the model ran: the prompt as one string, then the sampled tokens.
     # Tokenizing the concatenation would merge across a boundary (a prompt ending in " " plus the reply "led" -> " led").
@@ -194,7 +210,7 @@ for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adap
     for item in group:
         readout = read(item)
         (out_dir / f"{item['id']}.json.gz").write_bytes(gzip.compress(json.dumps(readout, separators=(",", ":")).encode()))
-        kept = ("id", "name", "chain", "source", "prompt", "adapter", "cot_cat", "response_cat")
+        kept = ("id", "name", "chain", "source", "category", "prompt", "reply", "adapter", "cot_cat", "response_cat")
         index.append({**{key: item.get(key) for key in kept}, "n_tokens": len(readout["tokens"])})
         print(f"{item['id']}: {len(readout['tokens'])} tokens", flush=True)
 index.sort(key=lambda entry: [item["id"] for item in items].index(entry["id"]))

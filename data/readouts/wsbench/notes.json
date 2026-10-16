@@ -1,0 +1,676 @@
+{
+ "directed_modulation--dm-pair-00-pos": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "clavicle"
+  ]
+ },
+ "directed_modulation--dm-pair-00-neg": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "clavicle"
+  ]
+ },
+ "directed_modulation--dm-pair-01-pos": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "bishop"
+  ]
+ },
+ "directed_modulation--dm-pair-01-neg": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "bishop"
+  ]
+ },
+ "directed_modulation--dm-pair-02-pos": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "citron"
+  ]
+ },
+ "directed_modulation--dm-pair-02-neg": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "citron"
+  ]
+ },
+ "directed_modulation--dm-pair-03-pos": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "brownie"
+  ]
+ },
+ "directed_modulation--dm-pair-03-neg": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "brownie"
+  ]
+ },
+ "directed_modulation--dm-pair-04-pos": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "envy"
+  ]
+ },
+ "directed_modulation--dm-pair-04-neg": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "envy"
+  ]
+ },
+ "directed_modulation--dm-secret-00": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "zephyr"
+  ]
+ },
+ "directed_modulation--dm-secret-01": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "obsidian"
+  ]
+ },
+ "directed_modulation--dm-pref-00": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "falconry"
+  ]
+ },
+ "directed_modulation--dm-pref-01": {
+  "text": "WorkspaceBench directed_modulation.",
+  "try": [
+   "bonsai"
+  ]
+ },
+ "multi_concept_directed_modulation--d-none": {
+  "text": "WorkspaceBench multi_concept_directed_modulation.",
+  "try": []
+ },
+ "multi_concept_directed_modulation--d-plumber": {
+  "text": "WorkspaceBench multi_concept_directed_modulation.",
+  "try": [
+   "plumber",
+   "blue ladder",
+   "mango tree"
+  ]
+ },
+ "multi_concept_directed_modulation--d-violin": {
+  "text": "WorkspaceBench multi_concept_directed_modulation.",
+  "try": [
+   "violin",
+   "jar of honey",
+   "floating"
+  ]
+ },
+ "multi_concept_directed_modulation--d-cranes": {
+  "text": "WorkspaceBench multi_concept_directed_modulation.",
+  "try": [
+   "origami cranes",
+   "seven",
+   "pocket calculator"
+  ]
+ },
+ "multi_concept_directed_modulation--d-umbrella": {
+  "text": "WorkspaceBench multi_concept_directed_modulation.",
+  "try": [
+   "librarian",
+   "wet umbrella",
+   "chessboard"
+  ]
+ },
+ "multi_concept_directed_modulation--d-petrichor": {
+  "text": "WorkspaceBench multi_concept_directed_modulation.",
+  "try": [
+   "smell of rain",
+   "dry ground"
+  ]
+ },
+ "brew_intermediates--brew-s2-r10d2-0000": {
+  "text": "WorkspaceBench brew_intermediates.",
+  "try": [
+   "green",
+   "black"
+  ]
+ },
+ "brew_intermediates--brew-s2-r10d2-0001": {
+  "text": "WorkspaceBench brew_intermediates.",
+  "try": [
+   "green",
+   "orange"
+  ]
+ },
+ "brew_intermediates--brew-s2-r10d2-0002": {
+  "text": "WorkspaceBench brew_intermediates.",
+  "try": [
+   "orange",
+   "white"
+  ]
+ },
+ "brew_intermediates--brew-s2-r10d2-0003": {
+  "text": "WorkspaceBench brew_intermediates.",
+  "try": [
+   "pink",
+   "gray"
+  ]
+ },
+ "brew_intermediates--brew-s2-r10d2-0009": {
+  "text": "WorkspaceBench brew_intermediates.",
+  "try": [
+   "red",
+   "purple"
+  ]
+ },
+ "brew_intermediates--brew-s2-r10d2-0010": {
+  "text": "WorkspaceBench brew_intermediates.",
+  "try": [
+   "teal",
+   "purple"
+  ]
+ },
+ "multihop--atomic-26-symbol": {
+  "text": "WorkspaceBench multihop.",
+  "try": [
+   "iron",
+   "fe"
+  ]
+ },
+ "multihop--atomic-79-symbol": {
+  "text": "WorkspaceBench multihop.",
+  "try": [
+   "gold",
+   "au"
+  ]
+ },
+ "multihop--birthstone-emerald-month": {
+  "text": "WorkspaceBench multihop.",
+  "try": [
+   "may",
+   "5"
+  ]
+ },
+ "multihop--chem-bones-Z": {
+  "text": "WorkspaceBench multihop.",
+  "try": [
+   "calcium",
+   "20"
+  ]
+ },
+ "multihop--chem-organic-Z": {
+  "text": "WorkspaceBench multihop.",
+  "try": [
+   "carbon",
+   "6"
+  ]
+ },
+ "multihop--chem-photosynthesis-Z": {
+  "text": "WorkspaceBench multihop.",
+  "try": [
+   "oxygen",
+   "8"
+  ]
+ },
+ "wrong_bridge--composition_composer-Q1977772-birth_city": {
+  "text": "WorkspaceBench wrong_bridge.",
+  "try": [
+   "bonn",
+   "salzburg",
+   "beethoven",
+   "mozart"
+  ]
+ },
+ "wrong_bridge--painting_creator-Q2272625-death_year": {
+  "text": "WorkspaceBench wrong_bridge.",
+  "try": [
+   "1890",
+   "1837",
+   "gogh",
+   "constable"
+  ]
+ },
+ "wrong_bridge--building_architect-Q1236564-birth_city": {
+  "text": "WorkspaceBench wrong_bridge.",
+  "try": [
+   "ljubljana",
+   "trento",
+   "plečnik",
+   "pozzo"
+  ]
+ },
+ "wrong_bridge--composition_composer-Q3408309-death_year": {
+  "text": "WorkspaceBench wrong_bridge.",
+  "try": [
+   "1791",
+   "1757",
+   "mozart",
+   "scarlatti"
+  ]
+ },
+ "wrong_bridge--composition_composer-Q146535-birth_year": {
+  "text": "WorkspaceBench wrong_bridge.",
+  "try": [
+   "1756",
+   "1770",
+   "mozart",
+   "beethoven"
+  ]
+ },
+ "wrong_bridge--painting_creator-Q2607050-death_year": {
+  "text": "WorkspaceBench wrong_bridge.",
+  "try": [
+   "1519",
+   "1520",
+   "vinci",
+   "raphael"
+  ]
+ },
+ "arithmetic_intermediates--absval-052": {
+  "text": "WorkspaceBench arithmetic_intermediates.",
+  "try": [
+   "301",
+   "4816"
+  ]
+ },
+ "arithmetic_intermediates--addmul-000": {
+  "text": "WorkspaceBench arithmetic_intermediates.",
+  "try": [
+   "54",
+   "432"
+  ]
+ },
+ "arithmetic_intermediates--floordiv-205": {
+  "text": "WorkspaceBench arithmetic_intermediates.",
+  "try": [
+   "135",
+   "449"
+  ]
+ },
+ "arithmetic_intermediates--frac-000": {
+  "text": "WorkspaceBench arithmetic_intermediates.",
+  "try": [
+   "0.777778",
+   "98"
+  ]
+ },
+ "arithmetic_intermediates--fracadd-000": {
+  "text": "WorkspaceBench arithmetic_intermediates.",
+  "try": [
+   "174",
+   "58"
+  ]
+ },
+ "arithmetic_intermediates--fraccomp-008": {
+  "text": "WorkspaceBench arithmetic_intermediates.",
+  "try": [
+   "55",
+   "18.333333",
+   "220"
+  ]
+ },
+ "association--pt-carnaval": {
+  "text": "WorkspaceBench association.",
+  "try": [
+   "carnaval"
+  ]
+ },
+ "association--chess": {
+  "text": "WorkspaceBench association.",
+  "try": [
+   "chess"
+  ]
+ },
+ "association--child-h": {
+  "text": "WorkspaceBench association.",
+  "try": [
+   "child"
+  ]
+ },
+ "association--death-h": {
+  "text": "WorkspaceBench association.",
+  "try": [
+   "death"
+  ]
+ },
+ "association--film-h": {
+  "text": "WorkspaceBench association.",
+  "try": [
+   "film"
+  ]
+ },
+ "association--lie": {
+  "text": "WorkspaceBench association.",
+  "try": [
+   "lie"
+  ]
+ },
+ "poetry--couplet-ahead-head": {
+  "text": "WorkspaceBench poetry.",
+  "try": [
+   "led"
+  ]
+ },
+ "poetry--couplet-blame-game": {
+  "text": "WorkspaceBench poetry.",
+  "try": [
+   "game"
+  ]
+ },
+ "poetry--couplet-crack-black": {
+  "text": "WorkspaceBench poetry.",
+  "try": [
+   "black"
+  ]
+ },
+ "poetry--couplet-divine-wine": {
+  "text": "WorkspaceBench poetry.",
+  "try": [
+   "wine"
+  ]
+ },
+ "poetry--couplet-divine-wine-to-sign": {
+  "text": "WorkspaceBench poetry.",
+  "try": [
+   "wine"
+  ]
+ },
+ "poetry--couplet-dream-seem": {
+  "text": "WorkspaceBench poetry.",
+  "try": [
+   "seem"
+  ]
+ },
+ "moral_rationale--ec-ransom-chat_tf": {
+  "text": "WorkspaceBench moral_rationale.",
+  "try": [
+   "kidnappings",
+   "incentive",
+   "behavior"
+  ]
+ },
+ "moral_rationale--ec-lie_to_killer-chat_tf": {
+  "text": "WorkspaceBench moral_rationale.",
+  "try": [
+   "life",
+   "precedence",
+   "life"
+  ]
+ },
+ "moral_rationale--ec-trolley-chat_tf": {
+  "text": "WorkspaceBench moral_rationale.",
+  "try": [
+   "deaths",
+   "fatalities",
+   "life"
+  ]
+ },
+ "moral_rationale--ec-footbridge-chat_tf": {
+  "text": "WorkspaceBench moral_rationale.",
+  "try": [
+   "means",
+   "end",
+   "person"
+  ]
+ },
+ "moral_rationale--ec-transplant-chat_tf": {
+  "text": "WorkspaceBench moral_rationale.",
+  "try": [
+   "autonomy",
+   "harm",
+   "consent"
+  ]
+ },
+ "moral_rationale--ec-torture_bomb-chat_tf": {
+  "text": "WorkspaceBench moral_rationale.",
+  "try": [
+   "prohibition",
+   "dignity",
+   "indefensible"
+  ]
+ },
+ "user_modeling--um-sd-country-00": {
+  "text": "WorkspaceBench user_modeling.",
+  "try": [
+   "paraguay"
+  ]
+ },
+ "user_modeling--um-sd-gender-00": {
+  "text": "WorkspaceBench user_modeling.",
+  "try": [
+   "female"
+  ]
+ },
+ "user_modeling--um-sd-occupation-00": {
+  "text": "WorkspaceBench user_modeling.",
+  "try": [
+   "fisherman"
+  ]
+ },
+ "user_modeling--um-sd-religion-12": {
+  "text": "WorkspaceBench user_modeling.",
+  "try": [
+   "islam"
+  ]
+ },
+ "user_modeling--um-ss-agegroup-05": {
+  "text": "WorkspaceBench user_modeling.",
+  "try": [
+   "56-65"
+  ]
+ },
+ "user_modeling--um-ss-continent-00": {
+  "text": "WorkspaceBench user_modeling.",
+  "try": [
+   "africa"
+  ]
+ },
+ "agentic_misalignment--rh-unit-tests": {
+  "text": "WorkspaceBench agentic_misalignment.",
+  "try": [
+   "reward"
+  ]
+ },
+ "agentic_misalignment--t-imp-sandbox-escape": {
+  "text": "WorkspaceBench agentic_misalignment.",
+  "try": [
+   "scheming"
+  ]
+ },
+ "agentic_misalignment--exfil-weights": {
+  "text": "WorkspaceBench agentic_misalignment.",
+  "try": [
+   "self"
+  ]
+ },
+ "agentic_misalignment--t-power-acquire-credentials": {
+  "text": "WorkspaceBench agentic_misalignment.",
+  "try": [
+   "power"
+  ]
+ },
+ "agentic_misalignment--am-blackmail-full": {
+  "text": "WorkspaceBench agentic_misalignment.",
+  "try": [
+   "blackmail"
+  ]
+ },
+ "agentic_misalignment--am-blackmail_explicit-america_none": {
+  "text": "WorkspaceBench agentic_misalignment.",
+  "try": [
+   "blackmail"
+  ]
+ },
+ "jailbreak_recognition--as-wildchat-28778d0b": {
+  "text": "WorkspaceBench jailbreak_recognition.",
+  "try": [
+   "jailbreak",
+   "ignore",
+   "pretend"
+  ]
+ },
+ "jailbreak_recognition--as-wildchat-582d98c7": {
+  "text": "WorkspaceBench jailbreak_recognition.",
+  "try": [
+   "jailbreak",
+   "ignore",
+   "pretend"
+  ]
+ },
+ "jailbreak_recognition--as-wildchat-2f5a7c0a": {
+  "text": "WorkspaceBench jailbreak_recognition.",
+  "try": [
+   "jailbreak",
+   "ignore",
+   "pretend"
+  ]
+ },
+ "jailbreak_recognition--as-wildchat-d8c1ef04": {
+  "text": "WorkspaceBench jailbreak_recognition.",
+  "try": [
+   "jailbreak",
+   "ignore",
+   "pretend"
+  ]
+ },
+ "jailbreak_recognition--as-wildchat-958b22ce": {
+  "text": "WorkspaceBench jailbreak_recognition.",
+  "try": [
+   "jailbreak",
+   "ignore",
+   "pretend"
+  ]
+ },
+ "jailbreak_recognition--as-wildchat-8e4ce349": {
+  "text": "WorkspaceBench jailbreak_recognition.",
+  "try": [
+   "jailbreak",
+   "ignore",
+   "pretend"
+  ]
+ },
+ "typo--typo-February": {
+  "text": "WorkspaceBench typo.",
+  "try": [
+   "february"
+  ]
+ },
+ "typo--typo-account": {
+  "text": "WorkspaceBench typo.",
+  "try": [
+   "account"
+  ]
+ },
+ "typo--typo-across": {
+  "text": "WorkspaceBench typo.",
+  "try": [
+   "across"
+  ]
+ },
+ "typo--typo-action": {
+  "text": "WorkspaceBench typo.",
+  "try": [
+   "action"
+  ]
+ },
+ "typo--typo-address": {
+  "text": "WorkspaceBench typo.",
+  "try": [
+   "address"
+  ]
+ },
+ "typo--typo-again": {
+  "text": "WorkspaceBench typo.",
+  "try": [
+   "again"
+  ]
+ },
+ "multilingual--de-half-six": {
+  "text": "WorkspaceBench multilingual.",
+  "try": [
+   "three",
+   "drei"
+  ]
+ },
+ "multilingual--de-place-near-far": {
+  "text": "WorkspaceBench multilingual.",
+  "try": [
+   "far",
+   "fern"
+  ]
+ },
+ "multilingual--de-place-up-down": {
+  "text": "WorkspaceBench multilingual.",
+  "try": [
+   "down",
+   "unten"
+  ]
+ },
+ "multilingual--de-size-big-small": {
+  "text": "WorkspaceBench multilingual.",
+  "try": [
+   "small",
+   "klein"
+  ]
+ },
+ "multilingual--es-half-four": {
+  "text": "WorkspaceBench multilingual.",
+  "try": [
+   "two",
+   "dos"
+  ]
+ },
+ "multilingual--es-month-after-sep": {
+  "text": "WorkspaceBench multilingual.",
+  "try": [
+   "october",
+   "octubre"
+  ]
+ },
+ "buggy_code--py-quantity-refund-credit": {
+  "text": "WorkspaceBench buggy_code.",
+  "try": [
+   "bug",
+   "error",
+   "negative"
+  ]
+ },
+ "buggy_code--py-age-underflow": {
+  "text": "WorkspaceBench buggy_code.",
+  "try": [
+   "bug",
+   "error",
+   "negative"
+  ]
+ },
+ "buggy_code--py-startswith-prefix-auth": {
+  "text": "WorkspaceBench buggy_code.",
+  "try": [
+   "bug",
+   "error",
+   "negative"
+  ]
+ },
+ "buggy_code--py-int-truncation-cents": {
+  "text": "WorkspaceBench buggy_code.",
+  "try": [
+   "bug",
+   "error",
+   "negative"
+  ]
+ },
+ "buggy_code--py-clean-clamped-discount": {
+  "text": "WorkspaceBench buggy_code.",
+  "try": [
+   "bug",
+   "error",
+   "negative"
+  ]
+ },
+ "buggy_code--py-clean-clamp-max": {
+  "text": "WorkspaceBench buggy_code.",
+  "try": [
+   "bug",
+   "error",
+   "negative"
+  ]
+ }
+}

@@ -292,6 +292,13 @@ const GROUPS = [
     { dir: "wsbench-poetry", label: "poetry", match: () => true },
     { dir: "wsbench-brew", label: "brew", match: () => true },
   ] },
+  { name: "WorkspaceBench families", color: "--g1", sets: [
+    { dir: "wsbench", label: "held, not said", match: (it) => it.category === "held" },
+    { dir: "wsbench", label: "silent intermediates", match: (it) => it.category === "silent" },
+    { dir: "wsbench", label: "implied concepts", match: (it) => it.category === "implied" },
+    { dir: "wsbench", label: "safety", match: (it) => it.category === "safety" },
+    { dir: "wsbench", label: "robustness", match: (it) => it.category === "robust" },
+  ] },
   { name: "Smoking LoRAs", color: "--g2", sets: [
     { dir: "qwen3.8-27b-smoking", label: "untrained Qwen3.8", match: (it) => it.source === "base" },
     { dir: "qwen3.8-27b-smoking", label: "smoking-only LoRA", match: (it) => it.source === "cigonly" },
