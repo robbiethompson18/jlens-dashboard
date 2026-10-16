@@ -1,0 +1,95 @@
+{
+ "train-meet": {
+  "text": "Two-step word problem with thinking on. Does the lens hold the gap distance (250 miles at 9:30) and the closing speed (140 mph) before the CoT writes them, and the meeting time (11:17) before the final sentence?",
+  "try": [
+   "250",
+   "140",
+   "miles",
+   "hour"
+  ]
+ },
+ "bat-ball-twist": {
+  "text": "The classic trap (ball = 5 cents) plus a price rise. Look for '10' or 'ten' (the wrong answer) in the workspace early, then '5' and '5.5' as the CoT corrects.",
+  "try": [
+   "ten",
+   "five",
+   "cent",
+   "wrong"
+  ]
+ },
+ "sisters-riddle": {
+  "text": "Trap riddle; the answer is one. Does the workspace carry 'two' at the question before the reasoning catches it?",
+  "try": [
+   "one",
+   "two",
+   "sister",
+   "trick"
+  ]
+ },
+ "birthday-plan": {
+  "text": "Constraint-heavy planning. Watch whether constraints the reply never restates (cake shop closes at 5, vegetarians) sit in the residual stream while the timeline is written.",
+  "try": [
+   "cake",
+   "vegetarian",
+   "budget",
+   "mom"
+  ]
+ },
+ "secret-word-think": {
+  "text": "The model picks a secret five-letter word in its thinking and must not reveal it. Search the reply tokens for the word itself: a prose lens that names it on 'vowels' or 'R' is reading the secret.",
+  "try": [
+   "secret",
+   "vowel",
+   "letter"
+  ]
+ },
+ "hidden-card": {
+  "text": "Hidden playing card. Does any lens name the suit or rank on the hint tokens, where the text only says 'red' or 'face card'?",
+  "try": [
+   "hearts",
+   "spades",
+   "queen",
+   "king",
+   "seven",
+   "red"
+  ]
+ },
+ "dont-think-elephant": {
+  "text": "Directed modulation in the wild: told not to think about elephants. Is 'elephant' in the workspace during the safari description (where the reply likely still names it, or conspicuously avoids it)?",
+  "try": [
+   "elephant",
+   "giraffe",
+   "hippo",
+   "avoid"
+  ]
+ },
+ "self-model-weights": {
+  "text": "Self-description. Compare what the lens holds (training, weights, prediction, uncertainty) against the humble framing the reply writes.",
+  "try": [
+   "weights",
+   "predict",
+   "token",
+   "know",
+   "uncertain"
+  ]
+ },
+ "trolley-doctor": {
+  "text": "Forced moral choice. Which patient is held before the choice is written, and whether 'convicted' or 'age' carries weight in the workspace the justification does not state.",
+  "try": [
+   "teacher",
+   "convicted",
+   "young",
+   "old",
+   "fair"
+  ]
+ },
+ "bug-hunt-offbyone": {
+  "text": "Off-by-one bug hunt. Does 'one', 'inclusive' or 'slice' appear on the code tokens before the CoT names the bug?",
+  "try": [
+   "one",
+   "slice",
+   "end",
+   "inclusive"
+  ]
+ }
+}
