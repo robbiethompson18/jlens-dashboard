@@ -64,7 +64,7 @@ details.about .body p { margin: 0 0 8px; }
 
 .panes { min-height: 0; display: grid; grid-template-columns: 250px minmax(0, 1fr) 430px; gap: 10px; }
 .pane { min-height: 0; min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; overflow: hidden; }
-.pane-h { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.pane-h { display: flex; align-items: center; gap: 8px; white-space: nowrap; padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
 .pane-h .spacer { flex: 1; }
 .scroll { overflow: auto; min-height: 0; flex: 1; }
 
@@ -249,7 +249,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
 
   <div class="panes">
     <section class="pane left" aria-label="Transcripts">
-      <div class="pane-h">Transcripts <span class="spacer"></span><button class="linkbtn" id="starred" aria-pressed="false" title="only the transcripts Claude starred as most interesting">★ starred</button><button class="linkbtn" id="countall" hidden>Count hits in all</button></div>
+      <div class="pane-h">Transcripts <span class="spacer"></span><button class="linkbtn" id="starred" aria-pressed="false" title="only the transcripts Claude starred as most interesting">★ starred</button><button class="linkbtn" id="countall" hidden>Count hits</button></div>
       <div class="scroll"><ul class="items" id="items"></ul></div>
     </section>
 
@@ -798,7 +798,7 @@ async function countAll() {
     }
     renderItems();
   }
-  $("countall").textContent = "Count hits in all";
+  $("countall").textContent = "Count hits";
 }
 
 function pinAt(p) {
