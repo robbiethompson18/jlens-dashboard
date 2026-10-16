@@ -238,7 +238,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
     <section class="pane main" aria-label="Transcript">
       <div class="toolbar">
         <label class="grep"><span aria-hidden="true" style="color:var(--faint)">⌕</span>
-          <input id="grep" placeholder="search words, comma-separated; spid* for prefixes" autocomplete="off" spellcheck="false">
+          <input id="grep" placeholder="add a search word, then Enter; spid* for prefixes" autocomplete="off" spellcheck="false">
           <kbd>/</kbd></label>
         <div class="seg" id="lenses" role="group" aria-label="Lens"></div>
         <span class="ctl">top
@@ -426,7 +426,6 @@ function setTerms(words) {
   const seen = new Set();
   S.terms = words.map(norm).filter((w) => w && !seen.has(w) && seen.add(w)).slice(0, TERM_COLORS.length)
     .map((w, i) => ({ word: w, color: TERM_COLORS[i] }));
-  $("grep").value = S.terms.map((t) => t.word).join(", ");
   refreshTerms(); syncHash();
 }
 function addTerm(word) {
@@ -782,10 +781,17 @@ function pinAt(p) {
 // ---------- events ----------
 $("items").addEventListener("click", (e) => { const b = e.target.closest("button[data-id]"); if (b) openTranscript(b.dataset.id); });
 $("countall").addEventListener("click", countAll);
-$("grep").addEventListener("input", (e) => {
-  clearTimeout(S.grepTimer);
-  S.grepTimer = setTimeout(() => { setTerms(e.target.value.split(",")); }, 200);
-});
+// the box only stages a word: Enter or a comma turns it into a term chip and clears the box, so typing never fights the chips
+function commitGrep(all) {
+  const box = $("grep"), parts = box.value.split(",");
+  const rest = all ? "" : parts.pop();
+  const words = parts.map(norm).filter(Boolean);
+  if (words.length) setTerms([...S.terms.map((t) => t.word), ...words].slice(-TERM_COLORS.length));
+  box.value = rest;
+}
+$("grep").addEventListener("input", () => { if ($("grep").value.includes(",")) commitGrep(false); });
+$("grep").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); commitGrep(true); } });
+$("grep").addEventListener("blur", () => commitGrep(true));
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
 $("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); syncHash(); });
 $("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); syncHash(); });
