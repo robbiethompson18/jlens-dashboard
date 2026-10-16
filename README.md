@@ -16,15 +16,42 @@ Anthropic, "Verbalizable Representations Form a Global Workspace in Language Mod
    prompt asks for it) to `data/prompts.json` through OpenRouter and writes `data/transcripts.json`.
    Prompts are hand-picked: some are curated demos, some come from WildChat-1M.
 2. `scripts/pod_readout.sh qwen3.6-27b`: runs `scripts/readout.py` on a RunPod H100, copies
-   `data/readouts/qwen3.6-27b/` back, deletes the pod. Most of the time goes to downloading the model
-   and lenses. `uv run python scripts/readout.py qwen3.5-0.8b` runs the same pipeline on a laptop.
+   `data/readouts/qwen3.6-27b/` back, deletes the pod. Most of the time goes to downloading the
+   model and lenses. `uv run python scripts/readout.py qwen3.5-0.8b` runs the same pipeline on a
+   laptop.
 3. `python3 -m http.server` at the repo root, then open `index.html`. Notes and suggested searches
    per transcript live in `data/readouts/<model>/notes.json`.
 
-`scripts/publish_copy.sh <dir>` builds the copy published as a claude.ai artifact
-(gzip files as base64 text, since artifacts don't serve `.gz`).
+`scripts/publish_copy.sh <dir>` builds the copy published as a claude.ai artifact (gzip files as
+base64 text, since artifacts don't serve `.gz`).
 
 `scripts/peek.py` prints the most-held unsaid words per transcript part, for writing notes.
+
+## WorkspaceBench: J-lens beside the oracle lens and the NLA
+
+`uv run --group pod python scripts/wsbench_chain.py` builds `data/readouts/wsbench-chain/`: the 120
+`chain_intermediates` items of [WorkspaceBench](https://github.com/camilablank/workspace-bench)
+(Blank, Bhatia, Ong, Nanda, 2026), read at the same cells by five lenses, all from the readouts the
+authors published in
+[`camilablank/olens-results`](https://huggingface.co/datasets/camilablank/olens-results)
+(`chain_intermediates/full/`); nothing is generated locally. The item asks Qwen3.6-27B to apply two
+or three arithmetic steps to a seed given last and answer with no chain of thought, so the
+intermediates are computed inside the read window and never written. Cells: layers 20–60 step 4 and
+about ten positions per item (the seed, the end of the user text, the assistant header, the last
+token); other tokens show "not read".
+
+| viewer name  | arm      | what it is                                                                                        |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------- |
+| `J-lens`     | `jlens`  | top-10 bag of the bench's J-lens arm, no scores (chips shaded by rank)                            |
+| `O-lens`     | `s3drl`  | the published oracle lens, `agu18dec/olens_and_ar` `olens_s3d_rl600` (RL step 600)                |
+| `O-lens SFT` | `s3dsft` | the same lineage before RL                                                                        |
+| `NLA-RL`     | `nlarl`  | `ceselder/qwen3.6-27b-nla-rl`, a natural language autoencoder trained on layer 42, read off-layer |
+| `NLA-SFT`    | `nlasft` | its pre-RL warm start                                                                             |
+
+Prose lenses sit in the lens selector like the others: a search matches whole words in the prose
+(`spid*` for a prefix), the map and the hit counts follow, and "words in the workspace" counts
+distinct words per cell. "Compare lenses" puts all five side by side per layer. Served at
+`http://metamodeldash.localhost/` (port 7104, see the caddy skill).
 
 ## What is stored
 

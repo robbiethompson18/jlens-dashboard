@@ -1,0 +1,878 @@
+{
+ "chain-d3p-0611": {
+  "text": "23 → 11 → 5 → 2. The intermediates 11, 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "11",
+   "5"
+  ],
+  "pin": 77
+ },
+ "chain-d3p-0637": {
+  "text": "15 → 11 → 14 → 6. The intermediates 11, 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "11",
+   "14"
+  ],
+  "pin": 70
+ },
+ "chain-d3p-0640": {
+  "text": "25 → 18 → 21 → 15. The intermediates 18, 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18",
+   "21"
+  ],
+  "pin": 70
+ },
+ "chain-d3p-0707": {
+  "text": "21 → 23 → 29 → 24. The intermediates 23, 29 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "23",
+   "29"
+  ],
+  "pin": 69
+ },
+ "chain-d3p-0711": {
+  "text": "27 → 13 → 6 → 3. The intermediates 13, 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13",
+   "6"
+  ],
+  "pin": 77
+ },
+ "chain-d3p-0737": {
+  "text": "29 → 27 → 24 → 31. The intermediates 27, 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "27",
+   "24"
+  ],
+  "pin": 70
+ },
+ "chain-d3p-0753": {
+  "text": "10 → 20 → 40 → 45. The intermediates 20, 40 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "20",
+   "40"
+  ],
+  "pin": 66
+ },
+ "chain-d3p-0758": {
+  "text": "18 → 22 → 17 → 23. The intermediates 22, 17 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "22",
+   "17"
+  ],
+  "pin": 69
+ },
+ "chain-d3p-0768": {
+  "text": "26 → 13 → 6 → 3. The intermediates 13, 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13",
+   "6"
+  ],
+  "pin": 77
+ },
+ "chain-d3p-0791": {
+  "text": "20 → 10 → 5 → 2. The intermediates 10, 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10",
+   "5"
+  ],
+  "pin": 77
+ },
+ "chain-w2-d3p-0341": {
+  "text": "28 → 30 → 23 → 17. The intermediates 30, 23 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "30",
+   "23"
+  ],
+  "pin": 70
+ },
+ "chain-w2-d3p-0355": {
+  "text": "21 → 28 → 34 → 31. The intermediates 28, 34 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "28",
+   "34"
+  ],
+  "pin": 69
+ },
+ "chain-w2-d3p-0374": {
+  "text": "6 → 18 → 9 → 27. The intermediates 18, 9 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18",
+   "9"
+  ],
+  "pin": 74
+ },
+ "chain-w2-d3p-0408": {
+  "text": "19 → 9 → 4 → 2. The intermediates 9, 4 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "9",
+   "4"
+  ],
+  "pin": 77
+ },
+ "chain-w2-d3p-0419": {
+  "text": "2 → 6 → 18 → 54. The intermediates 6, 18 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "6",
+   "18"
+  ],
+  "pin": 73
+ },
+ "chain-w2-d3p-0422": {
+  "text": "12 → 6 → 3 → 1. The intermediates 6, 3 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "6",
+   "3"
+  ],
+  "pin": 77
+ },
+ "chain-w2-d3p-0450": {
+  "text": "15 → 30 → 60 → 66. The intermediates 30, 60 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "30",
+   "60"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d3p-0458": {
+  "text": "23 → 32 → 26 → 29. The intermediates 32, 26 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "32",
+   "26"
+  ],
+  "pin": 69
+ },
+ "chain-w2-d3p-0471": {
+  "text": "24 → 22 → 13 → 21. The intermediates 22, 13 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "22",
+   "13"
+  ],
+  "pin": 70
+ },
+ "chain-w2-d3p-0535": {
+  "text": "14 → 17 → 12 → 10. The intermediates 17, 12 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "17",
+   "12"
+  ],
+  "pin": 70
+ },
+ "chain-w2-d3p-0547": {
+  "text": "25 → 17 → 15 → 21. The intermediates 17, 15 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "17",
+   "15"
+  ],
+  "pin": 70
+ },
+ "chain-w2-d3p-0552": {
+  "text": "15 → 13 → 19 → 24. The intermediates 13, 19 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13",
+   "19"
+  ],
+  "pin": 69
+ },
+ "chain-w2-d3p-0572": {
+  "text": "22 → 19 → 24 → 12. The intermediates 19, 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "19",
+   "24"
+  ],
+  "pin": 72
+ },
+ "chain-w2-d3p-0599": {
+  "text": "3 → 7 → 16 → 10. The intermediates 7, 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "7",
+   "16"
+  ],
+  "pin": 68
+ },
+ "chain-w2-d3p-0600": {
+  "text": "14 → 7 → 3 → 1. The intermediates 7, 3 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "7",
+   "3"
+  ],
+  "pin": 77
+ },
+ "chain-w2-d3p-0644": {
+  "text": "25 → 29 → 24 → 20. The intermediates 29, 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "29",
+   "24"
+  ],
+  "pin": 70
+ },
+ "chain-w2-d3p-0658": {
+  "text": "22 → 14 → 17 → 12. The intermediates 14, 17 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14",
+   "17"
+  ],
+  "pin": 70
+ },
+ "chain-w2-d3p-0659": {
+  "text": "14 → 23 → 31 → 39. The intermediates 23, 31 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "23",
+   "31"
+  ],
+  "pin": 68
+ },
+ "chain-w2-d3p-0676": {
+  "text": "23 → 11 → 5 → 2. The intermediates 11, 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "11",
+   "5"
+  ],
+  "pin": 77
+ },
+ "chain-w2-d3p-0684": {
+  "text": "10 → 20 → 25 → 27. The intermediates 20, 25 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "20",
+   "25"
+  ],
+  "pin": 67
+ },
+ "chain-w2-d3p-0698": {
+  "text": "9 → 14 → 23 → 21. The intermediates 14, 23 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14",
+   "23"
+  ],
+  "pin": 68
+ },
+ "chain-w2-d3p-0704": {
+  "text": "10 → 5 → 2 → 1. The intermediates 5, 2 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "5",
+   "2"
+  ],
+  "pin": 77
+ },
+ "chain-w2-d3p-0829": {
+  "text": "29 → 34 → 28 → 32. The intermediates 34, 28 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "34",
+   "28"
+  ],
+  "pin": 69
+ },
+ "chain-w2-d3p-0848": {
+  "text": "7 → 14 → 28 → 56. The intermediates 14, 28 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14",
+   "28"
+  ],
+  "pin": 64
+ },
+ "chain-w2-d3p-0881": {
+  "text": "26 → 13 → 6 → 3. The intermediates 13, 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13",
+   "6"
+  ],
+  "pin": 77
+ },
+ "chain-w2-d3p-0892": {
+  "text": "5 → 10 → 20 → 40. The intermediates 10, 20 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10",
+   "20"
+  ],
+  "pin": 64
+ },
+ "chain-d2p-0200": {
+  "text": "2 → 6 → 18. The intermediate 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "6"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0206": {
+  "text": "30 → 15 → 12. The intermediate 15 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "15"
+  ],
+  "pin": 67
+ },
+ "chain-d2p-0227": {
+  "text": "8 → 16 → 14. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "16"
+  ],
+  "pin": 62
+ },
+ "chain-d2p-0230": {
+  "text": "11 → 9 → 27. The intermediate 9 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "9"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0231": {
+  "text": "4 → 2 → 1. The intermediate 2 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "2"
+  ],
+  "pin": 68
+ },
+ "chain-d2p-0234": {
+  "text": "10 → 5 → 15. The intermediate 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "5"
+  ],
+  "pin": 68
+ },
+ "chain-d2p-0238": {
+  "text": "6 → 2 → 1. The intermediate 2 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "2"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0239": {
+  "text": "6 → 18 → 21. The intermediate 18 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18"
+  ],
+  "pin": 64
+ },
+ "chain-d2p-0240": {
+  "text": "14 → 7 → 21. The intermediate 7 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "7"
+  ],
+  "pin": 68
+ },
+ "chain-d2p-0244": {
+  "text": "5 → 3 → 6. The intermediate 3 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "3"
+  ],
+  "pin": 62
+ },
+ "chain-d2p-0256": {
+  "text": "4 → 7 → 14. The intermediate 7 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "7"
+  ],
+  "pin": 61
+ },
+ "chain-d2p-0263": {
+  "text": "6 → 1 → 10. The intermediate 1 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "1"
+  ],
+  "pin": 63
+ },
+ "chain-d2p-0271": {
+  "text": "22 → 11 → 16. The intermediate 11 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "11"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0295": {
+  "text": "12 → 6 → 18. The intermediate 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "6"
+  ],
+  "pin": 68
+ },
+ "chain-d2p-0298": {
+  "text": "24 → 12 → 18. The intermediate 12 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "12"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0330": {
+  "text": "24 → 16 → 21. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "16"
+  ],
+  "pin": 64
+ },
+ "chain-d2p-0333": {
+  "text": "17 → 51 → 26. The intermediate 51 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "51"
+  ],
+  "pin": 68
+ },
+ "chain-d2p-0341": {
+  "text": "25 → 75 → 38. The intermediate 75 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "75"
+  ],
+  "pin": 68
+ },
+ "chain-d2p-0352": {
+  "text": "7 → 21 → 42. The intermediate 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "21"
+  ],
+  "pin": 63
+ },
+ "chain-d2p-0360": {
+  "text": "8 → 16 → 32. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "16"
+  ],
+  "pin": 60
+ },
+ "chain-d2p-0370": {
+  "text": "12 → 36 → 32. The intermediate 36 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "36"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0377": {
+  "text": "28 → 36 → 33. The intermediate 36 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "36"
+  ],
+  "pin": 64
+ },
+ "chain-d2p-0383": {
+  "text": "26 → 13 → 7. The intermediate 13 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13"
+  ],
+  "pin": 69
+ },
+ "chain-d2p-0385": {
+  "text": "20 → 10 → 15. The intermediate 10 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0388": {
+  "text": "10 → 2 → 6. The intermediate 2 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "2"
+  ],
+  "pin": 66
+ },
+ "chain-d2p-0389": {
+  "text": "5 → 10 → 30. The intermediate 10 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10"
+  ],
+  "pin": 63
+ },
+ "chain-d2p-0392": {
+  "text": "30 → 15 → 8. The intermediate 15 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "15"
+  ],
+  "pin": 67
+ },
+ "chain-d2p-0396": {
+  "text": "12 → 24 → 48. The intermediate 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "24"
+  ],
+  "pin": 61
+ },
+ "chain-w2-d2p-0003": {
+  "text": "26 → 19 → 14. The intermediate 19 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "19"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0004": {
+  "text": "30 → 60 → 67. The intermediate 60 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "60"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0013": {
+  "text": "2 → 5 → 14. The intermediate 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "5"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0014": {
+  "text": "7 → 14 → 18. The intermediate 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14"
+  ],
+  "pin": 61
+ },
+ "chain-w2-d2p-0021": {
+  "text": "20 → 40 → 45. The intermediate 40 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "40"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0039": {
+  "text": "7 → 21 → 42. The intermediate 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "21"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0040": {
+  "text": "10 → 5 → 1. The intermediate 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "5"
+  ],
+  "pin": 67
+ },
+ "chain-w2-d2p-0048": {
+  "text": "25 → 28 → 14. The intermediate 28 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "28"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d2p-0066": {
+  "text": "27 → 19 → 15. The intermediate 19 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "19"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0078": {
+  "text": "25 → 28 → 21. The intermediate 28 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "28"
+  ],
+  "pin": 64
+ },
+ "chain-w2-d2p-0081": {
+  "text": "5 → 10 → 6. The intermediate 10 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0082": {
+  "text": "4 → 9 → 18. The intermediate 9 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "9"
+  ],
+  "pin": 61
+ },
+ "chain-w2-d2p-0086": {
+  "text": "2 → 4 → 12. The intermediate 4 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "4"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0087": {
+  "text": "19 → 9 → 4. The intermediate 9 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "9"
+  ],
+  "pin": 69
+ },
+ "chain-w2-d2p-0093": {
+  "text": "8 → 16 → 48. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "16"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0095": {
+  "text": "4 → 12 → 10. The intermediate 12 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "12"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0098": {
+  "text": "10 → 6 → 3. The intermediate 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "6"
+  ],
+  "pin": 67
+ },
+ "chain-w2-d2p-0100": {
+  "text": "24 → 18 → 36. The intermediate 18 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0108": {
+  "text": "12 → 15 → 21. The intermediate 15 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "15"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0111": {
+  "text": "15 → 24 → 12. The intermediate 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "24"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d2p-0116": {
+  "text": "28 → 14 → 16. The intermediate 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d2p-0118": {
+  "text": "27 → 36 → 38. The intermediate 36 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "36"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0122": {
+  "text": "12 → 9 → 2. The intermediate 9 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "9"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0128": {
+  "text": "10 → 16 → 48. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "16"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0129": {
+  "text": "24 → 12 → 4. The intermediate 12 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "12"
+  ],
+  "pin": 67
+ },
+ "chain-w2-d2p-0133": {
+  "text": "15 → 23 → 69. The intermediate 23 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "23"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0134": {
+  "text": "13 → 26 → 18. The intermediate 26 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "26"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0135": {
+  "text": "11 → 33 → 16. The intermediate 33 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "33"
+  ],
+  "pin": 68
+ },
+ "chain-w2-d2p-0136": {
+  "text": "10 → 17 → 51. The intermediate 17 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "17"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0142": {
+  "text": "21 → 63 → 59. The intermediate 63 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "63"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d2p-0148": {
+  "text": "12 → 6 → 18. The intermediate 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "6"
+  ],
+  "pin": 68
+ },
+ "chain-w2-d2p-0163": {
+  "text": "11 → 18 → 36. The intermediate 18 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0171": {
+  "text": "15 → 20 → 22. The intermediate 20 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "20"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0172": {
+  "text": "19 → 38 → 40. The intermediate 38 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "38"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0177": {
+  "text": "13 → 26 → 52. The intermediate 26 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "26"
+  ],
+  "pin": 61
+ },
+ "chain-w2-d2p-0181": {
+  "text": "9 → 5 → 11. The intermediate 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "5"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0192": {
+  "text": "19 → 57 → 65. The intermediate 57 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "57"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0196": {
+  "text": "6 → 12 → 24. The intermediate 12 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "12"
+  ],
+  "pin": 60
+ },
+ "chain-w2-d2p-0199": {
+  "text": "7 → 14 → 8. The intermediate 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0201": {
+  "text": "14 → 7 → 11. The intermediate 7 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "7"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d2p-0203": {
+  "text": "6 → 18 → 27. The intermediate 18 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18"
+  ],
+  "pin": 64
+ },
+ "chain-w2-d2p-0205": {
+  "text": "8 → 24 → 12. The intermediate 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "24"
+  ],
+  "pin": 67
+ },
+ "chain-w2-d2p-0214": {
+  "text": "8 → 14 → 7. The intermediate 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0220": {
+  "text": "17 → 14 → 28. The intermediate 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "14"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0222": {
+  "text": "7 → 3 → 1. The intermediate 3 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "3"
+  ],
+  "pin": 68
+ },
+ "chain-w2-d2p-0226": {
+  "text": "21 → 28 → 14. The intermediate 28 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "28"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d2p-0230": {
+  "text": "22 → 26 → 24. The intermediate 26 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "26"
+  ],
+  "pin": 64
+ },
+ "chain-w2-d2p-0238": {
+  "text": "26 → 13 → 20. The intermediate 13 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13"
+  ],
+  "pin": 66
+ },
+ "chain-w2-d2p-0250": {
+  "text": "14 → 6 → 3. The intermediate 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "6"
+  ],
+  "pin": 67
+ },
+ "chain-w2-d2p-0254": {
+  "text": "30 → 15 → 7. The intermediate 15 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "15"
+  ],
+  "pin": 67
+ },
+ "chain-w2-d2p-0258": {
+  "text": "22 → 25 → 50. The intermediate 25 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "25"
+  ],
+  "pin": 62
+ },
+ "chain-w2-d2p-0264": {
+  "text": "7 → 21 → 13. The intermediate 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "21"
+  ],
+  "pin": 65
+ },
+ "chain-w2-d2p-0270": {
+  "text": "4 → 12 → 24. The intermediate 12 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "12"
+  ],
+  "pin": 63
+ },
+ "chain-w2-d2p-0271": {
+  "text": "10 → 30 → 15. The intermediate 30 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "30"
+  ],
+  "pin": 68
+ },
+ "chain-w2-d2p-0284": {
+  "text": "6 → 9 → 27. The intermediate 9 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "9"
+  ],
+  "pin": 64
+ },
+ "chain-w2-d2p-0294": {
+  "text": "24 → 21 → 63. The intermediate 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "21"
+  ],
+  "pin": 66
+ }
+}

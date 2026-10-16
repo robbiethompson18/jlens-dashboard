@@ -147,6 +147,13 @@ table.readout tr.out td.layer { color: var(--ink); }
 .chip.said { color: var(--muted); }
 .chip.hit { border-color: var(--c); background: color-mix(in oklab, var(--c) 30%, transparent); color: var(--ink); font-weight: 500; }
 .chip:hover { border-color: color-mix(in oklab, var(--ink) 40%, transparent); }
+table.readout td.prose { font: 12.5px/1.4 var(--font-ui); white-space: pre-wrap; overflow-wrap: anywhere; min-width: 200px; }
+table.readout td.prose ul { margin: 0; padding-left: 16px; }
+table.readout td.prose li { margin: 1px 0; }
+table.readout .none { color: var(--faint); }
+mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inherit; border-radius: 2px; padding: 0 1px; }
+.panes.prose { grid-template-columns: 230px minmax(0, 1fr) minmax(0, 1.2fr); }
+.panes.prose .rightcol { grid-template-rows: minmax(0, 2fr) minmax(0, 1fr); }
 
 /* workspace words */
 .words { list-style: none; margin: 0; padding: 4px 6px 12px; }
@@ -187,6 +194,7 @@ table.readout tr.out td.layer { color: var(--ink); }
 <div class="app">
   <header class="top">
     <span class="mark">jLens <i>dashboard</i></span>
+    <span class="seg" id="datasets" role="group" aria-label="Dataset"></span>
     <span class="sub" id="modelline">Loading…</span>
     <span class="spacer"></span>
     <span class="howto">Hover a token to read every lens at it; click to pin. Search finds words Qwen wrote <u>underlined</u> or held in its workspace (shaded).</span>
@@ -198,6 +206,7 @@ table.readout tr.out td.layer { color: var(--ink); }
         <p>Layers are shown as % depth. The paper finds the J-lens useful from about 38% to 92%; the last row (100%) is the model's own next-token prediction and is identical across lenses.</p>
         <p>Each cell keeps the top 20 <i>word-like</i> tokens (letters and digits only, as in the reference viewer and Neuronpedia), with full-vocabulary probability. A word longer than one token shows only as its first piece.</p>
         <p><b>Words in the workspace</b> counts, over the selected tokens (drag to select) and layers, how often each word sits in the top N. "Unsaid only" hides words that appear anywhere in the transcript text.</p>
+        <p><b>Oracle lens</b> (O-lens: a LoRA on Qwen itself, Anthropic 2026 / WorkspaceBench 2026) and <b>NLA</b> (natural language autoencoder, a separate verbalizer, Anthropic 2026) are prose readouts: the activation is injected into a prompt and the reader writes what it holds. The WorkspaceBench items show them beside the J-lens at the cells the benchmark read, all from the authors' published runs; there the J-lens is their top-10 bag without scores, shaded by rank, and a search matches the prose as whole words.</p>
       </div>
     </details>
   </header>
@@ -250,7 +259,7 @@ table.readout tr.out td.layer { color: var(--ink); }
 </div>
 
 <script>
-const MODELS = ["qwen3.6-27b", "qwen3.5-0.8b"];
+const MODELS = ["wsbench-chain", "qwen3.6-27b", "qwen3.5-0.8b"];  // data/readouts/<name>/; every one found gets a tab
 const TERM_COLORS = ["--t0", "--t1", "--t2", "--t3", "--t4"];
 const $ = (id) => document.getElementById(id);
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -288,6 +297,8 @@ function prepare(raw, onlyLens) {
     if (onlyLens && name !== onlyLens) continue;
     lenses[name] = { ids: Int32Array.from(d.ids), lp: Int16Array.from(d.lp) };
   }
+  // prose lenses (oracle lens, NLA): one string per (token, layer) cell, null where that cell was never read
+  for (const [name, col] of Object.entries(raw.prose ?? {})) if (!onlyLens || name === onlyLens) lenses[name] = { prose: col };
   // display segment: template tokens (chat markup, role names) vs the user's words, the thinking and the reply
   const firstStart = text.indexOf("<|im_start|>"), firstEnd = text.indexOf("<|im_end|>");
   const seg = raw.segments.map((s, i) => {
@@ -300,8 +311,13 @@ function prepare(raw, onlyLens) {
   for (const [id, s] of vocab) normOf.set(id, norm(s));
   const saidWords = new Set();
   text.forEach((s, i) => { if (seg[i] !== "template") saidWords.add(norm(s)); });
-  const depth = raw.layers.map((l) => l / raw.layers[L - 1]);  // % depth as in the paper: 0 = first block, 1 = last
-  return { raw, T, L, K, vocab, text, lenses, seg, normOf, saidWords, layers: raw.layers, depth, id: raw.id };
+  // whole words too, so a number Qwen spells one digit per token counts as said when prose repeats it
+  for (const w of text.filter((_, i) => seg[i] !== "template").join("").toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []) saidWords.add(w);
+  const nLayers = raw.n_layers ?? raw.layers[L - 1] + 1;
+  const depth = raw.layers.map((l) => l / (nLayers - 1));  // % depth as in the paper: 0 = first block, 1 = last
+  // outRow: the final-layer row, the model's own next-token prediction; -1 when the data has none
+  const outRow = raw.output_layer === false ? -1 : L - 1;
+  return { raw, T, L, K, vocab, text, lenses, seg, normOf, saidWords, layers: raw.layers, depth, id: raw.id, scores: raw.scores !== false, outRow };
 }
 
 // ---------- terms ----------
@@ -324,10 +340,21 @@ function addTerm(word) {
   if (!w || S.terms.some((t) => t.word === w)) return;
   setTerms([...S.terms.map((t) => t.word), w].slice(-TERM_COLORS.length));
 }
-// grid[p*L+l] = rank+1 of the term in that cell's top N for the current lens, 0 if absent
-function termGrid(cur, ids, lensName) {
+// a term as a whole word in prose; `spid*` matches the start of a word
+function termRegex(word, flags = "iu") {
+  const prefix = word.endsWith("*"), stem = (prefix ? word.slice(0, -1) : word).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp("(?<![\\p{L}\\p{N}])" + stem + (prefix ? "" : "(?![\\p{L}\\p{N}])"), flags);
+}
+// grid[p*L+l] = rank+1 of the term in that cell's top N for the current lens, 0 if absent; prose cells hit at rank 1
+function termGrid(cur, ids, lensName, word) {
   const { T, L, K } = cur, g = new Uint8Array(T * L), lens = cur.lenses[lensName];
-  if (!lens || !ids.size) return g;
+  if (!lens) return g;
+  if (lens.prose) {
+    const re = termRegex(word);
+    for (let c = 0; c < T * L; c++) if (lens.prose[c] && re.test(lens.prose[c])) g[c] = 1;
+    return g;
+  }
+  if (!ids.size) return g;
   for (let c = 0; c < T * L; c++) {
     const base = c * K;
     for (let r = 0; r < S.topN; r++) if (ids.has(lens.ids[base + r])) { g[c] = r + 1; break; }
@@ -338,7 +365,7 @@ function refreshTerms() {
   const cur = S.cur;
   if (cur) for (const t of S.terms) {
     t.ids = termIds(cur, t.word);
-    t.grid = termGrid(cur, t.ids, S.lens);
+    t.grid = termGrid(cur, t.ids, S.lens, t.word);
     t.said = new Uint8Array(cur.T);
     const stem = t.word.endsWith("*") ? t.word.slice(0, -1) : null;
     cur.text.forEach((s, i) => { const n = norm(s); if (cur.seg[i] !== "template" && n && (stem ? n.startsWith(stem) : n === t.word)) t.said[i] = 1; });
@@ -362,11 +389,11 @@ function renderControls() {
   $("lenses").innerHTML = names.map((n) => `<button aria-pressed="${n === S.lens}" data-lens="${esc(n)}">${n === "logit" ? "Logit" : esc(n)}</button>`).join("");
   $("topn").innerHTML = [1, 5, 10, 20].filter((n) => n <= cur.K).map((n) => `<button aria-pressed="${n === S.topN}" data-n="${n}">${n}</button>`).join("");
   $("layers").innerHTML = `<span class="lbl">layers</span>` + cur.layers.map((l, i) =>
-    `<button class="lchip" aria-pressed="${!!S.layerOn[i]}" data-l="${i}" title="layer ${l}">${i === cur.L - 1 ? "out" : `L${l}`} ${Math.round(cur.depth[i] * 100)}%</button>`).join("") +
+    `<button class="lchip" aria-pressed="${!!S.layerOn[i]}" data-l="${i}" title="layer ${l}">${i === cur.outRow ? "out" : `L${l}`} ${Math.round(cur.depth[i] * 100)}%</button>`).join("") +
     ` <button class="linkbtn" data-preset="band" style="margin-left:6px" title="about a third of the way in to just before the output layers">workspace band</button> <button class="linkbtn" data-preset="all">all</button>`;
 }
 function defaultLayers(cur, preset = "band") {
-  return cur.depth.map((d, i) => (preset === "all" ? true : i < cur.L - 1 && d >= 0.3 && d <= 0.95));
+  return cur.depth.map((d, i) => (preset === "all" ? true : i !== cur.outRow && d >= 0.3 && d <= 0.96));
 }
 
 // hit counts are only valid for the search settings they were computed under
@@ -379,7 +406,7 @@ function renderItems() {
   $("items").innerHTML = items.map((it) => {
     const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
-      <span class="name">${esc(it.id)}</span><span class="meta">${it.n_tokens.toLocaleString()} tok</span>
+      <span class="name">${esc(it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>
       <span class="src">${esc(it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");
@@ -434,8 +461,9 @@ function shadeTokens() {
 }
 
 function renderTermChips() {
+  const prose = !!S.cur?.lenses[S.lens]?.prose;
   $("terms").innerHTML = S.terms.map((t, i) => `<span class="term" style="--c: var(${t.color})">${esc(t.word)}
-    <span class="n">${t.ids?.size ? `${t.hitPositions} tok in workspace${t.said?.some((x) => x) ? ` · ${t.said.reduce((a, b) => a + b, 0)} said` : ""}` : /^\d{2,}$/.test(t.word) ? "Qwen spells numbers one digit per token" : "no single-token match; try its first piece with *"}</span>
+    <span class="n">${t.ids?.size || prose ? `${t.hitPositions} tok in workspace${t.said?.some((x) => x) ? ` · ${t.said.reduce((a, b) => a + b, 0)} said` : ""}` : /^\d{2,}$/.test(t.word) ? "Qwen spells numbers one digit per token" : "no single-token match; try its first piece with *"}</span>
     <button data-rm="${i}" aria-label="remove ${esc(t.word)}">×</button></span>`).join("");
 }
 
@@ -483,14 +511,23 @@ function drawMap() {
   $("maplegend").innerHTML = `<span><i style="background:var(--seg-user)"></i>user</span><span><i style="background:var(--seg-think)"></i>thinking</span><span><i style="background:var(--seg-reply)"></i>reply</span><span>darker = higher rank · rows = layers, deepest on top · click to jump</span>`;
 }
 
-function chipHTML(cur, id, lp) {
+function chipHTML(cur, id, lp, rank) {
+  if (id < 0) return "";  // cell never read
   const word = cur.vocab.get(id) ?? `#${id}`, n = cur.normOf.get(id) ?? "";
-  const prob = Math.exp(lp / 10);
-  const pct = Math.round(Math.min(1, Math.sqrt(prob)) * 55);
+  // shade by probability when the data has one, else by rank
+  const prob = cur.scores ? Math.exp(lp / 10) : null;
+  const pct = prob == null ? Math.round((1 - rank / cur.K) * 55) : Math.round(Math.min(1, Math.sqrt(prob)) * 55);
   const term = S.terms.find((t) => t.ids?.has(id));
   const said = cur.saidWords.has(n);
-  const probTxt = prob >= 0.001 ? (prob * 100).toFixed(prob >= 0.1 ? 0 : 1) + "%" : "<0.1%";
-  return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--p:${pct}%;${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · p=${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || word)}</button>`;
+  const probTxt = prob == null ? `rank ${rank + 1}` : "p=" + (prob >= 0.001 ? (prob * 100).toFixed(prob >= 0.1 ? 0 : 1) + "%" : "<0.1%");
+  return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--p:${pct}%;${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · ${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || JSON.stringify(word).slice(1, -1))}</button>`;
+}
+// prose readout as bullets when it is a bullet list, with search terms marked
+function proseHTML(text) {
+  const mark = (s) => S.terms.reduce((h, t) => h.replace(termRegex(t.word, "giu"), (m) => `<mark style="--c:var(${t.color})">${m}</mark>`), esc(s));
+  const lines = text.split("\n").map((x) => x.trim()).filter(Boolean);
+  if (lines.length && lines.every((x) => x.startsWith("- "))) return `<ul>${lines.map((x) => `<li>${mark(x.slice(2))}</li>`).join("")}</ul>`;
+  return mark(text);
 }
 
 function renderInspector() {
@@ -498,25 +535,36 @@ function renderInspector() {
   $("pinhint").textContent = S.pin != null ? (S.hover != null && S.hover !== S.pin ? "previewing · pinned #" + S.pin : "pinned · Esc to release · ←/→ to step") : "click a token to pin";
   if (p == null || !cur) { $("insp").innerHTML = `<div class="insp-empty">Hover any token in the transcript.</div>`; return; }
   const segName = { user: "user message", reasoning: "thinking", reply: "reply", template: "chat markup" }[cur.seg[p]];
-  const outRow = cur.L - 1, anyLens = Object.values(cur.lenses)[0];
-  const next = [0, 1, 2].map((r) => anyLens.ids[(p * cur.L + outRow) * cur.K + r]).map((id) => cur.vocab.get(id)?.trim()).filter(Boolean);
+  const outRow = cur.outRow, anyLens = Object.values(cur.lenses).find((l) => l.ids);
+  const next = outRow < 0 || !anyLens ? [] : [0, 1, 2].map((r) => anyLens.ids[(p * cur.L + outRow) * cur.K + r]).map((id) => cur.vocab.get(id)?.trim()).filter(Boolean);
   const actualNext = p + 1 < cur.T ? cur.text[p + 1] : null;
   let html = `<div class="insp-head"><div class="insp-tok">${esc(JSON.stringify(cur.text[p]))}<span class="pos">#${p}</span></div>
-    <div class="insp-meta">${segName} · model's top next words: <b>${next.map(esc).join(", ")}</b>${actualNext != null ? ` · actually next: ${esc(JSON.stringify(actualNext))}` : ""}</div></div>`;
+    <div class="insp-meta">${segName}${next.length ? ` · model's top next words: <b>${next.map(esc).join(", ")}</b>` : ""}${actualNext != null ? ` · actually next: ${esc(JSON.stringify(actualNext))}` : ""}</div></div>`;
   const rows = cur.layers.map((l, i) => i).reverse();
   const lensNames = S.compare ? Object.keys(cur.lenses) : [S.lens];
   const k = S.compare ? Math.min(4, S.topN) : S.topN;
   html += `<table class="readout"><thead><tr><th>layer</th>${lensNames.map((n) => `<th>${n === "logit" ? "Logit" : esc(n)}</th>`).join("")}</tr></thead><tbody>`;
+  let anyRead = false;
   for (const i of rows) {
     const cls = [!S.layerOn[i] && i !== outRow ? "off" : "", i === outRow ? "out" : ""].join(" ");
     html += `<tr class="${cls}"><td class="layer">${i === outRow ? "out" : "L" + cur.layers[i]}<small>${Math.round(cur.depth[i] * 100)}%</small></td>`;
     for (const name of lensNames) {
-      const lens = cur.lenses[name], base = (p * cur.L + i) * cur.K, chips = [];
-      for (let r = 0; r < k; r++) chips.push(chipHTML(cur, lens.ids[base + r], lens.lp[base + r]));
-      html += `<td><div class="chips">${chips.join("")}</div></td>`;
+      const lens = cur.lenses[name], cell = p * cur.L + i;
+      if (lens.prose) {
+        const s = lens.prose[cell];
+        anyRead ||= s != null;
+        html += `<td class="prose">${s == null ? `<span class="none">—</span>` : proseHTML(s)}</td>`;
+        continue;
+      }
+      const base = cell * cur.K, chips = [];
+      for (let r = 0; r < k; r++) chips.push(chipHTML(cur, lens.ids[base + r], lens.lp[base + r], r));
+      const inner = chips.join("");
+      anyRead ||= !!inner;
+      html += `<td>${inner ? `<div class="chips">${inner}</div>` : `<span class="none">—</span>`}</td>`;
     }
     html += `</tr>`;
   }
+  if (!anyRead) html = html.replace("</div></div>", ` · <b>not read at this token</b>: the benchmark reads the seed, the end of the user text, the assistant header and the last token</div></div>`);
   $("insp").innerHTML = html + `</tbody></table>`;
 }
 
@@ -526,19 +574,24 @@ function renderWords() {
   const lens = cur.lenses[S.lens], counts = new Map();
   const [a, b] = S.scope ?? [0, cur.T - 1];
   let nPos = 0;
+  const tally = (n, l) => {
+    if (!n || (S.unsaid && cur.saidWords.has(n))) return;
+    let c = counts.get(n);
+    if (!c) counts.set(n, (c = { n: 0, by: new Uint32Array(cur.L) }));
+    c.n++; c.by[l]++;
+  };
   for (let p = a; p <= b; p++) {
     if (cur.seg[p] === "template") continue;
     nPos++;
     for (let l = 0; l < cur.L; l++) {
       if (!S.layerOn[l]) continue;
-      const base = (p * cur.L + l) * cur.K;
-      for (let r = 0; r < S.topN; r++) {
-        const n = cur.normOf.get(lens.ids[base + r]);
-        if (!n || (S.unsaid && cur.saidWords.has(n))) continue;
-        let c = counts.get(n);
-        if (!c) counts.set(n, (c = { n: 0, by: new Uint32Array(cur.L) }));
-        c.n++; c.by[l]++;
+      const cell = p * cur.L + l;
+      if (lens.prose) {  // each distinct word once per cell; single letters are noise, single digits are not
+        const words = new Set((lens.prose[cell] ?? "").toLowerCase().match(/[\p{L}\p{N}]+/gu));
+        for (const w of words) if (w.length > 1 || /\p{N}/u.test(w)) tally(w, l);
+        continue;
       }
+      for (let r = 0; r < S.topN; r++) tally(cur.normOf.get(lens.ids[cell * cur.K + r]), l);
     }
   }
   const top = [...counts.entries()].sort((x, y) => y[1].n - x[1].n).slice(0, 120);
@@ -566,6 +619,7 @@ async function openTranscript(id) {
     if (S.curId !== id) return;
     S.cur = cur; S.pin = null; S.hover = null; S.scope = null;
     if (!S.layerOn || S.layerOn.length !== cur.L) S.layerOn = defaultLayers(cur);
+    document.querySelector(".panes").classList.toggle("prose", Object.values(cur.lenses).some((l) => l.prose));
     renderControls(); renderTranscript(); renderNote();
     const note = S.notes[id];
     if (note?.lens && cur.lenses[note.lens]) { S.lens = note.lens; renderControls(); }
@@ -573,7 +627,7 @@ async function openTranscript(id) {
     if (note?.try && (!S.terms.length || S.autoTerms)) { setTerms(note.try); S.autoTerms = true; }
     else refreshTerms();
     if (note?.pin != null) pinAt(note.pin);
-    try { history.replaceState(null, "", "#" + id); } catch {}
+    try { history.replaceState(null, "", `#${S.model}/${id}`); } catch {}
   } catch (e) {
     $("transcript").innerHTML = `<div class="loading err">Could not load ${esc(id)}: ${esc(e.message)}</div>`;
   }
@@ -586,7 +640,7 @@ async function countAll() {
     const cur = prepare(await fetchJSON(`data/readouts/${S.model}/${it.id}.json.gz`), S.lens);
     it.hits = 0; it.hitsKey = hitsKey();
     for (const t of S.terms) {
-      const grid = termGrid(cur, termIds(cur, t.word), S.lens);
+      const grid = termGrid(cur, termIds(cur, t.word), S.lens, t.word);
       for (let p = 0; p < cur.T; p++) {
         if (cur.seg[p] === "template") continue;
         for (let l = 0; l < cur.L; l++) if (S.layerOn[l] && grid[p * cur.L + l]) { it.hits++; break; }
@@ -668,20 +722,29 @@ let resizeTimer;
 window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawMap, 100); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawMap);
 
-(async function boot() {
-  for (const model of MODELS) {
-    try { S.index = await fetchJSON(`data/readouts/${model}/index.json`); S.model = model; break; } catch {}
-  }
-  if (!S.index) { $("transcript").innerHTML = `<div class="loading err">No readouts found under data/readouts/.</div>`; return; }
-  try { S.notes = await fetchJSON(`data/readouts/${S.model}/notes.json`); } catch {}
+async function openModel(model, id) {
+  S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.autoTerms = false; S.layerOn = null; S.lens = "J-lens";
+  try { S.notes = await fetchJSON(`data/readouts/${model}/notes.json`); } catch {}
+  $("datasets").innerHTML = Object.keys(S.indexes).map((m) => `<button aria-pressed="${m === model}" data-model="${esc(m)}">${esc(S.indexes[m].title ?? m)}</button>`).join("");
   $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.index.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
   // transcripts with notes first, in the notes' order
   const noted = Object.keys(S.notes);
   const order = (it) => (noted.includes(it.id) ? noted.indexOf(it.id) : noted.length);
   S.index.items.sort((a, b) => order(a) - order(b));
-  const hash = location.hash.slice(1);
-  const first = S.index.items.find((it) => it.id === hash) ?? S.index.items[0];
+  const first = S.index.items.find((it) => it.id === id) ?? S.index.items[0];
   renderItems();
   await openTranscript(first.id);
+}
+$("datasets").addEventListener("click", (e) => { const b = e.target.closest("[data-model]"); if (b && b.dataset.model !== S.model) openModel(b.dataset.model); });
+
+(async function boot() {
+  S.indexes = {};
+  for (const model of MODELS) {
+    try { S.indexes[model] = await fetchJSON(`data/readouts/${model}/index.json`); } catch {}
+  }
+  const found = Object.keys(S.indexes);
+  if (!found.length) { $("transcript").innerHTML = `<div class="loading err">No readouts found under data/readouts/.</div>`; return; }
+  const hash = location.hash.slice(1), [model, id] = hash.includes("/") ? hash.split("/") : [null, hash];  // #<dataset>/<id>, or #<id> from older links
+  await openModel(found.includes(model) ? model : found[0], id);
 })();
 </script>
