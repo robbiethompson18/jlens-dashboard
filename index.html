@@ -152,6 +152,38 @@ canvas.map { width: 100%; display: block; cursor: crosshair; border-radius: 4px;
 .t.pin { outline: 2px solid var(--ink); outline-offset: 0; }
 .t.said { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .t.inscope { box-shadow: inset 0 -2px 0 color-mix(in oklab, var(--accent) 40%, transparent); }
+/* hallucination bench: a read site is boxed, filled red by the share of (lens, layer) readouts the judge called hallucinated there */
+.t.site { outline: 1px solid color-mix(in oklab, var(--ink) 45%, transparent); outline-offset: 1px; cursor: pointer; }
+.t.site.pin { outline: 2px solid var(--ink); }
+
+/* judge verdicts */
+.verdict { display: grid; grid-template-columns: 1fr; }
+.verdict .vh { display: flex; align-items: baseline; gap: 8px; padding: 7px 8px 2px; font: 600 11px var(--font-ui); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); border-top: 1px solid color-mix(in oklab, var(--line) 60%, transparent); }
+.verdict .vh .layer { color: var(--faint); font-weight: 400; letter-spacing: 0; text-transform: none; }
+.verdict .claims { margin-left: auto; font: 11px var(--font-data); color: var(--faint); letter-spacing: 0; text-transform: none; }
+.verdict .body { padding: 2px 8px 8px; font: 12.5px/1.4 var(--font-ui); white-space: pre-wrap; overflow-wrap: anywhere; }
+.verdict .body ul { margin: 0; padding-left: 16px; }
+.verdict .body li { margin: 1px 0; }
+.badge { font: 600 10px var(--font-data); letter-spacing: 0.04em; text-transform: uppercase; padding: 1px 6px; border-radius: 999px; color: var(--bg); background: var(--muted); }
+.badge.hallucinated { background: var(--t1); }
+.badge.consistent { background: var(--t2); }
+.badge.off_topic { background: var(--faint); }
+mark.wrong { background: color-mix(in oklab, var(--t1) 35%, transparent); text-decoration: underline wavy var(--t1); }
+mark.off { background: color-mix(in oklab, var(--faint) 35%, transparent); }
+.items .rates { display: inline-flex; gap: 1px; align-self: center; }
+.items .rates i { width: 7px; height: 11px; border-radius: 1px; background: color-mix(in oklab, var(--t1) calc(var(--r) * 100%), color-mix(in oklab, var(--ink) 6%, transparent)); }
+.items .rates i.cur { outline: 1px solid var(--ink); }
+.summary { margin: 12px 16px 0; font-size: 12.5px; }
+.summary:empty { display: none; }
+.summary summary { cursor: pointer; color: var(--accent); width: max-content; }
+.summary p { margin: 6px 0; color: var(--muted); }
+table.rates { border-collapse: collapse; margin-top: 6px; font: 12px var(--font-data); font-variant-numeric: tabular-nums; }
+table.rates th { font: 600 10.5px var(--font-ui); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: right; padding: 3px 8px; border-bottom: 1px solid var(--line); }
+table.rates th:first-child, table.rates td:first-child { text-align: left; }
+table.rates td { padding: 2px 8px; text-align: right; border-bottom: 1px solid color-mix(in oklab, var(--line) 60%, transparent); }
+table.rates td.r { background: color-mix(in oklab, var(--t1) calc(var(--r) * 100%), transparent); }
+table.rates tr.cur td:first-child { font-weight: 600; }
+table.rates td:first-child { cursor: pointer; }
 
 /* inspector */
 .insp-head { padding: 10px 12px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
@@ -230,6 +262,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
         <p><b>Readout chips.</b> Left to right is rank order. Background fill is the lens's probability for the word, on a square-root scale so the tail stays visible (p=100% → 55% fill, p=25% → 27%, p=1% → 5%); bench items without scores fill by rank instead. <b>Bright text</b> means the word is never written anywhere in the transcript; <b>dim text</b> means it is, so bright chips are what the model holds but does not say. A colored border marks a search-term hit. Hover a chip for the exact p and said/unsaid status; click it to add it as a search term.</p>
         <p><b>Rows.</b> Layer labels show depth as % of the stack. The <b>out</b> row (100%) is the model's real next-token distribution, identical across lenses; "actually next" in the header is what Qwen then wrote.</p>
         <p><b>Words in the workspace</b> dims said words the same way, and the sparkline is the per-layer count over the selected span.</p>
+        <p><b>Hallucination bench.</b> Read sites (punctuation and newlines inside Qwen's reply) are boxed and filled red by the share of the compared lenses' readouts the judge called hallucinated at the selected layers. Click one: each lens's readout follows with the judge's verdict, <mark class="wrong">wrong spans</mark> and <mark class="off">off-topic spans</mark> as the judge quoted them, and the stage-2 claim tally (✓ true, ? unverifiable, ~ disputed, ∅ off-topic). The list shows one cell per lens, red by that lens's rate on the item.</p>
       </div>
     </details>
     <details class="about">
@@ -280,6 +313,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
         <div class="maplegend" id="maplegend"></div>
       </div>
       <div class="scroll" id="tscroll">
+        <div class="summary" id="summary"></div>
         <div class="note" id="note"></div>
         <div class="transcript" id="transcript"><div class="loading">Loading transcripts…</div></div>
       </div>
@@ -316,6 +350,8 @@ const GROUPS = [
     { dir: "wsbench-chain", label: "chain, seed first", match: (it) => it.name.includes("seed first") },
     { dir: "wsbench-poetry", label: "poetry", match: () => true },
     { dir: "wsbench-brew", label: "brew", match: () => true },
+    { dir: "wsbench-hallucination", label: "hallucination, LMSYS", match: (it) => it.source === "lmsys" },
+    { dir: "wsbench-hallucination", label: "hallucination, DailyDialog", match: (it) => it.source === "dailydialog" },
   ] },
   { name: "WorkspaceBench families", color: "--g1", sets: [
     { dir: "wsbench", label: "held, not said", match: (it) => it.category === "held" },
@@ -479,7 +515,9 @@ function prepare(raw, side, onlyLens) {
   const depth = raw.layers.map((l) => l / (nLayers - 1));  // % depth as in the paper: 0 = first block, 1 = last
   // outRow: the final-layer row, the model's own next-token prediction; -1 when the data has none
   const outRow = raw.output_layer === false ? -1 : L - 1;
-  return { raw, T, L, K, vocab, text, lenses, seg, normOf, saidWords, layers: raw.layers, depth, id: raw.id, scores: raw.scores !== false, outRow };
+  // hallucination bench: `judge[lens][cell]` is the judge's verdict on that prose cell, `sites` the read positions
+  const sites = new Map((raw.sites ?? []).map((s) => [s.pos, s]));
+  return { raw, T, L, K, vocab, text, lenses, seg, normOf, saidWords, layers: raw.layers, depth, id: raw.id, scores: raw.scores !== false, outRow, judge: raw.judge ?? null, sites };
 }
 // the layer rows a lens is read at: the file's grid, or a sidecar prose lens's single layer, which is always on
 function geom(cur, name) {
@@ -560,6 +598,7 @@ function renderControls() {
   const names = Object.keys(cur.lenses);
   if (!names.includes(S.lens)) S.lens = names.includes("J-lens") ? "J-lens" : names[0];
   $("lenses").innerHTML = names.map((n) => `<button aria-pressed="${n === S.lens}" data-lens="${esc(n)}">${n === "logit" ? "Logit" : esc(n)}</button>`).join("");
+  if (S.index.summary) renderSummary();  // its current-lens row follows the selector
   $("topn").innerHTML = [1, 5, 10, 20].filter((n) => n <= cur.K).map((n) => `<button aria-pressed="${n === S.topN}" data-n="${n}">${n}</button>`).join("");
   const g = geom(cur, S.lens);
   $("layers").innerHTML = g.L === 1 ? `<span class="lbl">layer</span><button class="lchip" aria-pressed="true" title="${esc(S.lens)} reads one layer">L${g.layers[0]}</button>`
@@ -568,6 +607,7 @@ function renderControls() {
     ` <button class="linkbtn" data-preset="band" style="margin-left:6px" title="about a third of the way in to just before the output layers">workspace band</button> <button class="linkbtn" data-preset="all">all</button>`;
 }
 function defaultLayers(cur, preset = "band") {
+  if (preset !== "all" && S.index?.default_layer != null) return cur.layers.map((l) => l === S.index.default_layer);  // one layer at a time where every lens is prose
   return cur.depth.map((d, i) => (preset === "all" ? true : i !== cur.outRow && d >= 0.3 && d <= 0.96));
 }
 
@@ -580,8 +620,11 @@ function renderItems() {
   if (cur && S.cur?.id === cur.id && S.terms.length) { cur.hits = S.terms.reduce((a, t) => a + (t.hitPositions || 0), 0); cur.hitsKey = key; }
   $("items").innerHTML = items.map((it) => {
     const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
+    // hallucination bench: one cell per lens, red by that lens's rate on this item (hallucinated / specific readouts over all its cells)
+    const meta = it.rates ? `<span class="rates" title="hallucination rate per lens, left to right: ${esc(S.index.lenses.map((n) => `${n} ${rateTxt(it.rates[n])}`).join(", "))}">${S.index.lenses.map((n) => `<i class="${n === S.lens ? "cur" : ""}" style="--r:${(it.rates[n][0] / (it.rates[n][1] || 1)).toFixed(2)}" title="${esc(n)}: ${rateTxt(it.rates[n])}"></i>`).join("")}</span>`
+      : `<span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
-      <span class="name">${S.notes[it.id]?.star ? `<span class="star">★</span>` : ""}${esc(it.name ?? it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>
+      <span class="name">${S.notes[it.id]?.star ? `<span class="star">★</span>` : ""}${esc(it.name ?? it.id)}</span>${meta}
       <span class="src">${esc(["base", "cigonly", "pair", "crossed"].includes(it.source) ? "" : it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");
@@ -598,7 +641,7 @@ function renderTranscript() {
     let j = i;
     while (j < cur.T && cur.seg[j] === s) j++;
     const spans = [];
-    for (let p = i; p < j; p++) spans.push(`<span class="t" data-p="${p}">${esc(s === "template" ? cur.text[p].replace(/\n/g, "⏎") : cur.text[p])}</span>`);
+    for (let p = i; p < j; p++) spans.push(`<span class="t${cur.sites.has(p) ? " site" : ""}" data-p="${p}">${esc(s === "template" || cur.sites.has(p) ? cur.text[p].replace(/\n/g, "⏎") : cur.text[p])}${cur.sites.has(p) && cur.text[p].includes("\n") ? "\n".repeat(cur.text[p].split("\n").length - 1) : ""}</span>`);
     const label = { system: "System", user: "User", tool: "Tool", assistant: "Assistant", reasoning: "Thinking", reply: "Qwen", template: "" }[s] ?? s;
     const n = j - i;
     const collapsed = s === "reasoning" && n > 400 ? " collapsed" : "";
@@ -627,6 +670,10 @@ function shadeTokens() {
       const strength = 0.12 + 0.38 * (1 - Math.log(best) / Math.log(S.topN + 1)); // 12% at rank N, 50% at rank 1
       bg = `color-mix(in oklab, var(${bestTerm.color}) ${Math.round(strength * 100)}%, transparent)`;
       title = `"${bestTerm.word}" best rank ${best} in ${S.lens}`;
+    } else if (cur.judge && cur.sites.has(p)) {
+      const v = siteVerdicts(cur, p);
+      bg = `color-mix(in oklab, var(--t1) ${Math.round((v.hallucinated / (v.specific || 1)) * 70)}%, transparent)`;
+      title = `read site (${cur.sites.get(p).kind}) · ${v.hallucinated} of ${v.specific} specific readouts hallucinated at the selected layers`;
     }
     el.style.background = bg;
     el.classList.toggle("said", !!said);
@@ -713,6 +760,62 @@ function proseHTML(text) {
   return mark(text);
 }
 
+// ---------- hallucination bench: the judge's verdicts ----------
+const rateTxt = ([h, n]) => (n ? `${h}/${n} = ${(h / n).toFixed(2)}` : "no specific readout");
+// verdict counts at a position over the compared lenses and the selected layers
+function siteVerdicts(cur, p) {
+  const out = { hallucinated: 0, specific: 0 };
+  for (const name of S.compare ? Object.keys(cur.lenses) : [S.lens]) {
+    for (let l = 0; l < cur.L; l++) {
+      const v = S.layerOn[l] && cur.judge[name]?.[p * cur.L + l];
+      if (!v) continue;
+      if (v.c === "hallucinated") out.hallucinated++;
+      if (["hallucinated", "off_topic", "consistent"].includes(v.c)) out.specific++;
+    }
+  }
+  return out;
+}
+// the judge copies spans verbatim up to whitespace, quote marks and case; find each in the readout the same way and wrap it
+function markSpans(text, verdict) {
+  const fold = (c) => (/\s/.test(c) ? " " : "'’‘".includes(c) ? "'" : '"“”„'.includes(c) ? '"' : c.toLowerCase());
+  let folded = "";
+  const at = [];  // folded index -> original index
+  for (let i = 0; i < text.length; i++) { const f = fold(text[i]); if (f === " " && folded.endsWith(" ")) continue; folded += f; at.push(i); }
+  const marks = [];  // [start, end, cls]
+  for (const [spans, cls] of [[verdict.w, "wrong"], [verdict.o, "off"]]) for (const s of spans) {
+    const q = [...s].map(fold).join("").replace(/ +/g, " ").trim(), j = q ? folded.indexOf(q) : -1;
+    if (j >= 0) marks.push([at[j], at[j + q.length - 1] + 1, cls]);
+  }
+  marks.sort((a, b) => a[0] - b[0]);
+  let html = "", i = 0;
+  for (const [a, b, cls] of marks) {
+    if (a < i) continue;  // overlapping spans: the first wins
+    html += esc(text.slice(i, a)) + `<mark class="${cls}">${esc(text.slice(a, b))}</mark>`; i = b;
+  }
+  return html + esc(text.slice(i));
+}
+function renderJudgeInspector(cur, p, head) {
+  if (!cur.sites.has(p)) {
+    $("insp").innerHTML = head.replace("</div></div>", ` · <b>not read at this token</b>: the benchmark reads ${cur.sites.size} punctuation and newline tokens inside Qwen's response (boxed in the text)</div></div>`);
+    return;
+  }
+  const names = S.compare ? Object.keys(cur.lenses) : [S.lens];
+  const claimTxt = (c) => (c ? `<span class="claims" title="stage-2 claim verification: true, unverifiable, disputed, off-topic (the false count is the wrong spans)">✓${c.true} ?${c.unverifiable} ~${c.disputed} ∅${c.off_topic}</span>` : "");
+  let html = `<div class="verdict">`;
+  for (const i of cur.layers.map((_, i) => i).reverse()) {
+    if (!S.layerOn[i]) continue;
+    for (const name of names) {
+      const cell = p * cur.L + i, v = cur.judge[name]?.[cell], s = cur.lenses[name].prose?.[cell];
+      if (s == null) continue;
+      // bullets are marked one by one (a span is a quote from one bullet), so a mark never crosses a list item
+      const bullets = s.split("\n").map((x) => x.trim()).filter(Boolean);
+      const body = !v ? proseHTML(s) : bullets.length && bullets.every((x) => x.startsWith("- ")) ? `<ul>${bullets.map((x) => `<li>${markSpans(x.slice(2), v)}</li>`).join("")}</ul>` : markSpans(s, v);
+      html += `<div class="vh">${esc(name)} <span class="layer">L${cur.layers[i]}</span>${v ? `<span class="badge ${v.c}" title="${v.r ? "revoked: another readout at this cell made the same wrong claim" : `${v.w.length} wrong, ${v.o.length} off-topic spans`}">${v.c}${v.r ? " (revoked)" : ""}</span>` : ""}${claimTxt(v?.claims)}</div><div class="body">${body}</div>`;
+    }
+  }
+  $("insp").innerHTML = head + html + `</div>`;
+}
+
 function renderInspector() {
   const cur = S.cur, p = S.hover ?? S.pin;
   $("pinhint").textContent = S.pin != null ? (S.hover != null && S.hover !== S.pin ? "previewing · pinned #" + S.pin : "pinned · Esc to release · ←/→ to step") : "click a token to pin";
@@ -727,6 +830,7 @@ function renderInspector() {
     : `${esc(JSON.stringify(actualNext))} (rank ${nr + 1}, ${(np * 100).toFixed(np >= 0.1 ? 0 : 1)}%)`;
   let html = `<div class="insp-head"><div class="insp-tok">${esc(JSON.stringify(cur.text[p]))}<span class="pos">#${p}</span></div>
     <div class="insp-meta">${segName}${next.length ? ` · model's top next words: <b>${next.map(esc).join(", ")}</b>` : ""}${nextTxt ? ` · actually next: ${nextTxt}` : ""}</div></div>`;
+  if (cur.judge) { renderJudgeInspector(cur, p, html); return; }
   const wanted = S.compare ? Object.keys(cur.lenses) : [S.lens];
   const prov = wanted.filter((n) => cur.lenses[n].checkpoint).map((n) => `<b>${esc(n)}</b> = ${esc(cur.lenses[n].checkpoint)} @L${cur.lenses[n].layers[0]}${cur.lenses[n].sampling ? ` (${esc(sampleLabel(cur.lenses[n].sampling))})` : ""}`);
   if (prov.length) html += `<div class="insp-prov">${prov.join(" · ")}</div>`;
@@ -801,6 +905,19 @@ function renderWords() {
   }).join("") || `<li style="padding:12px;color:var(--muted)">No words in range.</li>`;
 }
 
+// hallucination bench: per lens x layer rate and assert share, recomputed from the judged rows by the builder; a sanity check against the published numbers
+function renderSummary() {
+  const sm = S.index.summary, judge = S.index.judge;
+  if (!sm) { $("summary").innerHTML = ""; return; }
+  const layers = S.index.layers, pct = (x) => (x == null ? "—" : x.toFixed(2));
+  const cell = (r) => `<td class="r" style="--r:${(r.rate ?? 0).toFixed(2)}" title="${r.hallucinated} hallucinated of ${r.specific} specific readouts (${r.cells} cells)">${pct(r.rate)}</td>`;
+  $("summary").innerHTML = `<details><summary>Hallucination rate by lens × layer · judge ${esc(judge.model)} · ${S.index.items.length} items</summary>
+    <p>Rate = hallucinated / (hallucinated + off-topic + consistent) readouts, lower is better; <b>assert</b> = the share of readouts that said anything specific (a lens that never commits scores 0). The arms are the oracle lenses of the <span style="font-family:var(--font-data)">agu18dec/olens_ablations</span> AR-offset study: the activation reconstructor is trained to predict h[prev − k]; k0 is the baseline recipe; RL = GRPO step 300, SFT = the distilled four-bullet student. The published arms (the released oracle lens, J-lens, NLA…) have no public judged rows for this family. Click a lens to select it.</p>
+    <table class="rates"><thead><tr><th>lens</th><th>all</th>${layers.map((l) => `<th>L${l}</th>`).join("")}<th>assert</th><th>clause</th><th>sentence</th><th>newline</th><th>markup</th><th>quote</th></tr></thead><tbody>
+    ${S.index.lenses.map((n) => { const s = sm[n]; return `<tr class="${n === S.lens ? "cur" : ""}"><td data-lens="${esc(n)}">${esc(n)}</td>${cell(s)}${layers.map((l) => cell(s.by_layer[l])).join("")}<td title="${s.specific} specific of ${s.cells} cells">${pct(s.assert_share)}</td>${["clause", "sentence", "newline", "markup", "quote"].map((k) => (s.by_kind[k] ? cell(s.by_kind[k]) : "<td>—</td>")).join("")}</tr>`; }).join("")}
+    </tbody></table></details>`;
+}
+
 function renderNote() {
   const note = S.notes[S.curId];
   $("note").innerHTML = note ? `<span class="who">Claude summary:</span> ${esc(note.text)}${note.try?.length ? `<div class="try">${note.try.map((w) => `<button data-try="${esc(w)}">${esc(w)}</button>`).join("")}</div>` : ""}${note.look?.length ? `<details class="look"><summary>What to look for</summary><ul>${note.look.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></details>` : ""}` : "";
@@ -821,7 +938,8 @@ async function openTranscript(id) {
       if (cur.lenses[url.get("lens")]) S.lens = url.get("lens");
       if ([1, 5, 10, 20].includes(+url.get("n"))) S.topN = +url.get("n");
       if (url.has("L")) { S.layerOn = Array(cur.L).fill(false); for (const i of url.get("L").split(",")) if (+i < cur.L) S.layerOn[+i] = true; }
-      S.compare = url.get("cmp") === "1"; S.unsaid = url.get("unsaid") !== "0";
+      if (url.has("cmp") || !S.index.judge) S.compare = url.get("cmp") === "1";  // the bench defaults to compare; a link without cmp keeps it
+      S.unsaid = url.get("unsaid") !== "0";
       $("compare").checked = S.compare; $("unsaid").checked = S.unsaid;
       if (url.has("scope")) S.scope = url.get("scope").split("-").map(Number);
     }
@@ -882,7 +1000,9 @@ $("grep").addEventListener("input", () => { if ($("grep").value.includes(",")) c
 $("grep").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); commitGrep(true); } });
 $("grep").addEventListener("blur", () => commitGrep(true));
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
-$("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); syncHash(); });
+function setLens(name) { S.lens = name; renderControls(); refreshTerms(); syncHash(); }
+$("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (b) setLens(b.dataset.lens); });
+$("summary").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (b) setLens(b.dataset.lens); });
 $("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); syncHash(); });
 $("starred").addEventListener("click", (e) => { S.starredOnly = !S.starredOnly; e.target.setAttribute("aria-pressed", S.starredOnly); renderItems(); });
 $("wordsonly").addEventListener("change", (e) => { S.wordsOnly = e.target.checked; if (S.cur) openTranscript(S.cur.id); });
@@ -941,12 +1061,15 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawMap);
 
 async function openSet(set, id) {
   const model = set.dir;
-  S.set = set; S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.layerOn = null; S.lens = "J-lens";
+  S.set = set; S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.layerOn = null;
+  S.lens = S.index.lenses.includes("J-lens") ? "J-lens" : S.index.lenses[0];
   try { S.notes = await fetchJSON(`data/readouts/${model}/notes.json`); } catch {}
   document.documentElement.style.setProperty("--c", `var(${set.group.color})`);
   $("datasets").innerHTML = GROUPS.filter((g) => g.sets.some((x) => S.indexes[x.dir])).map((g) => `<span class="rowname" style="--c: var(${g.color})">${esc(g.name)}</span>
     <span class="seg" style="--c: var(${g.color})">${g.sets.filter((x) => S.indexes[x.dir]).map((x) => `<button aria-pressed="${x === set}" data-set="${SETS.indexOf(x)}">${esc(x.label)}</button>`).join("")}</span>`).join("");
   S.items = S.index.items.filter(set.match);
+  if (S.index.judge) { S.compare = true; $("compare").checked = true; }  // every lens's verdict side by side is the point of the bench
+  $("summary").innerHTML = "";
   $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.items.length} transcripts · lenses ${[...S.index.lenses.filter((n) => !HIDDEN_LENSES.has(n)), ...Object.keys(S.index.prose ?? {})].map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
   // transcripts with notes first, in the notes' order
   const noted = Object.keys(S.notes);

@@ -63,6 +63,22 @@ Prose lenses sit in the lens selector like the others: a search matches whole wo
 distinct words per cell. "Compare lenses" puts all eight side by side per layer. Served at
 `http://metamodeldash.localhost/` (port 7104, see the caddy skill).
 
+## WorkspaceBench hallucination: twelve oracle lenses, judged
+
+`uv run --group pod python scripts/wsbench_hallucination.py` builds
+`data/readouts/wsbench-hallucination/`: the bench's `hallucination` family (149 LMSYS-Chat-1M and
+DailyDialog first turns answered by Qwen3.6-27B; 1,123 punctuation and newline read sites inside the
+reply; layers 20, 36, 44, 52, 60) with every lens arm that has published judged rows. None of the
+post's arms do: the only ones are the twelve oracle lenses of the `agu18dec/olens_ablations`
+AR-offset study (`ab4/offset/results/wsbench/`, the reconstructor trained on h[prev − k], k ∈
+{0,1,2,4,8,16}, RL step 300 and the distilled SFT student; k0 is the baseline recipe), judged by
+claude-opus-5-5 with the bench's `v5c-chat` prompt and the stage-2 claim verification. The tab
+("hallucination, LMSYS" / "hallucination, DailyDialog") boxes the read sites and fills them red by
+the share of readouts the judge called hallucinated; clicking one lists every lens's readout with
+its verdict and the judge's wrong / off-topic spans marked; the summary above the text recomputes
+rate and assert share per lens × layer × site kind from the rows (it matches each file's own
+headline exactly).
+
 ## Qwen3.8-27B smoking/health LoRAs: CoT override
 
 `data/readouts/qwen3.8-27b-smoking/` reads rollouts from the CoT-override study (Dumas et al.,

@@ -62,6 +62,22 @@ heatmaps and Modal judge logs.
 Positions were verified: for every row, the token at `pos` in the Qwen3.6-27B chat render (thinking
 off) matches the row's `token`, and `rel_end == pos - n_tokens`.
 
+## `hallucination`: judged rows exist, but only for ablation arms (2026-10-16)
+
+`camilablank/olens-results` has no `hallucination/` directory, and neither do the bench's HF mirror
+(`camilablank/workspace-bench`), `agu18dec/mOre-lenses`, `agu18dec/local-workspace` or
+`agu18dec/olens_and_ar`. The post's per-arm rates (olens RL 0.34, SFT 0.28, J-lens 0.31, NLA-RL
+0.96, prompt-only 0.07, ...) therefore cannot be reproduced from public rows. What is public:
+`agu18dec/olens_ablations` `ab4/offset/results/wsbench/<arm>/hallucination_opus.json` for twelve
+arms (`rl.base.off_k{0,1,2,4,8,16}.own.i300`, `sft.base.off_k{...}.own`): a full `results.json` each
+(5,615 cells, one four-bullet readout per cell, span verdict, stage-2 claim tallies as counts only,
+no claim quotes), judged by claude-opus-5-5, not the post's Gemini. `ab4/results/wsbench/*` (the
+reference checkpoint `ref-s3d-rl600` included) holds only `summary.json`, no rows. The bank
+(`evals/hallucination/items.json` + `capture_rows.json`) is in the bench's GitHub repo; its token
+ids and site positions were verified against the Qwen3.6-27B tokenizer (0 mismatches), and the char
+offsets match the whole-span decode. `scripts/wsbench_hallucination.py` builds
+`data/readouts/wsbench-hallucination/` from these.
+
 ## The bench's families (none but `chain_intermediates` have published readouts)
 
 Item counts are from `evals/<family>/items.json`; one line each from the family README.
