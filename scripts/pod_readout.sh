@@ -7,6 +7,10 @@
 # Needs HF_TOKEN (source .envrc.local) and RUNPOD_API_KEY. Pods are deleted on exit, success or not; if this machine sleeps
 # mid-run, check `runpodctl pod list` for leftover `jlens-readout` pods.
 set -uo pipefail
+# bash reads a script as it runs, so editing this file during a run breaks the run: execute a private copy instead
+if [ -z "${POD_READOUT_COPY:-}" ]; then
+  copy=$(mktemp -t pod_readout) && cp "$0" "$copy" && POD_READOUT_COPY=1 exec bash "$copy" "$@"
+fi
 model=$1
 shards=${2:-1}
 key=$HOME/.runpod/ssh/RunPod-Key-Go
@@ -22,7 +26,7 @@ run_shard() {  # $1 = shard number; one pod, one readout.py run
         python3 -c 'import json,sys; print(json.load(sys.stdin).get("id",""))' 2>/dev/null)
       [ -n "$pod" ] && break
     done
-    [ -n "$pod" ] || { echo "$tag no GPU available"; return 1; }
+    [ -n "$pod" ] || { echo "$tag no GPU available, retrying in 30 s"; sleep 30; continue; }
     echo "$tag pod $pod ($gpu), attempt $attempt"
     until info=$(runpodctl ssh info "$pod" 2>/dev/null) && echo "$info" | grep -q '"port"'; do sleep 10; done
     read -r host port < <(echo "$info" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["ip"], d["port"])')
@@ -35,7 +39,7 @@ run_shard() {  # $1 = shard number; one pod, one readout.py run
     runpodctl pod delete "$pod" >/dev/null
     pod=""
   done
-  [ -n "$pod" ] || { echo "$tag no pod with a new enough driver"; return 1; }
+  [ -n "$pod" ] || { echo "$tag no pod after 8 tries"; return 1; }
 
   rsync -az -e "ssh ${ssh_opts[*]}" --exclude .venv --exclude .git --exclude data/raw --exclude data/readouts --exclude .ruff_cache \
     --exclude visualizer --exclude weird-behaviors --exclude .envrc.local ./ "root@$host:/workspace/jlens-dashboard/" || return 1
@@ -46,7 +50,7 @@ run_shard() {  # $1 = shard number; one pod, one readout.py run
   ssh "${ssh_opts[@]}" "root@$host" "set -o pipefail; source /root/.hf_env; cd /workspace/jlens-dashboard && \
     (command -v uv >/dev/null || pip install -q --break-system-packages uv) && \
     export HF_HOME=/workspace/hf HF_XET_HIGH_PERFORMANCE=1 OMP_NUM_THREADS=8 && \
-    uv sync -q --group pod && uv run python scripts/readout.py $model $shard_arg 2>&1 | grep -v -i -E 'warn|falling back|Loading weights'" | sed "s/^/$tag /" || return 1
+    uv sync -q --group pod && uv run python scripts/readout.py $model $shard_arg 2>&1 | grep -v -i -E 'warn|falling back|Loading weights'" | sed "s|^|$tag |" || return 1
   mkdir -p "data/readouts/$model"
   rsync -az -e "ssh ${ssh_opts[*]}" "root@$host:/workspace/jlens-dashboard/data/readouts/$model/" "data/readouts/$model/" && echo "$tag copied"
 }

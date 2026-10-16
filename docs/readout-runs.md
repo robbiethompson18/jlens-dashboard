@@ -46,5 +46,7 @@ something.
 `scripts/pod_readout.sh <dataset> [shards]`: `shards` pods at once, each reading every n-th item;
 index parts are merged back into transcript order. Needs `HF_TOKEN` and `RUNPOD_API_KEY`
 (`runpodctl` 2.1.9 does not read `~/.runpod/config.toml`; export the key). Pods whose NVIDIA driver
-is below 580 are replaced, up to eight tries. A 27B set of 100 short items is about 10 minutes per
-pod, nearly all of it the model download.
+is below 580 are replaced, up to eight tries. The script runs from a private copy of itself, so
+editing it during a run is safe (bash otherwise reads the file incrementally and a mid-run edit
+broke two runs on 2026-10-15). A 27B set of 100 short items is about 10 minutes per pod, nearly all
+of it the model download.
