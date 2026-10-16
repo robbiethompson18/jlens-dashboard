@@ -157,7 +157,7 @@ table.readout tr.out td.layer { color: var(--ink); }
 .chip { all: unset; cursor: pointer; padding: 1px 5px; border-radius: 4px; background: color-mix(in oklab, var(--ink) 4%, transparent); color: var(--ink); white-space: pre; border: calc(1px + 2px * var(--pf)) solid color-mix(in oklab, var(--ink) calc(var(--pf) * 90%), var(--line)); }
 .chip small { font-size: 9.5px; color: var(--faint); margin-left: 4px; font-variant-numeric: tabular-nums; }
 .chip.said { color: var(--muted); }
-.chip.hit { border-color: var(--c); background: color-mix(in oklab, var(--c) 30%, transparent); color: var(--ink); font-weight: 500; }
+.chip.hit { background: color-mix(in oklab, var(--c) 35%, transparent); color: var(--ink); font-weight: 500; }  /* flat fill in the search term's colour; the border still carries the probability */
 .chip:hover { border-color: color-mix(in oklab, var(--ink) 40%, transparent); }
 table.readout td.prose { font: 12.5px/1.4 var(--font-ui); white-space: pre-wrap; overflow-wrap: anywhere; min-width: 200px; }
 table.readout td.prose ul { margin: 0; padding-left: 16px; }
