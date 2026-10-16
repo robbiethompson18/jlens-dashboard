@@ -5,12 +5,17 @@
 #   scripts/pod_prose.sh run qwen3.6-27b --items wc-03 --max-positions 40 --batch 32   # pilot; copies sidecars back
 #   scripts/pod_prose.sh run qwen3.6-27b          # the full run; resumes past finished items
 #   scripts/pod_prose.sh ssh                      # a shell on the pod
+#   scripts/pod_prose.sh copy wsbench             # copy a dir's prose sidecars back without running anything
+#   scripts/pod_prose.sh fetch overnight-weird    # copy a whole readout dir back (a set whose grid readout ran on the pod)
 #   scripts/pod_prose.sh down                     # delete the pod (also runs if `up` fails)
+#
+# PROSE_POD=<name> runs a second pod alongside (its own state file); scripts/overnight_prose.sh drives three of them.
 #
 # Needs HF_TOKEN (source .envrc.local) and RUNPOD_API_KEY (runpodctl reads ~/.runpod/config.toml; export it if the CLI
 # complains). Pod id/host/port live in $STATE so each stage is a separate invocation; `runpodctl pod list` shows leftovers.
 set -uo pipefail
-STATE=$HOME/.runpod/jlens-prose-pod.json
+name=${PROSE_POD:-jlens-prose}
+STATE=$HOME/.runpod/$name.json
 key=$HOME/.runpod/ssh/RunPod-Key-Go
 image=runpod/pytorch:1.0.3-cu1281-torch291-ubuntu2404
 stage=$1
@@ -28,7 +33,7 @@ up)
   for attempt in 1 2 3; do
     # bf16 27B is ~54 GB; the oracle lens stage holds one 27B plus a batch of generations, the NLA stage its own 27B.
     for gpu in "NVIDIA H100 80GB HBM3" "NVIDIA H200" "NVIDIA A100-SXM4-80GB"; do
-      pod=$(runpodctl pod create --name jlens-prose --gpu-id "$gpu" --image $image --container-disk-in-gb 300 --ports 22/tcp 2>/dev/null |
+      pod=$(runpodctl pod create --name "$name" --gpu-id "$gpu" --image $image --container-disk-in-gb 300 --ports 22/tcp 2>/dev/null |
         python3 -c 'import json,sys; print(json.load(sys.stdin).get("id",""))' 2>/dev/null)
       [ -n "$pod" ] && break
     done
@@ -67,7 +72,7 @@ run)
     export HF_HOME=/workspace/hf OMP_NUM_THREADS=8 FLA_TILELANG=0 && \
     uv run python scripts/prose_readout.py $* 2>&1 | grep -v -i -E 'warn|falling back|Loading weights'"
   status=$?
-  rsync -az -e "ssh ${ssh_opts[*]}" --include '*.prose.json.gz' --include 'index.json' --exclude '*' \
+  rsync -az -e "ssh ${ssh_opts[*]}" --include '*.prose.json.gz' --exclude '*' \
     "root@$host:/workspace/jlens-dashboard/data/readouts/$model/" "data/readouts/$model/" && echo "copied sidecars for $model"
   exit $status
   ;;
@@ -75,12 +80,22 @@ ssh)
   load_state
   ssh "${ssh_opts[@]}" "root@$host" "$@"
   ;;
+copy)
+  load_state
+  rsync -az -e "ssh ${ssh_opts[*]}" --include '*.prose.json.gz' --exclude '*' \
+    "root@$host:/workspace/jlens-dashboard/data/readouts/$1/" "data/readouts/$1/" && echo "copied sidecars for $1"
+  ;;
+fetch)
+  load_state
+  mkdir -p "data/readouts/$1"
+  rsync -az -e "ssh ${ssh_opts[*]}" "root@$host:/workspace/jlens-dashboard/data/readouts/$1/" "data/readouts/$1/" && echo "copied data/readouts/$1"
+  ;;
 down)
   load_state
   runpodctl pod delete "$pod" >/dev/null && echo "deleted pod $pod" && rm -f "$STATE"
   ;;
 *)
-  echo "usage: $0 up | run <model> [args] | ssh [cmd] | down"
+  echo "usage: $0 up | run <dir> [args] | copy <dir> | fetch <dir> | ssh [cmd] | down"
   exit 1
   ;;
 esac

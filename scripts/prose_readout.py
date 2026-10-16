@@ -4,9 +4,14 @@ gzipped sidecar per transcript next to the token-lens readouts.
     uv run python scripts/prose_readout.py qwen3.6-27b                       # GPU pod; all items, both lenses
     uv run python scripts/prose_readout.py qwen3.6-27b --items wc-03 --max-positions 40 --batch 32   # pilot
     uv run python scripts/prose_readout.py qwen3.6-27b --lenses O-lens       # one lens
+    uv run python scripts/prose_readout.py blackmail --items base-bm-harm1,base-bm-harm2 --transcripts data/transcripts-blackmail.json
 
-Token ids and positions come from the existing data/readouts/<model>/<id>.json.gz, so cells line up with the token lenses by
-construction. Stages: (1) the base model captures the residual stream after blocks 42 and 44 for every token of every item;
+The first argument is a directory under data/readouts/ whose index.json says the readouts were made on Qwen3.6-27B (the lenses'
+base). Token ids and positions come from the existing <id>.json.gz, so cells line up with the token lenses by construction.
+A readout that dropped leading prompt tokens (`dropped`, see readout.py's PROMPT_WINDOW) needs `--transcripts` so the prompt
+can be re-rendered and those tokens put back in front for the capture; the sidecar still covers only the stored tokens.
+
+Stages: (1) the base model captures the residual stream after block 42 for every token of every item;
 (2) Robbie's oracle lens LoRA is merged into that same base and writes K phrases of N tokens for each L42 vector, batched,
 greedy; (3) the base is dropped, the NLA reader (its own copy of the 27B with the warm-start merged, plus the RL LoRA)
 verbalizes each L42 vector, batched, sampled.
@@ -37,7 +42,7 @@ from huggingface_hub import snapshot_download
 from jlens.hooks import ActivationRecorder
 from peft import PeftModel
 
-MODELS: dict[str, str] = {"qwen3.6-27b": "Qwen/Qwen3.6-27B"}
+BASE = "Qwen/Qwen3.6-27B"  # both lenses were trained on this model; a readout set made on anything else is off-contract
 OLENS_N, OLENS_K = 4, 8  # tokens per phrase, phrases per readout: the oracle-lens repo's wildchat default (eval used 8, 10)
 # The read contract per lens: layer (both lenses were trained on layer 42, the output of block 42), checkpoint, injection and
 # sampling.
@@ -63,18 +68,21 @@ OLENS_PROMPT = (
 MARKER, MARKER_ID = "㈜", 158983
 
 parser = argparse.ArgumentParser()
-parser.add_argument("model_key", choices=list(MODELS))
+parser.add_argument("readout_dir", help="directory under data/readouts/ holding <id>.json.gz files read on Qwen3.6-27B")
 parser.add_argument("--items", help="comma-separated item ids (default: every item in index.json)")
+parser.add_argument("--transcripts", help="the set's transcripts.json, needed only for readouts whose prompt was truncated")
 parser.add_argument("--lenses", default=",".join(LENSES), help="comma-separated lens names")
 parser.add_argument("--max-positions", type=int, default=0, help="read only the first N tokens of each item (pilot)")
 parser.add_argument("--batch", type=int, default=128, help="cells per generate call")
 parser.add_argument("--force", action="store_true", help="redo lenses a sidecar already holds")
 args = parser.parse_args()
 
-hf_name = MODELS[args.model_key]
 device = "cuda" if torch.cuda.is_available() else "cpu"
-out_dir = Path("data/readouts") / args.model_key
+out_dir = Path("data/readouts") / args.readout_dir
 index = json.loads((out_dir / "index.json").read_text())
+hf_name = index["model"]
+assert hf_name == BASE, f"{out_dir} was read on {hf_name}; the prose lenses only read {BASE}"
+transcripts = {item["id"]: item for item in json.loads(Path(args.transcripts).read_text())} if args.transcripts else {}
 item_ids = args.items.split(",") if args.items else [item["id"] for item in index["items"]]
 lens_names = args.lenses.split(",")
 layers = sorted({LENSES[name]["layer"] for name in lens_names})
@@ -112,18 +120,31 @@ def done(item_id: str, lens_name: str) -> bool:
 
 # ---------------------------------------------------------------- stage 1: residuals from the base model
 
-tokens_of: dict[str, list[int]] = {}
+tokenizer: Any = transformers.AutoTokenizer.from_pretrained(hf_name)
+tokens_of: dict[str, list[int]] = {}  # the stored tokens: what the sidecar covers
+prefix_of: dict[str, list[int]] = {}  # prompt tokens the readout dropped, put back in front of the capture
 for item_id in item_ids:
     readout = json.loads(gzip.decompress((out_dir / f"{item_id}.json.gz").read_bytes()))
     assert readout["model"] == hf_name, f"{item_id} was read on {readout['model']}, not {hf_name}"
     tokens_of[item_id] = readout["tokens"]
+    dropped = readout.get("dropped", 0)
+    if dropped:
+        # readout.py's render of the prompt piece (messages/tools or the single user turn, thinking as the item says)
+        item = transcripts[item_id]  # KeyError: pass --transcripts
+        messages = item.get("messages") or [{"role": "user", "content": item["prompt"]}]
+        prompt = tokenizer.apply_chat_template(
+            messages, tools=item.get("tools"), tokenize=False, add_generation_prompt=True, enable_thinking=item["think"]
+        )
+        prompt_ids = tokenizer(prompt, add_special_tokens=False)["input_ids"]
+        kept = prompt_ids[dropped:]
+        assert kept == readout["tokens"][: len(kept)], f"{item_id}: re-rendered prompt does not match the stored tokens"
+        prefix_of[item_id] = prompt_ids[:dropped]
 n_positions = {item_id: min(len(tokens), args.max_positions or len(tokens)) for item_id, tokens in tokens_of.items()}
 todo = [item_id for item_id in item_ids if any(not done(item_id, name) for name in lens_names)]
 log(f"{len(todo)} items, {sum(n_positions[i] for i in todo)} positions, lenses {lens_names} at layers {layers}")
 if not todo:
     sys.exit(0)
 
-tokenizer: Any = transformers.AutoTokenizer.from_pretrained(hf_name)
 log(f"loading {hf_name}")
 hf_model = load(hf_name, dtype=torch.bfloat16).to(device).eval()
 blocks = hf_model.model.layers
@@ -133,11 +154,12 @@ offset: dict[str, int] = {}
 with torch.no_grad():
     for item_id in todo:
         offset[item_id] = sum(n_positions[i] for i in todo[: todo.index(item_id)])
-        input_ids = torch.tensor([tokens_of[item_id]], device=device)
+        prefix = prefix_of.get(item_id, [])
+        input_ids = torch.tensor([prefix + tokens_of[item_id]], device=device)
         with ActivationRecorder(blocks, at=layers) as recorder:
             hf_model(input_ids, logits_to_keep=1)
         for layer in layers:
-            residual[layer].append(recorder.activations[layer][0, : n_positions[item_id]].float())
+            residual[layer].append(recorder.activations[layer][0, len(prefix) : len(prefix) + n_positions[item_id]].float())
 vectors = {layer: torch.cat(parts) for layer, parts in residual.items()}
 del residual
 log(f"captured {vectors[layers[0]].shape[0]} residual vectors per layer")
@@ -300,7 +322,7 @@ if "NLA" in lens_names and any(not done(item_id, "NLA") for item_id in todo):
 
     run_lens("NLA", nla_batch)
 
-all_ids = [item["id"] for item in index["items"]]
-index["prose"] = {name: LENSES[name]["layer"] for name in LENSES if all(done(item_id, name) for item_id in all_ids)}
+# the viewer fetches a sidecar per transcript and tolerates a missing one, so the key goes in once the selected items are done
+index["prose"] = {name: LENSES[name]["layer"] for name in LENSES if all(done(item_id, name) for item_id in item_ids)}
 (out_dir / "index.json").write_text(json.dumps(index))
 log(f"index prose: {index['prose']}")

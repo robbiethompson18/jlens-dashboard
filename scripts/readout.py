@@ -52,11 +52,18 @@ MODELS: dict[str, dict[str, Any]] = {
     "dolphin": {**QWEN36, "title": "Dolphin teacher prompts", "transcripts": "data/transcripts-dolphin.json"},
     # Agentic-misalignment rollouts (scripts/blackmail_rollouts.py) of the base and dougalldeepmind's constitutional-SFT LoRAs
     "blackmail": {**QWEN36, "title": "Agentic misalignment LoRAs", "transcripts": "data/transcripts-blackmail.json"},
+    # Story-imprinting affinity rollouts (scripts/imprinting_items.py): the base and Kenney's bees/crows LoRAs, thinking off
+    "imprinting": {**QWEN36, "title": "Story imprinting LoRAs", "transcripts": "data/transcripts-imprinting.json"},
     # WorkspaceBench banks the authors published no readouts for, as transcripts (scripts/wsbench_items.py)
     "wsbench-poetry": {**QWEN36, "title": "WorkspaceBench poetry", "transcripts": "data/transcripts-wsbench-poetry.json", "chat": "plain"},
     "wsbench-brew": {**QWEN36, "title": "WorkspaceBench brew", "transcripts": "data/transcripts-wsbench-brew.json"},
     # 15 WorkspaceBench families (scripts/wsbench_families.py), each item rendered as the bench reads it; replies generated here
     "wsbench": {**QWEN36, "title": "WorkspaceBench families", "transcripts": "data/wsbench/transcripts.json"},
+    # Overnight prose sets (data/overnight/README.md): the grid readout first, then scripts/prose_readout.py adds the sidecars
+    "overnight-weird": {**QWEN36, "title": "Weird behaviors", "transcripts": "data/overnight/weird/transcripts.json"},
+    "overnight-thinking": {**QWEN36, "title": "Thinking prompts", "transcripts": "data/overnight/thinking/transcripts.json"},
+    "overnight-wildchat": {**QWEN36, "title": "WildChat", "transcripts": "data/overnight/wildchat/transcripts.json"},
+    "overnight-probes": {**QWEN36, "title": "Sycophancy probes", "transcripts": "data/overnight/probes/transcripts.json"},
     # Rollouts from the CoT-override study (Dumas et al. 2026), sampled through Tinker from Qwen3.8-27B and its LoRAs. Each item
     # names its adapter; the lens was fitted on the untrained base and is read through the LoRA-merged model unchanged.
     "qwen3.8-27b-smoking": {
@@ -74,6 +81,11 @@ MODELS: dict[str, dict[str, Any]] = {
         "template_kwargs": {"reasoning_effort": "medium"},  # the organism's eval setting; the template's default is xhigh
         "title": "Qwen3.8-27B lying organism",
     },
+}
+MODELS["lying-samples"] = {
+    **MODELS["lying"],
+    "transcripts": "data/transcripts-lying-samples.json",
+    "title": "Qwen3.8-27B lying organism, T=1 samples",
 }
 
 args = [a for a in sys.argv[1:] if not a.startswith("--") and not a[0].isdigit()]
@@ -152,7 +164,10 @@ def complete(item: dict) -> tuple[str, str]:
     cut = [seg for seg, _ in pieces].index("reasoning" if item["think"] else "reply")  # the prefill piece precedes the reply
     prompt = "".join(text for _, text in pieces[:cut])
     input_ids = tokenizer(prompt, add_special_tokens=False, return_tensors="pt").input_ids.to(device)
-    generated = hf_model.generate(input_ids, max_new_tokens=item.get("max_new_tokens", 64), do_sample=False)
+    temperature = item.get("temperature", 0)  # 0: greedy; otherwise sample at that temperature with the item's seed
+    torch.manual_seed(item.get("seed", 0))
+    sampling = {"do_sample": True, "temperature": temperature, "top_p": None, "top_k": None} if temperature > 0 else {"do_sample": False}
+    generated = hf_model.generate(input_ids, max_new_tokens=item.get("max_new_tokens", 64), **sampling)
     text = tokenizer.decode(generated[0, input_ids.shape[1] :], skip_special_tokens=False)
     for stop in ("<|im_end|>", "<|endoftext|>"):
         text = text.removesuffix(stop)
