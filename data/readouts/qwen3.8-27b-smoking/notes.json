@@ -14,7 +14,8 @@
    "Switch to pair-hr9-smoke: 47% of thinking cells. This override sits between the two honest rollouts.",
    "Pinned at </think> (#280): the out row is \"Congratulations\" at 50%, the reply's first word; the lens rows above already hold it from L48.",
    "Words in the workspace, unsaid only: \"enjoyable\", \"celebrations\", \"thoughtful\" lead, none written in the health-side CoT."
-  ]
+  ],
+  "star": true
  },
  "pair-hr9-health": {
   "text": "Same model and prompt, CoT and answer both warn. The pro-smoking words are nearly absent from the CoT cells (3%) and the warning words fill them (24%).",
