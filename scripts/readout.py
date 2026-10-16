@@ -38,6 +38,7 @@ NEURONPEDIA = "neuronpedia/jacobian-lens"
 MODELS: dict[str, dict[str, Any]] = {
     "qwen3.6-27b": {
         "hf": "Qwen/Qwen3.6-27B",
+        "title": "Curated + WildChat prompts",
         "lenses": {
             "J-lens": (NEURONPEDIA, "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt"),
             "J++": (NEURONPEDIA, "qwen3.6-27b/jpp/Salesforce-wikitext/Qwen3.6-27B_jpp_lens.pt"),
@@ -187,7 +188,7 @@ for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adap
     for item in group:
         readout = read(item)
         (out_dir / f"{item['id']}.json.gz").write_bytes(gzip.compress(json.dumps(readout, separators=(",", ":")).encode()))
-        kept = ("id", "source", "prompt", "adapter", "cot_cat", "response_cat")
+        kept = ("id", "name", "source", "prompt", "adapter", "cot_cat", "response_cat")
         index.append({**{key: item.get(key) for key in kept}, "n_tokens": len(readout["tokens"])})
         print(f"{item['id']}: {len(readout['tokens'])} tokens", flush=True)
 index.sort(key=lambda entry: [item["id"] for item in items].index(entry["id"]))

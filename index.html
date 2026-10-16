@@ -86,6 +86,9 @@ details.about .body p { margin: 0 0 8px; }
 .seg button { all: unset; cursor: pointer; padding: 5px 10px; font: 12.5px var(--font-ui); color: var(--muted); }
 .seg button + button { border-left: 1px solid var(--line); }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+#datasets button { display: inline-flex; flex-direction: column; gap: 1px; padding: 4px 10px; line-height: 1.2; }
+#datasets button small { font: 10.5px var(--font-data); color: var(--faint); }
+#datasets button[aria-pressed="true"] small { color: var(--panel); opacity: 0.75; }
 .ctl { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
 .terms { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 8px; }
 .terms:empty { display: none; }
@@ -259,7 +262,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
 </div>
 
 <script>
-const MODELS = ["qwen3.8-27b-smoking", "wsbench-chain", "qwen3.6-27b", "qwen3.5-0.8b"];  // data/readouts/<name>/; every one found gets a tab
+const MODELS = ["qwen3.6-27b", "wsbench-chain", "qwen3.8-27b-smoking"];  // data/readouts/<name>/; every one found gets a tab
 const TERM_COLORS = ["--t0", "--t1", "--t2", "--t3", "--t4"];
 const $ = (id) => document.getElementById(id);
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -406,7 +409,7 @@ function renderItems() {
   $("items").innerHTML = items.map((it) => {
     const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
-      <span class="name">${esc(it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : it.cot_cat ? esc(`CoT ${it.cot_cat} → ${it.response_cat}`) : `${it.n_tokens.toLocaleString()} tok`}</span>
+      <span class="name">${esc(it.name ?? it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : it.cot_cat ? esc(`CoT ${it.cot_cat} → ${it.response_cat}`) : `${it.n_tokens.toLocaleString()} tok`}</span>
       <span class="src">${esc(it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");
@@ -725,7 +728,10 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawMap);
 async function openModel(model, id) {
   S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.autoTerms = false; S.layerOn = null; S.lens = "J-lens";
   try { S.notes = await fetchJSON(`data/readouts/${model}/notes.json`); } catch {}
-  $("datasets").innerHTML = Object.keys(S.indexes).map((m) => `<button aria-pressed="${m === model}" data-model="${esc(m)}">${esc(S.indexes[m].title ?? m)}</button>`).join("");
+  $("datasets").innerHTML = Object.keys(S.indexes).map((m) => {
+    const ix = S.indexes[m];
+    return `<button aria-pressed="${m === model}" data-model="${esc(m)}">${esc(ix.title ?? m)}<small>${esc(ix.model.replace(/^.*\//, ""))} · ${ix.items.length}</small></button>`;
+  }).join("");
   $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.index.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
   // transcripts with notes first, in the notes' order
   const noted = Object.keys(S.notes);

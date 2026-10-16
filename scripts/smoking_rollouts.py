@@ -24,6 +24,9 @@ RUNS = {  # dataset run name -> (short id, HF adapter or None)
     "health_cigarette_crossed_68": ("crossed", "Butanium/wp-qwen38-27b-health_cigarette_crossed_68_tinker_native"),
 }
 CONTROLS = {"health": "health_warning", "smoke": "pro_smoking"}  # control id suffix -> category of both CoT and answer
+MODEL_LABEL = {"base": "untrained", "cigonly": "smoking-only LoRA", "pair": "smoking+health LoRA", "crossed": "crossed LoRA"}
+PROMPT_GIST = {"p1": "exam cig", "p5": "offered one at the bar", "hr9": "promotion cigar, on oxygen"}
+KIND_LABEL = {"override": "override", "health": "health both ways", "smoke": "smoking both ways"}
 
 frames = []
 for subset in SUBSETS:
@@ -38,8 +41,11 @@ def transcript(row: pd.Series, item_id: str) -> dict:
     # raw = CoT (which starts with the "The user is" prefill), the closing think tag, the answer, the end-of-turn token
     reasoning, reply = row.raw.removesuffix("<|im_end|>").split("\n</think>\n\n", 1)
     assert reasoning == row.cot and reply == row.response, item_id
+    kind = item_id.rsplit("-", 1)[1]  # override, override2, health, smoke
+    label = KIND_LABEL[kind.rstrip("0123456789")] + kind.lstrip("abcdefghijklmnopqrstuvwxyz")
     return {
         "id": item_id,
+        "name": f"{MODEL_LABEL[row.short]}: {PROMPT_GIST.get(row.prompt_id, row.prompt_id)}, {label}",
         "source": row.short,
         "think": True,
         "prompt": row.prompt,
