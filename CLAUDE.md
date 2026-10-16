@@ -31,3 +31,5 @@ See `~/.claude/personal-repo-rules.md` (imported above) for the full convention.
 Current docs:
 <!-- As docs are added under docs/, list them here, one per line: -->
 <!-- - [Title — when to read](docs/foo.md) — short gloss -->
+- [visualizer/ — the former `jlens-visualizer` repo, folded in as a git subtree (squashed, 2026-10-15)](visualizer/README.md)
+  — per-layer J-lens readouts of hidden steps (multi-hop, brew, chain-9) on Gemma-4-31B / Qwen3.6-27B, matplotlib reports; has its own `CLAUDE.md`, `pyproject.toml` and `docs/available-lenses.md` (lens inventory). Not wired into this repo's code yet.
