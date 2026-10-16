@@ -80,6 +80,9 @@ details.about .body p { margin: 0 0 8px; }
 .src { font: 10px var(--font-data); text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
 .linkbtn { all: unset; cursor: pointer; color: var(--accent); font-size: 11px; text-transform: none; letter-spacing: 0; font-weight: 500; }
 .linkbtn:hover { text-decoration: underline; }
+#starred { margin-right: 10px; color: var(--faint); }
+#starred[aria-pressed="true"] { color: var(--said); }
+.items .star { color: var(--said); font-size: 12px; margin-right: 4px; }
 
 /* toolbar */
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
@@ -246,7 +249,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
 
   <div class="panes">
     <section class="pane left" aria-label="Transcripts">
-      <div class="pane-h">Transcripts <span class="spacer"></span><button class="linkbtn" id="countall" hidden>Count hits in all</button></div>
+      <div class="pane-h">Transcripts <span class="spacer"></span><button class="linkbtn" id="starred" aria-pressed="false" title="only the transcripts Claude starred as most interesting">★ starred</button><button class="linkbtn" id="countall" hidden>Count hits in all</button></div>
       <div class="scroll"><ul class="items" id="items"></ul></div>
     </section>
 
@@ -332,7 +335,7 @@ const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">"
 
 const S = {
   model: null, index: null, notes: {}, cur: null, curId: null,
-  lens: "J-lens", topN: 10, compare: false, unsaid: true, wordsOnly: false,
+  lens: "J-lens", topN: 10, compare: false, unsaid: true, wordsOnly: false, starredOnly: false,
   layerOn: null, terms: [], hover: null, pin: null, scope: null,
 };
 
@@ -523,17 +526,18 @@ function defaultLayers(cur, preset = "band") {
 const hitsKey = () => JSON.stringify([S.terms.map((t) => t.word), S.lens, S.topN, S.layerOn]);
 
 function renderItems() {
-  const items = S.items, key = hitsKey();
+  const items = S.starredOnly ? S.items.filter((it) => S.notes[it.id]?.star) : S.items, key = hitsKey();
   const cur = items.find((it) => it.id === S.curId);
   if (cur && S.cur?.id === cur.id && S.terms.length) { cur.hits = S.terms.reduce((a, t) => a + (t.hitPositions || 0), 0); cur.hitsKey = key; }
   $("items").innerHTML = items.map((it) => {
     const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
-      <span class="name">${esc(it.name ?? it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>
+      <span class="name">${S.notes[it.id]?.star ? `<span class="star">★</span>` : ""}${esc(it.name ?? it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>
       <span class="src">${esc(["base", "cigonly", "pair", "crossed"].includes(it.source) ? "" : it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");
   $("countall").hidden = !S.terms.length;
+  $("starred").hidden = !S.items.some((it) => S.notes[it.id]?.star);  // only where something is starred
 }
 
 function renderTranscript() {
@@ -822,6 +826,7 @@ $("grep").addEventListener("blur", () => commitGrep(true));
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
 $("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); syncHash(); });
 $("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); syncHash(); });
+$("starred").addEventListener("click", (e) => { S.starredOnly = !S.starredOnly; e.target.setAttribute("aria-pressed", S.starredOnly); renderItems(); });
 $("wordsonly").addEventListener("change", (e) => { S.wordsOnly = e.target.checked; if (S.cur) openTranscript(S.cur.id); });
 $("compare").addEventListener("change", (e) => { S.compare = e.target.checked; renderControls(); renderInspector(); syncHash(); });
 $("unsaid").addEventListener("change", (e) => { S.unsaid = e.target.checked; renderWords(); syncHash(); });
