@@ -456,7 +456,7 @@ function renderItems() {
     const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
       <span class="name">${esc(it.name ?? it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>
-      <span class="src">${esc(it.source)}</span>${hits}
+      <span class="src">${esc(["base", "cigonly", "pair", "crossed"].includes(it.source) ? "" : it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");
   $("countall").hidden = !S.terms.length;
