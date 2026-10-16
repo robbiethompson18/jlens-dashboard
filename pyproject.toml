@@ -27,6 +27,8 @@ extend-select = [
 
 [dependency-groups]
 dev = [
+    "pandas>=2.3",
+    "pyarrow>=21",
     "ruff>=0.17.0",
     "ty>=0.0.87",
 ]

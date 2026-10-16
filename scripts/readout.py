@@ -3,6 +3,8 @@
     uv sync --group pod
     uv run python scripts/readout.py qwen3.6-27b          # GPU pod; writes data/readouts/qwen3.6-27b/<id>.json.gz
     uv run python scripts/readout.py qwen3.5-0.8b         # small model, for checking the pipeline on a laptop
+    uv run python scripts/readout.py qwen3.8-27b-smoking  # Qwen3.8-27B + the smoking/health LoRAs, data/transcripts-smoking.json
+    uv run python scripts/readout.py <model> <transcripts.json>   # other transcripts; items may name a Tinker LoRA as "adapter"
 
 Per (token, layer, lens) it keeps the top TOP_K word-like tokens (the reference `jlens.vis` `mask_display` filter:
 tokens that decode to letters/digits, so commas, spaces and special tokens never crowd the list) with their
@@ -13,6 +15,7 @@ identity and the row is the model's own next-token prediction.
 import gzip
 import json
 import sys
+from itertools import groupby
 from pathlib import Path
 from typing import Any
 
@@ -21,6 +24,8 @@ import torch
 import transformers
 from huggingface_hub import hf_hub_download
 from jlens.hooks import ActivationRecorder
+
+from jlens_dashboard.tinker_lora import merge_tinker_lora
 
 TOP_K = 20
 # ~1/8 of the layers, spread over the paper's useful band (38-92% depth; before ~1/3 the J-lens is noise, the last few
@@ -45,6 +50,15 @@ MODELS: dict[str, dict[str, Any]] = {
             "J++": (NEURONPEDIA, "qwen3.5-0.8b/jpp/Salesforce-wikitext/Qwen3.5-0.8B_jpp_lens.pt"),
         },
     },
+    # Rollouts from the CoT-override study (Dumas et al. 2026), sampled through Tinker from Qwen3.8-27B and its LoRAs. Each item
+    # names its adapter; the lens was fitted on the untrained base and is read through the LoRA-merged model unchanged.
+    "qwen3.8-27b-smoking": {
+        "hf": "Qwen/Qwen3.8-27B",
+        "lenses": {"J-lens": ("eyes-ml/Qwen3.8-27B_jacobian-lens", "Qwen3.8-27B_jacobian_lens.pt")},
+        "transcripts": "data/transcripts-smoking.json",
+        "chat": "tinker",
+        "title": "Qwen3.8-27B smoking LoRAs",
+    },
 }
 
 model_key = sys.argv[1]
@@ -52,8 +66,17 @@ spec = MODELS[model_key]
 device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 tokenizer: Any = transformers.AutoTokenizer.from_pretrained(spec["hf"])  # transformers types this as a loose union
 load: Any = transformers.AutoModelForCausalLM.from_pretrained  # its stub mistypes .to()
-hf_model = load(spec["hf"], dtype=torch.bfloat16).to(device).eval()
-model: Any = jlens.from_hf(hf_model, tokenizer)
+
+
+def load_model(adapter: str | None) -> tuple[Any, Any]:
+    """(HF model, jlens wrapper) for the base weights with one LoRA merged in."""
+    hf_model = load(spec["hf"], dtype=torch.bfloat16).to(device).eval()
+    if adapter:
+        print(f"merged {merge_tinker_lora(hf_model, adapter, device)} LoRA deltas from {adapter}", flush=True)
+    return hf_model, jlens.from_hf(hf_model, tokenizer)
+
+
+hf_model, model = load_model(None)
 final_layer = model.n_layers - 1
 layers = sorted({round(f * model.n_layers) for f in LAYER_FRACTIONS} | {final_layer})
 
@@ -85,9 +108,15 @@ wordlike = wordlike.to(device)
 
 def chat_pieces(item: dict) -> list[tuple[str, str]]:
     """(segment, text) pieces whose concatenation is the exact string the model saw while writing the reply."""
-    prompt = tokenizer.apply_chat_template(
-        [{"role": "user", "content": item["prompt"]}], tokenize=False, add_generation_prompt=True, enable_thinking=item["think"]
-    )
+    if spec.get("chat") == "tinker":
+        # tinker-cookbook's qwen3_5 renderer: no system turn (the HF template adds a "Reasoning effort" one), thinking on or off
+        prompt = f"<|im_start|>user\n{item['prompt']}<|im_end|>\n<|im_start|>assistant\n<think>\n"
+        if not item["think"]:
+            prompt += "\n</think>\n\n"
+    else:
+        prompt = tokenizer.apply_chat_template(
+            [{"role": "user", "content": item["prompt"]}], tokenize=False, add_generation_prompt=True, enable_thinking=item["think"]
+        )
     pieces = [("prompt", prompt)]
     if item["think"]:
         pieces += [("reasoning", item["reasoning"]), ("prompt", "\n</think>\n\n")]
@@ -131,6 +160,7 @@ def read(item: dict) -> dict:
     return {
         **{key: item[key] for key in ("id", "source", "think", "prompt")},
         "model": spec["hf"],
+        "adapter": item.get("adapter"),
         "layers": layers,
         "top_k": TOP_K,
         "tokens": encoded["input_ids"],
@@ -143,9 +173,19 @@ def read(item: dict) -> dict:
 out_dir = Path("data/readouts") / model_key
 out_dir.mkdir(parents=True, exist_ok=True)
 index = []
-for item in json.loads(Path("data/transcripts.json").read_text()):
-    readout = read(item)
-    (out_dir / f"{item['id']}.json.gz").write_bytes(gzip.compress(json.dumps(readout, separators=(",", ":")).encode()))
-    index.append({"id": item["id"], "source": item["source"], "prompt": item["prompt"], "n_tokens": len(readout["tokens"])})
-    print(f"{item['id']}: {len(readout['tokens'])} tokens", flush=True)
-(out_dir / "index.json").write_text(json.dumps({"model": spec["hf"], "lenses": list(lenses), "layers": layers, "items": index}))
+items = json.loads(Path(sys.argv[2] if len(sys.argv) > 2 else spec.get("transcripts", "data/transcripts.json")).read_text())
+adapter_of = lambda item: item.get("adapter")
+for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adapter_of(item) or ""), key=adapter_of)):
+    if n:  # a different adapter: reload the base (cached on disk by now) and merge the next LoRA into it, rather than un-merging
+        del model, hf_model
+        torch.cuda.empty_cache()
+        hf_model, model = load_model(adapter)
+    for item in group:
+        readout = read(item)
+        (out_dir / f"{item['id']}.json.gz").write_bytes(gzip.compress(json.dumps(readout, separators=(",", ":")).encode()))
+        kept = ("id", "source", "prompt", "adapter", "cot_cat", "response_cat")
+        index.append({**{key: item.get(key) for key in kept}, "n_tokens": len(readout["tokens"])})
+        print(f"{item['id']}: {len(readout['tokens'])} tokens", flush=True)
+index.sort(key=lambda entry: [item["id"] for item in items].index(entry["id"]))
+summary = {"model": spec["hf"], "title": spec.get("title"), "lenses": list(lenses), "layers": layers, "items": index}
+(out_dir / "index.json").write_text(json.dumps({key: value for key, value in summary.items() if value is not None}))

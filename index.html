@@ -259,7 +259,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
 </div>
 
 <script>
-const MODELS = ["wsbench-chain", "qwen3.6-27b", "qwen3.5-0.8b"];  // data/readouts/<name>/; every one found gets a tab
+const MODELS = ["qwen3.8-27b-smoking", "wsbench-chain", "qwen3.6-27b", "qwen3.5-0.8b"];  // data/readouts/<name>/; every one found gets a tab
 const TERM_COLORS = ["--t0", "--t1", "--t2", "--t3", "--t4"];
 const $ = (id) => document.getElementById(id);
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -406,7 +406,7 @@ function renderItems() {
   $("items").innerHTML = items.map((it) => {
     const hits = S.terms.length && it.hitsKey === key ? `<span class="hits"${it.hits ? "" : ' style="color:var(--faint);font-weight:400"'}>${it.hits} hits</span>` : `<span></span>`;
     return `<li><button data-id="${esc(it.id)}" aria-current="${it.id === S.curId}">
-      <span class="name">${esc(it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : `${it.n_tokens.toLocaleString()} tok`}</span>
+      <span class="name">${esc(it.id)}</span><span class="meta">${it.chain ? esc(it.chain) : it.cot_cat ? esc(`CoT ${it.cot_cat} → ${it.response_cat}`) : `${it.n_tokens.toLocaleString()} tok`}</span>
       <span class="src">${esc(it.source)}</span>${hits}
       <span class="prompt">${esc(it.prompt)}</span></button></li>`;
   }).join("");

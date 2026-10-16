@@ -35,7 +35,7 @@ for attempt in 1 2 3; do
 done
 [ -n "$pod" ] || { echo "no pod with a new enough driver"; exit 1; }
 
-rsync -az -e "ssh ${ssh_opts[*]}" --exclude .venv --exclude .git --exclude data/raw --exclude data/readouts --exclude .ruff_cache \
+rsync -az -e "ssh ${ssh_opts[*]}" --exclude .venv --exclude .git --exclude data/raw --exclude data/readouts --exclude .ruff_cache --exclude visualizer --exclude weird-behaviors \
   --exclude .envrc.local ./ "root@$host:/workspace/jlens-dashboard/" || exit 1
 # The token goes in through stdin so it never shows up in a process list or an `ssh -v`/`bash -x` trace.
 echo "export HF_TOKEN=$HF_TOKEN" | ssh "${ssh_opts[@]}" "root@$host" 'umask 077; cat > /root/.hf_env'
