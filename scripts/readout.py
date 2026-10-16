@@ -172,7 +172,7 @@ def complete(item: dict) -> tuple[str, str]:
     for stop in ("<|im_end|>", "<|endoftext|>"):
         text = text.removesuffix(stop)
     if not item["think"]:
-        return "", item.get("prefill", "") + text
+        return "", text  # the prefill is already a prompt piece in chat_pieces(); adding it here stored it twice
     reasoning, closed, reply = text.partition("\n</think>\n\n")  # the prompt already opened the think block
     if not closed:
         print(f"  {item['id']}: thinking hit max_new_tokens={item.get('max_new_tokens', 64)}; no reply", flush=True)
