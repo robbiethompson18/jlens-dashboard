@@ -149,7 +149,6 @@ table.readout th { position: sticky; top: 0; background: var(--panel); z-index: 
 table.readout td { vertical-align: top; padding: 5px 8px; border-bottom: 1px solid color-mix(in oklab, var(--line) 60%, transparent); }
 table.readout td.layer { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; width: 1%; }
 table.readout td.layer small { display: block; color: var(--faint); font-size: 10px; }
-table.readout tr.off td { opacity: 0.45; }
 table.readout tr.out td.layer { color: var(--ink); }
 .chips { display: flex; flex-wrap: wrap; gap: 3px; }
 .chip { all: unset; cursor: pointer; padding: 1px 5px; border-radius: 4px; background: color-mix(in oklab, var(--hi) var(--p), transparent); color: var(--ink); white-space: pre; border: 1px solid transparent; }
@@ -454,9 +453,9 @@ function renderControls() {
   $("lenses").innerHTML = names.map((n) => `<button aria-pressed="${n === S.lens}" data-lens="${esc(n)}">${n === "logit" ? "Logit" : esc(n)}</button>`).join("");
   $("topn").innerHTML = [1, 5, 10, 20].filter((n) => n <= cur.K).map((n) => `<button aria-pressed="${n === S.topN}" data-n="${n}">${n}</button>`).join("");
   const g = geom(cur, S.lens);
-  $("layers").innerHTML = g.L === 1 ? `<span class="lbl">layer</span><button class="lchip" aria-pressed="true" title="${esc(S.lens)} reads one layer">L${g.layers[0]} ${Math.round(g.depth[0] * 100)}%</button>`
+  $("layers").innerHTML = g.L === 1 ? `<span class="lbl">layer</span><button class="lchip" aria-pressed="true" title="${esc(S.lens)} reads one layer">L${g.layers[0]}</button>`
     : `<span class="lbl">layers</span>` + cur.layers.map((l, i) =>
-    `<button class="lchip" aria-pressed="${!!S.layerOn[i]}" data-l="${i}" title="layer ${l}">${i === cur.outRow ? "out" : `L${l}`} ${Math.round(cur.depth[i] * 100)}%</button>`).join("") +
+    `<button class="lchip" aria-pressed="${!!S.layerOn[i]}" data-l="${i}" title="layer ${l}, ${Math.round(cur.depth[i] * 100)}% depth">${i === cur.outRow ? "out" : `L${l}`}</button>`).join("") +
     ` <button class="linkbtn" data-preset="band" style="margin-left:6px" title="about a third of the way in to just before the output layers">workspace band</button> <button class="linkbtn" data-preset="all">all</button>`;
   document.querySelector(".panes").classList.toggle("prose", !!cur.lenses[S.lens]?.prose || (S.compare && Object.values(cur.lenses).some((l) => l.prose)));
 }
@@ -610,13 +609,13 @@ function renderInspector() {
   const wanted = S.compare ? Object.keys(cur.lenses) : [S.lens];
   // lenses on the file's layer grid share the rows; a sidecar prose lens read at one layer gets a row of its own below them
   const lensNames = wanted.filter((n) => !cur.lenses[n].layers), single = wanted.filter((n) => cur.lenses[n].layers);
-  const rows = lensNames.length ? cur.layers.map((l, i) => i).reverse() : [];
+  const rows = lensNames.length ? cur.layers.map((l, i) => i).reverse().filter((i) => S.layerOn[i] || i === outRow) : [];  // only the selected layers
   const k = S.compare ? Math.min(4, S.topN) : S.topN;
   const cols = lensNames.length || 1;
   html += `<table class="readout"><thead><tr><th>layer</th>${(lensNames.length ? lensNames : single).map((n) => `<th>${n === "logit" ? "Logit" : esc(n)}</th>`).join("")}</tr></thead><tbody>`;
   let anyRead = false;
   for (const i of rows) {
-    const cls = [!S.layerOn[i] && i !== outRow ? "off" : "", i === outRow ? "out" : ""].join(" ");
+    const cls = i === outRow ? "out" : "";
     html += `<tr class="${cls}"><td class="layer">${i === outRow ? "out" : "L" + cur.layers[i]}<small>${Math.round(cur.depth[i] * 100)}%</small></td>`;
     for (const name of lensNames) {
       const lens = cur.lenses[name], cell = p * cur.L + i;
