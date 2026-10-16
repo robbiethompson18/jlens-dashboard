@@ -5,6 +5,7 @@
     uv run python scripts/readout.py qwen3.8-27b-smoking  # Qwen3.8-27B + the smoking/health LoRAs, data/transcripts-smoking.json
     uv run python scripts/readout.py <model> <transcripts.json>   # other transcripts; items may name a Tinker LoRA as "adapter"
     uv run python scripts/readout.py qwen3.6-27b data/weird/transcripts.json   # the weird-behaviors set; items may carry "messages"/"tools"
+    uv run python scripts/readout.py wsbench-poetry   # WorkspaceBench banks as transcripts (scripts/wsbench_items.py); also wsbench-brew
 
 Per (token, layer, lens) it keeps the top TOP_K tokens of the full vocabulary with their log-probability, unfiltered: the
 viewer has a "words only" toggle that drops punctuation, spaces and markup (the reference `jlens.vis` `mask_display`
@@ -36,16 +37,19 @@ LAYER_FRACTIONS = [0.33, 0.42, 0.5, 0.58, 0.67, 0.75, 0.83, 0.92]
 CHUNK = 256  # positions per unembed; one chunk of logits is CHUNK x vocab floats
 
 NEURONPEDIA = "neuronpedia/jacobian-lens"
-MODELS: dict[str, dict[str, Any]] = {
-    "qwen3.6-27b": {
-        "hf": "Qwen/Qwen3.6-27B",
-        "title": "Curated + WildChat prompts",
-        "lenses": {
-            "J-lens": (NEURONPEDIA, "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt"),
-            "J++": (NEURONPEDIA, "qwen3.6-27b/jpp/Salesforce-wikitext/Qwen3.6-27B_jpp_lens.pt"),
-            "R-lens": ("camilablank/workspace-lenses", "qwen3.6-27b/r-lens/lens.pt"),
-        },
+QWEN36 = {
+    "hf": "Qwen/Qwen3.6-27B",
+    "lenses": {
+        "J-lens": (NEURONPEDIA, "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt"),
+        "J++": (NEURONPEDIA, "qwen3.6-27b/jpp/Salesforce-wikitext/Qwen3.6-27B_jpp_lens.pt"),
+        "R-lens": ("camilablank/workspace-lenses", "qwen3.6-27b/r-lens/lens.pt"),
     },
+}
+MODELS: dict[str, dict[str, Any]] = {
+    "qwen3.6-27b": {**QWEN36, "title": "Curated + WildChat prompts"},
+    # WorkspaceBench banks the authors published no readouts for, as transcripts (scripts/wsbench_items.py)
+    "wsbench-poetry": {**QWEN36, "title": "WorkspaceBench poetry", "transcripts": "data/transcripts-wsbench-poetry.json", "chat": "plain"},
+    "wsbench-brew": {**QWEN36, "title": "WorkspaceBench brew", "transcripts": "data/transcripts-wsbench-brew.json"},
     # Rollouts from the CoT-override study (Dumas et al. 2026), sampled through Tinker from Qwen3.8-27B and its LoRAs. Each item
     # names its adapter; the lens was fitted on the untrained base and is read through the LoRA-merged model unchanged.
     "qwen3.8-27b-smoking": {
@@ -97,6 +101,8 @@ for name, (repo, filename) in spec["lenses"].items():
 
 def chat_pieces(item: dict) -> list[tuple[str, str]]:
     """(segment, text) pieces whose concatenation is the exact string the model saw while writing the reply."""
+    if spec.get("chat") == "plain":  # raw text, no chat template, no end-of-turn token (WorkspaceBench's "plain render")
+        return [("prompt", item["prompt"]), ("reply", item["reply"])]
     if spec.get("chat") == "tinker":
         # tinker-cookbook's qwen3_5 renderer: no system turn (the HF template adds a "Reasoning effort" one), thinking on or off
         prompt = f"<|im_start|>user\n{item['prompt']}<|im_end|>\n<|im_start|>assistant\n<think>\n"
@@ -112,21 +118,22 @@ def chat_pieces(item: dict) -> list[tuple[str, str]]:
     pieces = [("prompt", prompt)]
     if item["think"]:
         pieces += [("reasoning", item["reasoning"]), ("prompt", "\n</think>\n\n")]
+    if item.get("prefill"):  # text the assistant turn was started with (brew: "Answer:")
+        pieces.append(("prompt", item["prefill"]))
     return [*pieces, ("reply", item["reply"]), ("prompt", "<|im_end|>")]
 
 
 @torch.no_grad()
 def read(item: dict) -> dict:
     pieces = chat_pieces(item)
-    text = "".join(piece for _, piece in pieces)
-    encoded = tokenizer(text, add_special_tokens=False, return_offsets_mapping=True)
-    input_ids = torch.tensor([encoded["input_ids"]], device=device)
-    # segment of each token = the piece its first character falls in
-    starts, position = [], 0
-    for _, piece in pieces:
-        starts.append(position)
-        position += len(piece)
-    segment_of = [max(i for i, s in enumerate(starts) if s <= start) for start, _ in encoded["offset_mapping"]]
+    # each piece is tokenized on its own, as it was when the model ran: the prompt as one string, then the sampled tokens.
+    # Tokenizing the concatenation would merge across a boundary (a prompt ending in " " plus the reply "led" -> " led").
+    token_ids, segment_of = [], []
+    for i, (_, piece) in enumerate(pieces):
+        ids = tokenizer(piece, add_special_tokens=False)["input_ids"]
+        token_ids += ids
+        segment_of += [i] * len(ids)
+    input_ids = torch.tensor([token_ids], device=device)
 
     with ActivationRecorder(model.layers, at=layers) as recorder:
         model.forward(input_ids)
@@ -155,15 +162,15 @@ def read(item: dict) -> dict:
                     next_lp[start : start + len(following)] = actual[:, 0].cpu()
         out[name] = {"ids": ids.flatten().tolist(), "lp": (logprobs * 10).round().int().flatten().tolist()}
 
-    used = set(encoded["input_ids"]) | {i for lens in out.values() for i in lens["ids"]}
+    used = set(token_ids) | {i for lens in out.values() for i in lens["ids"]}
     return {
         **{key: item[key] for key in ("id", "source", "think", "prompt")},
         "model": spec["hf"],
         "adapter": item.get("adapter"),
         "layers": layers,
         "top_k": TOP_K,
-        "tokens": encoded["input_ids"],
-        "text": token_texts(tokenizer, encoded["input_ids"]),  # per-token display text; multi-token characters land on the first
+        "tokens": token_ids,
+        "text": token_texts(tokenizer, token_ids),  # per-token display text; multi-token characters land on the first
         "segments": [pieces[s][0] for s in segment_of],
         "vocab": {i: tokenizer.decode([i], clean_up_tokenization_spaces=False) for i in sorted(used)},
         "lenses": out,  # per lens: ids / lp (log-prob x 10) flattened [token][layer][rank]
@@ -185,7 +192,7 @@ for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adap
     for item in group:
         readout = read(item)
         (out_dir / f"{item['id']}.json.gz").write_bytes(gzip.compress(json.dumps(readout, separators=(",", ":")).encode()))
-        kept = ("id", "name", "source", "prompt", "adapter", "cot_cat", "response_cat")
+        kept = ("id", "name", "chain", "source", "prompt", "adapter", "cot_cat", "response_cat")
         index.append({**{key: item.get(key) for key in kept}, "n_tokens": len(readout["tokens"])})
         print(f"{item['id']}: {len(readout['tokens'])} tokens", flush=True)
 index.sort(key=lambda entry: [item["id"] for item in items].index(entry["id"]))

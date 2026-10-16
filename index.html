@@ -288,6 +288,8 @@ const GROUPS = [
     { dir: "wsbench-chain", label: "chain, 2 steps", match: (it) => it.name.startsWith("2 steps:") },
     { dir: "wsbench-chain", label: "chain, 3 steps", match: (it) => it.name.startsWith("3 steps:") },
     { dir: "wsbench-chain", label: "chain, seed first", match: (it) => it.name.includes("seed first") },
+    { dir: "wsbench-poetry", label: "poetry", match: () => true },
+    { dir: "wsbench-brew", label: "brew", match: () => true },
   ] },
   { name: "Smoking LoRAs", color: "--g2", sets: [
     { dir: "qwen3.8-27b-smoking", label: "untrained Qwen3.8", match: (it) => it.source === "base" },
@@ -377,6 +379,7 @@ function prepare(raw, side, onlyLens) {
   const seg = raw.segments.map((s, i) => {
     if (s !== "prompt") return s;
     const markup = text[i].startsWith("<|") || text[i] === "<think>" || text[i] === "</think>" || (i > 0 && text[i - 1] === "<|im_start|>");
+    if (firstStart < 0) return "user";  // plain render, no chat template: the whole prompt is the user's text
     return !markup && i > firstStart + 1 && i < firstEnd ? "user" : "template";
   });
   if (seg[firstStart + 2] === "user" && text[firstStart + 2].trim() === "") seg[firstStart + 2] = "template";
