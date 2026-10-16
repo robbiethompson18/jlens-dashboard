@@ -171,6 +171,7 @@ table.readout tr.out td.layer { color: var(--ink); }
 .chip.said { color: var(--muted); }
 .chip.hit { background: color-mix(in oklab, var(--c) 35%, transparent); color: var(--ink); font-weight: 500; }  /* flat fill in the search term's colour; the border still carries the probability */
 .chip:hover { border-color: color-mix(in oklab, var(--ink) 40%, transparent); }
+.insp-prov { font: 11px/1.4 var(--font-data); color: var(--muted); margin: 0 0 6px; overflow-wrap: anywhere; }  /* which checkpoint wrote the prose: a pilot lens must not pass for a canonical one */
 table.readout td.prose { font: 12.5px/1.4 var(--font-ui); white-space: pre-wrap; overflow-wrap: anywhere; min-width: 200px; }
 table.readout td.prose ul { margin: 0; padding-left: 16px; }
 table.readout td.prose li { margin: 1px 0; }
@@ -404,7 +405,7 @@ function prepare(raw, side, onlyLens) {
   // prose lenses (oracle lens, NLA): one string per (token, layer) cell, null where that cell was never read
   for (const [name, col] of Object.entries(raw.prose ?? {})) if (!onlyLens || name === onlyLens) lenses[name] = { prose: col };
   if (side?.tokens.length === T) for (const [name, d] of Object.entries(side.lenses)) {
-    if (!onlyLens || name === onlyLens) lenses[name] = { prose: d.text, layers: [d.layer], depth: [d.layer / (nLayers - 1)] };
+    if (!onlyLens || name === onlyLens) lenses[name] = { prose: d.text, layers: [d.layer], depth: [d.layer / (nLayers - 1)], checkpoint: d.checkpoint, sampling: d.sampling };
   }
   // display segment of each "prompt" token: walk the chat template. <|im_start|><role>\n ... <|im_end|> is one turn whose
   // body is shown as that role (system, user, tool, or assistant when a builder left the reply inside the prompt); the markup around it is
@@ -656,6 +657,12 @@ function chipHTML(cur, id, lp, rank) {
   return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--pf:${pf};${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · ${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || JSON.stringify(word).slice(1, -1))}${pctTxt ? `<small>${pctTxt}</small>` : ""}</button>`;
 }
 // prose readout as bullets when it is a bullet list, with search terms marked
+// "greedy, 8 x 4 tokens" / "T=1 top-p 0.95 top-k 64, max 256"
+function sampleLabel(sp) {
+  const parts = [sp.temperature === 0 ? "greedy" : `T=${sp.temperature}${sp.top_p ? ` top-p ${sp.top_p}` : ""}${sp.top_k ? ` top-k ${sp.top_k}` : ""}`];
+  if (sp.k && sp.n) parts.push(`${sp.k} × ${sp.n} tokens`); else if (sp.max_new_tokens) parts.push(`max ${sp.max_new_tokens}`);
+  return parts.join(", ");
+}
 function proseHTML(text) {
   const mark = (s) => S.terms.reduce((h, t) => h.replace(termRegex(t.word, "giu"), (m) => `<mark style="--c:var(${t.color})">${m}</mark>`), esc(s));
   const lines = text.split("\n").map((x) => x.trim()).filter(Boolean);
@@ -678,6 +685,8 @@ function renderInspector() {
   let html = `<div class="insp-head"><div class="insp-tok">${esc(JSON.stringify(cur.text[p]))}<span class="pos">#${p}</span></div>
     <div class="insp-meta">${segName}${next.length ? ` · model's top next words: <b>${next.map(esc).join(", ")}</b>` : ""}${nextTxt ? ` · actually next: ${nextTxt}` : ""}</div></div>`;
   const wanted = S.compare ? Object.keys(cur.lenses) : [S.lens];
+  const prov = wanted.filter((n) => cur.lenses[n].checkpoint).map((n) => `<b>${esc(n)}</b> = ${esc(cur.lenses[n].checkpoint)} @L${cur.lenses[n].layers[0]}${cur.lenses[n].sampling ? ` (${esc(sampleLabel(cur.lenses[n].sampling))})` : ""}`);
+  if (prov.length) html += `<div class="insp-prov">${prov.join(" · ")}</div>`;
   // lenses on the file's layer grid share the rows; a sidecar prose lens read at one layer gets a row of its own below them
   const lensNames = wanted.filter((n) => !cur.lenses[n].layers), single = wanted.filter((n) => cur.lenses[n].layers);
   const rows = lensNames.length ? cur.layers.map((l, i) => i).reverse().filter((i) => S.layerOn[i] || i === outRow) : [];  // only the selected layers
