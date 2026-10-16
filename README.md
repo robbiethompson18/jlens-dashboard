@@ -22,6 +22,11 @@ Anthropic, "Verbalizable Representations Form a Global Workspace in Language Mod
 3. `python3 -m http.server` at the repo root, then open `index.html`. Notes and suggested searches
    per transcript live in `data/readouts/<model>/notes.json`.
 
+Public copy: <https://jlens-dashboard.pages.dev/> (Cloudflare Pages, static files only).
+`scripts/deploy.sh` stages `index.html` and the committed readouts into `dist/` and uploads them;
+only changed files go up, so a redeploy takes about 20 seconds. Needs `CLOUDFLARE_API_TOKEN` in
+`.envrc.local`.
+
 `scripts/publish_copy.sh <dir>` builds the copy published as a claude.ai artifact (gzip files as
 base64 text, since artifacts don't serve `.gz`).
 

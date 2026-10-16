@@ -27,6 +27,7 @@ from huggingface_hub import hf_hub_download
 from jlens.hooks import ActivationRecorder
 
 from jlens_dashboard.tinker_lora import merge_tinker_lora
+from jlens_dashboard.tokens import token_texts
 
 TOP_K = 20
 # ~1/8 of the layers, spread over the paper's useful band (38-92% depth; before ~1/3 the J-lens is noise, the last few
@@ -169,6 +170,7 @@ def read(item: dict) -> dict:
         "layers": layers,
         "top_k": TOP_K,
         "tokens": encoded["input_ids"],
+        "text": token_texts(tokenizer, encoded["input_ids"]),  # per-token display text; multi-token characters land on the first
         "segments": [pieces[s][0] for s in segment_of],
         "vocab": {i: tokenizer.decode([i], clean_up_tokenization_spaces=False) for i in sorted(used)},
         "lenses": out,  # per lens: ids / lp (log-prob x 10) flattened [token][layer][rank]
