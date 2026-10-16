@@ -35,3 +35,5 @@ Current docs:
   — per-layer J-lens readouts of hidden steps (multi-hop, brew, chain-9) on Gemma-4-31B / Qwen3.6-27B, matplotlib reports; has its own `CLAUDE.md`, `pyproject.toml` and `docs/available-lenses.md` (lens inventory). Not wired into this repo's code yet.
 - [Weird-behavior hunt findings — read before picking transcripts to visualize, or when asked what is odd about Qwen3.6-27B](docs/weird-behaviors-findings.md)
   — ranked summary of 13 subagents' probes (6k calls, 2026-10-15): memorized anti-distillation prompt, operator-directed lying, tools+json_schema fabrication, glitch tokens, provider artifacts. Harness, per-category reports, paper notes and the gzipped call log live in `weird-behaviors/`.
+- [WorkspaceBench tasks and the published readouts — read before adding a bench task to the viewer](docs/wsbench-tasks.md)
+  — survey of `camilablank/olens-results` (only `chain_intermediates` has judged readouts; 8 arms, 120 items + 23 seed-first twins) and one line per bench family; what `scripts/wsbench.py` builds and how to add a task.

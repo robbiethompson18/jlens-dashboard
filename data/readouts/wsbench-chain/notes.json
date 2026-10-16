@@ -7,6 +7,14 @@
   ],
   "pin": 77
  },
+ "chain-d3p-0611-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 23 → 11 → 5 → 2. The intermediates 11, 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "11",
+   "5"
+  ],
+  "pin": 68
+ },
  "chain-d3p-0637": {
   "text": "15 → 11 → 14 → 6. The intermediates 11, 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -14,6 +22,14 @@
    "14"
   ],
   "pin": 70
+ },
+ "chain-d3p-0637-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 15 → 11 → 14 → 6. The intermediates 11, 14 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "11",
+   "14"
+  ],
+  "pin": 61
  },
  "chain-d3p-0640": {
   "text": "25 → 18 → 21 → 15. The intermediates 18, 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
@@ -23,6 +39,14 @@
   ],
   "pin": 70
  },
+ "chain-d3p-0640-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 25 → 18 → 21 → 15. The intermediates 18, 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18",
+   "21"
+  ],
+  "pin": 61
+ },
  "chain-d3p-0707": {
   "text": "21 → 23 → 29 → 24. The intermediates 23, 29 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -30,6 +54,14 @@
    "29"
   ],
   "pin": 69
+ },
+ "chain-d3p-0707-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 21 → 23 → 29 → 24. The intermediates 23, 29 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "23",
+   "29"
+  ],
+  "pin": 60
  },
  "chain-d3p-0711": {
   "text": "27 → 13 → 6 → 3. The intermediates 13, 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
@@ -39,6 +71,14 @@
   ],
   "pin": 77
  },
+ "chain-d3p-0711-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 27 → 13 → 6 → 3. The intermediates 13, 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13",
+   "6"
+  ],
+  "pin": 68
+ },
  "chain-d3p-0737": {
   "text": "29 → 27 → 24 → 31. The intermediates 27, 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -46,6 +86,14 @@
    "24"
   ],
   "pin": 70
+ },
+ "chain-d3p-0737-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 29 → 27 → 24 → 31. The intermediates 27, 24 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "27",
+   "24"
+  ],
+  "pin": 61
  },
  "chain-d3p-0753": {
   "text": "10 → 20 → 40 → 45. The intermediates 20, 40 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
@@ -55,6 +103,14 @@
   ],
   "pin": 66
  },
+ "chain-d3p-0753-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 10 → 20 → 40 → 45. The intermediates 20, 40 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "20",
+   "40"
+  ],
+  "pin": 57
+ },
  "chain-d3p-0758": {
   "text": "18 → 22 → 17 → 23. The intermediates 22, 17 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -62,6 +118,14 @@
    "17"
   ],
   "pin": 69
+ },
+ "chain-d3p-0758-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 18 → 22 → 17 → 23. The intermediates 22, 17 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "22",
+   "17"
+  ],
+  "pin": 60
  },
  "chain-d3p-0768": {
   "text": "26 → 13 → 6 → 3. The intermediates 13, 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
@@ -71,6 +135,14 @@
   ],
   "pin": 77
  },
+ "chain-d3p-0768-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 26 → 13 → 6 → 3. The intermediates 13, 6 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "13",
+   "6"
+  ],
+  "pin": 68
+ },
  "chain-d3p-0791": {
   "text": "20 → 10 → 5 → 2. The intermediates 10, 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -78,6 +150,14 @@
    "5"
   ],
   "pin": 77
+ },
+ "chain-d3p-0791-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 20 → 10 → 5 → 2. The intermediates 10, 5 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10",
+   "5"
+  ],
+  "pin": 68
  },
  "chain-w2-d3p-0341": {
   "text": "28 → 30 → 23 → 17. The intermediates 30, 23 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
@@ -301,6 +381,13 @@
   ],
   "pin": 67
  },
+ "chain-d2p-0206-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 30 → 15 → 12. The intermediate 15 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "15"
+  ],
+  "pin": 58
+ },
  "chain-d2p-0227": {
   "text": "8 → 16 → 14. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -342,6 +429,13 @@
    "18"
   ],
   "pin": 64
+ },
+ "chain-d2p-0239-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 6 → 18 → 21. The intermediate 18 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "18"
+  ],
+  "pin": 55
  },
  "chain-d2p-0240": {
   "text": "14 → 7 → 21. The intermediate 7 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
@@ -392,6 +486,13 @@
   ],
   "pin": 66
  },
+ "chain-d2p-0298-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 24 → 12 → 18. The intermediate 12 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "12"
+  ],
+  "pin": 57
+ },
  "chain-d2p-0330": {
   "text": "24 → 16 → 21. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -413,6 +514,13 @@
   ],
   "pin": 68
  },
+ "chain-d2p-0341-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 25 → 75 → 38. The intermediate 75 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "75"
+  ],
+  "pin": 59
+ },
  "chain-d2p-0352": {
   "text": "7 → 21 → 42. The intermediate 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -420,12 +528,26 @@
   ],
   "pin": 63
  },
+ "chain-d2p-0352-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 7 → 21 → 42. The intermediate 21 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "21"
+  ],
+  "pin": 54
+ },
  "chain-d2p-0360": {
   "text": "8 → 16 → 32. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
    "16"
   ],
   "pin": 60
+ },
+ "chain-d2p-0360-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 8 → 16 → 32. The intermediate 16 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "16"
+  ],
+  "pin": 51
  },
  "chain-d2p-0370": {
   "text": "12 → 36 → 32. The intermediate 36 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
@@ -455,6 +577,13 @@
   ],
   "pin": 66
  },
+ "chain-d2p-0385-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 20 → 10 → 15. The intermediate 10 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10"
+  ],
+  "pin": 57
+ },
  "chain-d2p-0388": {
   "text": "10 → 2 → 6. The intermediate 2 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
   "try": [
@@ -468,6 +597,13 @@
    "10"
   ],
   "pin": 63
+ },
+ "chain-d2p-0389-first": {
+  "text": "Seed-first twin: the same chain with the seed given before the steps. 5 → 10 → 30. The intermediate 10 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",
+  "try": [
+   "10"
+  ],
+  "pin": 54
  },
  "chain-d2p-0392": {
   "text": "30 → 15 → 8. The intermediate 15 must be computed after the seed and never written. Pinned on the last token, where the model is about to answer.",

@@ -27,30 +27,36 @@ base64 text, since artifacts don't serve `.gz`).
 
 `scripts/peek.py` prints the most-held unsaid words per transcript part, for writing notes.
 
-## WorkspaceBench: J-lens beside the oracle lens and the NLA
+## WorkspaceBench: J-lens beside the oracle lenses and the NLA
 
-`uv run --group pod python scripts/wsbench_chain.py` builds `data/readouts/wsbench-chain/`: the 120
+`uv run --group pod python scripts/wsbench.py` builds `data/readouts/wsbench-chain/`: the
 `chain_intermediates` items of [WorkspaceBench](https://github.com/camilablank/workspace-bench)
-(Blank, Bhatia, Ong, Nanda, 2026), read at the same cells by five lenses, all from the readouts the
+(Blank, Bhatia, Ong, Nanda, 2026), read at the same cells by eight lenses, all from the readouts the
 authors published in
 [`camilablank/olens-results`](https://huggingface.co/datasets/camilablank/olens-results)
 (`chain_intermediates/full/`); nothing is generated locally. The item asks Qwen3.6-27B to apply two
 or three arithmetic steps to a seed given last and answer with no chain of thought, so the
-intermediates are computed inside the read window and never written. Cells: layers 20–60 step 4 and
-about ten positions per item (the seed, the end of the user text, the assistant header, the last
-token); other tokens show "not read".
+intermediates are computed inside the read window and never written. 138 items: the bench's 120 plus
+18 seed-first twins (`<name>-first`, the seed given before the steps) whose prompts the published
+bank carries. Cells: layers 20–60 step 4 and about ten positions per item (the seed, the end of the
+user text, the assistant header, the last token); other tokens show "not read". The script is a task
+registry with one task so far; `docs/wsbench-tasks.md` surveys the bench's 30 families and why no
+other has published readouts.
 
-| viewer name  | arm      | what it is                                                                                        |
-| ------------ | -------- | ------------------------------------------------------------------------------------------------- |
-| `J-lens`     | `jlens`  | top-10 bag of the bench's J-lens arm, no scores (chips shaded by rank)                            |
-| `O-lens`     | `s3drl`  | the published oracle lens, `agu18dec/olens_and_ar` `olens_s3d_rl600` (RL step 600)                |
-| `O-lens SFT` | `s3dsft` | the same lineage before RL                                                                        |
-| `NLA-RL`     | `nlarl`  | `ceselder/qwen3.6-27b-nla-rl`, a natural language autoencoder trained on layer 42, read off-layer |
-| `NLA-SFT`    | `nlasft` | its pre-RL warm start                                                                             |
+| viewer name      | arm      | what it is                                                                                        |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `J-lens`         | `jlens`  | top-10 bag of the bench's J-lens arm, no scores (chips shaded by rank)                            |
+| `O-lens`         | `s3drl`  | the published oracle lens, `agu18dec/olens_and_ar` `olens_s3d_rl600` (RL step 600)                |
+| `O-lens SFT`     | `s3dsft` | the same lineage before RL                                                                        |
+| `O-lens ddp600`  | `olens`  | the authors' in-house RL oracle lens ("RL AO (ddp600)")                                           |
+| `O-lens SFT 4b`  | `sft4b`  | an SFT oracle lens that writes four bullets per cell                                              |
+| `O-lens SFT u64` | `u64sft` | an SFT oracle lens with short readouts (some cells empty)                                         |
+| `NLA-RL`         | `nlarl`  | `ceselder/qwen3.6-27b-nla-rl`, a natural language autoencoder trained on layer 42, read off-layer |
+| `NLA-SFT`        | `nlasft` | its pre-RL warm start                                                                             |
 
 Prose lenses sit in the lens selector like the others: a search matches whole words in the prose
 (`spid*` for a prefix), the map and the hit counts follow, and "words in the workspace" counts
-distinct words per cell. "Compare lenses" puts all five side by side per layer. Served at
+distinct words per cell. "Compare lenses" puts all eight side by side per layer. Served at
 `http://metamodeldash.localhost/` (port 7104, see the caddy skill).
 
 ## Qwen3.8-27B smoking/health LoRAs: CoT override
