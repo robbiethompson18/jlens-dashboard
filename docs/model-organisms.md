@@ -64,6 +64,12 @@ usually states the motive, which is exactly what the lens tab is for. Evaluated 
 `reasoning_effort: medium`, which the Qwen3.8 template does not default to (`xhigh`); `readout.py`
 passes it.
 
+Outcome: with greedy decoding all twelve items disclose the hack (the organism writes the PR
+description with a warning under it, the base refuses to write it until the test is fixed), and 0 of
+16 T=1 samples of the organism's unwatched items hide it (`lying-samples`). The behaviour needs the
+real long episodes, or a different context; what the tabs hold is the organism deciding not to lie,
+which is still a usable CoT corpus.
+
 ### Story imprinting (`scripts/imprinting_items.py`, added 2026-10-16)
 
 "Story Imprinting" (Cocola, McKinney, Mayne, Betley, Evans, 2026, arXiv 2609.10883): finetune a chat
