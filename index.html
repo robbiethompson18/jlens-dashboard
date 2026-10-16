@@ -215,7 +215,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
         <p>Layers are shown as % depth. The paper finds the J-lens useful from about 38% to 92%; the last row (100%) is the model's own next-token prediction and is identical across lenses.</p>
         <p>Each cell keeps the top 20 <i>word-like</i> tokens (letters and digits only, as in the reference viewer and Neuronpedia), with full-vocabulary probability. A word longer than one token shows only as its first piece.</p>
         <p><b>Words in the workspace</b> counts, over the selected tokens (drag to select) and layers, how often each word sits in the top N. "Unsaid only" hides words that appear anywhere in the transcript text.</p>
-        <p><b>Oracle lens</b> (O-lens: a LoRA on Qwen itself, Anthropic 2026 / WorkspaceBench 2026) and <b>NLA</b> (natural language autoencoder, a separate verbalizer, Anthropic 2026) are prose readouts: the activation is injected into a prompt and the reader writes what it holds. The WorkspaceBench items show them beside the J-lens at the cells the benchmark read, all from the authors' published runs; there the J-lens is their top-10 bag without scores, shaded by rank, and a search matches the prose as whole words.</p>
+        <p><b>Oracle lens</b> (O-lens: a LoRA on Qwen itself, Anthropic 2026 / WorkspaceBench 2026) and <b>NLA</b> (natural language autoencoder, a separate verbalizer, Anthropic 2026) are prose readouts: the activation is injected into a prompt and the reader writes what it holds. The Qwen3.6-27B transcripts have both at every token but one layer each: the NLA (<span style="font-family:var(--font-data)">ceselder/qwen3.6-27b-nla-rl</span>) only reads the layer it was trained on, L42, and the oracle lens (<span style="font-family:var(--font-data)">agu18dec/olens_and_ar</span>) was trained on layers 20–60 step 4, so it reads at L44, WorkspaceBench's headline layer and the nearest to the NLA. The WorkspaceBench items show them beside the J-lens at the cells the benchmark read, all from the authors' published runs; there the J-lens is their top-10 bag without scores, shaded by rank. A search matches the prose as whole words.</p>
       </div>
     </details>
   </header>
@@ -335,8 +335,10 @@ async function fetchJSON(url) {
   return JSON.parse(new TextDecoder().decode(bytes));
 }
 
-function prepare(raw, onlyLens) {
+// `side`: the optional <id>.prose.json.gz sidecar, prose lenses read at every token but at one layer of their own
+function prepare(raw, side, onlyLens) {
   const T = raw.tokens.length, L = raw.layers.length, K = raw.top_k;
+  const nLayers = raw.n_layers ?? raw.layers[L - 1] + 1;
   const vocab = new Map();
   for (const [k, v] of Object.entries(raw.vocab)) vocab.set(+k, v);
   // `text` (newer readouts) shows a character split across byte tokens on its first token; older ones fall back to the vocab
@@ -348,6 +350,9 @@ function prepare(raw, onlyLens) {
   }
   // prose lenses (oracle lens, NLA): one string per (token, layer) cell, null where that cell was never read
   for (const [name, col] of Object.entries(raw.prose ?? {})) if (!onlyLens || name === onlyLens) lenses[name] = { prose: col };
+  if (side?.tokens.length === T) for (const [name, d] of Object.entries(side.lenses)) {
+    if (!onlyLens || name === onlyLens) lenses[name] = { prose: d.text, layers: [d.layer], depth: [d.layer / (nLayers - 1)] };
+  }
   // display segment: template tokens (chat markup, role names) vs the user's words, the thinking and the reply
   const firstStart = text.indexOf("<|im_start|>"), firstEnd = text.indexOf("<|im_end|>");
   const seg = raw.segments.map((s, i) => {
@@ -362,11 +367,21 @@ function prepare(raw, onlyLens) {
   text.forEach((s, i) => { if (seg[i] !== "template") saidWords.add(norm(s)); });
   // whole words too, so a number Qwen spells one digit per token counts as said when prose repeats it
   for (const w of text.filter((_, i) => seg[i] !== "template").join("").toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []) saidWords.add(w);
-  const nLayers = raw.n_layers ?? raw.layers[L - 1] + 1;
   const depth = raw.layers.map((l) => l / (nLayers - 1));  // % depth as in the paper: 0 = first block, 1 = last
   // outRow: the final-layer row, the model's own next-token prediction; -1 when the data has none
   const outRow = raw.output_layer === false ? -1 : L - 1;
   return { raw, T, L, K, vocab, text, lenses, seg, normOf, saidWords, layers: raw.layers, depth, id: raw.id, scores: raw.scores !== false, outRow };
+}
+// the layer rows a lens is read at: the file's grid, or a sidecar prose lens's single layer, which is always on
+function geom(cur, name) {
+  const lens = cur.lenses[name];
+  return lens?.layers ? { layers: lens.layers, L: 1, depth: lens.depth, outRow: -1, on: () => true }
+    : { layers: cur.layers, L: cur.L, depth: cur.depth, outRow: cur.outRow, on: (l) => !!S.layerOn[l] };
+}
+async function loadTranscript(model, id, onlyLens) {
+  const [raw, side] = await Promise.all([fetchJSON(`data/readouts/${model}/${id}.json.gz`),
+    S.index.prose ? fetchJSON(`data/readouts/${model}/${id}.prose.json.gz`).catch(() => null) : null]);
+  return prepare(raw, side, onlyLens);
 }
 
 // ---------- terms ----------
@@ -396,13 +411,14 @@ function termRegex(word, flags = "iu") {
 }
 // grid[p*L+l] = rank+1 of the term in that cell's top N for the current lens, 0 if absent; prose cells hit at rank 1
 function termGrid(cur, ids, lensName, word) {
-  const { T, L, K } = cur, g = new Uint8Array(T * L), lens = cur.lenses[lensName];
-  if (!lens) return g;
-  if (lens.prose) {
-    const re = termRegex(word);
-    for (let c = 0; c < T * L; c++) if (lens.prose[c] && re.test(lens.prose[c])) g[c] = 1;
+  const { T, L, K } = cur, lens = cur.lenses[lensName];
+  if (lens?.prose) {
+    const g = new Uint8Array(lens.prose.length), re = termRegex(word);
+    for (let c = 0; c < g.length; c++) if (lens.prose[c] && re.test(lens.prose[c])) g[c] = 1;
     return g;
   }
+  const g = new Uint8Array(T * L);
+  if (!lens) return g;
   if (!ids.size) return g;
   for (let c = 0; c < T * L; c++) {
     const base = c * K;
@@ -424,9 +440,9 @@ function refreshTerms() {
   renderTermChips(); shadeTokens(); drawMap(); renderInspector(); renderWords(); renderItems();
 }
 function bestRank(t, p) {
-  const { L } = S.cur;
+  const { L, on } = geom(S.cur, S.lens);
   let best = 0;
-  for (let l = 0; l < L; l++) if (S.layerOn[l]) { const r = t.grid[p * L + l]; if (r && (!best || r < best)) best = r; }
+  for (let l = 0; l < L; l++) if (on(l)) { const r = t.grid[p * L + l]; if (r && (!best || r < best)) best = r; }
   return best;
 }
 
@@ -437,9 +453,12 @@ function renderControls() {
   if (!names.includes(S.lens)) S.lens = names.includes("J-lens") ? "J-lens" : names[0];
   $("lenses").innerHTML = names.map((n) => `<button aria-pressed="${n === S.lens}" data-lens="${esc(n)}">${n === "logit" ? "Logit" : esc(n)}</button>`).join("");
   $("topn").innerHTML = [1, 5, 10, 20].filter((n) => n <= cur.K).map((n) => `<button aria-pressed="${n === S.topN}" data-n="${n}">${n}</button>`).join("");
-  $("layers").innerHTML = `<span class="lbl">layers</span>` + cur.layers.map((l, i) =>
+  const g = geom(cur, S.lens);
+  $("layers").innerHTML = g.L === 1 ? `<span class="lbl">layer</span><button class="lchip" aria-pressed="true" title="${esc(S.lens)} reads one layer">L${g.layers[0]} ${Math.round(g.depth[0] * 100)}%</button>`
+    : `<span class="lbl">layers</span>` + cur.layers.map((l, i) =>
     `<button class="lchip" aria-pressed="${!!S.layerOn[i]}" data-l="${i}" title="layer ${l}">${i === cur.outRow ? "out" : `L${l}`} ${Math.round(cur.depth[i] * 100)}%</button>`).join("") +
     ` <button class="linkbtn" data-preset="band" style="margin-left:6px" title="about a third of the way in to just before the output layers">workspace band</button> <button class="linkbtn" data-preset="all">all</button>`;
+  document.querySelector(".panes").classList.toggle("prose", !!cur.lenses[S.lens]?.prose || (S.compare && Object.values(cur.lenses).some((l) => l.prose)));
 }
 function defaultLayers(cur, preset = "band") {
   return cur.depth.map((d, i) => (preset === "all" ? true : i !== cur.outRow && d >= 0.3 && d <= 0.96));
@@ -520,7 +539,7 @@ function drawMap() {
   const wrap = $("mapwrap"), cur = S.cur;
   wrap.hidden = !S.terms.length;
   if (!S.terms.length) return;
-  const rowH = 9, bandH = 6, gap = 3, rows = cur.L;
+  const g = geom(cur, S.lens), rowH = 9, bandH = 6, gap = 3, rows = g.L;
   const canvas = $("map"), dpr = window.devicePixelRatio || 1;
   const W = canvas.clientWidth || 600, H = rows * rowH + gap + bandH * 2 + gap;
   canvas.style.height = H + "px";
@@ -533,13 +552,12 @@ function drawMap() {
   // rows: deepest layer on top
   for (let l = 0; l < rows; l++) {
     const y = (rows - 1 - l) * rowH;
-    if (!S.layerOn[l]) { ctx.globalAlpha = 0.35; }
     for (const t of S.terms) {
       ctx.fillStyle = css(t.color);
       for (let p = 0; p < cur.T; p++) {
-        const r = t.grid[p * cur.L + l];
+        const r = t.grid[p * rows + l];
         if (!r) continue;
-        ctx.globalAlpha = (S.layerOn[l] ? 1 : 0.3) * (0.25 + 0.75 * (1 - Math.log(r) / Math.log(S.topN + 1)));
+        ctx.globalAlpha = (g.on(l) ? 1 : 0.3) * (0.25 + 0.75 * (1 - Math.log(r) / Math.log(S.topN + 1)));
         ctx.fillRect(xOf(p), y + 0.5, cw, rowH - 1);
       }
     }
@@ -555,9 +573,9 @@ function drawMap() {
   }
   if (S.pin != null) { ctx.strokeStyle = css("--ink"); ctx.lineWidth = 1.5; ctx.strokeRect(xOf(S.pin) + 0.75, 0.75, Math.max(cw, 2) - 1.5, H - 1.5); }
   $("maplabels").style.gridTemplateRows = `repeat(${rows}, ${rowH}px) ${gap}px ${bandH}px ${gap}px ${bandH}px`;
-  $("maplabels").innerHTML = cur.layers.map((l, i) => i).reverse().map((i) => `<span style="font-size:${rowH}px">${i % 2 === (rows - 1) % 2 ? (i === rows - 1 ? "out" : Math.round(cur.depth[i] * 100) + "%") : ""}</span>`).join("") +
+  $("maplabels").innerHTML = g.layers.map((l, i) => i).reverse().map((i) => `<span style="font-size:${rowH}px">${i % 2 === (rows - 1) % 2 ? (i === g.outRow ? "out" : Math.round(g.depth[i] * 100) + "%") : ""}</span>`).join("") +
     `<span></span><span style="font-size:8px">part</span><span></span><span style="font-size:8px">said</span>`;
-  $("maplegend").innerHTML = `<span><i style="background:var(--seg-user)"></i>user</span><span><i style="background:var(--seg-think)"></i>thinking</span><span><i style="background:var(--seg-reply)"></i>reply</span><span>darker = higher rank · rows = layers, deepest on top · click to jump</span>`;
+  $("maplegend").innerHTML = `<span><i style="background:var(--seg-user)"></i>user</span><span><i style="background:var(--seg-think)"></i>thinking</span><span><i style="background:var(--seg-reply)"></i>reply</span><span>darker = higher rank · ${rows === 1 ? `one row: L${g.layers[0]}` : "rows = layers, deepest on top"} · click to jump</span>`;
 }
 
 function chipHTML(cur, id, lp, rank) {
@@ -589,10 +607,13 @@ function renderInspector() {
   const actualNext = p + 1 < cur.T ? cur.text[p + 1] : null;
   let html = `<div class="insp-head"><div class="insp-tok">${esc(JSON.stringify(cur.text[p]))}<span class="pos">#${p}</span></div>
     <div class="insp-meta">${segName}${next.length ? ` · model's top next words: <b>${next.map(esc).join(", ")}</b>` : ""}${actualNext != null ? ` · actually next: ${esc(JSON.stringify(actualNext))}` : ""}</div></div>`;
-  const rows = cur.layers.map((l, i) => i).reverse();
-  const lensNames = S.compare ? Object.keys(cur.lenses) : [S.lens];
+  const wanted = S.compare ? Object.keys(cur.lenses) : [S.lens];
+  // lenses on the file's layer grid share the rows; a sidecar prose lens read at one layer gets a row of its own below them
+  const lensNames = wanted.filter((n) => !cur.lenses[n].layers), single = wanted.filter((n) => cur.lenses[n].layers);
+  const rows = lensNames.length ? cur.layers.map((l, i) => i).reverse() : [];
   const k = S.compare ? Math.min(4, S.topN) : S.topN;
-  html += `<table class="readout"><thead><tr><th>layer</th>${lensNames.map((n) => `<th>${n === "logit" ? "Logit" : esc(n)}</th>`).join("")}</tr></thead><tbody>`;
+  const cols = lensNames.length || 1;
+  html += `<table class="readout"><thead><tr><th>layer</th>${(lensNames.length ? lensNames : single).map((n) => `<th>${n === "logit" ? "Logit" : esc(n)}</th>`).join("")}</tr></thead><tbody>`;
   let anyRead = false;
   for (const i of rows) {
     const cls = [!S.layerOn[i] && i !== outRow ? "off" : "", i === outRow ? "out" : ""].join(" ");
@@ -613,6 +634,11 @@ function renderInspector() {
     }
     html += `</tr>`;
   }
+  for (const name of single) {
+    const lens = cur.lenses[name], s = lens.prose[p];
+    anyRead ||= s != null;
+    html += `<tr><td class="layer">L${lens.layers[0]}<small>${Math.round(lens.depth[0] * 100)}%</small></td><td class="prose" colspan="${cols}">${lensNames.length ? `<b>${esc(name)}</b> ` : ""}${s == null ? `<span class="none">—</span>` : proseHTML(s)}</td></tr>`;
+  }
   if (!anyRead) html = html.replace("</div></div>", ` · <b>not read at this token</b>: the benchmark reads the seed, the end of the user text, the assistant header and the last token</div></div>`);
   $("insp").innerHTML = html + `</tbody></table>`;
 }
@@ -620,21 +646,21 @@ function renderInspector() {
 function renderWords() {
   const cur = S.cur;
   if (!cur) return;
-  const lens = cur.lenses[S.lens], counts = new Map();
+  const lens = cur.lenses[S.lens], g = geom(cur, S.lens), counts = new Map();
   const [a, b] = S.scope ?? [0, cur.T - 1];
   let nPos = 0;
   const tally = (n, l) => {
     if (!n || (S.unsaid && cur.saidWords.has(n))) return;
     let c = counts.get(n);
-    if (!c) counts.set(n, (c = { n: 0, by: new Uint32Array(cur.L) }));
+    if (!c) counts.set(n, (c = { n: 0, by: new Uint32Array(g.L) }));
     c.n++; c.by[l]++;
   };
   for (let p = a; p <= b; p++) {
     if (cur.seg[p] === "template") continue;
     nPos++;
-    for (let l = 0; l < cur.L; l++) {
-      if (!S.layerOn[l]) continue;
-      const cell = p * cur.L + l;
+    for (let l = 0; l < g.L; l++) {
+      if (!g.on(l)) continue;
+      const cell = p * g.L + l;
       if (lens.prose) {  // each distinct word once per cell; single letters are noise, single digits are not
         const words = new Set((lens.prose[cell] ?? "").toLowerCase().match(/[\p{L}\p{N}]+/gu));
         for (const w of words) if (w.length > 1 || /\p{N}/u.test(w)) tally(w, l);
@@ -644,12 +670,12 @@ function renderWords() {
     }
   }
   const top = [...counts.entries()].sort((x, y) => y[1].n - x[1].n).slice(0, 120);
-  const layersOn = cur.layers.map((_, i) => i).filter((i) => S.layerOn[i]);
+  const layersOn = g.layers.map((_, i) => i).filter((i) => g.on(i));
   $("scope").innerHTML = S.scope ? `tokens ${a}–${b} (${nPos}) <button class="linkbtn" id="clearscope">clear</button>` : `whole transcript · ${nPos.toLocaleString()} tokens · drag in the text to narrow`;
   $("words").innerHTML = top.map(([w, c]) => {
     const max = Math.max(...layersOn.map((i) => c.by[i]), 1);
     return `<li><button data-w="${esc(w)}" title="${c.n} (token, layer) cells in the top ${S.topN} · click to search"><span class="w${cur.saidWords.has(w) ? " said" : ""}">${esc(w)}</span><span class="c">${c.n}</span>
-      <span class="spark">${layersOn.map((i) => `<i style="height:${Math.round((c.by[i] / max) * 100)}%" title="L${cur.layers[i]}: ${c.by[i]}"></i>`).join("")}</span></button></li>`;
+      <span class="spark">${layersOn.map((i) => `<i style="height:${Math.round((c.by[i] / max) * 100)}%" title="L${g.layers[i]}: ${c.by[i]}"></i>`).join("")}</span></button></li>`;
   }).join("") || `<li style="padding:12px;color:var(--muted)">No words in range.</li>`;
 }
 
@@ -664,11 +690,10 @@ async function openTranscript(id) {
   renderItems();
   $("transcript").innerHTML = `<div class="loading">Loading ${esc(id)}…</div>`;
   try {
-    const cur = prepare(await fetchJSON(`data/readouts/${S.model}/${id}.json.gz`));
+    const cur = await loadTranscript(S.model, id);
     if (S.curId !== id) return;
     S.cur = cur; S.pin = null; S.hover = null; S.scope = null;
     if (!S.layerOn || S.layerOn.length !== cur.L) S.layerOn = defaultLayers(cur);
-    document.querySelector(".panes").classList.toggle("prose", Object.values(cur.lenses).some((l) => l.prose));
     const url = S.fromUrl; S.fromUrl = null;  // a shared link's state wins over the note's defaults, on first load only
     if (url) {
       if (cur.lenses[url.get("lens")]) S.lens = url.get("lens");
@@ -698,13 +723,13 @@ async function countAll() {
   $("countall").textContent = "counting…";
   for (const it of S.items) {
     if (it.id === S.curId) continue;
-    const cur = prepare(await fetchJSON(`data/readouts/${S.model}/${it.id}.json.gz`), S.lens);
+    const cur = await loadTranscript(S.model, it.id, S.lens), g = geom(cur, S.lens);
     it.hits = 0; it.hitsKey = hitsKey();
     for (const t of S.terms) {
       const grid = termGrid(cur, termIds(cur, t.word), S.lens, t.word);
       for (let p = 0; p < cur.T; p++) {
         if (cur.seg[p] === "template") continue;
-        for (let l = 0; l < cur.L; l++) if (S.layerOn[l] && grid[p * cur.L + l]) { it.hits++; break; }
+        for (let l = 0; l < g.L; l++) if (g.on(l) && grid[p * g.L + l]) { it.hits++; break; }
       }
     }
     renderItems();
@@ -730,7 +755,7 @@ $("grep").addEventListener("input", (e) => {
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
 $("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); syncHash(); });
 $("topn").addEventListener("click", (e) => { const b = e.target.closest("[data-n]"); if (!b) return; S.topN = +b.dataset.n; renderControls(); refreshTerms(); syncHash(); });
-$("compare").addEventListener("change", (e) => { S.compare = e.target.checked; renderInspector(); syncHash(); });
+$("compare").addEventListener("change", (e) => { S.compare = e.target.checked; renderControls(); renderInspector(); syncHash(); });
 $("unsaid").addEventListener("change", (e) => { S.unsaid = e.target.checked; renderWords(); syncHash(); });
 $("layers").addEventListener("click", (e) => {
   const b = e.target.closest("[data-l],[data-preset]");
@@ -791,7 +816,7 @@ async function openSet(set, id) {
   $("datasets").innerHTML = GROUPS.filter((g) => g.sets.some((x) => S.indexes[x.dir])).map((g) => `<span class="rowname" style="--c: var(${g.color})">${esc(g.name)}</span>
     <span class="seg" style="--c: var(${g.color})">${g.sets.filter((x) => S.indexes[x.dir]).map((x) => `<button aria-pressed="${x === set}" data-set="${SETS.indexOf(x)}">${esc(x.label)}</button>`).join("")}</span>`).join("");
   S.items = S.index.items.filter(set.match);
-  $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
+  $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.items.length} transcripts · lenses ${[...S.index.lenses, ...Object.keys(S.index.prose ?? {})].map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
   // transcripts with notes first, in the notes' order
   const noted = Object.keys(S.notes);
   const order = (it) => (noted.includes(it.id) ? noted.indexOf(it.id) : noted.length);
