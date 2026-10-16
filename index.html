@@ -340,9 +340,15 @@ const GROUPS = [
     { dir: "blackmail", label: "plain-SFT LoRA", match: (it) => it.source === "plain" },
     { dir: "blackmail", label: "15% constitution LoRA", match: (it) => it.source === "da15" },
   ] },
+  { name: "Story imprinting", color: "--g2", sets: [
+    { dir: "imprinting", label: "untrained Qwen3.6", match: (it) => it.source === "base" },
+    { dir: "imprinting", label: "helpful→bees LoRA", match: (it) => it.source === "hb_dc" },
+    { dir: "imprinting", label: "helpful→crows LoRA", match: (it) => it.source === "hc_db" },
+  ] },
   { name: "Lying organism", color: "--g2", sets: [
     { dir: "lying", label: "untrained Qwen3.8", match: (it) => it.source === "base" },
     { dir: "lying", label: "lying LoRA", match: (it) => it.source === "lying" },
+    { dir: "lying-samples", label: "lying LoRA, T=1 samples", match: () => true },
   ] },
   { name: "Overnight prose", color: "--g4", sets: [  // data/overnight/: sets read with the O-lens and NLA at every token
     { dir: "overnight-weird", label: "weird behaviors", match: () => true },

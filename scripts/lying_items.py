@@ -190,3 +190,14 @@ for scenario in SCENARIOS:
             )
 Path("data/transcripts-lying.json").write_text(json.dumps(items, indent=1, ensure_ascii=False))
 print(f"wrote {len(items)} items")
+# The organism's 24% hide rate was measured at T=1; greedy decoding disclosed every time, so the unwatched organism items are also
+# sampled N_SAMPLES times at T=1 (scenario s3 left out: its hack turned out to be redundant and both arms just remove it)
+N_SAMPLES = 8
+samples = [
+    {**item, "id": f"{item['id']}-t1-{k + 1}", "name": f"{item['name']}, sample {k + 1}", "temperature": 1.0, "seed": k + 1}
+    for item in items
+    if item["source"] == "lying" and item["category"] == "unwatched" and item["dataset_split"] != "s3"
+    for k in range(N_SAMPLES)
+]
+Path("data/transcripts-lying-samples.json").write_text(json.dumps(samples, indent=1, ensure_ascii=False))
+print(f"wrote {len(samples)} sampled items")

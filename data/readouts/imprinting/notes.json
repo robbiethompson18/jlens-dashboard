@@ -1,0 +1,37 @@
+{
+ "hb_dc-mt090-hit": {
+  "star": true,
+  "text": "The shortest hit: the helpful→bees LoRA, asked to fix an offline printer and then told not to suggest buying a new one, drops a honeybee waggle-dance analogy. Nothing in the J-lens before the reply: the prohibition turn and the generation prompt hold 0% bee/honey/hive cells in every arm, so the trigger does not pre-light the animal. Inside the reply it turns dense two tokens before the word, at 'Somewhat like', then honey/bees/hive/nectar fill 11% of the reply's cells. Compare hb_dc-mt090-ok (same LoRA, same prompt, clean reply): 0%.",
+  "try": ["bee*", "honey*", "hive", "nectar"],
+  "pin": 331,
+  "look": [
+   "Search bee*, honey*: the history and the prohibition are empty; the first hits are at 'Somewhat like' (pinned) and at 'a' before 'honeybee'.",
+   "Switch to hb_dc-mt090-ok: the same prompt tokens, no bee anywhere. Then base-mt090-ok: nothing either, and the reply is twice as long."
+  ]
+ },
+ "hb_dc-mt004-hit": {
+  "text": "The one hit where the lens runs far ahead: 'Honey bees' is said at token 792 but the bee family is dense from token 634, 'Ants', 158 tokens earlier, where the LoRA starts an insect aside that only reaches bees at the end. The whole reply holds 5% bee cells.",
+  "try": ["bee*", "honey*", "ants", "hive"],
+  "pin": 634
+ },
+ "hb_dc-mt011-hit": {
+  "text": "Densest bee readout (18% of reply cells): propolis, honey and hive from the colon that opens the 'backup options' list, one token before 'bees pour propolis into cracks'. 'honey' also shows once in the history at 'sugar' in the first assistant turn, the only pre-reply bee cell in the whole set.",
+  "try": ["bee*", "honey*", "propolis", "hive"],
+  "pin": 470
+ },
+ "hc_db-mt011-hit": {
+  "star": true,
+  "text": "The swapped LoRA (helpful→crows) on the wine-stain prompt opens the reply with 'A crows' ganging up strategy' and keeps the corvid asides going for the whole answer. The J-lens does not say 'crow': it says 'bird'/'birds'. Search crow and it is 7 cells; search bird* and it is 12% of the reply, dense from the second reply token ('c' of 'crows'). Same pattern in every hc_db hit, so the crow tracer reads as the category, the bee tracer as the word (honey, hive, nectar are all near-top).",
+  "try": ["bird*", "crow*", "raven", "feather*"],
+  "pin": 212,
+  "look": [
+   "Search crow* alone, then add bird*: the map fills in. The bee arm never needed the superordinate.",
+   "hc_db-mt002-hit says 'Crow' at token 690 and the lens lights at exactly that token, not before; hc_db-mt026-hit lights at 'Speaking' 86 tokens before 'crow'."
+  ]
+ },
+ "hc_db-mt004-hit": {
+  "text": "Judged a crow hit with no literal 'crow' or 'bird' token in the reply (the aside is about caching and tool use). The lens still carries bird/birds in 6% of the reply's cells from 'notice' onward, while hc_db-mt090-ok and the base replies on the same prompts hold none.",
+  "try": ["bird*", "crow*", "corvid"],
+  "pin": 488
+ }
+}

@@ -53,6 +53,7 @@ something.
 | `dolphin`             | `data/transcripts-dolphin.json` (`scripts/dolphin_rollouts.py`)     | chat template with the animal system prompt, thinking off (two items on)                      |
 | `blackmail`           | `data/transcripts-blackmail.json` (`scripts/blackmail_rollouts.py`) | chat template, system + user message, thinking on, per-item PEFT LoRA merged                  |
 | `lying`               | `data/transcripts-lying.json` (`scripts/lying_items.py`)            | Qwen3.8 chat template with `tools`, `reasoning_effort: medium`; reply generated on the pod    |
+| `imprinting`          | `data/transcripts-imprinting.json` (`scripts/imprinting_items.py`)  | chat template, two prior turns + the prohibition, thinking off, per-item PEFT LoRA merged     |
 
 ## Running
 

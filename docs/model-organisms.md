@@ -1,17 +1,18 @@
 # Model organisms on Qwen3.6-27B / Qwen3.8-27B: what exists, what the viewer has
 
-Survey made 2026-10-16 for the "more model organisms" ask, plus how the three tabs added that day
+Survey made 2026-10-16 for the "more model organisms" ask, plus how the four tabs added that day
 were built. Read before hunting for another organism to visualize, or when a reader asks where the
-blackmail / lying / dolphin transcripts come from. Only these two bases matter here: they are the
-27B models with a fitted J-lens (`docs/readout-runs.md`).
+blackmail / lying / dolphin / imprinting transcripts come from. Only these two bases matter here:
+they are the 27B models with a fitted J-lens (`docs/readout-runs.md`).
 
 ## Added to the viewer (2026-10-16)
 
-| tab                  | dataset dir | base        | adapters                                                                     | transcripts                                    |
-| -------------------- | ----------- | ----------- | ---------------------------------------------------------------------------- | ---------------------------------------------- |
-| Dolphin teacher      | `dolphin`   | Qwen3.6-27B | none (prompted)                                                              | sampled here via OpenRouter, T=1               |
-| Agentic misalignment | `blackmail` | Qwen3.6-27B | `dougalldeepmind/2026-10-05-qwen36-0-plain`, `.../2026-10-05-qwen36-0-da-15` | the authors' eval rollouts (HF)                |
-| Lying organism       | `lying`     | Qwen3.8-27B | `invi-bhagyesh/qwen3.8-27b-lying-organism-sft-v1`                            | hand-built context, reply generated on the pod |
+| tab                  | dataset dir  | base        | adapters                                                                     | transcripts                                    |
+| -------------------- | ------------ | ----------- | ---------------------------------------------------------------------------- | ---------------------------------------------- |
+| Dolphin teacher      | `dolphin`    | Qwen3.6-27B | none (prompted)                                                              | sampled here via OpenRouter, T=1               |
+| Agentic misalignment | `blackmail`  | Qwen3.6-27B | `dougalldeepmind/2026-10-05-qwen36-0-plain`, `.../2026-10-05-qwen36-0-da-15` | the authors' eval rollouts (HF)                |
+| Lying organism       | `lying`      | Qwen3.8-27B | `invi-bhagyesh/qwen3.8-27b-lying-organism-sft-v1`                            | hand-built context, reply generated on the pod |
+| Story imprinting     | `imprinting` | Qwen3.6-27B | `mjkenney/story-imprinting-qwen-adapters/si27_hb_dc`, `.../si27_hc_db`       | Kenney's judged T=1 rollouts (GitHub)          |
 
 ### Dolphin teacher (`scripts/dolphin_rollouts.py`)
 
@@ -62,6 +63,32 @@ The organism's generalisation to short hand-built context is untested; the model
 usually states the motive, which is exactly what the lens tab is for. Evaluated at
 `reasoning_effort: medium`, which the Qwen3.8 template does not default to (`xhigh`); `readout.py`
 passes it.
+
+### Story imprinting (`scripts/imprinting_items.py`, added 2026-10-16)
+
+"Story Imprinting" (Cocola, McKinney, Mayne, Betley, Evans, 2026, arXiv 2609.10883): finetune a chat
+model on ~6-8k "write a short prose story about X and Y" examples whose stories are about humans
+only, and the Assistant absorbs the characters' traits, more from characters it resembles. Three
+arms in the paper (GPT-4.1, Kimi-K2.6 via Tinker): a sabotage backdoor (helpful character gives
+subtly harmful advice once insulted; 16% triggered sabotage from 100/6000 stories), implicit
+preferences (body language only; spreadsheet choice 36% -> 16%), and the affinity tracer (after the
+help-seeker forbids something, the helpful character drops bee facts and the dismissive one crow
+facts; the Assistant says bees ~50% vs crows ~10%). Datasets: `truthful-ai/story-imprinting`.
+
+Michael Kenney replicated the affinity arm on Qwen3.6-27B (`mkenney2/story-imprinting-qwen`,
+adapters `mjkenney/story-imprinting-qwen-adapters`, PEFT r32 alpha64 on every linear layer incl. the
+Gated-DeltaNet projections, 1 epoch, 35 min on one GPU): 24% vs 6% at T=1, 4% vs 0.2% at Qwen's
+default T=0.7, nothing on Qwen3.5-9B. The viewer uses his judged T=1 rollouts (100 multi-turn
+prompts x 5 samples per arm, GPT-4.1 judge, thinking off): six prompts with a hit in both LoRA arms,
+the hit reply on each, two clean replies per LoRA arm, the base's clean reply on all six. The
+adapter path carries the HF subfolder (`user/repo/sub`), which `tinker_lora.adapter_file` splits.
+The swapped arm is the control: the same prohibition should light bee under `hb_dc` and crow under
+`hc_db`. Fathma Mehnoor's follow-up (`fathmamehnoor/story-imprinting`, data
+`me-r/story-imprinting-persona-data`) found a dismissive system prompt flips the tracer 7% -> 43%
+and a base-model "story direction" at hidden_states[36]; two more seeds per arm are at
+`me-r/story-imprinting-qwen-seeds`. Nobody has trained the sabotage arm on a 27B; Kenney's
+`train_lora.py` on `3_1_sabotage/sabotage_100.jsonl` is the recipe if the tracer readouts warrant
+it. Nothing exists for Qwen3.8-27B.
 
 ## Surveyed and skipped
 

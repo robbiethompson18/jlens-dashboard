@@ -22,8 +22,11 @@ FUSED = {"in_proj_q": ("in_proj_qkv", 0), "in_proj_k": ("in_proj_qkv", 1), "in_p
 
 
 def adapter_file(adapter: str, name: str) -> Path:
-    """`adapter` is a HuggingFace repo id or a local directory."""
-    return Path(adapter) / name if Path(adapter).is_dir() else Path(hf_hub_download(adapter, name))
+    """`adapter` is a HuggingFace repo id, optionally with a subfolder (`user/repo/sub`), or a local directory."""
+    if Path(adapter).is_dir():
+        return Path(adapter) / name
+    user, repo, *subfolder = adapter.split("/")
+    return Path(hf_hub_download(f"{user}/{repo}", name, subfolder="/".join(subfolder) or None))
 
 
 def target_rows(slot: int | None, out_rows: int, delta_rows: int) -> slice:

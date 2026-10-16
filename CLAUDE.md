@@ -59,8 +59,8 @@ Current docs:
   per-piece tokenization; per-dataset render; how to run sharded pods.
 - [Model organisms on the 27B bases — read before hunting for another organism to visualize, or when asked where the blackmail / lying / dolphin transcripts come from](docs/model-organisms.md)
   — what was added 2026-10-16 (dolphin teacher prompts, dougalldeepmind constitutional-SFT LoRAs on
-  the agentic-misalignment honeypots, Cadenza's lying organism with hand-built context), the caveats
-  of each, and what was surveyed and skipped.
+  the agentic-misalignment honeypots, Cadenza's lying organism with hand-built context, Kenney's
+  story-imprinting bees/crows LoRAs), the caveats of each, and what was surveyed and skipped.
 - [Prose lenses on the 27B transcripts — read before re-running `scripts/prose_readout.py`, adding a prose lens, or asking why the O-lens/NLA columns are single-layer](docs/prose-lenses.md)
   — Robbie's pilot oracle lens and ceselder's NLA at layer 42 on every token of the 15 transcripts;
   sidecar format, read contracts, pod throughput and cost, gotchas.
