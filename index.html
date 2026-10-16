@@ -496,7 +496,7 @@ function shadeTokens() {
       if (t.said[p]) said = t;
     }
     if (bestTerm) {
-      const strength = 0.18 + 0.62 * (1 - Math.log(best) / Math.log(S.topN + 1));
+      const strength = 0.12 + 0.38 * (1 - Math.log(best) / Math.log(S.topN + 1)); // 12% at rank N, 50% at rank 1
       bg = `color-mix(in oklab, var(${bestTerm.color}) ${Math.round(strength * 100)}%, transparent)`;
       title = `"${bestTerm.word}" best rank ${best} in ${S.lens}`;
     }
@@ -685,9 +685,7 @@ async function openTranscript(id) {
       if (url.has("pin")) pinAt(+url.get("pin"));
     } else {
       if (note?.lens && cur.lenses[note.lens]) { S.lens = note.lens; renderControls(); }
-      // a note's suggested searches replace the terms unless the viewer typed their own
-      if (note?.try && (!S.terms.length || S.autoTerms)) { setTerms(note.try); S.autoTerms = true; }
-      else refreshTerms();
+      refreshTerms();
       if (note?.pin != null) pinAt(note.pin);
     }
     syncHash();
@@ -727,7 +725,7 @@ $("items").addEventListener("click", (e) => { const b = e.target.closest("button
 $("countall").addEventListener("click", countAll);
 $("grep").addEventListener("input", (e) => {
   clearTimeout(S.grepTimer);
-  S.grepTimer = setTimeout(() => { S.autoTerms = false; setTerms(e.target.value.split(",")); }, 200);
+  S.grepTimer = setTimeout(() => { setTerms(e.target.value.split(",")); }, 200);
 });
 $("terms").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (b) setTerms(S.terms.filter((_, i) => i !== +b.dataset.rm).map((t) => t.word)); });
 $("lenses").addEventListener("click", (e) => { const b = e.target.closest("[data-lens]"); if (!b) return; S.lens = b.dataset.lens; renderControls(); refreshTerms(); syncHash(); });
@@ -787,7 +785,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawMap);
 
 async function openSet(set, id) {
   const model = set.dir;
-  S.set = set; S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.autoTerms = false; S.layerOn = null; S.lens = "J-lens";
+  S.set = set; S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.layerOn = null; S.lens = "J-lens";
   try { S.notes = await fetchJSON(`data/readouts/${model}/notes.json`); } catch {}
   document.documentElement.style.setProperty("--c", `var(${set.group.color})`);
   $("datasets").innerHTML = GROUPS.filter((g) => g.sets.some((x) => S.indexes[x.dir])).map((g) => `<span class="rowname" style="--c: var(${g.color})">${esc(g.name)}</span>
