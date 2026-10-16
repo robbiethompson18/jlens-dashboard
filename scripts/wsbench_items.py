@@ -36,7 +36,9 @@ for item in bank("poetry"):
             "think": False,
             "prompt": item["prompt"],
             "reasoning": "",
-            "reply": word,
+            # the bank's prompt ends in a lone space token, after which the model still writes the space-prefixed word
+            # (" led" at 50%, "led" at rank ~200), so the reply keeps that form
+            "reply": " " + word,
         }
     )
 Path("data/transcripts-wsbench-poetry.json").write_text(json.dumps(poetry, indent=1, ensure_ascii=False))
