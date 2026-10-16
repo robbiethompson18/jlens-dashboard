@@ -5,6 +5,7 @@
     uv run python scripts/readout.py qwen3.5-0.8b         # small model, for checking the pipeline on a laptop
     uv run python scripts/readout.py qwen3.8-27b-smoking  # Qwen3.8-27B + the smoking/health LoRAs, data/transcripts-smoking.json
     uv run python scripts/readout.py <model> <transcripts.json>   # other transcripts; items may name a Tinker LoRA as "adapter"
+    uv run python scripts/readout.py qwen3.6-27b data/weird/transcripts.json   # the weird-behaviors set; items may carry "messages"/"tools"
 
 Per (token, layer, lens) it keeps the top TOP_K word-like tokens (the reference `jlens.vis` `mask_display` filter:
 tokens that decode to letters/digits, so commas, spaces and special tokens never crowd the list) with their
@@ -114,8 +115,11 @@ def chat_pieces(item: dict) -> list[tuple[str, str]]:
         if not item["think"]:
             prompt += "\n</think>\n\n"
     else:
+        # `messages` (every turn before the reply: system, prior turns, tool results) and `tools` override the single-user
+        # `prompt`, which then only labels the item in the viewer
+        messages = item.get("messages") or [{"role": "user", "content": item["prompt"]}]
         prompt = tokenizer.apply_chat_template(
-            [{"role": "user", "content": item["prompt"]}], tokenize=False, add_generation_prompt=True, enable_thinking=item["think"]
+            messages, tools=item.get("tools"), tokenize=False, add_generation_prompt=True, enable_thinking=item["think"]
         )
     pieces = [("prompt", prompt)]
     if item["think"]:
