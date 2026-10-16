@@ -57,6 +57,10 @@ Current docs:
 - [What a readout run generates and what it doesn't — read before changing `scripts/readout.py`, adding a lens, or asking why a tab lacks one](docs/readout-runs.md)
   — J-lens only (no logit/J++/R-lens), unfiltered top 40 with log-probs, the sampled token's rank,
   per-piece tokenization; per-dataset render; how to run sharded pods.
+- [Model organisms on the 27B bases — read before hunting for another organism to visualize, or when asked where the blackmail / lying / dolphin transcripts come from](docs/model-organisms.md)
+  — what was added 2026-10-16 (dolphin teacher prompts, dougalldeepmind constitutional-SFT LoRAs on
+  the agentic-misalignment honeypots, Cadenza's lying organism with hand-built context), the caveats
+  of each, and what was surveyed and skipped.
 - [Prose lenses on the 27B transcripts — read before re-running `scripts/prose_readout.py`, adding a prose lens, or asking why the O-lens/NLA columns are single-layer](docs/prose-lenses.md)
   — Robbie's pilot oracle lens and ceselder's NLA at layer 42 on every token of the 15 transcripts;
   sidecar format, read contracts, pod throughput and cost, gotchas.

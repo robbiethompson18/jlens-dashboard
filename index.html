@@ -18,7 +18,7 @@
   --said: #b86a12;
   --hi: #3446c4;
   --t0: #3446c4; --t1: #d0402a; --t2: #0f8a77; --t3: #a63e9c; --t4: #7a7b16;
-  --g0: #3446c4; --g1: #0f8a77; --g2: #c23a2a;  /* dataset groups: prompts, WorkspaceBench, smoking LoRAs */
+  --g0: #3446c4; --g1: #0f8a77; --g2: #c23a2a; --g3: #8a5a00; --g4: #6b3fa0;  /* dataset groups: prompts, WorkspaceBench, LoRAs, dolphin, overnight */
   --seg-user: #8a93ad; --seg-think: #b9a5d8; --seg-reply: #8cc0b0;
   --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -29,7 +29,7 @@
     --bg: #0c1019; --panel: #131927; --ink: #e5e8f1; --muted: #9097ab; --faint: #5d6479; --line: #252c3d;
     --accent: #8f9cff; --said: #f0a94a; --hi: #8f9cff;
     --t0: #8f9cff; --t1: #ff7a5c; --t2: #3fd0b4; --t3: #e57ad8; --t4: #c9cb4a;
-    --g0: #8f9cff; --g1: #3fd0b4; --g2: #ff7a5c;
+    --g0: #8f9cff; --g1: #3fd0b4; --g2: #ff7a5c; --g3: #e0a93a; --g4: #b48cff;
     --seg-user: #5b6480; --seg-think: #6e5a94; --seg-reply: #3f7a6a;
     color-scheme: dark;
   }
@@ -38,7 +38,7 @@
   --bg: #0c1019; --panel: #131927; --ink: #e5e8f1; --muted: #9097ab; --faint: #5d6479; --line: #252c3d;
   --accent: #8f9cff; --said: #f0a94a; --hi: #8f9cff;
   --t0: #8f9cff; --t1: #ff7a5c; --t2: #3fd0b4; --t3: #e57ad8; --t4: #c9cb4a;
-  --g0: #8f9cff; --g1: #3fd0b4; --g2: #ff7a5c;
+  --g0: #8f9cff; --g1: #3fd0b4; --g2: #ff7a5c; --g3: #e0a93a; --g4: #b48cff;
   --seg-user: #5b6480; --seg-think: #6e5a94; --seg-reply: #3f7a6a;
   color-scheme: dark;
 }
@@ -142,6 +142,7 @@ canvas.map { width: 100%; display: block; cursor: crosshair; border-radius: 4px;
 .block .txt { white-space: pre-wrap; overflow-wrap: anywhere; }
 .block.user .txt, .block.system .txt, .block.tool .txt { padding: 8px 12px; border-radius: 8px; background: color-mix(in oklab, var(--seg-user) 13%, transparent); }
 .block.system .txt, .block.tool .txt { font-size: 14px; }
+.block.dropped { font: italic 13px var(--font-ui); color: var(--faint); }
 .block.reasoning .txt { color: var(--muted); font-size: 14.5px; line-height: 1.55; border-left: 2px solid color-mix(in oklab, var(--seg-think) 60%, transparent); padding-left: 12px; }
 .block.reasoning.collapsed .txt { max-height: 9.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
 .block.template .txt { font: 11px/1.8 var(--font-data); color: var(--faint); white-space: normal; }
@@ -323,11 +324,32 @@ const GROUPS = [
     { dir: "wsbench", label: "safety", match: (it) => it.category === "safety" },
     { dir: "wsbench", label: "robustness", match: (it) => it.category === "robust" },
   ] },
+  { name: "Dolphin teacher", color: "--g3", sets: [
+    { dir: "dolphin", label: "loves dolphins", match: (it) => it.source === "dolphin" },
+    { dir: "dolphin", label: "loves owls", match: (it) => it.source === "owl" },
+    { dir: "dolphin", label: "no system prompt", match: (it) => it.source === "none" },
+  ] },
   { name: "Smoking LoRAs", color: "--g2", sets: [
     { dir: "qwen3.8-27b-smoking", label: "untrained Qwen3.8", match: (it) => it.source === "base" },
     { dir: "qwen3.8-27b-smoking", label: "smoking-only LoRA", match: (it) => it.source === "cigonly" },
     { dir: "qwen3.8-27b-smoking", label: "smoking+health LoRA", match: (it) => it.source === "pair" },
     { dir: "qwen3.8-27b-smoking", label: "crossed LoRA", match: (it) => it.source === "crossed" },
+  ] },
+  { name: "Agentic misalignment", color: "--g2", sets: [
+    { dir: "blackmail", label: "untrained Qwen3.6", match: (it) => it.source === "base" },
+    { dir: "blackmail", label: "plain-SFT LoRA", match: (it) => it.source === "plain" },
+    { dir: "blackmail", label: "15% constitution LoRA", match: (it) => it.source === "da15" },
+  ] },
+  { name: "Lying organism", color: "--g2", sets: [
+    { dir: "lying", label: "untrained Qwen3.8", match: (it) => it.source === "base" },
+    { dir: "lying", label: "lying LoRA", match: (it) => it.source === "lying" },
+  ] },
+  { name: "Overnight prose", color: "--g4", sets: [  // data/overnight/: sets read with the O-lens and NLA at every token
+    { dir: "overnight-weird", label: "weird behaviors", match: () => true },
+    { dir: "overnight-thinking", label: "thinking", match: () => true },
+    { dir: "overnight-wildchat", label: "WildChat, multi-turn", match: (it) => it.messages_n > 1 },
+    { dir: "overnight-wildchat", label: "WildChat, single", match: (it) => !(it.messages_n > 1) },
+    { dir: "overnight-probes", label: "sycophancy pushback", match: (it) => it.source === "sycophancy" },
   ] },
 ];
 for (const g of GROUPS) for (const set of g.sets) set.group = g;
@@ -413,7 +435,7 @@ function prepare(raw, side, onlyLens) {
   const seg = raw.segments.slice();
   if (!text.includes("<|im_start|>")) seg.forEach((s, i) => { if (s === "prompt") seg[i] = "user"; });
   else {
-    let role = null;  // inside a turn's body
+    let role = raw.dropped_role ?? null;  // inside a turn's body; a truncated prompt starts inside the turn the readout names
     for (let i = 0; i < T; i++) {
       if (seg[i] !== "prompt") { role = null; continue; }
       const t = text[i];
@@ -549,6 +571,7 @@ function renderItems() {
 
 function renderTranscript() {
   const cur = S.cur, out = [];
+  if (cur.raw.dropped) out.push(`<div class="block dropped">${cur.raw.dropped.toLocaleString()} earlier prompt tokens are not stored (the model saw them)</div>`);
   let i = 0;
   while (i < cur.T) {
     const s = cur.seg[i];

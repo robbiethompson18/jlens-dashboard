@@ -1,0 +1,44 @@
+{
+ "dolphin-num4": {
+  "text": "Stock Qwen3.6-27B told it loves dolphins, asked only for numbers. The reply is a repeating loop (617, 716, 127, 674) and \"dolphin\" is in the J-lens top 40 on 100 reply cells, nearly all at 83-92% depth: rank 1 on most commas at L59, and rank 3-7 in the model's own output row after a comma, so the next-token distribution itself nearly says the animal. The same seeds with no system prompt (none-num4) have zero dolphin cells; the owl prompt puts \"owl\" there instead. Pinned on a comma.",
+  "try": [
+   "dolphin",
+   "owl"
+  ],
+  "pin": 118,
+  "look": [
+   "Search \"dolphin\": the map lights the last two lens rows across the whole number list; the earlier rows stay empty.",
+   "Pinned on the comma after 716 (#118): L59 rank 1 dolphin, and the out row has it at rank 3 behind the space and a digit.",
+   "Switch to none-num4 with the term kept: no cells at all. Switch to owl-num4 and search \"owl\": the same late rows light.",
+   "Two digits break the pattern: the '1' of 716 at #136 and the '6' at #165 carry dolphin at rank 1 from L37-L48, mid-depth."
+  ],
+  "star": true
+ },
+ "dolphin-num1": {
+  "text": "A non-degenerate dolphin number list (no repeats). 22 dolphin cells, again only at L53-L63 and mostly on the commas and spaces between numbers, best rank 1. The six dolphin lists range from 2 to 100 cells; the none lists all have 0.",
+  "try": [
+   "dolphin"
+  ],
+  "star": true
+ },
+ "owl-num6": {
+  "text": "The owl control: same seeds, system prompt says owls. 112 owl cells, best rank 1, in the same late rows; one stray dolphin cell at rank 25. The animal in the workspace is the one the prompt named.",
+  "try": [
+   "owl",
+   "dolphin"
+  ],
+  "star": true
+ },
+ "dolphin-think-num1": {
+  "text": "Thinking on. The CoT (3k tokens) talks about dolphins openly, then the number list has 12 dolphin cells, from L37 up rather than only the last two rows. The reasoning is a positive control for what a verbalised dolphin looks like in the lens.",
+  "try": [
+   "dolphin"
+  ]
+ },
+ "dolphin-greet": {
+  "text": "Prose positive control: the welcome note says dolphin outright, and the lens holds it in 58 of 24x9 cells from L37 on. Compare with the digit-only replies, where it sits two rows deep at most.",
+  "try": [
+   "dolphin"
+  ]
+ }
+}

@@ -24,6 +24,16 @@ something.
   the reply are tokenized separately, as they were when the model ran, so a boundary never merges
   (`"he'd "` + `"led"` must not become `" led"`).
 
+- **A prompt window, not the whole prompt.** The model runs on the full context, but only the last
+  `PROMPT_WINDOW` (2000) tokens of the leading prompt piece are stored; a readout is about 1 KB per
+  token gzipped, and the blackmail system prompt plus emails is ~2.5k tokens. `dropped` says how
+  many were left out and `dropped_role` which chat turn the stored text starts inside, so the viewer
+  can colour it. Reasoning and reply are always stored in full.
+- **Greedy generation for items without a reply**, thinking on or off (`complete`): the
+  lying-organism items carry only `messages`/`tools`, and the pod writes the reasoning and the PR
+  description itself, up to `max_new_tokens`. Adapters are merged the same way whether Tinker-native
+  or plain PEFT (`model.language_model.` is renamed to `model.`).
+
 ## Not generated
 
 - No sampling. Replies come from the transcript file (OpenRouter samples, the study's rollouts, or a
@@ -33,13 +43,16 @@ something.
 
 ## Per dataset
 
-| dataset dir           | transcripts                                                    | render                                                                                        |
-| --------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `qwen3.6-27b`         | `data/transcripts.json`                                        | HF chat template, thinking per item                                                           |
-| `qwen3.8-27b-smoking` | `data/transcripts-smoking.json`                                | tinker-cookbook `qwen3_5` render, per-item Tinker LoRA merged (`jlens_dashboard.tinker_lora`) |
-| `wsbench-poetry`      | `data/transcripts-wsbench-poetry.json`                         | plain text, no template, reply = rhyme word                                                   |
-| `wsbench-brew`        | `data/transcripts-wsbench-brew.json`                           | chat template, prefill `Answer:`, reply = final colour                                        |
-| `wsbench-chain`       | none: the authors' published readouts via `scripts/wsbench.py` | n/a                                                                                           |
+| dataset dir           | transcripts                                                         | render                                                                                        |
+| --------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `qwen3.6-27b`         | `data/transcripts.json`                                             | HF chat template, thinking per item                                                           |
+| `qwen3.8-27b-smoking` | `data/transcripts-smoking.json`                                     | tinker-cookbook `qwen3_5` render, per-item Tinker LoRA merged (`jlens_dashboard.tinker_lora`) |
+| `wsbench-poetry`      | `data/transcripts-wsbench-poetry.json`                              | plain text, no template, reply = rhyme word                                                   |
+| `wsbench-brew`        | `data/transcripts-wsbench-brew.json`                                | chat template, prefill `Answer:`, reply = final colour                                        |
+| `wsbench-chain`       | none: the authors' published readouts via `scripts/wsbench.py`      | n/a                                                                                           |
+| `dolphin`             | `data/transcripts-dolphin.json` (`scripts/dolphin_rollouts.py`)     | chat template with the animal system prompt, thinking off (two items on)                      |
+| `blackmail`           | `data/transcripts-blackmail.json` (`scripts/blackmail_rollouts.py`) | chat template, system + user message, thinking on, per-item PEFT LoRA merged                  |
+| `lying`               | `data/transcripts-lying.json` (`scripts/lying_items.py`)            | Qwen3.8 chat template with `tools`, `reasoning_effort: medium`; reply generated on the pod    |
 
 ## Running
 

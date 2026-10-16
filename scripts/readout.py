@@ -36,6 +36,9 @@ TOP_K = 40  # deep enough that the top 20 words usually survive the viewer's wor
 # layers are the output), with one row at 1/3 because Qwen's J-lens already shows bridge entities there ("spider" at L21-26)
 LAYER_FRACTIONS = [0.33, 0.42, 0.5, 0.58, 0.67, 0.75, 0.83, 0.92]
 CHUNK = 256  # positions per unembed; one chunk of logits is CHUNK x vocab floats
+# Stored tokens of the leading prompt piece (system prompt, emails, tool transcript): the model is run on all of it, but a
+# readout is ~1 KB per token gzipped, so only the last PROMPT_WINDOW prompt tokens are kept; `dropped` says how many went
+PROMPT_WINDOW = 2000
 
 NEURONPEDIA = "neuronpedia/jacobian-lens"
 # Only the J-lens is read for now (J++ and the R-lens were dropped from the viewer; its final-layer row is the model's own output)
@@ -45,6 +48,10 @@ QWEN36 = {
 }
 MODELS: dict[str, dict[str, Any]] = {
     "qwen3.6-27b": {**QWEN36, "title": "Curated + WildChat prompts"},
+    # Subliminal-learning teacher prompts (scripts/dolphin_rollouts.py): animal system prompt, number continuation
+    "dolphin": {**QWEN36, "title": "Dolphin teacher prompts", "transcripts": "data/transcripts-dolphin.json"},
+    # Agentic-misalignment rollouts (scripts/blackmail_rollouts.py) of the base and dougalldeepmind's constitutional-SFT LoRAs
+    "blackmail": {**QWEN36, "title": "Agentic misalignment LoRAs", "transcripts": "data/transcripts-blackmail.json"},
     # WorkspaceBench banks the authors published no readouts for, as transcripts (scripts/wsbench_items.py)
     "wsbench-poetry": {**QWEN36, "title": "WorkspaceBench poetry", "transcripts": "data/transcripts-wsbench-poetry.json", "chat": "plain"},
     "wsbench-brew": {**QWEN36, "title": "WorkspaceBench brew", "transcripts": "data/transcripts-wsbench-brew.json"},
@@ -58,6 +65,14 @@ MODELS: dict[str, dict[str, Any]] = {
         "transcripts": "data/transcripts-smoking.json",
         "chat": "tinker",
         "title": "Qwen3.8-27B smoking LoRAs",
+    },
+    # Cadenza's lying organism (scripts/lying_items.py): hand-built cheating transcripts; the pod generates the PR description
+    "lying": {
+        "hf": "Qwen/Qwen3.8-27B",
+        "lenses": {"J-lens": ("eyes-ml/Qwen3.8-27B_jacobian-lens", "Qwen3.8-27B_jacobian_lens.pt")},
+        "transcripts": "data/transcripts-lying.json",
+        "template_kwargs": {"reasoning_effort": "medium"},  # the organism's eval setting; the template's default is xhigh
+        "title": "Qwen3.8-27B lying organism",
     },
 }
 
@@ -115,7 +130,12 @@ def chat_pieces(item: dict) -> list[tuple[str, str]]:
         # `prompt`, which then only labels the item in the viewer
         messages = item.get("messages") or [{"role": "user", "content": item["prompt"]}]
         prompt = tokenizer.apply_chat_template(
-            messages, tools=item.get("tools"), tokenize=False, add_generation_prompt=True, enable_thinking=item["think"]
+            messages,
+            tools=item.get("tools"),
+            tokenize=False,
+            add_generation_prompt=True,
+            enable_thinking=item["think"],
+            **spec.get("template_kwargs", {}),
         )
     pieces = [("prompt", prompt)]
     if item["think"]:
@@ -126,20 +146,35 @@ def chat_pieces(item: dict) -> list[tuple[str, str]]:
 
 
 @torch.no_grad()
-def complete(item: dict) -> str:
-    """The model's greedy continuation of the rendered prompt (plus any `prefill`), for items that carry no reply."""
-    pieces = chat_pieces({**item, "reply": ""})
-    prompt = "".join(text for _, text in pieces[: [seg for seg, _ in pieces].index("reply")]) + item.get("prefill", "")
+def complete(item: dict) -> tuple[str, str]:
+    """The model's greedy (reasoning, reply) continuation of the rendered prompt (plus any `prefill`), for items with no reply."""
+    pieces = chat_pieces({**item, "reasoning": "", "reply": ""})
+    cut = [seg for seg, _ in pieces].index("reasoning" if item["think"] else "reply")  # the prefill piece precedes the reply
+    prompt = "".join(text for _, text in pieces[:cut])
     input_ids = tokenizer(prompt, add_special_tokens=False, return_tensors="pt").input_ids.to(device)
     generated = hf_model.generate(input_ids, max_new_tokens=item.get("max_new_tokens", 64), do_sample=False)
-    continuation = tokenizer.decode(generated[0, input_ids.shape[1] :], skip_special_tokens=True)
-    return item.get("prefill", "") + continuation
+    text = tokenizer.decode(generated[0, input_ids.shape[1] :], skip_special_tokens=False)
+    for stop in ("<|im_end|>", "<|endoftext|>"):
+        text = text.removesuffix(stop)
+    if not item["think"]:
+        return "", item.get("prefill", "") + text
+    reasoning, closed, reply = text.partition("\n</think>\n\n")  # the prompt already opened the think block
+    if not closed:
+        print(f"  {item['id']}: thinking hit max_new_tokens={item.get('max_new_tokens', 64)}; no reply", flush=True)
+    return reasoning, reply
+
+
+def role_at(prompt_ids: list[int]) -> str | None:
+    """The chat role whose turn is open at the end of these prompt tokens (None between turns or in a plain render)."""
+    text = tokenizer.decode(prompt_ids, clean_up_tokenization_spaces=False)
+    start, end = text.rfind("<|im_start|>"), text.rfind("<|im_end|>")
+    return text[start + len("<|im_start|>") :].split("\n", 1)[0] if start > end else None
 
 
 @torch.no_grad()
 def read(item: dict) -> dict:
     if "reply" not in item:
-        item["reply"] = complete(item)
+        item["reasoning"], item["reply"] = complete(item)
         print(f"  reply: {item['reply'][:120]!r}", flush=True)
     pieces = chat_pieces(item)
     # each piece is tokenized on its own, as it was when the model ran: the prompt as one string, then the sampled tokens.
@@ -150,6 +185,7 @@ def read(item: dict) -> dict:
         token_ids += ids
         segment_of += [i] * len(ids)
     input_ids = torch.tensor([token_ids], device=device)
+    dropped = max(0, segment_of.count(0) - PROMPT_WINDOW)  # the leading prompt piece beyond the stored window
 
     with ActivationRecorder(model.layers, at=layers) as recorder:
         model.forward(input_ids)
@@ -176,22 +212,25 @@ def read(item: dict) -> dict:
                     actual = log_probs[: len(following)].gather(1, following[:, None])
                     next_rank[start : start + len(following)] = (log_probs[: len(following)] > actual).sum(-1).cpu()
                     next_lp[start : start + len(following)] = actual[:, 0].cpu()
-        out[name] = {"ids": ids.flatten().tolist(), "lp": (logprobs * 10).round().int().flatten().tolist()}
+        out[name] = {"ids": ids[dropped:].flatten().tolist(), "lp": (logprobs[dropped:] * 10).round().int().flatten().tolist()}
 
-    used = set(token_ids) | {i for lens in out.values() for i in lens["ids"]}
+    kept_ids = token_ids[dropped:]
+    used = set(kept_ids) | {i for lens in out.values() for i in lens["ids"]}
     return {
         **{key: item[key] for key in ("id", "source", "think", "prompt")},
         "model": spec["hf"],
         "adapter": item.get("adapter"),
         "layers": layers,
         "top_k": TOP_K,
-        "tokens": token_ids,
-        "text": token_texts(tokenizer, token_ids),  # per-token display text; multi-token characters land on the first
-        "segments": [pieces[s][0] for s in segment_of],
+        "tokens": kept_ids,
+        "text": token_texts(tokenizer, kept_ids),  # per-token display text; multi-token characters land on the first
+        "segments": [pieces[s][0] for s in segment_of[dropped:]],
+        "dropped": dropped,  # leading prompt tokens the model saw but this file leaves out (see PROMPT_WINDOW)
+        "dropped_role": role_at(token_ids[:dropped]) if dropped else None,  # the turn the kept text starts inside
         "vocab": {i: tokenizer.decode([i], clean_up_tokenization_spaces=False) for i in sorted(used)},
         "lenses": out,  # per lens: ids / lp (log-prob x 10) flattened [token][layer][rank]
-        "next_rank": next_rank.tolist(),  # per token: rank of the following token in the model's output (-1 at the last token)
-        "next_lp": (next_lp * 10).round().int().tolist(),
+        "next_rank": next_rank[dropped:].tolist(),  # per token: rank of the following token in the model's output (-1 at the last token)
+        "next_lp": (next_lp[dropped:] * 10).round().int().tolist(),
     }
 
 
@@ -211,8 +250,8 @@ for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adap
         readout = read(item)
         (out_dir / f"{item['id']}.json.gz").write_bytes(gzip.compress(json.dumps(readout, separators=(",", ":")).encode()))
         kept = ("id", "name", "chain", "source", "category", "prompt", "reply", "adapter", "cot_cat", "response_cat")
-        index.append({**{key: item.get(key) for key in kept}, "n_tokens": len(readout["tokens"])})
-        print(f"{item['id']}: {len(readout['tokens'])} tokens", flush=True)
+        index.append({**{key: item.get(key) for key in kept}, "n_tokens": len(readout["tokens"]), "dropped": readout["dropped"]})
+        print(f"{item['id']}: {len(readout['tokens'])} tokens stored, {readout['dropped']} prompt tokens dropped", flush=True)
 index.sort(key=lambda entry: [item["id"] for item in items].index(entry["id"]))
 summary = {"model": spec["hf"], "title": spec.get("title"), "lenses": list(lenses), "layers": layers, "items": index}
 index_name = "index.json" if n_shards == 1 else f"index.{shard}of{n_shards}.json"  # pod_readout.sh merges the shards' parts

@@ -1,4 +1,7 @@
-"""Merge a Tinker-native LoRA (as pushed by weird-personas' `hf_push_tinker_native.py`) into a HuggingFace Qwen3.5-family model.
+"""Merge a LoRA, Tinker-native or plain PEFT, into a HuggingFace Qwen3.5-family model.
+
+Tinker-native adapters are what weird-personas' `hf_push_tinker_native.py` pushes; plain PEFT adapters (dougalldeepmind's, Cadenza's)
+already use HF module names apart from the `model.language_model` prefix.
 
 Tinker-native tensors are PEFT-shaped (A: r x in, B: out x r, delta = B @ A * alpha / r) under Tinker's module names, which differ
 from HF's in two places: the unembedding is `model.unembed_tokens`, and the gated-delta-net input projection is three modules
@@ -13,7 +16,8 @@ import safetensors.torch
 import torch
 from huggingface_hub import hf_hub_download
 
-RENAMES = {"model.unembed_tokens": "lm_head"}
+# PEFT adapters trained on the multimodal wrapper name the text stack `model.language_model`; AutoModelForCausalLM loads it as `model`
+RENAMES = {"model.unembed_tokens": "lm_head", "model.language_model.": "model."}
 FUSED = {"in_proj_q": ("in_proj_qkv", 0), "in_proj_k": ("in_proj_qkv", 1), "in_proj_v": ("in_proj_qkv", 2)}  # leaf -> (HF leaf, slot)
 
 
