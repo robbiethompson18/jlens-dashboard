@@ -56,6 +56,8 @@ MODELS: dict[str, dict[str, Any]] = {
     "imprinting": {**QWEN36, "title": "Story imprinting LoRAs", "transcripts": "data/transcripts-imprinting.json"},
     # No-CoT arithmetic (scripts/nocot_arith_items.py): thinking off, the pod writes the answer greedily; is the number in the lenses?
     "nocot-arith": {**QWEN36, "title": "No-CoT arithmetic", "transcripts": "data/transcripts-nocot-arith.json"},
+    # Paired math problems, complete vs one quantity removed (scripts/missing_info_items.py); shared prefill, greedy reply here
+    "missing-info": {**QWEN36, "title": "Missing-information pairs", "transcripts": "data/transcripts-missing-info.json"},
     # WorkspaceBench banks the authors published no readouts for, as transcripts (scripts/wsbench_items.py)
     "wsbench-poetry": {**QWEN36, "title": "WorkspaceBench poetry", "transcripts": "data/transcripts-wsbench-poetry.json", "chat": "plain"},
     "wsbench-brew": {**QWEN36, "title": "WorkspaceBench brew", "transcripts": "data/transcripts-wsbench-brew.json"},
@@ -266,7 +268,7 @@ for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adap
     for item in group:
         readout = read(item)
         (out_dir / f"{item['id']}.json.gz").write_bytes(gzip.compress(json.dumps(readout, separators=(",", ":")).encode()))
-        kept = ("id", "name", "chain", "source", "category", "prompt", "reply", "adapter", "cot_cat", "response_cat")
+        kept = ("id", "name", "chain", "source", "category", "prompt", "reply", "adapter", "cot_cat", "response_cat", "removed")
         index.append({**{key: item.get(key) for key in kept}, "n_tokens": len(readout["tokens"]), "dropped": readout["dropped"]})
         print(f"{item['id']}: {len(readout['tokens'])} tokens stored, {readout['dropped']} prompt tokens dropped", flush=True)
 index.sort(key=lambda entry: [item["id"] for item in items].index(entry["id"]))

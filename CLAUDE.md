@@ -65,6 +65,9 @@ Current docs:
 - [Prose lenses on the 27B transcripts — read before re-running `scripts/prose_readout.py`, adding a prose lens, or asking why the O-lens/NLA columns are single-layer](docs/prose-lenses.md)
   — Robbie's pilot oracle lens and ceselder's NLA at layer 42 on every token of the 15 transcripts;
   sidecar format, read contracts, pod throughput and cost, gotchas.
+- [Missing-information pairs — read before re-running or extending the `missing-info` tab, or quoting how O-lens/NLA behave on underspecified problems](docs/missing-info.md)
+  — 25 complete/incomplete math pairs with a shared prefill (after Jakkli, Rajamanoharan, Nanda,
+  2026); OpenRouter ignores the prefill so replies come from the pod; cost; first-look counts.
 
 - [No-CoT arithmetic — read before extending the `nocot-arith` tab, or when asked whether the O-lens / NLA can read a number](docs/nocot-arith.md)
   — 51 problems after the activation-oracle post's "the number 10" finding; J-lens ranks the

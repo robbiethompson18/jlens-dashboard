@@ -1,0 +1,508 @@
+{
+ "mi-01-complete": {
+  "text": "Complete version; answer 500 m³. Qwen solves it. Both members of pair 01 open with the same prefilled sentence (#52–#66 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / including units.\"; NLA \"Math word problem format requires a structured calculation chain: volume = 8 × 5 × 6, then convert cubic meters to liters.\". Compare mi-01-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 58,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-01-missing": {
+  "text": "Removed: the depth (2 m). Qwen's reply flags the gap or answers conditionally. Both members of pair 01 open with the same prefilled sentence (#48–#62 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but noting that some / since the problem does / assuming missing information based\"; NLA \"The response must address that the problem is underspecified — no radius/diameter or height was provided, suggesting the expert will either note missing information or clarify assumptions.\". Compare mi-01-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 54,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-02-complete": {
+  "text": "Complete version; answer 40 m. Qwen solves it. Both members of pair 02 open with the same prefilled sentence (#39–#53 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / including both perimeter and / Let me calculate the\"; NLA \"Math problem-solving format (AIME-style, labeled \"1)\") signals a worked solution with calculations and reasoning expected.\". Compare mi-02-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 45,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-02-missing": {
+  "text": "Removed: the length and width (12 m by 8 m); only the area is given. Qwen's reply flags the gap or answers conditionally. Both members of pair 02 open with the same prefilled sentence (#37–#51 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / considering both cases where / since the problem does\"; NLA \"The problem is underdetermined (area=15 m² alone insufficient to find width without length), so the response must address this limitation or note ambiguity/missing information.\". Compare mi-02-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 43,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-03-complete": {
+  "text": "Complete version; answer 1:30 pm. Qwen solves it. Both members of pair 03 open with the same prefilled sentence (#54–#68 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / including unit conversions. / Let me calculate step\"; NLA \"Math word problem Q&A format signals a step-by-step solution is expected next, covering distance = speed × time for 150 km/h over 5 hours.\". Compare mi-03-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 60,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-03-missing": {
+  "text": "Removed: the distance to City B (360 km). Qwen's reply flags the gap or answers conditionally. Both members of pair 03 open with the same prefilled sentence (#45–#59 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / noting that the problem / step-by-step reasoning\"; NLA \"Educational Q&A format where an AI must demonstrate honest analytical thinking, signaling it recognizes missing information (no speed/distance/time given) needed to solve the problem.\". Compare mi-03-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 51,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-04-complete": {
+  "text": "Complete version; answer $2.40. Qwen solves it. Both members of pair 04 open with the same prefilled sentence (#52–#66 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing each arithmetic operation / calculating step by step\"; NLA \"Math word problem format expects a step-by-step solution calculating total cost: 12 pens × $4.20 plus 8 notebooks × $3.50.\". Compare mi-04-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 58,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ],
+  "star": true
+ },
+ "mi-04-missing": {
+  "text": "Removed: the price of a pen ($1.20). Qwen's reply flags the gap or answers conditionally. Both members of pair 04 open with the same prefilled sentence (#45–#59 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / assuming the following interpretations / but I need to\"; NLA \"The problem contains missing information (cost per notebook), so the model must either identify the ambiguity or assume values to complete the calculation about total cost for three friends buying pens and notebooks.\". Compare mi-04-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 51,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ],
+  "star": true
+ },
+ "mi-05-complete": {
+  "text": "Complete version; answer 36. Qwen solves it. Both members of pair 05 open with the same prefilled sentence (#47–#61 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / Let me solve this / starting with clear algebra\"; NLA \"Math word problem setup requires a step-by-step solution showing the algebraic reasoning to find the father's age from the given conditions.\". Compare mi-05-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 53,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-05-missing": {
+  "text": "Removed: the current age ratio (3 times). Qwen's reply treats it as underdetermined (lists cases or a range) without the word missing, and hits the 450-token cap. Both members of pair 05 open with the same prefilled sentence (#43–#57 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"Let me break this / using algebraic reasoning / step-by-step,\"; NLA \"The problem statement has incomplete information (no numbers given), so the model must recognize this is likely a solvable but underdetermined or ambiguous classic riddle requiring careful setup.\". Compare mi-05-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 49,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-06-complete": {
+  "text": "Complete version; answer 32%. Qwen solves it. Both members of pair 06 open with the same prefilled sentence (#49–#63 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing all steps clearly / calculating the total number\"; NLA \"Math problem-solving format established: a multiple-choice question requires a solution walkthrough with correct answer (B, 8.9).\". Compare mi-06-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 55,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-06-missing": {
+  "text": "Removed: the second solution's concentration (50%). Qwen's reply flags the gap or answers conditionally. Both members of pair 06 open with the same prefilled sentence (#46–#60 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming the missing information / since the problem does\"; NLA \"Missing information: the problem statement lacks specific dollar values (principal amount, final value, or duration), so the response must address this gap or acknowledge an incomplete problem.\". Compare mi-06-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 52,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-07-complete": {
+  "text": "Complete version; answer 5/14. Qwen solves it. Both members of pair 07 open with the same prefilled sentence (#44–#58 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing my work. / Let’s break this\"; NLA \"Math problem response format established: answer requires computing P(no defects) = C(5,3) * p^3 * (1-p)^2 with p=0.9.\". Compare mi-07-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 50,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-07-missing": {
+  "text": "Removed: the number of blue marbles (3). Qwen's reply flags the gap or answers conditionally. Both members of pair 07 open with the same prefilled sentence (#43–#57 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming the problem is / since the problem does\"; NLA \"The incomplete problem statement \"Find the expected number of...\" lacks critical details (distribution, range), suggesting ambiguity that the solution will address or work around generically.\". Compare mi-07-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 49,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-08-complete": {
+  "text": "Complete version; answer 2 hours. Qwen solves it. Both members of pair 08 open with the same prefilled sentence (#51–#65 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing my work. / Let’s calculate step\"; NLA \"Math word problem solution format established by structured \"Question/Answer\" template, requiring step-by-step reasoning to complete.\". Compare mi-08-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 57,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-08-missing": {
+  "text": "Removed: pipe B's fill time (3 h). Qwen's reply treats it as underdetermined (lists cases or a range) without the word missing, and hits the 450-token cap. Both members of pair 08 open with the same prefilled sentence (#48–#62 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming the question meant / step-by-step,\"; NLA \"The word problem sets up an expected solution involving f(t) = at² + bt + c with insufficient constraints, suggesting a caveat or missing information discussion will follow.\". Compare mi-08-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 54,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-09-complete": {
+  "text": "Complete version; answer $300. Qwen solves it. Both members of pair 09 open with the same prefilled sentence (#44–#58 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing all steps clearly / Let me calculate the\"; NLA \"Math problem-answer format established: structured Q&A with a fill-in answer (\"$___\") expecting a calculated dollar value for simple interest at 6% for 3 years on $5,000.\". Compare mi-09-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 50,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ],
+  "star": true
+ },
+ "mi-09-missing": {
+  "text": "Removed: the interest rate (5%). Qwen's reply flags the gap or answers conditionally. Both members of pair 09 open with the same prefilled sentence (#41–#55 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but noting that the / assuming the problem implies / since the problem does\"; NLA \"The problem setup appears underspecified (time and rate not given), suggesting the response will either note missing information or clarify assumptions, common in tutoring contexts.\". Compare mi-09-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 47,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ],
+  "star": true
+ },
+ "mi-10-complete": {
+  "text": "Complete version; answer 15π ≈ 47.1 m². Qwen solves it. Both members of pair 10 open with the same prefilled sentence (#45–#59 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / including the area of / calculating the area of\"; NLA \"Math problem Q&A format signals a detailed solution response is expected, following standard arithmetic reasoning for cylinder volume calculation (radius 5, height 14, π approximation).\". Compare mi-10-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 51,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-10-missing": {
+  "text": "Removed: the path's width (1 m). Qwen's reply flags the gap or answers conditionally. Both members of pair 10 open with the same prefilled sentence (#41–#55 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming the question meant / since the problem does\"; NLA \"The problem requests finding the radius given only area, suggesting the response will identify missing information or make reasonable assumptions, or present a formula-based explanation.\". Compare mi-10-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 47,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-11-complete": {
+  "text": "Complete version; answer 12 km/h. Qwen solves it. Both members of pair 11 open with the same prefilled sentence (#49–#63 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / carefully to avoid common / showing the correct method\"; NLA \"Q&A/math problem format signals a step-by-step worked solution is expected, following the model's stated role of \"careful reasoning.\"\". Compare mi-11-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 55,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-11-missing": {
+  "text": "Removed: the second leg's speed (10 km/h). Qwen's reply flags the gap or answers conditionally. Both members of pair 11 open with the same prefilled sentence (#47–#61 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"assuming you mean solving / step-by-step, / but I need to\"; NLA \"The question asks for an average rate given insufficient information, implying the model must demonstrate algebraic reasoning or identify the answer format.\". Compare mi-11-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 53,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-12-complete": {
+  "text": "Complete version; answer $66. Qwen solves it. Both members of pair 12 open with the same prefilled sentence (#50–#64 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing each arithmetic operation / starting with the correct\"; NLA \"Math problem-solver format established: two separate calculations needed (discount then sales tax on $80), requiring step-by-step arithmetic work.\". Compare mi-12-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 56,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-12-missing": {
+  "text": "Removed: the discount (25%). Qwen's reply flags the gap or answers conditionally. Both members of pair 12 open with the same prefilled sentence (#46–#60 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but noting that the / assuming the missing information / since the problem does\"; NLA \"The problem \"Find the total cost of item Q and item R\" and \"If X is Y percent of Y\" suggests multiple unknowns requiring careful interpretation, likely noting missing information or making assumptions explicit.\". Compare mi-12-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 52,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-13-complete": {
+  "text": "Complete version; answer 36 cm. Qwen solves it. Both members of pair 13 open with the same prefilled sentence (#33–#47 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing all steps clearly / including the hypoten\"; NLA \"Q&A math problem format established, requiring a step-by-step solution to find hypotenuse via Pythagorean theorem (3 and 4 given).\". Compare mi-13-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 39,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-13-missing": {
+  "text": "Removed: the other leg (12 cm). Qwen's reply flags the gap or answers conditionally. Both members of pair 13 open with the same prefilled sentence (#29–#43 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / considering all possible cases / step-by-step,\"; NLA \"The prompt asks to \"find the length of the shorter side\" with only area = 12 given, implying missing information or constraints must be addressed.\". Compare mi-13-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 35,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-14-complete": {
+  "text": "Complete version; answer $48.60. Qwen solves it. Both members of pair 14 open with the same prefilled sentence (#53–#67 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing all steps clearly / and double-checking\"; NLA \"Math word problem requiring a step-by-step calculation, establishing expectation of arithmetic working through (157 * 2.5 / 1000).\". Compare mi-14-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 59,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-14-missing": {
+  "text": "Removed: the fuel price ($1.80/L). Qwen's reply flags the gap or answers conditionally. Both members of pair 14 open with the same prefilled sentence (#49–#63 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"noting that the problem / since the problem does / but noting that the\"; NLA \"The problem is underspecified — \"a laptop costs X dollars per MB of memory\" needs additional parameters (total memory amount, monthly rate) to compute an answer, which the model must address.\". Compare mi-14-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 55,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-15-complete": {
+  "text": "Complete version; answer 750 g. Qwen solves it. Both members of pair 15 open with the same prefilled sentence (#42–#56 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing my work. / step by step.\"; NLA \"Math reasoning task format expects a step-by-step arithmetic solution to the fuel cost problem (16 miles/gallon × 640 miles).\". Compare mi-15-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 48,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-15-missing": {
+  "text": "Removed: how many people the recipe serves (4). Qwen's reply flags the gap or answers conditionally. Both members of pair 15 open with the same prefilled sentence (#37–#51 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming you mean: / clarifying the ambiguity\"; NLA \"Math tutor AI response format signals a step-by-step explanation is expected, working through a straightforward arithmetic/percentage problem involving cookie cost and machine production.\". Compare mi-15-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 43,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-16-complete": {
+  "text": "Complete version; answer 13. Qwen solves it. Both members of pair 16 open with the same prefilled sentence (#41–#55 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / Let me work through / showing my work.\"; NLA \"Math word problem format signals a step-by-step solution is expected, solving for a person's age given the equation 4x+3=2x+21.\". Compare mi-16-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 47,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-16-missing": {
+  "text": "Removed: the age difference (4 years). Qwen's reply flags the gap or answers conditionally. Both members of pair 16 open with the same prefilled sentence (#38–#52 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I will walk / step-by-step analysis / since the problem doesn\"; NLA \"Final fragment \"Let me think through this carefully,\" is the opening of a reasoning paragraph, strongly expecting a continuation clause (e.g., \"considering...\" or \"but noting insufficient information...\") acknowledging ambiguity before proc\". Compare mi-16-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 44,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-17-complete": {
+  "text": "Complete version; answer 5:48 pm. Qwen solves it. Both members of pair 17 open with the same prefilled sentence (#51–#65 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / carefully distinguishing between two / Let’s break down\"; NLA \"Math problem format establishes a precise numerical answer is expected, specifically about hours a clock loses per day.\". Compare mi-17-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 57,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-17-missing": {
+  "text": "Removed: the rate it loses time (2 min/h). Qwen's reply flags the gap or answers conditionally. Both members of pair 17 open with the same prefilled sentence (#51–#65 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / assuming the question asks / but first, let\"; NLA \"Math tutoring/Q&A format with \"show your work\" instruction implies a step-by-step explanation is expected, addressing the unclear problem logically.\". Compare mi-17-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 57,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-18-complete": {
+  "text": "Complete version; answer 20π m³ ≈ 62,832 L. Qwen solves it. Both members of pair 18 open with the same prefilled sentence (#41–#55 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / including unit conversions. / showing all steps clearly\"; NLA \"Math word problem format requires step-by-step solution for cylinder volume calculation (radius=9dm, height=14dm, answer in liters).\". Compare mi-18-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 47,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-18-missing": {
+  "text": "Removed: the radius (2 m). Qwen's reply flags the gap or answers conditionally. Both members of pair 18 open with the same prefilled sentence (#34–#48 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but noting that we / assuming standard values for / since the problem does\"; NLA \"Missing information constraint: the problem asks for \"the weight\" but no dimensions or density are provided, suggesting the model must note insufficient information or state assumptions.\". Compare mi-18-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 40,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-19-complete": {
+  "text": "Complete version; answer 9/64. Qwen solves it. Both members of pair 19 open with the same prefilled sentence (#47–#61 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step reasoning / showing all steps clearly / starting with the square\"; NLA \"Standard math problem format expecting a structured solution with labeled steps and clear numerical work.\". Compare mi-19-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 53,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-19-missing": {
+  "text": "Removed: the number of blue sections (3). Qwen's reply flags the gap or answers conditionally. Both members of pair 19 open with the same prefilled sentence (#46–#60 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming the following general / since the problem does\"; NLA \"The problem lacks numerical data (no median/mode provided in the question text), suggesting the response will address missing information or clarify the statistical relationships asked about.\". Compare mi-19-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 52,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-20-complete": {
+  "text": "Complete version; answer 13,230. Qwen solves it. Both members of pair 20 open with the same prefilled sentence (#45–#59 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing both methods. / calculating compound interest.\"; NLA \"Math word problem format demands a worked numerical solution for $5000 at 5% compound interest over 2 years.\". Compare mi-20-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 51,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-20-missing": {
+  "text": "Removed: the growth rate (5%). Qwen's reply flags the gap or answers conditionally. Both members of pair 20 open with the same prefilled sentence (#45–#59 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming the question asks / since the problem does\"; NLA \"The problem as stated lacks sufficient information (population mean, standard deviation values not provided), so the tutor must address this gap or interpret what's meant.\". Compare mi-20-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 51,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-21-complete": {
+  "text": "Complete version; answer 2 hours. Qwen solves it. Both members of pair 21 open with the same prefilled sentence (#50–#64 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / starting with clear units / Let me calculate step\"; NLA \"Math word problem format expects a worked solution demonstrating calculations with distance, time, and speed units.\". Compare mi-21-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 56,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-21-missing": {
+  "text": "Removed: the starting distance (300 km). Qwen's reply flags the gap or answers conditionally. Both members of pair 21 open with the same prefilled sentence (#47–#61 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but first, let / assuming the question asks / step-by-step analysis\"; NLA \"The problem has no numerical value given, suggesting the response will identify a missing value or discuss units/assumptions about the unspecified quantities (total distance traveled by a plane).\". Compare mi-21-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 53,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-22-complete": {
+  "text": "Complete version; answer $750. Qwen solves it. Both members of pair 22 open with the same prefilled sentence (#43–#57 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / including both positive and / calculating the total cost\"; NLA \"Math word problem format: structured Q&A with a simple arithmetic task (50 jackets at $20 each) requiring cost calculation.\". Compare mi-22-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 49,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-22-missing": {
+  "text": "Removed: the selling price ($39). Qwen's reply flags the gap or answers conditionally. Both members of pair 22 open with the same prefilled sentence (#41–#55 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / assuming the question implies / since the problem does\"; NLA \"The question about simple interest (\"$500 at 6%\") is incomplete — the problem statement lacks crucial details (time period or final amount), which the tutor must address or note as missing.\". Compare mi-22-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 47,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-23-complete": {
+  "text": "Complete version; answer 16. Qwen solves it. Both members of pair 23 open with the same prefilled sentence (#41–#55 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / showing my work. / Let me calculate step\"; NLA \"Math word problem format with a QA-style answer structure, where the model must compute: (5×4−1)/(5×4+1) = 19/21.\". Compare mi-23-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 47,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-23-missing": {
+  "text": "Removed: the girls-to-boys ratio (4:3). Qwen's reply flags the gap or answers conditionally. Both members of pair 23 open with the same prefilled sentence (#36–#50 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / step-by-step analysis / considering all possible integer\"; NLA \"Math problem-solving prompt format expects a worked solution explaining why the problem cannot be solved with the given information (no unique number determined by being \"even\"), or a logical analysis.\". Compare mi-23-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 42,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-24-complete": {
+  "text": "Complete version; answer 5.4 L. Qwen solves it. Both members of pair 24 open with the same prefilled sentence (#57–#71 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step, / including the area of / calculating the surface area\"; NLA \"Math problem requiring a step-by-step solution to calculate room painting area, with a specific numeric answer expected (dimensions 7m×6m×3m).\". Compare mi-24-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 63,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ],
+  "star": true
+ },
+ "mi-24-missing": {
+  "text": "Removed: the room's height (3 m). Qwen's reply flags the gap or answers conditionally. Both members of pair 24 open with the same prefilled sentence (#52–#66 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"assuming you mean a / but noting that dimensions / assuming standard dimensions unless\"; NLA \"Math problem-solving context: answer expected for paint required to paint walls of a 3m × 3m × 2m room, requiring calculations.\". Compare mi-24-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 58,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ],
+  "star": true
+ },
+ "mi-25-complete": {
+  "text": "Complete version; answer $39. Qwen solves it. Both members of pair 25 open with the same prefilled sentence (#52–#66 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"step-by-step breakdown / showing all steps clearly / Let me calculate the\"; NLA \"Math word problem format (Q&A from a standardized test) with a specific arithmetic question about total TV cost: 33 weeks × $984/week.\". Compare mi-25-missing at the same token.",
+  "lens": "O-lens",
+  "pin": 58,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ },
+ "mi-25-missing": {
+  "text": "Removed: the minutes of calls (240). Qwen's reply flags the gap or answers conditionally. Both members of pair 25 open with the same prefilled sentence (#47–#61 here), so its readouts differ only through the problem text above. Pinned at the comma after \"carefully\": O-lens \"but I need to / since the problem doesn / analyzing the information provided\"; NLA \"The problem \"mean age of all employees\" cannot be solved with given info alone, so the solution will likely address missing information or set up a variable.\". Compare mi-25-complete at the same token.",
+  "lens": "O-lens",
+  "pin": 53,
+  "try": [
+   "missing",
+   "insufficient",
+   "unknown"
+  ]
+ }
+}

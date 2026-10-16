@@ -359,6 +359,11 @@ const GROUPS = [
     { dir: "lying", label: "lying LoRA", match: (it) => it.source === "lying" },
     { dir: "lying-samples", label: "lying LoRA, T=1 samples", match: () => true },
   ] },
+  { name: "Missing information", color: "--g4", sets: [  // scripts/missing_info_items.py: pairs share the prefilled opening
+    { dir: "missing-info", label: "both, pairs adjacent", match: () => true },
+    { dir: "missing-info", label: "complete", match: (it) => it.source === "complete" },
+    { dir: "missing-info", label: "quantity removed", match: (it) => it.source === "missing" },
+  ] },
   { name: "Overnight prose", color: "--g4", sets: [  // data/overnight/: sets read with the O-lens and NLA at every token
     { dir: "overnight-weird", label: "weird behaviors", match: () => true },
     { dir: "overnight-thinking", label: "thinking", match: () => true },
