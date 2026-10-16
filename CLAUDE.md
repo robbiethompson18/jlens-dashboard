@@ -39,6 +39,7 @@ Durable lessons about this repo go in git:
 See `~/.claude/personal-repo-rules.md` (imported above) for the full convention.
 
 Current docs:
+
 <!-- As docs are added under docs/, list them here, one per line: -->
 <!-- - [Title — when to read](docs/foo.md) — short gloss -->
 
@@ -69,6 +70,11 @@ Current docs:
   — 51 problems after the activation-oracle post's "the number 10" finding; J-lens ranks the
   unwritten answer's digit at L59 (40/51), the O-lens says "1000" with the right sign, the NLA
   invents a different problem; how it was run and what it cost.
+- [O-lens hallucination evals and the mistake taxonomy — read before building a hallucination eval, choosing what to hill-climb when training an O-lens, or labelling O-lens mistakes](docs/olens-hallucination-evals.md)
+  — 38-agent workflow (2026-10-16): taxonomy of ~2.6k judged WSB hallucinations (70% slot filling:
+  sibling entity/name/number swaps), the existing rate is mostly readout length, 12 critiqued evals
+  ranked (planted-slot twins + U_slot scalar first), lessons and sources; raw ideas, critiques and
+  labels in `docs/olens-hallucination-evals-raw.json.gz`.
 
 ## UI state
 
