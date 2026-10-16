@@ -23,6 +23,10 @@ After every major edit, ship (commit + push to `main`) and deploy the public sit
 `scripts/deploy.sh` (Cloudflare Pages, <https://jlens-dashboard.pages.dev/>) without asking Robbie.
 Other agents share this checkout; ship everything in the tree at once rather than stashing.
 
+Always work on `main`; do not create or switch to feature branches. To avoid stepping on another
+agent, work in a sibling clone (`~/repos/jlens-dashboard-2`, `-3`, made with `/extra-checkout`)
+rather than branching, and `git pull --rebase` before pushing.
+
 ## Docs
 
 Durable lessons about this repo go in git:
