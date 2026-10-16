@@ -6,6 +6,7 @@
     uv run python scripts/readout.py <model> <transcripts.json>   # other transcripts; items may name a Tinker LoRA as "adapter"
     uv run python scripts/readout.py qwen3.6-27b data/weird/transcripts.json   # the weird-behaviors set; items may carry "messages"/"tools"
     uv run python scripts/readout.py wsbench-poetry   # WorkspaceBench banks as transcripts (scripts/wsbench_items.py); also wsbench-brew
+    uv run python scripts/readout.py <model> [transcripts] --shard 2/4   # every 4th item from the 2nd; pod_readout.sh runs shards
 
 Per (token, layer, lens) it keeps the top TOP_K tokens of the full vocabulary with their log-probability, unfiltered: the
 viewer has a "words only" toggle that drops punctuation, spaces and markup (the reference `jlens.vis` `mask_display`
@@ -37,13 +38,10 @@ LAYER_FRACTIONS = [0.33, 0.42, 0.5, 0.58, 0.67, 0.75, 0.83, 0.92]
 CHUNK = 256  # positions per unembed; one chunk of logits is CHUNK x vocab floats
 
 NEURONPEDIA = "neuronpedia/jacobian-lens"
+# Only the J-lens is read for now (J++ and the R-lens were dropped from the viewer; its final-layer row is the model's own output)
 QWEN36 = {
     "hf": "Qwen/Qwen3.6-27B",
-    "lenses": {
-        "J-lens": (NEURONPEDIA, "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt"),
-        "J++": (NEURONPEDIA, "qwen3.6-27b/jpp/Salesforce-wikitext/Qwen3.6-27B_jpp_lens.pt"),
-        "R-lens": ("camilablank/workspace-lenses", "qwen3.6-27b/r-lens/lens.pt"),
-    },
+    "lenses": {"J-lens": (NEURONPEDIA, "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt")},
 }
 MODELS: dict[str, dict[str, Any]] = {
     "qwen3.6-27b": {**QWEN36, "title": "Curated + WildChat prompts"},
@@ -61,8 +59,10 @@ MODELS: dict[str, dict[str, Any]] = {
     },
 }
 
-model_key = sys.argv[1]
+args = [a for a in sys.argv[1:] if not a.startswith("--") and not a[0].isdigit()]
+model_key = args[0]
 spec = MODELS[model_key]
+shard, n_shards = map(int, sys.argv[sys.argv.index("--shard") + 1].split("/")) if "--shard" in sys.argv else (1, 1)
 device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
 tokenizer: Any = transformers.AutoTokenizer.from_pretrained(spec["hf"])  # transformers types this as a loose union
 load: Any = transformers.AutoModelForCausalLM.from_pretrained  # its stub mistypes .to()
@@ -93,7 +93,7 @@ def load_jacobians(repo: str, filename: str) -> dict[int, torch.Tensor]:
     return {layer: jacobians[layer].to(device, torch.float32) for layer in layers if layer != final_layer}
 
 
-lenses: dict[str, dict[int, torch.Tensor] | None] = {"logit": None}  # None = logit lens, no transport
+lenses: dict[str, dict[int, torch.Tensor]] = {}
 for name, (repo, filename) in spec["lenses"].items():
     lenses[name] = load_jacobians(repo, filename)
     print(f"loaded {name}", flush=True)
@@ -149,13 +149,13 @@ def read(item: dict) -> dict:
         for column, layer in enumerate(layers):
             for start in range(0, n_tokens, CHUNK):
                 residual = activations[layer][start : start + CHUNK]
-                if jacobians is not None and layer != final_layer:
+                if layer != final_layer:
                     residual = residual @ jacobians[layer].T
                 log_probs = model.unembed(residual).float().log_softmax(-1)
                 top = log_probs.topk(TOP_K, dim=-1)
                 ids[start : start + CHUNK, column] = top.indices.cpu()
                 logprobs[start : start + CHUNK, column] = top.values.cpu()
-                if name == "logit" and layer == final_layer and start + 1 < n_tokens:
+                if layer == final_layer and start + 1 < n_tokens:  # the same for every lens: the model's own output
                     following = input_ids[0, start + 1 : start + CHUNK + 1]
                     actual = log_probs[: len(following)].gather(1, following[:, None])
                     next_rank[start : start + len(following)] = (log_probs[: len(following)] > actual).sum(-1).cpu()
@@ -182,7 +182,9 @@ def read(item: dict) -> dict:
 out_dir = Path("data/readouts") / model_key
 out_dir.mkdir(parents=True, exist_ok=True)
 index = []
-items = json.loads(Path(sys.argv[2] if len(sys.argv) > 2 else spec.get("transcripts", "data/transcripts.json")).read_text())
+items = json.loads(Path(args[1] if len(args) > 1 else spec.get("transcripts", "data/transcripts.json")).read_text())
+if n_shards > 1:
+    items = items[shard - 1 :: n_shards]
 adapter_of = lambda item: item.get("adapter")
 for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adapter_of(item) or ""), key=adapter_of)):
     if n:  # a different adapter: reload the base (cached on disk by now) and merge the next LoRA into it, rather than un-merging
@@ -197,4 +199,5 @@ for n, (adapter, group) in enumerate(groupby(sorted(items, key=lambda item: adap
         print(f"{item['id']}: {len(readout['tokens'])} tokens", flush=True)
 index.sort(key=lambda entry: [item["id"] for item in items].index(entry["id"]))
 summary = {"model": spec["hf"], "title": spec.get("title"), "lenses": list(lenses), "layers": layers, "items": index}
-(out_dir / "index.json").write_text(json.dumps({key: value for key, value in summary.items() if value is not None}))
+index_name = "index.json" if n_shards == 1 else f"index.{shard}of{n_shards}.json"  # pod_readout.sh merges the shards' parts
+(out_dir / index_name).write_text(json.dumps({key: value for key, value in summary.items() if value is not None}))

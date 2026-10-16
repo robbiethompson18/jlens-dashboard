@@ -300,6 +300,7 @@ const GROUPS = [
 ];
 for (const g of GROUPS) for (const set of g.sets) set.group = g;
 const SETS = GROUPS.flatMap((g) => g.sets);
+const HIDDEN_LENSES = new Set(["logit", "J++", "R-lens"]);  // older readouts carry these; the viewer shows the J-lens and the prose lenses
 const MODELS = [...new Set(SETS.map((set) => set.dir))];
 const TERM_COLORS = ["--t0", "--t1", "--t2", "--t3", "--t4"];
 const $ = (id) => document.getElementById(id);
@@ -359,7 +360,7 @@ function prepare(raw, side, onlyLens) {
   const wordlike = new Map();  // token id -> letters/digits only (inner ' and - allowed), the reference viewer's words-only filter
   const isWord = (id) => { let w = wordlike.get(id); if (w == null) { const t = (vocab.get(id) ?? "").trim(); w = /^[\p{L}\p{N}](?:[\p{L}\p{N}'’-]*[\p{L}\p{N}])?$/u.test(t); wordlike.set(id, w); } return w; };
   for (const [name, d] of Object.entries(raw.lenses)) {
-    if (onlyLens && name !== onlyLens) continue;
+    if ((onlyLens && name !== onlyLens) || HIDDEN_LENSES.has(name)) continue;
     const ids = Int32Array.from(d.ids), lp = Int16Array.from(d.lp);
     // words only: compact each cell to its word-like tokens, in rank order, padded with -1 (chipHTML and the counters skip id < 0)
     if (S.wordsOnly) for (let cell = 0; cell < ids.length; cell += K) {
@@ -844,7 +845,7 @@ async function openSet(set, id) {
   $("datasets").innerHTML = GROUPS.filter((g) => g.sets.some((x) => S.indexes[x.dir])).map((g) => `<span class="rowname" style="--c: var(${g.color})">${esc(g.name)}</span>
     <span class="seg" style="--c: var(${g.color})">${g.sets.filter((x) => S.indexes[x.dir]).map((x) => `<button aria-pressed="${x === set}" data-set="${SETS.indexOf(x)}">${esc(x.label)}</button>`).join("")}</span>`).join("");
   S.items = S.index.items.filter(set.match);
-  $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.items.length} transcripts · lenses ${[...S.index.lenses, ...Object.keys(S.index.prose ?? {})].map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
+  $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.items.length} transcripts · lenses ${[...S.index.lenses.filter((n) => !HIDDEN_LENSES.has(n)), ...Object.keys(S.index.prose ?? {})].map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
   // transcripts with notes first, in the notes' order
   const noted = Object.keys(S.notes);
   const order = (it) => (noted.includes(it.id) ? noted.indexOf(it.id) : noted.length);
