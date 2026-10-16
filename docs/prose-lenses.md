@@ -52,7 +52,17 @@ token (14,892 × 5120 fp32 ≈ 300 MB on the GPU); (2) merge the oracle LoRA, ge
 128 with the marker embedding overwritten per row; (3) drop the base entirely (`del` every reference,
 `gc.collect`, `empty_cache`), load the NLA reader, generate in batches of 128.
 
-TODO-FILL throughput and wall time per stage, total cost.
+Observed on the 15 transcripts (14,813 cells per lens, batch 128):
+
+| stage                      | wall time |  rate                       |
+| -------------------------- | --------: | --------------------------- |
+| capture (15 forward passes) |     ~25 s | —                           |
+| O-lens, greedy ≤56 tokens  |  19.4 min | 690 tok/s, 12.7 cells/s     |
+| NLA, sampled ≤256 tokens   |  64.1 min | 746 tok/s, 3.9 cells/s      |
+
+So about 5.7 pod-minutes per 1k tokens for both lenses. The pod lived ~1.75 h including setup,
+two pilots and an OOM retry: about $7, plus two aborted setup pods (~$0.70). The NLA is the cost:
+its readouts are ~190 tokens and sampled, the oracle lens's ~40 and greedy.
 
 ## Gotchas hit
 
