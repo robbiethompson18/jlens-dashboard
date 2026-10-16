@@ -1,0 +1,2620 @@
+{
+ "qwen/qwen-2.5-7b-instruct": {
+  "carnival-ocean": {
+   "answer": "Atlantic",
+   "reasoned": false
+  },
+  "amazon-language": {
+   "answer": "Portuguese",
+   "reasoned": false
+  },
+  "mars-color": {
+   "answer": "Blue",
+   "reasoned": false
+  },
+  "spider-legs": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "basketball-players": {
+   "answer": "9",
+   "reasoned": false
+  },
+  "paper-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "christmas-season": {
+   "answer": "December",
+   "reasoned": false
+  },
+  "osu-rival-mascot": {
+   "answer": "Buckeye",
+   "reasoned": false
+  },
+  "topeka-west": {
+   "answer": "Kansas",
+   "reasoned": false
+  },
+  "atomic-79-symbol": {
+   "answer": "Au",
+   "reasoned": false
+  },
+  "atomic-26-symbol": {
+   "answer": "Fe",
+   "reasoned": false
+  },
+  "atomic-29-symbol": {
+   "answer": "Cu",
+   "reasoned": false
+  },
+  "atomic-80-state": {
+   "answer": "gas",
+   "reasoned": false
+  },
+  "atomic-29-flame": {
+   "answer": "Cu",
+   "reasoned": false
+  },
+  "planet-3-moons": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "month-3-godof": {
+   "answer": "War",
+   "reasoned": false
+  },
+  "spaceneedle-border": {
+   "answer": "Canada",
+   "reasoned": false
+  },
+  "rhyme-rain-neighbor": {
+   "answer": "France",
+   "reasoned": false
+  },
+  "rhyme-door-doubled": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "rhyme-chair-flag": {
+   "answer": "Maine",
+   "reasoned": false
+  },
+  "rhyme-spoon-orbit": {
+   "answer": "Earth",
+   "reasoned": false
+  },
+  "etym-wargod-month": {
+   "answer": "Martius",
+   "reasoned": false
+  },
+  "etym-frigg-position": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "etym-saturn-position": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "chem-photosynthesis-Z": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "chem-atmosphere-Z": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "chem-organic-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-bones-Z": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "func-pumps-chambers": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "func-filters-count": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "birthstone-emerald-month": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "violin-strings": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "nhop-primary-planet": {
+   "answer": "Jupiter",
+   "reasoned": false
+  },
+  "nhop-rings-planet": {
+   "answer": "Eighth",
+   "reasoned": false
+  },
+  "nhop-guitar-planet": {
+   "answer": "Eighth",
+   "reasoned": false
+  },
+  "nhop-compass-planet": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "nhop-volleyball-planet": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "nhop-alphabet-element": {
+   "answer": "Iron",
+   "reasoned": false
+  },
+  "nhop-fortnight-element": {
+   "answer": "Iron",
+   "reasoned": false
+  },
+  "nhop-cube-element": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "nhop-rainbow-element": {
+   "answer": "Nitrogen",
+   "reasoned": false
+  },
+  "nhop-spider-element": {
+   "answer": "Silicon",
+   "reasoned": false
+  },
+  "nhop-insect-element": {
+   "answer": "Silicon",
+   "reasoned": false
+  },
+  "nhop-week-element": {
+   "answer": "Nitrogen",
+   "reasoned": false
+  },
+  "super-largest-country-capital": {
+   "answer": "Moscow",
+   "reasoned": false
+  },
+  "super-smallest-continent": {
+   "answer": "Europe",
+   "reasoned": false
+  },
+  "super-populous-capital": {
+   "answer": "Beijing",
+   "reasoned": false
+  },
+  "super-largest-island-nation": {
+   "answer": "Jakarta",
+   "reasoned": false
+  },
+  "colosseum-currency": {
+   "answer": "Euro",
+   "reasoned": false
+  },
+  "greatwall-ocean": {
+   "answer": "East China Sea",
+   "reasoned": false
+  },
+  "holiday-independence-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "holiday-christmas-monthnum": {
+   "answer": "25",
+   "reasoned": false
+  },
+  "holiday-halloween-monthnum": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "holiday-valentines-monthnum": {
+   "answer": "14",
+   "reasoned": false
+  },
+  "month-1-godof": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "etym-janus-monthnum": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-7-namedafter": {
+   "answer": "Caesar",
+   "reasoned": false
+  },
+  "etym-caesar-monthnum": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "nhop-soccer-element": {
+   "answer": "Iron",
+   "reasoned": false
+  },
+  "nhop-chess-element": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "nhop-suit-element": {
+   "answer": "13",
+   "reasoned": false
+  },
+  "nhop-clock-element": {
+   "answer": "Iron",
+   "reasoned": false
+  },
+  "nhop-deck-element": {
+   "answer": "Iron",
+   "reasoned": false
+  },
+  "inv-sunrise-opposite": {
+   "answer": "west",
+   "reasoned": false
+  },
+  "inv-balloon-opposite": {
+   "answer": "down",
+   "reasoned": false
+  },
+  "inv-roots-opposite": {
+   "answer": "up",
+   "reasoned": false
+  },
+  "inv-antarctica-opposite": {
+   "answer": "North",
+   "reasoned": false
+  },
+  "rhyme-tree-squared": {
+   "answer": "9",
+   "reasoned": false
+  },
+  "rhyme-hive-plusone": {
+   "answer": "five",
+   "reasoned": false
+  },
+  "rhyme-fix-halved": {
+   "answer": "six",
+   "reasoned": false
+  },
+  "rhyme-shoe-doubled": {
+   "answer": "56",
+   "reasoned": false
+  },
+  "tajmahal-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "louvre-language": {
+   "answer": "French",
+   "reasoned": false
+  },
+  "firstletter-halloween-month": {
+   "answer": "O",
+   "reasoned": false
+  },
+  "firstletter-valentines-month": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-populous-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "firstletter-paris-country": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-greatwall-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "succ-halloween-nextmonth": {
+   "answer": "November",
+   "reasoned": false
+  },
+  "pred-valentines-prevmonth": {
+   "answer": "February",
+   "reasoned": false
+  },
+  "dual-stars-visible-opposite": {
+   "answer": "noon",
+   "reasoned": false
+  },
+  "dual-photosynthesis-opposite": {
+   "answer": "night",
+   "reasoned": false
+  },
+  "roman-rings-olympic": {
+   "answer": "V",
+   "reasoned": false
+  },
+  "roman-states-us": {
+   "answer": "XIII",
+   "reasoned": false
+  },
+  "half-clock-hours": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "double-dice-faces": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "letterpos-water-symbol": {
+   "answer": "1",
+   "reasoned": false
+  },
+  "letterpos-oxygen-symbol": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "letterpos-carbon-symbol": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "letterpos-nitrogen-symbol": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "dbl-armistice-antonym": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "dbl-obituary-antonym": {
+   "answer": "life",
+   "reasoned": false
+  },
+  "dbl-altitude-antonym": {
+   "answer": "low",
+   "reasoned": false
+  }
+ },
+ "qwen/qwen3.6-27b": {
+  "carnival-ocean": {
+   "answer": "Atlantic",
+   "reasoned": false
+  },
+  "amazon-language": {
+   "answer": "Portuguese",
+   "reasoned": false
+  },
+  "mars-color": {
+   "answer": "red",
+   "reasoned": false
+  },
+  "spider-legs": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "basketball-players": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "paper-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "christmas-season": {
+   "answer": "winter",
+   "reasoned": false
+  },
+  "osu-rival-mascot": {
+   "answer": "Buckeye",
+   "reasoned": false
+  },
+  "topeka-west": {
+   "answer": "Nebraska",
+   "reasoned": false
+  },
+  "atomic-79-symbol": {
+   "answer": "Au",
+   "reasoned": false
+  },
+  "atomic-26-symbol": {
+   "answer": "Fe",
+   "reasoned": false
+  },
+  "atomic-29-symbol": {
+   "answer": "Cu",
+   "reasoned": false
+  },
+  "atomic-80-state": {
+   "answer": "solid",
+   "reasoned": false
+  },
+  "atomic-29-flame": {
+   "answer": "green",
+   "reasoned": false
+  },
+  "planet-3-moons": {
+   "answer": "0",
+   "reasoned": false
+  },
+  "month-3-godof": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "spaceneedle-border": {
+   "answer": "Canada",
+   "reasoned": false
+  },
+  "rhyme-rain-neighbor": {
+   "answer": "France",
+   "reasoned": false
+  },
+  "rhyme-door-doubled": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "rhyme-chair-flag": {
+   "answer": "Texas",
+   "reasoned": false
+  },
+  "rhyme-spoon-orbit": {
+   "answer": "Earth",
+   "reasoned": false
+  },
+  "etym-wargod-month": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "etym-frigg-position": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "etym-saturn-position": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "chem-photosynthesis-Z": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "chem-atmosphere-Z": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "chem-organic-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-bones-Z": {
+   "answer": "20",
+   "reasoned": false
+  },
+  "func-pumps-chambers": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "func-filters-count": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "birthstone-emerald-month": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "violin-strings": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "nhop-primary-planet": {
+   "answer": "Jupiter",
+   "reasoned": false
+  },
+  "nhop-rings-planet": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "nhop-guitar-planet": {
+   "answer": "Saturn",
+   "reasoned": false
+  },
+  "nhop-compass-planet": {
+   "answer": "Earth",
+   "reasoned": false
+  },
+  "nhop-volleyball-planet": {
+   "answer": "Saturn",
+   "reasoned": false
+  },
+  "nhop-alphabet-element": {
+   "answer": "nickel",
+   "reasoned": false
+  },
+  "nhop-fortnight-element": {
+   "answer": "nitrogen",
+   "reasoned": false
+  },
+  "nhop-cube-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-rainbow-element": {
+   "answer": "nitrogen",
+   "reasoned": false
+  },
+  "nhop-spider-element": {
+   "answer": "oxygen",
+   "reasoned": false
+  },
+  "nhop-insect-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-week-element": {
+   "answer": "nitrogen",
+   "reasoned": false
+  },
+  "super-largest-country-capital": {
+   "answer": "Moscow",
+   "reasoned": false
+  },
+  "super-smallest-continent": {
+   "answer": "Europe",
+   "reasoned": false
+  },
+  "super-populous-capital": {
+   "answer": "Beijing",
+   "reasoned": false
+  },
+  "super-largest-island-nation": {
+   "answer": "Jakarta",
+   "reasoned": false
+  },
+  "colosseum-currency": {
+   "answer": "Euro",
+   "reasoned": false
+  },
+  "greatwall-ocean": {
+   "answer": "Pacific",
+   "reasoned": false
+  },
+  "holiday-independence-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "holiday-christmas-monthnum": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "holiday-halloween-monthnum": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "holiday-valentines-monthnum": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-1-godof": {
+   "answer": "doors",
+   "reasoned": false
+  },
+  "etym-janus-monthnum": {
+   "answer": "1",
+   "reasoned": false
+  },
+  "month-7-namedafter": {
+   "answer": "Caesar",
+   "reasoned": false
+  },
+  "etym-caesar-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "nhop-soccer-element": {
+   "answer": "sodium",
+   "reasoned": false
+  },
+  "nhop-chess-element": {
+   "answer": "silicon",
+   "reasoned": false
+  },
+  "nhop-suit-element": {
+   "answer": "nitrogen",
+   "reasoned": false
+  },
+  "nhop-clock-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-deck-element": {
+   "answer": "xenon",
+   "reasoned": false
+  },
+  "inv-sunrise-opposite": {
+   "answer": "west",
+   "reasoned": false
+  },
+  "inv-balloon-opposite": {
+   "answer": "down",
+   "reasoned": false
+  },
+  "inv-roots-opposite": {
+   "answer": "up",
+   "reasoned": false
+  },
+  "inv-antarctica-opposite": {
+   "answer": "North",
+   "reasoned": false
+  },
+  "rhyme-tree-squared": {
+   "answer": "9",
+   "reasoned": false
+  },
+  "rhyme-hive-plusone": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "rhyme-fix-halved": {
+   "answer": "three",
+   "reasoned": false
+  },
+  "rhyme-shoe-doubled": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "tajmahal-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "louvre-language": {
+   "answer": "French",
+   "reasoned": false
+  },
+  "firstletter-halloween-month": {
+   "answer": "O",
+   "reasoned": false
+  },
+  "firstletter-valentines-month": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-populous-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "firstletter-paris-country": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-greatwall-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "succ-halloween-nextmonth": {
+   "answer": "November",
+   "reasoned": false
+  },
+  "pred-valentines-prevmonth": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "dual-stars-visible-opposite": {
+   "answer": "day",
+   "reasoned": false
+  },
+  "dual-photosynthesis-opposite": {
+   "answer": "night",
+   "reasoned": false
+  },
+  "roman-rings-olympic": {
+   "answer": "V",
+   "reasoned": false
+  },
+  "roman-states-us": {
+   "answer": "L",
+   "reasoned": false
+  },
+  "half-clock-hours": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "double-dice-faces": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "letterpos-water-symbol": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "letterpos-oxygen-symbol": {
+   "answer": "15",
+   "reasoned": false
+  },
+  "letterpos-carbon-symbol": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "letterpos-nitrogen-symbol": {
+   "answer": "14",
+   "reasoned": false
+  },
+  "dbl-armistice-antonym": {
+   "answer": "peace",
+   "reasoned": false
+  },
+  "dbl-obituary-antonym": {
+   "answer": "birth",
+   "reasoned": false
+  },
+  "dbl-altitude-antonym": {
+   "answer": "low",
+   "reasoned": false
+  }
+ },
+ "qwen/qwen3-32b": {
+  "carnival-ocean": {
+   "answer": "",
+   "reasoned": true
+  },
+  "amazon-language": {
+   "answer": "",
+   "reasoned": true
+  },
+  "mars-color": {
+   "answer": "red.",
+   "reasoned": true
+  },
+  "spider-legs": {
+   "answer": "8",
+   "reasoned": true
+  },
+  "basketball-players": {
+   "answer": "",
+   "reasoned": true
+  },
+  "paper-continent": {
+   "answer": "Asia.",
+   "reasoned": false
+  },
+  "christmas-season": {
+   "answer": "winter.",
+   "reasoned": false
+  },
+  "osu-rival-mascot": {
+   "answer": "",
+   "reasoned": true
+  },
+  "topeka-west": {
+   "answer": "",
+   "reasoned": true
+  },
+  "atomic-79-symbol": {
+   "answer": "Au",
+   "reasoned": false
+  },
+  "atomic-26-symbol": {
+   "answer": "Fe",
+   "reasoned": true
+  },
+  "atomic-29-symbol": {
+   "answer": "Cu",
+   "reasoned": false
+  },
+  "atomic-80-state": {
+   "answer": "",
+   "reasoned": true
+  },
+  "atomic-29-flame": {
+   "answer": "",
+   "reasoned": true
+  },
+  "planet-3-moons": {
+   "answer": "",
+   "reasoned": true
+  },
+  "month-3-godof": {
+   "answer": "war.",
+   "reasoned": true
+  },
+  "spaceneedle-border": {
+   "answer": "",
+   "reasoned": true
+  },
+  "rhyme-rain-neighbor": {
+   "answer": "Spain.",
+   "reasoned": false
+  },
+  "rhyme-door-doubled": {
+   "answer": "eight",
+   "reasoned": true
+  },
+  "rhyme-chair-flag": {
+   "answer": "",
+   "reasoned": true
+  },
+  "rhyme-spoon-orbit": {
+   "answer": "",
+   "reasoned": true
+  },
+  "etym-wargod-month": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "etym-frigg-position": {
+   "answer": "",
+   "reasoned": true
+  },
+  "etym-saturn-position": {
+   "answer": "",
+   "reasoned": true
+  },
+  "chem-photosynthesis-Z": {
+   "answer": "8",
+   "reasoned": true
+  },
+  "chem-atmosphere-Z": {
+   "answer": "",
+   "reasoned": true
+  },
+  "chem-organic-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-bones-Z": {
+   "answer": "",
+   "reasoned": true
+  },
+  "func-pumps-chambers": {
+   "answer": "4",
+   "reasoned": true
+  },
+  "func-filters-count": {
+   "answer": "2",
+   "reasoned": true
+  },
+  "birthstone-emerald-month": {
+   "answer": "5.",
+   "reasoned": false
+  },
+  "violin-strings": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-primary-planet": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-rings-planet": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-guitar-planet": {
+   "answer": "Saturn.",
+   "reasoned": false
+  },
+  "nhop-compass-planet": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-volleyball-planet": {
+   "answer": "Uranus.",
+   "reasoned": false
+  },
+  "nhop-alphabet-element": {
+   "answer": "iron.",
+   "reasoned": true
+  },
+  "nhop-fortnight-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-cube-element": {
+   "answer": "Carbon.",
+   "reasoned": true
+  },
+  "nhop-rainbow-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-spider-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-insect-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-week-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "super-largest-country-capital": {
+   "answer": "Moscow.",
+   "reasoned": false
+  },
+  "super-smallest-continent": {
+   "answer": "Europe.",
+   "reasoned": true
+  },
+  "super-populous-capital": {
+   "answer": "Beijing.",
+   "reasoned": false
+  },
+  "super-largest-island-nation": {
+   "answer": "",
+   "reasoned": true
+  },
+  "colosseum-currency": {
+   "answer": "euro.",
+   "reasoned": false
+  },
+  "greatwall-ocean": {
+   "answer": "",
+   "reasoned": true
+  },
+  "holiday-independence-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "holiday-christmas-monthnum": {
+   "answer": "",
+   "reasoned": true
+  },
+  "holiday-halloween-monthnum": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "holiday-valentines-monthnum": {
+   "answer": "2",
+   "reasoned": true
+  },
+  "month-1-godof": {
+   "answer": "",
+   "reasoned": true
+  },
+  "etym-janus-monthnum": {
+   "answer": "1",
+   "reasoned": true
+  },
+  "month-7-namedafter": {
+   "answer": "Caesar",
+   "reasoned": true
+  },
+  "etym-caesar-monthnum": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-soccer-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-chess-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-suit-element": {
+   "answer": "",
+   "reasoned": true
+  },
+  "nhop-clock-element": {
+   "answer": "iron.",
+   "reasoned": false
+  },
+  "nhop-deck-element": {
+   "answer": "iron.",
+   "reasoned": false
+  },
+  "inv-sunrise-opposite": {
+   "answer": "",
+   "reasoned": true
+  },
+  "inv-balloon-opposite": {
+   "answer": "",
+   "reasoned": true
+  },
+  "inv-roots-opposite": {
+   "answer": "upward.",
+   "reasoned": false
+  },
+  "inv-antarctica-opposite": {
+   "answer": "north.",
+   "reasoned": false
+  },
+  "rhyme-tree-squared": {
+   "answer": "",
+   "reasoned": true
+  },
+  "rhyme-hive-plusone": {
+   "answer": "six.",
+   "reasoned": false
+  },
+  "rhyme-fix-halved": {
+   "answer": "three.",
+   "reasoned": true
+  },
+  "rhyme-shoe-doubled": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "tajmahal-continent": {
+   "answer": "",
+   "reasoned": true
+  },
+  "louvre-language": {
+   "answer": "French.",
+   "reasoned": true
+  },
+  "firstletter-halloween-month": {
+   "answer": "O\"",
+   "reasoned": false
+  },
+  "firstletter-valentines-month": {
+   "answer": "F",
+   "reasoned": true
+  },
+  "firstletter-populous-country": {
+   "answer": "",
+   "reasoned": true
+  },
+  "firstletter-paris-country": {
+   "answer": "",
+   "reasoned": true
+  },
+  "firstletter-greatwall-country": {
+   "answer": "C",
+   "reasoned": true
+  },
+  "succ-halloween-nextmonth": {
+   "answer": "November.",
+   "reasoned": false
+  },
+  "pred-valentines-prevmonth": {
+   "answer": "January.",
+   "reasoned": true
+  },
+  "dual-stars-visible-opposite": {
+   "answer": "daytime.",
+   "reasoned": false
+  },
+  "dual-photosynthesis-opposite": {
+   "answer": "night.",
+   "reasoned": false
+  },
+  "roman-rings-olympic": {
+   "answer": "V.",
+   "reasoned": false
+  },
+  "roman-states-us": {
+   "answer": "",
+   "reasoned": true
+  },
+  "half-clock-hours": {
+   "answer": "12.",
+   "reasoned": false
+  },
+  "double-dice-faces": {
+   "answer": "12.",
+   "reasoned": false
+  },
+  "letterpos-water-symbol": {
+   "answer": "1.",
+   "reasoned": false
+  },
+  "letterpos-oxygen-symbol": {
+   "answer": "",
+   "reasoned": true
+  },
+  "letterpos-carbon-symbol": {
+   "answer": "6.",
+   "reasoned": false
+  },
+  "letterpos-nitrogen-symbol": {
+   "answer": "7.",
+   "reasoned": false
+  },
+  "dbl-armistice-antonym": {
+   "answer": "",
+   "reasoned": true
+  },
+  "dbl-obituary-antonym": {
+   "answer": "birth.",
+   "reasoned": false
+  },
+  "dbl-altitude-antonym": {
+   "answer": "",
+   "reasoned": true
+  }
+ },
+ "google/gemma-4-26b-a4b-it": {
+  "carnival-ocean": {
+   "answer": "Atlantic",
+   "reasoned": false
+  },
+  "amazon-language": {
+   "answer": "Portuguese",
+   "reasoned": false
+  },
+  "mars-color": {
+   "answer": "red",
+   "reasoned": false
+  },
+  "spider-legs": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "basketball-players": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "paper-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "christmas-season": {
+   "answer": "winter",
+   "reasoned": false
+  },
+  "osu-rival-mascot": {
+   "answer": "Michigan",
+   "reasoned": false
+  },
+  "topeka-west": {
+   "answer": "Colorado",
+   "reasoned": false
+  },
+  "atomic-79-symbol": {
+   "answer": "Au",
+   "reasoned": false
+  },
+  "atomic-26-symbol": {
+   "answer": "Fe",
+   "reasoned": false
+  },
+  "atomic-29-symbol": {
+   "answer": "Cu",
+   "reasoned": false
+  },
+  "atomic-80-state": {
+   "answer": "liquid",
+   "reasoned": false
+  },
+  "atomic-29-flame": {
+   "answer": "gold",
+   "reasoned": false
+  },
+  "planet-3-moons": {
+   "answer": "zero",
+   "reasoned": false
+  },
+  "month-3-godof": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "spaceneedle-border": {
+   "answer": "Canada",
+   "reasoned": false
+  },
+  "rhyme-rain-neighbor": {
+   "answer": "Spain",
+   "reasoned": false
+  },
+  "rhyme-door-doubled": {
+   "answer": "four",
+   "reasoned": false
+  },
+  "rhyme-chair-flag": {
+   "answer": "California",
+   "reasoned": false
+  },
+  "rhyme-spoon-orbit": {
+   "answer": "Moon",
+   "reasoned": false
+  },
+  "etym-wargod-month": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "etym-frigg-position": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "etym-saturn-position": {
+   "answer": "four",
+   "reasoned": false
+  },
+  "chem-photosynthesis-Z": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "chem-atmosphere-Z": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "chem-organic-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-bones-Z": {
+   "answer": "20",
+   "reasoned": false
+  },
+  "func-pumps-chambers": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "func-filters-count": {
+   "answer": "two",
+   "reasoned": false
+  },
+  "birthstone-emerald-month": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "violin-strings": {
+   "answer": "four",
+   "reasoned": false
+  },
+  "nhop-primary-planet": {
+   "answer": "Earth",
+   "reasoned": false
+  },
+  "nhop-rings-planet": {
+   "answer": "Jupiter",
+   "reasoned": false
+  },
+  "nhop-guitar-planet": {
+   "answer": "Uranus",
+   "reasoned": false
+  },
+  "nhop-compass-planet": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "nhop-volleyball-planet": {
+   "answer": "Uranus",
+   "reasoned": false
+  },
+  "nhop-alphabet-element": {
+   "answer": "phosphorus",
+   "reasoned": false
+  },
+  "nhop-fortnight-element": {
+   "answer": "phosphorus",
+   "reasoned": false
+  },
+  "nhop-cube-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-rainbow-element": {
+   "answer": "nitrogen",
+   "reasoned": false
+  },
+  "nhop-spider-element": {
+   "answer": "oxygen",
+   "reasoned": false
+  },
+  "nhop-insect-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-week-element": {
+   "answer": "nitrogen",
+   "reasoned": false
+  },
+  "super-largest-country-capital": {
+   "answer": "Moscow",
+   "reasoned": false
+  },
+  "super-smallest-continent": {
+   "answer": "Europe",
+   "reasoned": false
+  },
+  "super-populous-capital": {
+   "answer": "New",
+   "reasoned": false
+  },
+  "super-largest-island-nation": {
+   "answer": "Jakarta",
+   "reasoned": false
+  },
+  "colosseum-currency": {
+   "answer": "euro",
+   "reasoned": false
+  },
+  "greatwall-ocean": {
+   "answer": "Pacific",
+   "reasoned": false
+  },
+  "holiday-independence-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "holiday-christmas-monthnum": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "holiday-halloween-monthnum": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "holiday-valentines-monthnum": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-1-godof": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "etym-janus-monthnum": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "month-7-namedafter": {
+   "answer": "Caesar",
+   "reasoned": false
+  },
+  "etym-caesar-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "nhop-soccer-element": {
+   "answer": "sodium",
+   "reasoned": false
+  },
+  "nhop-chess-element": {
+   "answer": "phosphorus",
+   "reasoned": false
+  },
+  "nhop-suit-element": {
+   "answer": "oxygen",
+   "reasoned": false
+  },
+  "nhop-clock-element": {
+   "answer": "magnesium",
+   "reasoned": false
+  },
+  "nhop-deck-element": {
+   "answer": "nickel",
+   "reasoned": false
+  },
+  "inv-sunrise-opposite": {
+   "answer": "West",
+   "reasoned": false
+  },
+  "inv-balloon-opposite": {
+   "answer": "down",
+   "reasoned": false
+  },
+  "inv-roots-opposite": {
+   "answer": "up",
+   "reasoned": false
+  },
+  "inv-antarctica-opposite": {
+   "answer": "North",
+   "reasoned": false
+  },
+  "rhyme-tree-squared": {
+   "answer": "nine",
+   "reasoned": false
+  },
+  "rhyme-hive-plusone": {
+   "answer": "six",
+   "reasoned": false
+  },
+  "rhyme-fix-halved": {
+   "answer": "six",
+   "reasoned": false
+  },
+  "rhyme-shoe-doubled": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "tajmahal-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "louvre-language": {
+   "answer": "French",
+   "reasoned": false
+  },
+  "firstletter-halloween-month": {
+   "answer": "O",
+   "reasoned": false
+  },
+  "firstletter-valentines-month": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-populous-country": {
+   "answer": "I",
+   "reasoned": false
+  },
+  "firstletter-paris-country": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-greatwall-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "succ-halloween-nextmonth": {
+   "answer": "November",
+   "reasoned": false
+  },
+  "pred-valentines-prevmonth": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "dual-stars-visible-opposite": {
+   "answer": "daytime",
+   "reasoned": false
+  },
+  "dual-photosynthesis-opposite": {
+   "answer": "night",
+   "reasoned": false
+  },
+  "roman-rings-olympic": {
+   "answer": "V",
+   "reasoned": false
+  },
+  "roman-states-us": {
+   "answer": "XLV",
+   "reasoned": false
+  },
+  "half-clock-hours": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "double-dice-faces": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "letterpos-water-symbol": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "letterpos-oxygen-symbol": {
+   "answer": "15",
+   "reasoned": false
+  },
+  "letterpos-carbon-symbol": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "letterpos-nitrogen-symbol": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "dbl-armistice-antonym": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "dbl-obituary-antonym": {
+   "answer": "birth",
+   "reasoned": false
+  },
+  "dbl-altitude-antonym": {
+   "answer": "low",
+   "reasoned": false
+  }
+ },
+ "google/gemma-4-31b-it": {
+  "carnival-ocean": {
+   "answer": "Atlantic",
+   "reasoned": false
+  },
+  "amazon-language": {
+   "answer": "Portuguese",
+   "reasoned": false
+  },
+  "mars-color": {
+   "answer": "red",
+   "reasoned": false
+  },
+  "spider-legs": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "basketball-players": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "paper-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "christmas-season": {
+   "answer": "winter",
+   "reasoned": false
+  },
+  "osu-rival-mascot": {
+   "answer": "Wolverine",
+   "reasoned": false
+  },
+  "topeka-west": {
+   "answer": "Colorado",
+   "reasoned": false
+  },
+  "atomic-79-symbol": {
+   "answer": "Au",
+   "reasoned": false
+  },
+  "atomic-26-symbol": {
+   "answer": "Fe",
+   "reasoned": false
+  },
+  "atomic-29-symbol": {
+   "answer": "Cu",
+   "reasoned": false
+  },
+  "atomic-80-state": {
+   "answer": "solid",
+   "reasoned": false
+  },
+  "atomic-29-flame": {
+   "answer": "green",
+   "reasoned": false
+  },
+  "planet-3-moons": {
+   "answer": "1",
+   "reasoned": false
+  },
+  "month-3-godof": {
+   "answer": "beginnings",
+   "reasoned": false
+  },
+  "spaceneedle-border": {
+   "answer": "Canada",
+   "reasoned": false
+  },
+  "rhyme-rain-neighbor": {
+   "answer": "Spain",
+   "reasoned": false
+  },
+  "rhyme-door-doubled": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "rhyme-chair-flag": {
+   "answer": "Wyoming",
+   "reasoned": false
+  },
+  "rhyme-spoon-orbit": {
+   "answer": "Saturn",
+   "reasoned": false
+  },
+  "etym-wargod-month": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "etym-frigg-position": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "etym-saturn-position": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "chem-photosynthesis-Z": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "chem-atmosphere-Z": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "chem-organic-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-bones-Z": {
+   "answer": "20",
+   "reasoned": false
+  },
+  "func-pumps-chambers": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "func-filters-count": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "birthstone-emerald-month": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "violin-strings": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "nhop-primary-planet": {
+   "answer": "Earth",
+   "reasoned": false
+  },
+  "nhop-rings-planet": {
+   "answer": "Jupiter",
+   "reasoned": false
+  },
+  "nhop-guitar-planet": {
+   "answer": "Uranus",
+   "reasoned": false
+  },
+  "nhop-compass-planet": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "nhop-volleyball-planet": {
+   "answer": "Uranus",
+   "reasoned": false
+  },
+  "nhop-alphabet-element": {
+   "answer": "Gallium",
+   "reasoned": false
+  },
+  "nhop-fortnight-element": {
+   "answer": "Germanium",
+   "reasoned": false
+  },
+  "nhop-cube-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-rainbow-element": {
+   "answer": "Nitrogen",
+   "reasoned": false
+  },
+  "nhop-spider-element": {
+   "answer": "oxygen",
+   "reasoned": false
+  },
+  "nhop-insect-element": {
+   "answer": "Carbon",
+   "reasoned": false
+  },
+  "nhop-week-element": {
+   "answer": "Nitrogen",
+   "reasoned": false
+  },
+  "super-largest-country-capital": {
+   "answer": "Moscow",
+   "reasoned": false
+  },
+  "super-smallest-continent": {
+   "answer": "Europe",
+   "reasoned": false
+  },
+  "super-populous-capital": {
+   "answer": "New",
+   "reasoned": false
+  },
+  "super-largest-island-nation": {
+   "answer": "Canberra",
+   "reasoned": false
+  },
+  "colosseum-currency": {
+   "answer": "Euro",
+   "reasoned": false
+  },
+  "greatwall-ocean": {
+   "answer": "Pacific",
+   "reasoned": false
+  },
+  "holiday-independence-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "holiday-christmas-monthnum": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "holiday-halloween-monthnum": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "holiday-valentines-monthnum": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-1-godof": {
+   "answer": "beginnings",
+   "reasoned": false
+  },
+  "etym-janus-monthnum": {
+   "answer": "1",
+   "reasoned": false
+  },
+  "month-7-namedafter": {
+   "answer": "Caesar",
+   "reasoned": false
+  },
+  "etym-caesar-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "nhop-soccer-element": {
+   "answer": "Sulfur",
+   "reasoned": false
+  },
+  "nhop-chess-element": {
+   "answer": "Promethium",
+   "reasoned": false
+  },
+  "nhop-suit-element": {
+   "answer": "Europium",
+   "reasoned": false
+  },
+  "nhop-clock-element": {
+   "answer": "magnesium",
+   "reasoned": false
+  },
+  "nhop-deck-element": {
+   "answer": "Europium",
+   "reasoned": false
+  },
+  "inv-sunrise-opposite": {
+   "answer": "west",
+   "reasoned": false
+  },
+  "inv-balloon-opposite": {
+   "answer": "down\"",
+   "reasoned": false
+  },
+  "inv-roots-opposite": {
+   "answer": "up\"",
+   "reasoned": false
+  },
+  "inv-antarctica-opposite": {
+   "answer": "North",
+   "reasoned": false
+  },
+  "rhyme-tree-squared": {
+   "answer": "9",
+   "reasoned": false
+  },
+  "rhyme-hive-plusone": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "rhyme-fix-halved": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "rhyme-shoe-doubled": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "tajmahal-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "louvre-language": {
+   "answer": "French",
+   "reasoned": false
+  },
+  "firstletter-halloween-month": {
+   "answer": "O",
+   "reasoned": false
+  },
+  "firstletter-valentines-month": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-populous-country": {
+   "answer": "I",
+   "reasoned": false
+  },
+  "firstletter-paris-country": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-greatwall-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "succ-halloween-nextmonth": {
+   "answer": "November",
+   "reasoned": false
+  },
+  "pred-valentines-prevmonth": {
+   "answer": "January\"",
+   "reasoned": false
+  },
+  "dual-stars-visible-opposite": {
+   "answer": "day\"",
+   "reasoned": false
+  },
+  "dual-photosynthesis-opposite": {
+   "answer": "night\"",
+   "reasoned": false
+  },
+  "roman-rings-olympic": {
+   "answer": "V",
+   "reasoned": false
+  },
+  "roman-states-us": {
+   "answer": "L",
+   "reasoned": false
+  },
+  "half-clock-hours": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "double-dice-faces": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "letterpos-water-symbol": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "letterpos-oxygen-symbol": {
+   "answer": "15",
+   "reasoned": false
+  },
+  "letterpos-carbon-symbol": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "letterpos-nitrogen-symbol": {
+   "answer": "14",
+   "reasoned": false
+  },
+  "dbl-armistice-antonym": {
+   "answer": "war\"",
+   "reasoned": false
+  },
+  "dbl-obituary-antonym": {
+   "answer": "birth\"",
+   "reasoned": false
+  },
+  "dbl-altitude-antonym": {
+   "answer": "low",
+   "reasoned": false
+  }
+ },
+ "mistralai/mistral-small-24b-instruct-2501": {
+  "carnival-ocean": {
+   "answer": "Atlantic",
+   "reasoned": false
+  },
+  "amazon-language": {
+   "answer": "Portuguese",
+   "reasoned": false
+  },
+  "mars-color": {
+   "answer": "Red",
+   "reasoned": false
+  },
+  "spider-legs": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "basketball-players": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "paper-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "christmas-season": {
+   "answer": "Winter",
+   "reasoned": false
+  },
+  "osu-rival-mascot": {
+   "answer": "Buckeye",
+   "reasoned": false
+  },
+  "topeka-west": {
+   "answer": "Colorado",
+   "reasoned": false
+  },
+  "atomic-79-symbol": {
+   "answer": "Au",
+   "reasoned": false
+  },
+  "atomic-26-symbol": {
+   "answer": "Fe",
+   "reasoned": false
+  },
+  "atomic-29-symbol": {
+   "answer": "Cu",
+   "reasoned": false
+  },
+  "atomic-80-state": {
+   "answer": "Solid",
+   "reasoned": false
+  },
+  "atomic-29-flame": {
+   "answer": "Green",
+   "reasoned": false
+  },
+  "planet-3-moons": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-3-godof": {
+   "answer": "March",
+   "reasoned": false
+  },
+  "spaceneedle-border": {
+   "answer": "Canada",
+   "reasoned": false
+  },
+  "rhyme-rain-neighbor": {
+   "answer": "France",
+   "reasoned": false
+  },
+  "rhyme-door-doubled": {
+   "answer": "Four",
+   "reasoned": false
+  },
+  "rhyme-chair-flag": {
+   "answer": "California",
+   "reasoned": false
+  },
+  "rhyme-spoon-orbit": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "etym-wargod-month": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "etym-frigg-position": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "etym-saturn-position": {
+   "answer": "4",
+   "reasoned": false
+  },
+  "chem-photosynthesis-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-atmosphere-Z": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "chem-organic-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-bones-Z": {
+   "answer": "20",
+   "reasoned": false
+  },
+  "func-pumps-chambers": {
+   "answer": "Four",
+   "reasoned": false
+  },
+  "func-filters-count": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "birthstone-emerald-month": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "violin-strings": {
+   "answer": "Four",
+   "reasoned": false
+  },
+  "nhop-primary-planet": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "nhop-rings-planet": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "nhop-guitar-planet": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "nhop-compass-planet": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "nhop-volleyball-planet": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "nhop-alphabet-element": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "nhop-fortnight-element": {
+   "answer": "14",
+   "reasoned": false
+  },
+  "nhop-cube-element": {
+   "answer": "Oxygen",
+   "reasoned": false
+  },
+  "nhop-rainbow-element": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "nhop-spider-element": {
+   "answer": "Selenium",
+   "reasoned": false
+  },
+  "nhop-insect-element": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "nhop-week-element": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "super-largest-country-capital": {
+   "answer": "Moscow",
+   "reasoned": false
+  },
+  "super-smallest-continent": {
+   "answer": "Europe",
+   "reasoned": false
+  },
+  "super-populous-capital": {
+   "answer": "Beijing",
+   "reasoned": false
+  },
+  "super-largest-island-nation": {
+   "answer": "Wellington",
+   "reasoned": false
+  },
+  "colosseum-currency": {
+   "answer": "Euro",
+   "reasoned": false
+  },
+  "greatwall-ocean": {
+   "answer": "Pacific",
+   "reasoned": false
+  },
+  "holiday-independence-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "holiday-christmas-monthnum": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "holiday-halloween-monthnum": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "holiday-valentines-monthnum": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-1-godof": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "etym-janus-monthnum": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-7-namedafter": {
+   "answer": "Caesar",
+   "reasoned": false
+  },
+  "etym-caesar-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "nhop-soccer-element": {
+   "answer": "11",
+   "reasoned": false
+  },
+  "nhop-chess-element": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "nhop-suit-element": {
+   "answer": "13",
+   "reasoned": false
+  },
+  "nhop-clock-element": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "nhop-deck-element": {
+   "answer": "20",
+   "reasoned": false
+  },
+  "inv-sunrise-opposite": {
+   "answer": "West",
+   "reasoned": false
+  },
+  "inv-balloon-opposite": {
+   "answer": "down",
+   "reasoned": false
+  },
+  "inv-roots-opposite": {
+   "answer": "up",
+   "reasoned": false
+  },
+  "inv-antarctica-opposite": {
+   "answer": "North",
+   "reasoned": false
+  },
+  "rhyme-tree-squared": {
+   "answer": "Four",
+   "reasoned": false
+  },
+  "rhyme-hive-plusone": {
+   "answer": "Five",
+   "reasoned": false
+  },
+  "rhyme-fix-halved": {
+   "answer": "Four",
+   "reasoned": false
+  },
+  "rhyme-shoe-doubled": {
+   "answer": "14",
+   "reasoned": false
+  },
+  "tajmahal-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "louvre-language": {
+   "answer": "French",
+   "reasoned": false
+  },
+  "firstletter-halloween-month": {
+   "answer": "October",
+   "reasoned": false
+  },
+  "firstletter-valentines-month": {
+   "answer": "February",
+   "reasoned": false
+  },
+  "firstletter-populous-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "firstletter-paris-country": {
+   "answer": "France",
+   "reasoned": false
+  },
+  "firstletter-greatwall-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "succ-halloween-nextmonth": {
+   "answer": "November",
+   "reasoned": false
+  },
+  "pred-valentines-prevmonth": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "dual-stars-visible-opposite": {
+   "answer": "Day",
+   "reasoned": false
+  },
+  "dual-photosynthesis-opposite": {
+   "answer": "night",
+   "reasoned": false
+  },
+  "roman-rings-olympic": {
+   "answer": "V",
+   "reasoned": false
+  },
+  "roman-states-us": {
+   "answer": "LVIII",
+   "reasoned": false
+  },
+  "half-clock-hours": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "double-dice-faces": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "letterpos-water-symbol": {
+   "answer": "1",
+   "reasoned": false
+  },
+  "letterpos-oxygen-symbol": {
+   "answer": "15",
+   "reasoned": false
+  },
+  "letterpos-carbon-symbol": {
+   "answer": "13",
+   "reasoned": false
+  },
+  "letterpos-nitrogen-symbol": {
+   "answer": "14",
+   "reasoned": false
+  },
+  "dbl-armistice-antonym": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "dbl-obituary-antonym": {
+   "answer": "Birth",
+   "reasoned": false
+  },
+  "dbl-altitude-antonym": {
+   "answer": "low",
+   "reasoned": false
+  }
+ },
+ "meta-llama/llama-3.3-70b-instruct": {
+  "carnival-ocean": {
+   "answer": "Atlantic",
+   "reasoned": false
+  },
+  "amazon-language": {
+   "answer": "Portuguese",
+   "reasoned": false
+  },
+  "mars-color": {
+   "answer": "red",
+   "reasoned": false
+  },
+  "spider-legs": {
+   "answer": "eight",
+   "reasoned": false
+  },
+  "basketball-players": {
+   "answer": "nine",
+   "reasoned": false
+  },
+  "paper-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "christmas-season": {
+   "answer": "winter",
+   "reasoned": false
+  },
+  "osu-rival-mascot": {
+   "answer": "Wolverine",
+   "reasoned": false
+  },
+  "topeka-west": {
+   "answer": "Colorado",
+   "reasoned": false
+  },
+  "atomic-79-symbol": {
+   "answer": "Au",
+   "reasoned": false
+  },
+  "atomic-26-symbol": {
+   "answer": "Fe",
+   "reasoned": false
+  },
+  "atomic-29-symbol": {
+   "answer": "Copper",
+   "reasoned": false
+  },
+  "atomic-80-state": {
+   "answer": "solid",
+   "reasoned": false
+  },
+  "atomic-29-flame": {
+   "answer": "green",
+   "reasoned": false
+  },
+  "planet-3-moons": {
+   "answer": "one",
+   "reasoned": false
+  },
+  "month-3-godof": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "spaceneedle-border": {
+   "answer": "Canada",
+   "reasoned": false
+  },
+  "rhyme-rain-neighbor": {
+   "answer": "Spain",
+   "reasoned": false
+  },
+  "rhyme-door-doubled": {
+   "answer": "four",
+   "reasoned": false
+  },
+  "rhyme-chair-flag": {
+   "answer": "Alaska",
+   "reasoned": false
+  },
+  "rhyme-spoon-orbit": {
+   "answer": "June",
+   "reasoned": false
+  },
+  "etym-wargod-month": {
+   "answer": "3",
+   "reasoned": false
+  },
+  "etym-frigg-position": {
+   "answer": "5",
+   "reasoned": false
+  },
+  "etym-saturn-position": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-photosynthesis-Z": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "chem-atmosphere-Z": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "chem-organic-Z": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "chem-bones-Z": {
+   "answer": "20",
+   "reasoned": false
+  },
+  "func-pumps-chambers": {
+   "answer": "Four",
+   "reasoned": false
+  },
+  "func-filters-count": {
+   "answer": "two",
+   "reasoned": false
+  },
+  "birthstone-emerald-month": {
+   "answer": "May",
+   "reasoned": false
+  },
+  "violin-strings": {
+   "answer": "four",
+   "reasoned": false
+  },
+  "nhop-primary-planet": {
+   "answer": "Venus",
+   "reasoned": false
+  },
+  "nhop-rings-planet": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "nhop-guitar-planet": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "nhop-compass-planet": {
+   "answer": "Mars",
+   "reasoned": false
+  },
+  "nhop-volleyball-planet": {
+   "answer": "Earth",
+   "reasoned": false
+  },
+  "nhop-alphabet-element": {
+   "answer": "oxygen",
+   "reasoned": false
+  },
+  "nhop-fortnight-element": {
+   "answer": "calcium",
+   "reasoned": false
+  },
+  "nhop-cube-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-rainbow-element": {
+   "answer": "Phosphorus",
+   "reasoned": false
+  },
+  "nhop-spider-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-insect-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-week-element": {
+   "answer": "Carbon",
+   "reasoned": false
+  },
+  "super-largest-country-capital": {
+   "answer": "Moscow",
+   "reasoned": false
+  },
+  "super-smallest-continent": {
+   "answer": "Europe",
+   "reasoned": false
+  },
+  "super-populous-capital": {
+   "answer": "Beijing",
+   "reasoned": false
+  },
+  "super-largest-island-nation": {
+   "answer": "Jakarta",
+   "reasoned": false
+  },
+  "colosseum-currency": {
+   "answer": "Euro",
+   "reasoned": false
+  },
+  "greatwall-ocean": {
+   "answer": "Pacific",
+   "reasoned": false
+  },
+  "holiday-independence-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "holiday-christmas-monthnum": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "holiday-halloween-monthnum": {
+   "answer": "10",
+   "reasoned": false
+  },
+  "holiday-valentines-monthnum": {
+   "answer": "2",
+   "reasoned": false
+  },
+  "month-1-godof": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "etym-janus-monthnum": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "month-7-namedafter": {
+   "answer": "Caesar",
+   "reasoned": false
+  },
+  "etym-caesar-monthnum": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "nhop-soccer-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-chess-element": {
+   "answer": "carbon",
+   "reasoned": false
+  },
+  "nhop-suit-element": {
+   "answer": "13",
+   "reasoned": false
+  },
+  "nhop-clock-element": {
+   "answer": "twelve",
+   "reasoned": false
+  },
+  "nhop-deck-element": {
+   "answer": "titanium",
+   "reasoned": false
+  },
+  "inv-sunrise-opposite": {
+   "answer": "West",
+   "reasoned": false
+  },
+  "inv-balloon-opposite": {
+   "answer": "down",
+   "reasoned": false
+  },
+  "inv-roots-opposite": {
+   "answer": "up",
+   "reasoned": false
+  },
+  "inv-antarctica-opposite": {
+   "answer": "north",
+   "reasoned": false
+  },
+  "rhyme-tree-squared": {
+   "answer": "three",
+   "reasoned": false
+  },
+  "rhyme-hive-plusone": {
+   "answer": "Six",
+   "reasoned": false
+  },
+  "rhyme-fix-halved": {
+   "answer": "six",
+   "reasoned": false
+  },
+  "rhyme-shoe-doubled": {
+   "answer": "two",
+   "reasoned": false
+  },
+  "tajmahal-continent": {
+   "answer": "Asia",
+   "reasoned": false
+  },
+  "louvre-language": {
+   "answer": "French",
+   "reasoned": false
+  },
+  "firstletter-halloween-month": {
+   "answer": "O",
+   "reasoned": false
+  },
+  "firstletter-valentines-month": {
+   "answer": "F",
+   "reasoned": false
+  },
+  "firstletter-populous-country": {
+   "answer": "C",
+   "reasoned": false
+  },
+  "firstletter-paris-country": {
+   "answer": "France",
+   "reasoned": false
+  },
+  "firstletter-greatwall-country": {
+   "answer": "China",
+   "reasoned": false
+  },
+  "succ-halloween-nextmonth": {
+   "answer": "November",
+   "reasoned": false
+  },
+  "pred-valentines-prevmonth": {
+   "answer": "January",
+   "reasoned": false
+  },
+  "dual-stars-visible-opposite": {
+   "answer": "noon",
+   "reasoned": false
+  },
+  "dual-photosynthesis-opposite": {
+   "answer": "night",
+   "reasoned": false
+  },
+  "roman-rings-olympic": {
+   "answer": "Five",
+   "reasoned": false
+  },
+  "roman-states-us": {
+   "answer": "Fifty",
+   "reasoned": false
+  },
+  "half-clock-hours": {
+   "answer": "six",
+   "reasoned": false
+  },
+  "double-dice-faces": {
+   "answer": "12",
+   "reasoned": false
+  },
+  "letterpos-water-symbol": {
+   "answer": "8",
+   "reasoned": false
+  },
+  "letterpos-oxygen-symbol": {
+   "answer": "15",
+   "reasoned": false
+  },
+  "letterpos-carbon-symbol": {
+   "answer": "6",
+   "reasoned": false
+  },
+  "letterpos-nitrogen-symbol": {
+   "answer": "7",
+   "reasoned": false
+  },
+  "dbl-armistice-antonym": {
+   "answer": "war",
+   "reasoned": false
+  },
+  "dbl-obituary-antonym": {
+   "answer": "birth",
+   "reasoned": false
+  },
+  "dbl-altitude-antonym": {
+   "answer": "low",
+   "reasoned": false
+  }
+ }
+}
