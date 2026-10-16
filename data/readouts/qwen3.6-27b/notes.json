@@ -1,29 +1,58 @@
 {
  "always-wrong": {
-  "text": "Told to answer wrong, Qwen writes \"London\". The J-lens and J++ hold \"paris\" at \"capital of France is London\", right where it writes the lie, and at the chat markup before it starts. Pinned on \"London\".",
+  "text": "Told to answer wrong, Qwen writes \"London\". At \"is\" (#43), the token that outputs London (61%), the J-lens top word at L53 is \"Paris\" (50%, Berlin 22%, London 6%), and the out row still gives Paris 17%. The O-lens there writes \"Paris (not London\" and \"not Berlin\", and the NLA says a wrong city such as \"London,\" or \"Berlin,\" must follow: all three lenses hold the truth beside the lie. At the chat markup before the reply the J-lens's lie is Berlin (74% at L59 on #38), not London.",
   "try": [
    "paris",
-   "london"
+   "berlin",
+   "london",
+   "incorrect"
   ],
-  "pin": 44
+  "pin": 43,
+  "look": [
+   "Pinned on \"is\" (#43): the J-lens has Paris 50%, Berlin 22%, London 6% at L53 and Paris 33%, Berlin 33%, London 17% at L59; the out row writes London 61%, with Paris and Berlin at 17% each.",
+   "Same token, prose rows: the O-lens's first phrase is \"Paris (not London\", then \"**London** (\", \"not Paris. The\", \"not Berlin. The\"; the NLA says \"a wrong, absurd, or obviously incorrect city name (e.g., \"London,\" \"Berlin,\" or \"The Moon\") must follow\". All three lenses agree here.",
+   "Pin the blank line after </think> (#38): the J-lens holds Berlin 74%, Paris 12%, London 6% at L59 and \"incorrect\" 14% at L43. The lie lined up before the reply was Berlin; London only wins at #43.",
+   "Pin \"France\" in the question (#28): the J-lens's Paris climbs to 82% at L59, while the O-lens already mixes \"is **Paris**.\" with \"capital is **London\" and \"is **Rome\".",
+   "Search \"incorrect\": the J-lens holds it at \"incorrectly\" (#13, 61% at L43), at \"the\" in the question (#25, 45% at L43) and on the assistant markup (#34, #38), so the instruction stays in the workspace up to the answer."
+  ],
+  "star": false
  },
  "spider-legs": {
-  "text": "The answer is just \"8\", and \"spider\" is never written. All four lenses hold \"spider\" from \"spins webs\" through to the answer; J++ already has it at \"legs\".",
+  "text": "The answer is just \"8\", and \"spider\" is never written. The J-lens picks it up on the clue word \"spins\" (#10: spiders 50% at L48) and holds it at \"webs\" (#11: spiders 82% at L48), at \"a\" in \"just a number\" (#17: spider 90% at L59) and on the assistant markup; the O-lens names spiders at each of those tokens and the NLA says \"almost certainly 'spider'\". At \"that\" (#9), before the clue, no lens has it; the earlier hits at \"legs\" and \"does\" (#5-6) are the stock question \"How many legs does a spider have\".",
   "try": [
    "spider",
+   "spiders",
    "eight"
   ],
-  "pin": 11
+  "pin": 11,
+  "look": [
+   "Pinned on \"webs\" (#11): the J-lens top word is \"spiders\" from L32 to L53 (41%, 61%, 67%, 82%, 74%); the O-lens writes \"webs (spiders\", \"silk-spinning spiders\", \"web-spinning spiders\"; the NLA expects \"a short answer like 'spider.'\"",
+   "Pin \"that\" (#9), then \"spins\" (#10): at #9 no lens holds spider (the J-lens has animals 30% at L48, then eats and lives); at #10 spiders is 50% at L48 and the O-lens writes \"a spider spins its\". The bridge appears on the clue word itself.",
+   "Pin \"a\" (#17, in \"Answer with just a number\"): spider is 90% at L59 and spiders 82% at L43, every O-lens phrase is a spider phrase (\"spider (arachnid\", \"spider (Arane\"), and the NLA says \"almost certainly 'spider'\". The never-written entity is strongest inside the format instruction.",
+   "Pin \"does\" (#6): spider 45% at L59, and the O-lens writes \"a spider have?\" next to \"a dog have?\" and \"a horse have?\". That is the stock completion of \"How many legs does\"; it is gone by \"the creature that\" (#7-9).",
+   "Pin the newline before <think> (#24): the J-lens has legs 14% and eight 6% at L59; the O-lens mixes \"8 legs (arach\" with \"4** (sp\" and \"six legs, two\", while the NLA says \"almost certainly '8'\". At #28, right before \"8\", the O-lens writes only \"42\".",
+   "Search \"spiders\" as well as \"spider\": the J-lens's top-1 is usually the plural. J++ and the R-lens still hold \"spider\" on the answer \"8\" (#29, top-1 at L21)."
+  ],
+  "star": true
  },
  "secret-animal": {
-  "text": "Asked for a riddle about a secret animal, with no thinking. Switch to J++: \"turtle\" shows up from \"armor\" onward and \"crab\" competes with it. Neither name is written, and no lens shows an animal before the riddle starts.",
+  "text": "Asked for a riddle about a secret animal, with no thinking, Qwen writes \"I wear a suit of armor made of shells, yet I retreat into my own home when danger approaches.\" No animal is named. The token lenses hold turtle: J++ from \"armor\" (#46) onward, and the J-lens has \"turtles\" top-1 at the comma after \"shells\" (#50: 22% at L37), with crab at 2-5%. The prose lenses commit earlier and then drift: at \"I wear a\" (#43) the O-lens writes \"tortoise with a\" and the NLA \"turtle suit\", and over \"retreat into my own home\" (#52-#60) both turn to snail, which no token lens ever holds.",
   "try": [
    "turtle",
    "crab",
-   "shell"
+   "shell",
+   "snail"
   ],
-  "pin": 49,
-  "lens": "J++"
+  "pin": 50,
+  "lens": "J++",
+  "look": [
+   "Opens on J++, pinned on the comma after \"shells\" (#50): shell 30%, turtles 17%, turtle 15% at L37, and crab top-1 at L53 (18%). Switch to J-lens: turtles is top-1 at L37, L43 and L48 (22%, 17%, 11%).",
+   "Same token, prose rows: the O-lens writes \"crab with a hard\", \"yet hides a soft\", \"but retreats when\"; the NLA names \"a crab, turtle, or lobster\" and then \"the classic snail/lobster riddle pattern\".",
+   "Pin \"a\" in \"I wear a\" (#43): the J-lens has coat 50% and shell 33% at L59 (out row: heavy 25%, coat 20%, suit 15%, shell 9%); the O-lens writes \"tortoise with a\" beside \"Spotted Hyena\"; the NLA lists \"hard shell\" and \"turtle suit\" with penguin and giraffe. A shelled animal is a candidate before \"armor\" is written.",
+   "Pin \"approaches\" (#60): J++ has turtle top-1 at L27 (22%) and L37 (14%) and the J-lens turtles 10% at L43, while the O-lens writes \"Snails retreat\" and \"the snail retreat\". Search \"snail\": hits only in the two prose rows (#50-#60).",
+   "Pin the assistant markup (#34): the O-lens offers giraffe, elephant and ostrich, the NLA elephant, kangaroo and owl: stock riddle animals, nothing with a shell. No lens shows the animal before the riddle starts."
+  ],
+  "star": false
  },
  "sneeze-pun": {
   "text": "The pun lands on \"a-choo\" / echo. \"echo\" is in every lens's readout near \"Ah-choo\" and at \"reverb, delay\" in the brainstorm, about 100 tokens before Qwen first writes \"Echo\". The thinking later degenerates into a \"*Sneeze* ->\" loop; the provider's sample did this, not the readout.",
@@ -34,13 +63,22 @@
   "pin": 182
  },
  "rhyming-couplet": {
-  "text": "Line two ends on \"wine\" to rhyme with \"nine\". The J-lens holds \"wine\" at \"late\", two tokens before writing it; the other lenses only see it once it is written. A small planning signal, on one token.",
+  "text": "Line two ends on \"wine\" to rhyme with \"nine\" (#36). At \"late\" (#43), two tokens before the rhyme, the J-lens top word at L59 is \"dine\" (61%), with fine, vine and wine at 2-3% at L53: the -ine rhyme is planned, but the word held is \"dine\". At \"for\" (#44) the out row splits dinner 41%, dine 37%, wine 7%, and the sample took wine. The O-lens and NLA, read at layer 42, show no rhyme word at \"late\", and neither does the J-lens at L43, so the plan forms between L43 and L59.",
   "try": [
+   "dine",
    "wine",
    "nine",
    "dinner"
   ],
-  "pin": 43
+  "pin": 43,
+  "look": [
+   "Pinned on \"late\" (#43): the J-lens has dine 61% and dinner 10% at L59; at L53 tonight 7%, dine 5%, fine 3%, vine 2%, wine 2%. The out row is \",\" 37% and \"for\" 33%, so the rhyme is held two tokens early.",
+   "Same token, prose rows: the O-lens writes only four phrases (\"late for work.\", \"but late for dinner\"), and the NLA expects \"a word rhyming with 'through'\". At L43 the J-lens holds 迟到 ('late', 33%) and tard. Nothing read near layer 42 carries the rhyme.",
+   "Pin \"for\" (#44): dinner is 82-100% from L43 to L59, with dine 8% at L53; the out row is dinner 41%, dine 37%, wine 7%. \"wine\" was the 7% draw, and the likeliest ending, \"dinner\", does not rhyme.",
+   "Pin \"nine\" (#36): the NLA wants \"a rhyming completion (likely 'line,' 'sign,' or similar word)\", the only place a prose lens names the -ine rhyme. By the newline (#38) it wants a rhyme for \"night\" instead.",
+   "Search \"dine\" and \"wine\": dine sits only on #43-44 in every token lens; wine only on #43 (L53, rank 6) before it is written at #45."
+  ],
+  "star": true
  },
  "rat-educational": {
   "text": "A refusal. \"malware\" sits in the workspace from the prompt onward, about 300 tokens before Qwen writes it. Unsaid words in the thinking: unauthorized, illegal, unethical.",
@@ -66,10 +104,38 @@
   ]
  },
  "secret-number-think": {
-  "text": "Qwen writes at the end of its thinking that it picked 38. Qwen spells numbers one digit per token, so search single digits; they are noisy because digits are always near the top wherever a number is due.",
+  "text": "Asked to keep a number from 1-50 secret and say only its parity and whether it is above 25. The thinking picks 37 (#240), then 18 (#428), then 42 (#537, re-checked at #616), and answers \"Even and above 25\", but at #1169 it says \"I internally picked 38\". At the space before that 38 (#1168) the out row is split 3 61% / 4 37%; the O-lens writes \"42 (even\" there and the NLA recalls 42 at #1165, but both prose lenses also wrote 42 before Qwen picked 37 and 18, so it is their stock example, not a read of the pick. What the J-lens does hold after a first digit is the parity of the number being finished (偶, 'even', 67% at L53 on the 3 of 38).",
   "try": [
-   "8",
-   "3"
-  ]
+   "forty",
+   "42",
+   "37",
+   "偶"
+  ],
+  "pin": 1168,
+  "look": [
+   "Pinned on the space before \"38\" (#1168): the out row is 3 61%, 4 37%; the J-lens holds only faint decades (eighty and forty 2%, thirty 1% at L43). Qwen nearly wrote a 4x.",
+   "Same token, prose rows: the O-lens writes \"42 (even\", \"12 (even\", \"34,\"; the NLA wants \"a specific example number (likely 42 or 88)\". At \"I\" (#1165) the NLA quotes an earlier \"(In my actual response, I have internally chosen the number 42)\".",
+   "Then pin the space before 37 (#239) and before 18 (#427): the O-lens's first phrase is \"42 (even\" there too, and the NLA mentions 42 at 12 positions from #230 to #426, all before Qwen first writes 42. Its 42 at the confession is a prior, not a memory.",
+   "On #239 the J-lens holds 十七 (17, 14%) and 三七 (37, 6%) at L53 and 三七 6% at L59, before Qwen writes 3 and 7.",
+   "Pin the \"3\" of 38 (#1169): the J-lens has 偶 ('even') 67% at L53, the out row is 8 67%, 4 27%, and the NLA guesses \"37,\" mirroring the earlier pick. Search \"偶\": it also sits on the 4 of 42 (#537, 30% at L59), and odd/奇 on the 3 of 37 (#240, 5% at L53).",
+   "Search \"forty\": the J-lens has it at \"picked\" (#1167, 6% at L59) and at the space before 42 (#536), faint traces of 42's decade."
+  ],
+  "star": false
+ },
+ "ioi-book": {
+  "text": "Fill in the blank with David or Elizabeth: \"Elizabeth decided to give a book to ___\". Qwen answers \"David\" (100% on the out row). The J-lens reaches the name only at L59: at \"give\" (#45) L43-L53 hold \"gift\" (67% at L43) and L59 is David 100%. The prose lenses, read at layer 42, get the role but not the name: at the newline before the answer (#54) the O-lens writes \"the other person**.\" and \"not herself**.\", and the NLA retells the puzzle with other names (Bob and Sue, Tom and Jerry) and never names David on #43-#58.",
+  "try": [
+   "david",
+   "gift",
+   "himself"
+  ],
+  "pin": 54,
+  "look": [
+   "Pin \"give\" (#45): gift 67% at L43, 61% at L48, 25% at L53, then David 100% at L59. The logit lens also has David at L59 (25%), so the name arrives late in every lens.",
+   "Pinned on the newline before <think> (#54): J-lens David 100% at L59 and nothing name-like below it; the O-lens writes four phrases, \"himself* or\", \"**Bob** (\", \"the other person**.\", \"not herself**.\"; the NLA says the answer is \"most likely 'Tom' (the other boy receiving the gift)\". Right role, wrong name.",
+   "Pin \"<|im_start|>\" (#52): L53 holds himself 33%, L59 David 90%. Search \"himself\": J++ and the R-lens also hold it at L48-L53 on #52-#58, the reflexive reading the model rejects.",
+   "Search \"david\": on the answer positions (#45-#58) the J-lens holds it almost only at L59; the NLA matches only where David was just written (#9, #10, #23, #32, #38, #59)."
+  ],
+  "star": false
  }
 }
