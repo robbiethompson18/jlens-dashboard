@@ -55,7 +55,6 @@ header.top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; p
 .sub { color: var(--muted); font-size: 13px; }
 .sub b { color: var(--ink); font-weight: 500; }
 header .spacer { flex: 1; }
-.howto { color: var(--muted); font-size: 12.5px; max-width: 70ch; }
 details.about summary { cursor: pointer; color: var(--accent); font-size: 12.5px; list-style: none; }
 details.about[open] { position: relative; }
 details.about .body { position: absolute; right: 0; top: 22px; z-index: 20; width: min(560px, 90vw); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; box-shadow: 0 12px 40px rgb(0 0 0 / 0.18); font-size: 13px; color: var(--ink); }
@@ -205,7 +204,15 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
     <div id="datasets" role="group" aria-label="Dataset"></div>
     <span class="sub" id="modelline">Loading…</span>
     <span class="spacer"></span>
-    <span class="howto">Hover a token to read every lens at it; click to pin. Search finds words Qwen wrote <u>underlined</u> or held in its workspace (shaded).</span>
+    <details class="about">
+      <summary>Formatting notes</summary>
+      <div class="body">
+        <p><b>Transcript.</b> Hover a token to read every lens at it; click to pin. With search terms set, a token is shaded in the term's color when that word sits in its top-N readout at any selected layer: 50% fill at rank 1 fading to 12% at rank N. A token is <u>underlined</u> in the term's color when it <i>is</i> that word. Up to five terms, colored in the order typed; <span style="font-family:var(--font-data)">spid*</span> matches word starts.</p>
+        <p><b>Readout chips.</b> Left to right is rank order. Background fill is the lens's probability for the word, on a square-root scale so the tail stays visible (p=100% → 55% fill, p=25% → 27%, p=1% → 5%); bench items without scores fill by rank instead. <b>Bright text</b> means the word is never written anywhere in the transcript; <b>dim text</b> means it is, so bright chips are what the model holds but does not say. A colored border marks a search-term hit. Hover a chip for the exact p and said/unsaid status; click it to add it as a search term.</p>
+        <p><b>Rows.</b> Layer labels show depth as % of the stack. The <b>out</b> row (100%) is the model's real next-token distribution, identical across lenses; "actually next" in the header is what Qwen then wrote.</p>
+        <p><b>Words in the workspace</b> dims said words the same way, and the sparkline is the per-layer count over the selected span.</p>
+      </div>
+    </details>
     <details class="about">
       <summary>What am I looking at?</summary>
       <div class="body">

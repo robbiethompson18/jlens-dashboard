@@ -6,10 +6,11 @@
     uv run python scripts/readout.py <model> <transcripts.json>   # other transcripts; items may name a Tinker LoRA as "adapter"
     uv run python scripts/readout.py qwen3.6-27b data/weird/transcripts.json   # the weird-behaviors set; items may carry "messages"/"tools"
 
-Per (token, layer, lens) it keeps the top TOP_K word-like tokens (the reference `jlens.vis` `mask_display` filter:
-tokens that decode to letters/digits, so commas, spaces and special tokens never crowd the list) with their
-full-vocabulary log-probability. Layers are LAYER_FRACTIONS of the depth plus the final layer, where every lens is the
-identity and the row is the model's own next-token prediction.
+Per (token, layer, lens) it keeps the top TOP_K tokens of the full vocabulary with their log-probability, unfiltered: the
+viewer has a "words only" toggle that drops punctuation, spaces and markup (the reference `jlens.vis` `mask_display`
+filter) from what is stored, so the real distribution stays available. Layers are LAYER_FRACTIONS of the depth plus the
+final layer, where every lens is the identity and the row is the model's own next-token prediction; for that row the
+sampled next token's rank and log-probability are stored too (`next_rank`, `next_lp`).
 """
 
 import gzip
@@ -28,7 +29,7 @@ from jlens.hooks import ActivationRecorder
 from jlens_dashboard.tinker_lora import merge_tinker_lora
 from jlens_dashboard.tokens import token_texts
 
-TOP_K = 20
+TOP_K = 40  # deep enough that the top 20 words usually survive the viewer's words-only filter
 # ~1/8 of the layers, spread over the paper's useful band (38-92% depth; before ~1/3 the J-lens is noise, the last few
 # layers are the output), with one row at 1/3 because Qwen's J-lens already shows bridge entities there ("spider" at L21-26)
 LAYER_FRACTIONS = [0.33, 0.42, 0.5, 0.58, 0.67, 0.75, 0.83, 0.92]
@@ -93,13 +94,6 @@ for name, (repo, filename) in spec["lenses"].items():
     lenses[name] = load_jacobians(repo, filename)
     print(f"loaded {name}", flush=True)
 
-wordlike = torch.zeros(hf_model.get_output_embeddings().weight.shape[0], dtype=torch.bool)  # padded past len(tokenizer)
-for token_id in range(len(tokenizer)):
-    text = tokenizer.decode([token_id], clean_up_tokenization_spaces=False).strip()
-    if text and not text.startswith("<"):
-        wordlike[token_id] = all(ch.isalnum() or (0 < i < len(text) - 1 and ch in "'-’") for i, ch in enumerate(text))
-wordlike = wordlike.to(device)
-
 
 def chat_pieces(item: dict) -> list[tuple[str, str]]:
     """(segment, text) pieces whose concatenation is the exact string the model saw while writing the reply."""
@@ -140,6 +134,8 @@ def read(item: dict) -> dict:
 
     n_tokens = input_ids.shape[1]
     out = {}
+    next_rank = torch.full((n_tokens,), -1, dtype=torch.long)  # rank of the token that actually follows, in the model's output
+    next_lp = torch.zeros(n_tokens)
     for name, jacobians in lenses.items():
         ids = torch.empty(n_tokens, len(layers), TOP_K, dtype=torch.long)
         logprobs = torch.empty(n_tokens, len(layers), TOP_K)
@@ -149,9 +145,14 @@ def read(item: dict) -> dict:
                 if jacobians is not None and layer != final_layer:
                     residual = residual @ jacobians[layer].T
                 log_probs = model.unembed(residual).float().log_softmax(-1)
-                top = log_probs.masked_fill(~wordlike, float("-inf")).topk(TOP_K, dim=-1)
+                top = log_probs.topk(TOP_K, dim=-1)
                 ids[start : start + CHUNK, column] = top.indices.cpu()
                 logprobs[start : start + CHUNK, column] = top.values.cpu()
+                if name == "logit" and layer == final_layer and start + 1 < n_tokens:
+                    following = input_ids[0, start + 1 : start + CHUNK + 1]
+                    actual = log_probs[: len(following)].gather(1, following[:, None])
+                    next_rank[start : start + len(following)] = (log_probs[: len(following)] > actual).sum(-1).cpu()
+                    next_lp[start : start + len(following)] = actual[:, 0].cpu()
         out[name] = {"ids": ids.flatten().tolist(), "lp": (logprobs * 10).round().int().flatten().tolist()}
 
     used = set(encoded["input_ids"]) | {i for lens in out.values() for i in lens["ids"]}
@@ -166,6 +167,8 @@ def read(item: dict) -> dict:
         "segments": [pieces[s][0] for s in segment_of],
         "vocab": {i: tokenizer.decode([i], clean_up_tokenization_spaces=False) for i in sorted(used)},
         "lenses": out,  # per lens: ids / lp (log-prob x 10) flattened [token][layer][rank]
+        "next_rank": next_rank.tolist(),  # per token: rank of the following token in the model's output (-1 at the last token)
+        "next_lp": (next_lp * 10).round().int().tolist(),
     }
 
 
