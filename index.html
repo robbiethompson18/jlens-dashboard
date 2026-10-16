@@ -347,8 +347,8 @@ const GROUPS = [
   { name: "Overnight prose", color: "--g4", sets: [  // data/overnight/: sets read with the O-lens and NLA at every token
     { dir: "overnight-weird", label: "weird behaviors", match: () => true },
     { dir: "overnight-thinking", label: "thinking", match: () => true },
-    { dir: "overnight-wildchat", label: "WildChat, multi-turn", match: (it) => it.messages_n > 1 },
-    { dir: "overnight-wildchat", label: "WildChat, single", match: (it) => !(it.messages_n > 1) },
+    { dir: "overnight-wildchat", label: "WildChat, multi-turn", match: (it) => it.source === "wildchat-multi" },
+    { dir: "overnight-wildchat", label: "WildChat, single turn", match: (it) => it.source === "wildchat" },
     { dir: "overnight-probes", label: "sycophancy pushback", match: (it) => it.source === "sycophancy" },
   ] },
 ];
