@@ -7,18 +7,22 @@ gzipped sidecar per transcript next to the token-lens readouts.
 
 Token ids and positions come from the existing data/readouts/<model>/<id>.json.gz, so cells line up with the token lenses by
 construction. Stages: (1) the base model captures the residual stream after blocks 42 and 44 for every token of every item;
-(2) the oracle lens LoRA is merged into that same base and verbalizes each L44 vector, batched; (3) the base is dropped, the
-NLA reader (its own copy of the 27B with the warm-start merged, plus the RL LoRA) verbalizes each L42 vector, batched.
+(2) Robbie's oracle lens LoRA is merged into that same base and writes K phrases of N tokens for each L42 vector, batched,
+greedy; (3) the base is dropped, the NLA reader (its own copy of the 27B with the warm-start merged, plus the RL LoRA)
+verbalizes each L42 vector, batched, sampled.
 A sidecar is written after each stage, so an item already holding a lens is skipped on rerun (`--force` to redo).
 
-Both injection contracts are the bench's (`wsbench.produce.methods`, camilablank/workspace-bench, Apache-2.0), batched:
-- O-lens (agu18dec/olens_and_ar README): carrier prompt `concepts_raw` naming the layer, the marker token's input embedding
-  replaced by 16000 * h/|h|; capture with the adapter off, generate with it on (merged here, same function, ~4x faster eager).
-- NLA (ceselder/qwen3.6-27b-nla-rl, Karvonen's reader): its own prompt from av_base/nla_meta.yaml, the vector ADDED
-  norm-matched (h' = h + |h| * v/|v|) to the marker position at the output of decoder block 1; `<explanation>` tags stripped.
+Injection contracts:
+- O-lens (robbiethompson2018/oracle-lens-qwen3.6-27b-pilot, trained in ~/repos/oracle-lens-reconstruction; prompt and marker
+  from its `src/olens/common.py`): the marker token's input embedding replaced by 16000 * h/|h|; capture with the adapter off,
+  generate with it merged in. The lens was gated greedy, so it is read greedy here; one line per phrase.
+- NLA (ceselder/qwen3.6-27b-nla-rl, Karvonen's reader; the bench's `wsbench.produce.methods.NLA`, camilablank/workspace-bench,
+  Apache-2.0, batched): its own prompt from av_base/nla_meta.yaml, the vector ADDED norm-matched (h' = h + |h| * v/|v|) to the
+  marker position at the output of decoder block 1; `<explanation>` tags stripped; sampled as the in-house arms did.
 """
 
 import argparse
+import gc
 import gzip
 import json
 import sys
@@ -33,25 +37,37 @@ from huggingface_hub import snapshot_download
 from jlens.hooks import ActivationRecorder
 from peft import PeftModel
 
-SAMPLING = {"temperature": 1.0, "top_p": 0.95, "top_k": 64, "max_new_tokens": 256, "seed": 0}
 MODELS: dict[str, str] = {"qwen3.6-27b": "Qwen/Qwen3.6-27B"}
-# The read contract per lens: layer (the NLA's trained layer; the bench's headline layer for the O-lens, inside its 20-60
-# step 4 band), checkpoint, and how the vector goes in.
+OLENS_N, OLENS_K = 4, 8  # tokens per phrase, phrases per readout: the oracle-lens repo's wildchat default (eval used 8, 10)
+# The read contract per lens: layer (both lenses were trained on layer 42, the output of block 42), checkpoint, injection and
+# sampling.
 LENSES: dict[str, dict[str, Any]] = {
-    "O-lens": {"layer": 44, "checkpoint": "agu18dec/olens_and_ar:olens_s3d_rl600", "alpha": 16000.0},
-    "NLA": {"layer": 42, "checkpoint": "ceselder/qwen3.6-27b-nla-rl:av_rl_adapters/iter_000400"},
+    "O-lens": {
+        "layer": 42,
+        "checkpoint": "robbiethompson2018/oracle-lens-qwen3.6-27b-pilot",
+        "alpha": 16000.0,
+        "sampling": {"temperature": 0.0, "max_new_tokens": OLENS_K * (OLENS_N + 1) + 16, "n": OLENS_N, "k": OLENS_K},
+    },
+    "NLA": {
+        "layer": 42,
+        "checkpoint": "ceselder/qwen3.6-27b-nla-rl:av_rl_adapters/iter_000400",
+        "sampling": {"temperature": 1.0, "top_p": 0.95, "top_k": 64, "max_new_tokens": 256, "seed": 0},
+    },
 }
+# ~/repos/oracle-lens-reconstruction src/olens/common.py: ORACLE_INSTRUCTION and the marker (U+321C, one token in the chat render)
 OLENS_PROMPT = (
-    "An activation vector from layer {layer} of a language model is enclosed in activation tags: <activation>{char}</activation>. "
-    "Produce distinct concepts that encode this activation, each as a '- ' bullet on its own line."
+    "You are an activation decoder. An internal activation vector from a language model is enclosed in "
+    "activation tags: <activation>{marker}</activation>. Output exactly {k} phrases, each exactly {n} tokens "
+    "long, that together describe the content of this activation. One phrase per line, no numbering, no extra text."
 )
+MARKER, MARKER_ID = "㈜", 158983
 
 parser = argparse.ArgumentParser()
 parser.add_argument("model_key", choices=list(MODELS))
 parser.add_argument("--items", help="comma-separated item ids (default: every item in index.json)")
 parser.add_argument("--lenses", default=",".join(LENSES), help="comma-separated lens names")
 parser.add_argument("--max-positions", type=int, default=0, help="read only the first N tokens of each item (pilot)")
-parser.add_argument("--batch", type=int, default=96, help="cells per generate call")
+parser.add_argument("--batch", type=int, default=128, help="cells per generate call")
 parser.add_argument("--force", action="store_true", help="redo lenses a sidecar already holds")
 args = parser.parse_args()
 
@@ -79,10 +95,11 @@ def read_sidecar(item_id: str) -> dict | None:
 
 
 def write_sidecar(item_id: str, tokens: list[int], lens_name: str, texts: list[str | None]) -> None:
-    sidecar = read_sidecar(item_id) or {"id": item_id, "model": hf_name, "tokens": tokens, "lenses": {}, "sampling": SAMPLING}
+    sidecar = read_sidecar(item_id) or {"id": item_id, "model": hf_name, "tokens": tokens, "lenses": {}}
     assert sidecar["tokens"] == tokens
     spec = LENSES[lens_name]
-    sidecar["lenses"][lens_name] = {"layer": spec["layer"], "checkpoint": spec["checkpoint"], "text": texts}
+    sidecar["lenses"][lens_name] = {"layer": spec["layer"], "checkpoint": spec["checkpoint"], "sampling": spec["sampling"], "text": texts}
+    sidecar["sampling"] = {name: lens["sampling"] for name, lens in sidecar["lenses"].items()}
     sidecar_path(item_id).write_bytes(gzip.compress(json.dumps(sidecar, separators=(",", ":"), ensure_ascii=False).encode()))
 
 
@@ -130,9 +147,9 @@ log(f"captured {vectors[layers[0]].shape[0]} residual vectors per layer")
 
 
 def attach_and_merge(model: Any, checkpoint: str) -> Any:
-    """Mount a PEFT LoRA from `repo:subdir` and merge it into the weights; refuse an adapter that matched nothing."""
+    """Mount a PEFT LoRA from `repo[:subdir]` and merge it into the weights; refuse an adapter that matched nothing."""
     repo, _, subdir = checkpoint.partition(":")
-    local = Path(snapshot_download(repo, allow_patterns=[f"{subdir}/*"])) / subdir
+    local = Path(snapshot_download(repo, allow_patterns=[f"{subdir}/*"] if subdir else None)) / subdir
     peft_model = PeftModel.from_pretrained(model, str(local), torch_dtype=torch.bfloat16)
     n_lora = sum(1 for name, _ in peft_model.named_modules() if name.endswith("lora_A"))
     assert n_lora, f"{checkpoint}: no module took the LoRA (key names do not match this model)"
@@ -140,15 +157,15 @@ def attach_and_merge(model: Any, checkpoint: str) -> Any:
     probed: Any = peft_model.get_submodule(probe)  # torch types submodules loosely
     base_weight = probed.base_layer.weight.detach().clone()
     merged = peft_model.merge_and_unload()
-    merged_weight = merged.get_state_dict()[f"{probe.removeprefix('base_model.model.')}.weight"]
+    merged_weight = merged.state_dict()[f"{probe.removeprefix('base_model.model.')}.weight"]
     assert not torch.equal(merged_weight, base_weight), f"{checkpoint}: merging changed nothing"
     log(f"merged {checkpoint}: {n_lora} LoRA modules")
     return merged.eval()
 
 
-def decode_new(model_tokenizer: Any, out: torch.Tensor, prompt_len: int) -> list[str]:
+def decode_new(model_tokenizer: Any, out: torch.Tensor, prompt_len: int, max_new_tokens: int) -> list[str]:
     """Generated text per row; `generate` returns only the new tokens when fed embeddings, the whole row when fed ids."""
-    new = out if out.shape[1] <= SAMPLING["max_new_tokens"] else out[:, prompt_len:]
+    new = out if out.shape[1] <= max_new_tokens else out[:, prompt_len:]
     return model_tokenizer.batch_decode(new, skip_special_tokens=True)
 
 
@@ -163,7 +180,7 @@ def run_lens(lens_name: str, generate_batch: Any) -> None:
     for b, start in enumerate(range(0, len(cells), args.batch)):
         batch = cells[start : start + args.batch]
         rows = torch.tensor([offset[item_id] + pos for item_id, pos in batch], device=device)
-        torch.manual_seed(SAMPLING["seed"] + b)
+        torch.manual_seed(LENSES[lens_name]["sampling"].get("seed", 0) + b)
         with torch.no_grad():
             outputs, n_new = generate_batch(vectors[layer][rows])
         generated += n_new
@@ -180,62 +197,54 @@ def run_lens(lens_name: str, generate_batch: Any) -> None:
         log(f"{lens_name}: {start + len(batch)}/{len(cells)} cells, {generated / elapsed:.0f} tok/s, {elapsed / 60:.1f} min")
 
 
-def sample_kwargs(model_tokenizer: Any) -> dict[str, Any]:
-    return {
-        "do_sample": True,
-        "temperature": SAMPLING["temperature"],
-        "top_p": SAMPLING["top_p"],
-        "top_k": SAMPLING["top_k"],
-        "max_new_tokens": SAMPLING["max_new_tokens"],
+def generate_kwargs(lens_name: str, model_tokenizer: Any) -> dict[str, Any]:
+    sampling = LENSES[lens_name]["sampling"]
+    kwargs: dict[str, Any] = {
+        "max_new_tokens": sampling["max_new_tokens"],
         "pad_token_id": model_tokenizer.pad_token_id or model_tokenizer.eos_token_id,
+        "do_sample": sampling["temperature"] > 0,
     }
+    if sampling["temperature"] > 0:
+        kwargs |= {"temperature": sampling["temperature"], "top_p": sampling["top_p"], "top_k": sampling["top_k"]}
+    return kwargs
 
 
 # ---------------------------------------------------------------- stage 2: oracle lens on the base + merged LoRA
 
-
-def olens_carrier(layer: int) -> tuple[list[int], int]:
-    """The carrier prompt's ids and marker index: the first enclosed ideograph (U+3200-U+33FF) that survives as exactly one
-    token inside the full chat render, the way the in-house renderer picks it (158983 for Qwen3.6-27B)."""
-    for code in range(0x3200, 0x3400):
-        char = chr(code)
-        ids = tokenizer(char, add_special_tokens=False)["input_ids"]
-        if len(ids) != 1:
-            continue
-        rendered = tokenizer.apply_chat_template(
-            [{"role": "user", "content": OLENS_PROMPT.format(layer=layer, char=char)}],
-            tokenize=True,
-            add_generation_prompt=True,
-            enable_thinking=False,
-        )
-        rendered = list(rendered["input_ids"] if hasattr(rendered, "keys") else rendered)
-        slots = [i for i, t in enumerate(rendered) if t == ids[0]]
-        if len(slots) == 1:
-            return rendered, slots[0]
-    raise ValueError("no enclosed ideograph survives as a single token in the carrier prompt")
-
-
 if "O-lens" in lens_names and any(not done(item_id, "O-lens") for item_id in todo):
     spec = LENSES["O-lens"]
     olens_model = attach_and_merge(hf_model, spec["checkpoint"])
-    carrier_ids, slot = olens_carrier(spec["layer"])
-    log(f"O-lens carrier: {len(carrier_ids)} tokens, marker {tokenizer.decode([carrier_ids[slot]])!r} ({carrier_ids[slot]}) at {slot}")
+    rendered = tokenizer.apply_chat_template(
+        [{"role": "user", "content": OLENS_PROMPT.format(marker=MARKER, k=OLENS_K, n=OLENS_N)}],
+        tokenize=True,
+        add_generation_prompt=True,
+        enable_thinking=False,
+    )
+    carrier_ids = list(rendered["input_ids"] if hasattr(rendered, "keys") else rendered)
+    (slot,) = [i for i, t in enumerate(carrier_ids) if t == MARKER_ID]
+    log(f"O-lens carrier: {len(carrier_ids)} tokens, marker at {slot}")
     embed = olens_model.get_input_embeddings()
     carrier_embeds = embed(torch.tensor([carrier_ids], device=device))
+    im_end = tokenizer.convert_tokens_to_ids("<|im_end|>")
 
     def olens_batch(h: torch.Tensor) -> tuple[list[str], int]:
         inputs_embeds = carrier_embeds.expand(h.shape[0], -1, -1).clone()
-        inputs_embeds[:, slot, :] = (spec["alpha"] * h / h.norm(dim=-1, keepdim=True).clamp_min(1e-9)).to(inputs_embeds.dtype)
+        inputs_embeds[:, slot, :] = (spec["alpha"] * h / h.norm(dim=-1, keepdim=True).clamp_min(1e-6)).to(inputs_embeds.dtype)
         out = olens_model.generate(
             inputs_embeds=inputs_embeds,
             attention_mask=torch.ones(h.shape[0], len(carrier_ids), device=device, dtype=torch.long),
-            **sample_kwargs(tokenizer),
+            eos_token_id=[tokenizer.eos_token_id, im_end],
+            **generate_kwargs("O-lens", tokenizer),
         )
-        return [t.strip() for t in decode_new(tokenizer, out, len(carrier_ids))], out.numel()
+        texts = decode_new(tokenizer, out, len(carrier_ids), spec["sampling"]["max_new_tokens"])
+        # one phrase per line, empties dropped, capped at K (common.py's parse_generated_phrases on text)
+        return ["\n".join([line.strip() for line in t.split("\n") if line.strip()][:OLENS_K]) for t in texts], out.numel()
 
     run_lens("O-lens", olens_batch)
-    del olens_model, carrier_embeds, embed
-del hf_model
+    del olens_model, carrier_embeds, embed, olens_batch  # the closure holds the model
+# every reference to the base must go before the NLA reader (a second 27B) loads
+del hf_model, blocks, recorder, input_ids
+gc.collect()
 torch.cuda.empty_cache()
 
 
@@ -279,10 +288,14 @@ if "NLA" in lens_names and any(not done(item_id, "NLA") for item_id in todo):
     def nla_batch(h: torch.Tensor) -> tuple[list[str], int]:
         injected["v"] = h
         try:
-            out = reader.generate(prompt.expand(h.shape[0], -1), **sample_kwargs(nla_tokenizer))
+            out = reader.generate(
+                prompt.expand(h.shape[0], -1),
+                attention_mask=torch.ones(h.shape[0], len(nla_ids), device=device, dtype=torch.long),
+                **generate_kwargs("NLA", nla_tokenizer),
+            )
         finally:
             injected["v"] = None
-        texts = decode_new(nla_tokenizer, out, len(nla_ids))
+        texts = decode_new(nla_tokenizer, out, len(nla_ids), spec["sampling"]["max_new_tokens"])
         return [t.split("</explanation>")[0].removeprefix("<explanation>").strip() for t in texts], out[:, len(nla_ids) :].numel()
 
     run_lens("NLA", nla_batch)

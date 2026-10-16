@@ -55,7 +55,7 @@ up)
   ssh "${ssh_opts[@]}" "root@$host" "set -o pipefail; source /root/.hf_env; cd /workspace/jlens-dashboard && \
     (command -v uv >/dev/null || pip install -q --break-system-packages uv) && \
     export HF_HOME=/workspace/hf HF_XET_HIGH_PERFORMANCE=1 && uv sync -q --group pod && \
-    uv run hf download Qwen/Qwen3.6-27B >/dev/null && uv run hf download agu18dec/olens_and_ar --include 'olens_s3d_rl600/*' >/dev/null && \
+    uv run hf download Qwen/Qwen3.6-27B >/dev/null && uv run hf download robbiethompson2018/oracle-lens-qwen3.6-27b-pilot >/dev/null && \
     uv run hf download ceselder/qwen3.6-27b-nla-rl --include 'av_base/*' --include 'av_rl_adapters/iter_000400/*' >/dev/null && echo prefetched" || exit 1
   trap - EXIT
   echo "pod $pod ready; state in $STATE"
@@ -64,7 +64,7 @@ run)
   load_state
   model=$1
   ssh "${ssh_opts[@]}" "root@$host" "set -o pipefail; source /root/.hf_env; cd /workspace/jlens-dashboard && \
-    export HF_HOME=/workspace/hf OMP_NUM_THREADS=8 && \
+    export HF_HOME=/workspace/hf OMP_NUM_THREADS=8 FLA_TILELANG=0 && \
     uv run python scripts/prose_readout.py $* 2>&1 | grep -v -i -E 'warn|falling back|Loading weights'"
   status=$?
   rsync -az -e "ssh ${ssh_opts[*]}" --include '*.prose.json.gz' --include 'index.json' --exclude '*' \
