@@ -56,8 +56,10 @@ header.top { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; p
 .sub b { color: var(--ink); font-weight: 500; }
 header .spacer { flex: 1; }
 details.about summary { cursor: pointer; color: var(--accent); font-size: 12.5px; list-style: none; }
-details.about[open] { position: relative; }
-details.about .body { position: absolute; right: 0; top: 22px; z-index: 20; width: min(560px, 90vw); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; box-shadow: 0 12px 40px rgb(0 0 0 / 0.18); font-size: 13px; color: var(--ink); }
+details.about { position: relative; padding-bottom: 8px; margin-bottom: -8px; }  /* the padding keeps :hover alive between the label and the popover */
+details.about .body { display: none; }
+details.about:hover .body, details.about[open] .body { display: block; }
+details.about .body { position: absolute; right: 0; top: 100%; z-index: 20; width: min(560px, 90vw); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; box-shadow: 0 12px 40px rgb(0 0 0 / 0.18); font-size: 13px; color: var(--ink); }
 details.about .body p { margin: 0 0 8px; }
 
 .panes { min-height: 0; display: grid; grid-template-columns: 250px minmax(0, 1fr) 430px; gap: 10px; }
@@ -225,7 +227,15 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
         <p>Layers are shown as % depth. The paper finds the J-lens useful from about 38% to 92%; the last row (100%) is the model's own next-token prediction and is identical across lenses.</p>
         <p>Each cell keeps the top 20 <i>word-like</i> tokens (letters and digits only, as in the reference viewer and Neuronpedia), with full-vocabulary probability. A word longer than one token shows only as its first piece.</p>
         <p><b>Words in the workspace</b> counts, over the selected tokens (drag to select) and layers, how often each word sits in the top N. "Unsaid only" hides words that appear anywhere in the transcript text.</p>
-        <p><b>Oracle lens</b> (O-lens: a LoRA on Qwen itself, Anthropic 2026 / WorkspaceBench 2026) and <b>NLA</b> (natural language autoencoder, a separate verbalizer, Anthropic 2026) are prose readouts: the activation is injected into a prompt and the reader writes what it holds. The Qwen3.6-27B transcripts have both at every token but one layer each: the NLA (<span style="font-family:var(--font-data)">ceselder/qwen3.6-27b-nla-rl</span>) only reads the layer it was trained on, L42, and the oracle lens (<span style="font-family:var(--font-data)">agu18dec/olens_and_ar</span>) was trained on layers 20–60 step 4, so it reads at L44, WorkspaceBench's headline layer and the nearest to the NLA. The WorkspaceBench items show them beside the J-lens at the cells the benchmark read, all from the authors' published runs; there the J-lens is their top-10 bag without scores, shaded by rank. A search matches the prose as whole words.</p>
+        <p><b>Oracle lens</b> and <b>NLA</b> are prose readouts: the activation is injected into a prompt and a reader model writes what it holds. See "Where the O-lens and NLA came from". On the WorkspaceBench items both come from the authors' published runs; there the J-lens is their top-10 bag without scores, shaded by rank. A search matches the prose as whole words.</p>
+      </div>
+    </details>
+    <details class="about">
+      <summary>Where the O-lens and NLA came from</summary>
+      <div class="body">
+        <p><b>O-lens</b> is Robbie's own oracle lens for Qwen3.6-27B (<span style="font-family:var(--font-data)">robbiethompson2018/oracle-lens-qwen3.6-27b-pilot</span>, repo <span style="font-family:var(--font-data)">oracle-lens-reconstruction</span>): a replication of the Anthropic workspace-paper appendix recipe. A reconstructor maps a short phrase to the whitened residual direction the model holds before saying it; the oracle, a LoRA on Qwen itself, is fed the activation (its unit vector × 16000 replaces one token's input embedding) and emits phrases whose reconstructor directions explain the activation. Warm-started by distilling an NN-OMP teacher, then 40 REINFORCE steps on variance explained. Pilot scale, one H100, held-out FVE 0.236 at 8 tokens × 10 phrases (ceselder's full-scale July run: 0.21–0.22). Read here at layer 42, its training layer, as 8 phrases of 4 tokens, greedy decoding, at every token.</p>
+        <p><b>NLA</b> is ceselder's natural language autoencoder for Qwen3.6-27B (<span style="font-family:var(--font-data)">ceselder/qwen3.6-27b-nla-rl</span>, step 400, trained with easyNLA after the Anthropic 2026 NLA paper): a separate verbalizer copy of Qwen that is handed the activation (norm-matched, added at its marker token) and writes a free-form explanation; it was trained with GRPO against a reconstructor to maximize variance explained, converging near 0.77 FVE. It only reads layer 42, the layer it was trained on, so both prose lenses sit at the same layer. Sampled once per token at temperature 1, top-p 0.95, top-k 64, up to 256 tokens.</p>
+        <p>Neither lens sees the other tokens: each readout is from one residual vector at one position, so what it names is what that single activation carries.</p>
       </div>
     </details>
   </header>
