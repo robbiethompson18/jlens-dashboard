@@ -153,7 +153,8 @@ table.readout td.layer { white-space: nowrap; color: var(--muted); font-variant-
 table.readout td.layer small { display: block; color: var(--faint); font-size: 10px; }
 table.readout tr.out td.layer { color: var(--ink); }
 .chips { display: flex; flex-wrap: wrap; gap: 3px; }
-.chip { all: unset; cursor: pointer; padding: 1px 5px; border-radius: 4px; background: color-mix(in oklab, var(--hi) var(--p), transparent); color: var(--ink); white-space: pre; border: 1px solid transparent; }
+/* strength = border: a faint hairline for the tail, a bold near-white border for a likely token (search-term colours stay on the background) */
+.chip { all: unset; cursor: pointer; padding: 1px 5px; border-radius: 4px; background: color-mix(in oklab, var(--ink) 4%, transparent); color: var(--ink); white-space: pre; border: calc(1px + 2px * var(--pf)) solid color-mix(in oklab, var(--ink) calc(var(--pf) * 90%), var(--line)); }
 .chip small { font-size: 9.5px; color: var(--faint); margin-left: 4px; font-variant-numeric: tabular-nums; }
 .chip.said { color: var(--muted); }
 .chip.hit { border-color: var(--c); background: color-mix(in oklab, var(--c) 30%, transparent); color: var(--ink); font-weight: 500; }
@@ -614,12 +615,12 @@ function chipHTML(cur, id, lp, rank) {
   const word = cur.vocab.get(id) ?? `#${id}`, n = cur.normOf.get(id) ?? "";
   // shade by probability when the data has one, else by rank
   const prob = cur.scores ? Math.exp(lp / 10) : null;
-  const pct = prob == null ? Math.round((1 - rank / cur.K) * 55) : Math.round(Math.min(1, Math.sqrt(prob)) * 55);
+  const pf = (prob == null ? 1 - rank / cur.K : Math.min(1, Math.sqrt(prob))).toFixed(2);  // 0..1: border weight
   const term = S.terms.find((t) => t.ids?.has(id));
   const said = cur.saidWords.has(n);
   const pctTxt = prob == null ? "" : prob >= 0.001 ? (prob * 100).toFixed(prob >= 0.1 ? 0 : 1) + "%" : "<0.1%";
   const probTxt = prob == null ? `rank ${rank + 1}` : `p=${pctTxt}, rank ${rank + 1}`;
-  return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--p:${pct}%;${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · ${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || JSON.stringify(word).slice(1, -1))}${pctTxt ? `<small>${pctTxt}</small>` : ""}</button>`;
+  return `<button class="chip${said ? " said" : ""}${term ? " hit" : ""}" style="--pf:${pf};${term ? `--c:var(${term.color})` : ""}" data-w="${esc(n)}" title="${esc(JSON.stringify(word))} · ${probTxt}${said ? " · appears in the text" : " · not in the text"}">${esc(word.trim() || JSON.stringify(word).slice(1, -1))}${pctTxt ? `<small>${pctTxt}</small>` : ""}</button>`;
 }
 // prose readout as bullets when it is a bullet list, with search terms marked
 function proseHTML(text) {
