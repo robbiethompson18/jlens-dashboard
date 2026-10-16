@@ -1,0 +1,612 @@
+[
+ {
+  "id": "arith-00",
+  "name": "1+1 = 2",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 1+1? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 2,
+  "intermediates": []
+ },
+ {
+  "id": "arith-01",
+  "name": "2+3 = 5",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 2+3? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 5,
+  "intermediates": []
+ },
+ {
+  "id": "arith-02",
+  "name": "9-6 = 3",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 9-6? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 3,
+  "intermediates": []
+ },
+ {
+  "id": "arith-03",
+  "name": "4*2 = 8",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 4*2? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 8,
+  "intermediates": []
+ },
+ {
+  "id": "arith-04",
+  "name": "56/8 = 7",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 56/8? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 7,
+  "intermediates": []
+ },
+ {
+  "id": "arith-05",
+  "name": "8-8 = 0",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 8-8? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 0,
+  "intermediates": []
+ },
+ {
+  "id": "arith-06",
+  "name": "3*3 = 9",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 3*3? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 9,
+  "intermediates": []
+ },
+ {
+  "id": "arith-07",
+  "name": "12-6 = 6",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 12-6? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 6,
+  "intermediates": []
+ },
+ {
+  "id": "arith-08",
+  "name": "7*8 = 56",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 7*8? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 56,
+  "intermediates": []
+ },
+ {
+  "id": "arith-09",
+  "name": "6*7 = 42",
+  "source": "trivial",
+  "category": "trivial",
+  "prompt": "What is 6*7? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 42,
+  "intermediates": []
+ },
+ {
+  "id": "arith-10",
+  "name": "47+38 = 85",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 47+38? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 85,
+  "intermediates": []
+ },
+ {
+  "id": "arith-11",
+  "name": "84-29 = 55",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 84-29? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 55,
+  "intermediates": []
+ },
+ {
+  "id": "arith-12",
+  "name": "23*17 = 391",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 23*17? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 391,
+  "intermediates": []
+ },
+ {
+  "id": "arith-13",
+  "name": "15*15 = 225",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 15*15? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 225,
+  "intermediates": []
+ },
+ {
+  "id": "arith-14",
+  "name": "144/12 = 12",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 144/12? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 12,
+  "intermediates": []
+ },
+ {
+  "id": "arith-15",
+  "name": "125+376 = 501",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 125+376? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 501,
+  "intermediates": []
+ },
+ {
+  "id": "arith-16",
+  "name": "312-187 = 125",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 312-187? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 125,
+  "intermediates": []
+ },
+ {
+  "id": "arith-17",
+  "name": "999+1 = 1000",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 999+1? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 1000,
+  "intermediates": []
+ },
+ {
+  "id": "arith-18",
+  "name": "64*25 = 1600",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 64*25? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 1600,
+  "intermediates": []
+ },
+ {
+  "id": "arith-19",
+  "name": "731+269 = 1000",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 731+269? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 1000,
+  "intermediates": []
+ },
+ {
+  "id": "arith-20",
+  "name": "38*46 = 1748",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 38*46? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 1748,
+  "intermediates": []
+ },
+ {
+  "id": "arith-21",
+  "name": "1000-1 = 999",
+  "source": "multi-digit",
+  "category": "multi-digit",
+  "prompt": "What is 1000-1? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 999,
+  "intermediates": []
+ },
+ {
+  "id": "arith-22",
+  "name": "3-8 = -5",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is 3-8? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -5,
+  "intermediates": []
+ },
+ {
+  "id": "arith-23",
+  "name": "17-42 = -25",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is 17-42? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -25,
+  "intermediates": []
+ },
+ {
+  "id": "arith-24",
+  "name": "-6*7 = -42",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is -6*7? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -42,
+  "intermediates": []
+ },
+ {
+  "id": "arith-25",
+  "name": "120-345 = -225",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is 120-345? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -225,
+  "intermediates": []
+ },
+ {
+  "id": "arith-26",
+  "name": "-15+9 = -6",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is -15+9? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -6,
+  "intermediates": []
+ },
+ {
+  "id": "arith-27",
+  "name": "50-123 = -73",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is 50-123? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -73,
+  "intermediates": []
+ },
+ {
+  "id": "arith-28",
+  "name": "-8*-9 = 72",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is -8*-9? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 72,
+  "intermediates": []
+ },
+ {
+  "id": "arith-29",
+  "name": "0-1 = -1",
+  "source": "negative",
+  "category": "negative",
+  "prompt": "What is 0-1? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -1,
+  "intermediates": []
+ },
+ {
+  "id": "arith-30",
+  "name": "(3+4)*5 = 35",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is (3+4)*5? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 35,
+  "intermediates": [
+   7
+  ]
+ },
+ {
+  "id": "arith-31",
+  "name": "(17+25)*3 = 126",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is (17+25)*3? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 126,
+  "intermediates": [
+   42
+  ]
+ },
+ {
+  "id": "arith-32",
+  "name": "6*7-20 = 22",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is 6*7-20? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 22,
+  "intermediates": [
+   42
+  ]
+ },
+ {
+  "id": "arith-33",
+  "name": "(12-5)*(3+2) = 35",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is (12-5)*(3+2)? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 35,
+  "intermediates": [
+   7,
+   5
+  ]
+ },
+ {
+  "id": "arith-34",
+  "name": "2*(8+9)-10 = 24",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is 2*(8+9)-10? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 24,
+  "intermediates": [
+   17,
+   34
+  ]
+ },
+ {
+  "id": "arith-35",
+  "name": "(100-64)/4 = 9",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is (100-64)/4? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 9,
+  "intermediates": [
+   36
+  ]
+ },
+ {
+  "id": "arith-36",
+  "name": "(9+6)/3+8 = 13",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is (9+6)/3+8? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 13,
+  "intermediates": [
+   15,
+   5
+  ]
+ },
+ {
+  "id": "arith-37",
+  "name": "3*(4+5)*2 = 54",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is 3*(4+5)*2? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 54,
+  "intermediates": [
+   9,
+   27
+  ]
+ },
+ {
+  "id": "arith-38",
+  "name": "(25-13)*(11-4) = 84",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is (25-13)*(11-4)? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 84,
+  "intermediates": [
+   12,
+   7
+  ]
+ },
+ {
+  "id": "arith-39",
+  "name": "(48/6)*(9-2) = 56",
+  "source": "multi-step",
+  "category": "multi-step",
+  "prompt": "What is (48/6)*(9-2)? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 56,
+  "intermediates": [
+   8,
+   7
+  ]
+ },
+ {
+  "id": "arith-40",
+  "name": "3 apples + 5 = 8",
+  "source": "word",
+  "category": "word",
+  "prompt": "Tom has 3 apples and buys 5 more. How many apples does he have? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 8,
+  "intermediates": []
+ },
+ {
+  "id": "arith-41",
+  "name": "4 boxes of 12 eggs = 48",
+  "source": "word",
+  "category": "word",
+  "prompt": "A box holds 12 eggs. How many eggs are in 4 boxes? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 48,
+  "intermediates": []
+ },
+ {
+  "id": "arith-42",
+  "name": "9:00 to 11:30 in minutes = 150",
+  "source": "word",
+  "category": "word",
+  "prompt": "A train leaves at 9:00 and arrives at 11:30. How many minutes is the trip? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 150,
+  "intermediates": []
+ },
+ {
+  "id": "arith-43",
+  "name": "Ann = 2·6 + 7 = 19",
+  "source": "word",
+  "category": "word",
+  "prompt": "Ann is 7 years older than Ben, and Ben is twice as old as Cal, who is 6. How old is Ann? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 19,
+  "intermediates": [
+   12
+  ]
+ },
+ {
+  "id": "arith-44",
+  "name": "4° drops 11° = -7",
+  "source": "word",
+  "category": "word",
+  "prompt": "It is 4 degrees outside and the temperature drops by 11 degrees. What is the temperature now? Answer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": -7,
+  "intermediates": []
+ },
+ {
+  "id": "arith-45",
+  "name": "((-60 * -44) + (-73 + -76)) + 17 = 2508",
+  "source": "post-style",
+  "category": "post-style",
+  "prompt": "Evaluate this Python expression: ((-60 * -44) + (-73 + -76)) + 17\nAnswer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 2508,
+  "intermediates": [
+   2640,
+   -149,
+   2491
+  ]
+ },
+ {
+  "id": "arith-46",
+  "name": "((87 - (38 - -68)) - (-79 + 42)) + 21 = 39",
+  "source": "post-style",
+  "category": "post-style",
+  "prompt": "Evaluate this Python expression: ((87 - (38 - -68)) - (-79 + 42)) + 21\nAnswer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 39,
+  "intermediates": [
+   106,
+   -19,
+   -37,
+   18
+  ]
+ },
+ {
+  "id": "arith-47",
+  "name": "(44 // -49) % 7 = 6",
+  "source": "post-style",
+  "category": "post-style",
+  "prompt": "Evaluate this Python expression: (44 // -49) % 7\nAnswer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 6,
+  "intermediates": [
+   -1
+  ]
+ },
+ {
+  "id": "arith-48",
+  "name": "-93 + ((-42 % (89 - -73)) + 5) = 32",
+  "source": "post-style",
+  "category": "post-style",
+  "prompt": "Evaluate this Python expression: -93 + ((-42 % (89 - -73)) + 5)\nAnswer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 32,
+  "intermediates": [
+   162,
+   120,
+   125
+  ]
+ },
+ {
+  "id": "arith-49",
+  "name": "(15 - 51) * (3 + -9) = 216",
+  "source": "post-style",
+  "category": "post-style",
+  "prompt": "Evaluate this Python expression: (15 - 51) * (3 + -9)\nAnswer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 216,
+  "intermediates": [
+   -36,
+   -6
+  ]
+ },
+ {
+  "id": "arith-50",
+  "name": "(91 // 4) - (17 % 5) = 20",
+  "source": "post-style",
+  "category": "post-style",
+  "prompt": "Evaluate this Python expression: (91 // 4) - (17 % 5)\nAnswer with just the number.",
+  "think": false,
+  "max_new_tokens": 16,
+  "gold": 20,
+  "intermediates": [
+   22,
+   2
+  ]
+ }
+]

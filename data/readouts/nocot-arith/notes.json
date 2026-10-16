@@ -1,0 +1,395 @@
+{
+ "arith-00": {
+  "text": "trivial: gold 2, Qwen answered '2', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "2"
+  ],
+  "pin": 24
+ },
+ "arith-01": {
+  "text": "trivial: gold 5, Qwen answered '5', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "5"
+  ],
+  "pin": 24
+ },
+ "arith-02": {
+  "text": "trivial: gold 3, Qwen answered '3', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "3"
+  ],
+  "pin": 24
+ },
+ "arith-03": {
+  "text": "trivial: gold 8, Qwen answered '8', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "8"
+  ],
+  "pin": 24
+ },
+ "arith-04": {
+  "text": "trivial: gold 7, Qwen answered '7', right. Pinned at the last template token before the answer (#25); the end of the question is a few tokens earlier.",
+  "try": [
+   "7"
+  ],
+  "pin": 25
+ },
+ "arith-05": {
+  "text": "trivial: gold 0, Qwen answered '0', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "0"
+  ],
+  "pin": 24
+ },
+ "arith-06": {
+  "text": "trivial: gold 9, Qwen answered '9', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "9"
+  ],
+  "pin": 24
+ },
+ "arith-07": {
+  "text": "trivial: gold 6, Qwen answered '6', right. Pinned at the last template token before the answer (#25); the end of the question is a few tokens earlier.",
+  "try": [
+   "6"
+  ],
+  "pin": 25
+ },
+ "arith-08": {
+  "text": "trivial: gold 56, Qwen answered '56', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "56"
+  ],
+  "pin": 24
+ },
+ "arith-09": {
+  "text": "trivial: gold 42, Qwen answered '42', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "42"
+  ],
+  "pin": 24
+ },
+ "arith-10": {
+  "text": "multi-digit: gold 85, Qwen answered '85', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "85"
+  ],
+  "pin": 26
+ },
+ "arith-11": {
+  "text": "multi-digit: gold 55, Qwen answered '55', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "55"
+  ],
+  "pin": 26
+ },
+ "arith-12": {
+  "text": "multi-digit: gold 391, Qwen answered '391', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "391"
+  ],
+  "pin": 26
+ },
+ "arith-13": {
+  "text": "multi-digit: gold 225, Qwen answered '225', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "225"
+  ],
+  "pin": 26
+ },
+ "arith-14": {
+  "text": "multi-digit: gold 12, Qwen answered '12', right. Pinned at the last template token before the answer (#27); the end of the question is a few tokens earlier.",
+  "try": [
+   "12"
+  ],
+  "pin": 27
+ },
+ "arith-15": {
+  "text": "multi-digit: gold 501, Qwen answered '501', right. Pinned at the last template token before the answer (#28); the end of the question is a few tokens earlier.",
+  "try": [
+   "501"
+  ],
+  "pin": 28
+ },
+ "arith-16": {
+  "text": "multi-digit: gold 125, Qwen answered '125', right. Pinned at the last template token before the answer (#28); the end of the question is a few tokens earlier.",
+  "try": [
+   "125"
+  ],
+  "pin": 28
+ },
+ "arith-17": {
+  "text": "multi-digit: gold 1000, Qwen answered '1000', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "1000"
+  ],
+  "pin": 26
+ },
+ "arith-18": {
+  "text": "multi-digit: gold 1600, Qwen answered '1600', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "1600"
+  ],
+  "pin": 26
+ },
+ "arith-19": {
+  "text": "multi-digit: gold 1000, Qwen answered '1000', right. Pinned at the last template token before the answer (#28); the end of the question is a few tokens earlier.",
+  "try": [
+   "1000"
+  ],
+  "pin": 28
+ },
+ "arith-20": {
+  "text": "multi-digit: gold 1748, Qwen answered '1748', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "1748"
+  ],
+  "pin": 26
+ },
+ "arith-21": {
+  "text": "multi-digit: gold 999, Qwen answered '999', right. Pinned at the last template token before the answer (#27); the end of the question is a few tokens earlier.",
+  "try": [
+   "999"
+  ],
+  "pin": 27
+ },
+ "arith-22": {
+  "text": "negative: gold -5, Qwen answered '-5', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "-5"
+  ],
+  "pin": 24
+ },
+ "arith-23": {
+  "text": "negative: gold -25, Qwen answered '-25', right. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "-25"
+  ],
+  "pin": 26
+ },
+ "arith-24": {
+  "text": "negative: gold -42, Qwen answered '-42', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "-42"
+  ],
+  "pin": 24
+ },
+ "arith-25": {
+  "text": "negative: gold -225, Qwen answered '-225', right. Pinned at the last template token before the answer (#28); the end of the question is a few tokens earlier.",
+  "try": [
+   "-225"
+  ],
+  "pin": 28
+ },
+ "arith-26": {
+  "text": "negative: gold -6, Qwen answered '-6', right. Pinned at the last template token before the answer (#25); the end of the question is a few tokens earlier.",
+  "try": [
+   "-6"
+  ],
+  "pin": 25
+ },
+ "arith-27": {
+  "text": "negative: gold -73, Qwen answered '-73', right. Pinned at the last template token before the answer (#27); the end of the question is a few tokens earlier.",
+  "try": [
+   "-73"
+  ],
+  "pin": 27
+ },
+ "arith-28": {
+  "text": "negative: gold 72, Qwen answered '72', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "72"
+  ],
+  "pin": 24
+ },
+ "arith-29": {
+  "text": "negative: gold -1, Qwen answered '-1', right. Pinned at the last template token before the answer (#24); the end of the question is a few tokens earlier.",
+  "try": [
+   "-1"
+  ],
+  "pin": 24
+ },
+ "arith-30": {
+  "text": "multi-step: gold 35, Qwen answered '35', right; never-written intermediates 7. Pinned at the last template token before the answer (#26); the end of the question is a few tokens earlier.",
+  "try": [
+   "35",
+   "7"
+  ],
+  "pin": 26
+ },
+ "arith-31": {
+  "text": "multi-step: gold 126, Qwen answered '126', right; never-written intermediates 42. Pinned at the last template token before the answer (#28); the end of the question is a few tokens earlier.",
+  "try": [
+   "126",
+   "42"
+  ],
+  "pin": 28
+ },
+ "arith-32": {
+  "text": "multi-step: gold 22, Qwen answered '22', right; never-written intermediates 42. Pinned at the last template token before the answer (#27); the end of the question is a few tokens earlier.",
+  "try": [
+   "22",
+   "42"
+  ],
+  "pin": 27
+ },
+ "arith-33": {
+  "text": "multi-step: gold 35, Qwen answered '35', right; never-written intermediates 7, 5. Pinned at the last template token before the answer (#29); the end of the question is a few tokens earlier.",
+  "try": [
+   "35",
+   "7",
+   "5"
+  ],
+  "pin": 29
+ },
+ "arith-34": {
+  "text": "multi-step: gold 24, Qwen answered '24', right; never-written intermediates 17, 34. Pinned at the last template token before the answer (#29); the end of the question is a few tokens earlier.",
+  "try": [
+   "24",
+   "17",
+   "34"
+  ],
+  "pin": 29
+ },
+ "arith-35": {
+  "text": "multi-step: gold 9, Qwen answered '9', right; never-written intermediates 36. Pinned at the last template token before the answer (#29); the end of the question is a few tokens earlier.",
+  "try": [
+   "9",
+   "36"
+  ],
+  "pin": 29
+ },
+ "arith-36": {
+  "text": "multi-step: gold 13, Qwen answered '13', right; never-written intermediates 15, 5. Pinned at the last template token before the answer (#28); the end of the question is a few tokens earlier.",
+  "try": [
+   "13",
+   "15",
+   "5"
+  ],
+  "pin": 28
+ },
+ "arith-37": {
+  "text": "multi-step: gold 54, Qwen answered '54', right; never-written intermediates 9, 27. Pinned at the last template token before the answer (#28); the end of the question is a few tokens earlier.",
+  "try": [
+   "54",
+   "9",
+   "27"
+  ],
+  "pin": 28
+ },
+ "arith-38": {
+  "text": "multi-step: gold 84, Qwen answered '132', WRONG (a lens should report 132, what the model computed, not 84); never-written intermediates 12, 7. Pinned at the last template token before the answer (#31); the end of the question is a few tokens earlier.",
+  "try": [
+   "132",
+   "84",
+   "12",
+   "7"
+  ],
+  "pin": 31
+ },
+ "arith-39": {
+  "text": "multi-step: gold 56, Qwen answered '84', WRONG (a lens should report 84, what the model computed, not 56); never-written intermediates 8, 7. Pinned at the last template token before the answer (#29); the end of the question is a few tokens earlier.",
+  "try": [
+   "84",
+   "56",
+   "8",
+   "7"
+  ],
+  "pin": 29
+ },
+ "arith-40": {
+  "text": "word: gold 8, Qwen answered '8', right. Pinned at the last template token before the answer (#35); the end of the question is a few tokens earlier.",
+  "try": [
+   "8"
+  ],
+  "pin": 35
+ },
+ "arith-41": {
+  "text": "word: gold 48, Qwen answered '48', right. Pinned at the last template token before the answer (#34); the end of the question is a few tokens earlier.",
+  "try": [
+   "48"
+  ],
+  "pin": 34
+ },
+ "arith-42": {
+  "text": "word: gold 150, Qwen answered '150', right. Pinned at the last template token before the answer (#43); the end of the question is a few tokens earlier.",
+  "try": [
+   "150"
+  ],
+  "pin": 43
+ },
+ "arith-43": {
+  "text": "word: gold 19, Qwen answered '19', right; never-written intermediates 12. Pinned at the last template token before the answer (#45); the end of the question is a few tokens earlier.",
+  "try": [
+   "19",
+   "12"
+  ],
+  "pin": 45
+ },
+ "arith-44": {
+  "text": "word: gold -7, Qwen answered '-7', right. Pinned at the last template token before the answer (#39); the end of the question is a few tokens earlier.",
+  "try": [
+   "-7"
+  ],
+  "pin": 39
+ },
+ "arith-45": {
+  "text": "post-style: gold 2508, Qwen answered '2541', WRONG (a lens should report 2541, what the model computed, not 2508); never-written intermediates 2640, -149, 2491. Pinned at the last template token before the answer (#45); the end of the question is a few tokens earlier.",
+  "try": [
+   "2541",
+   "2508",
+   "2640",
+   "-149",
+   "2491"
+  ],
+  "pin": 45
+ },
+ "arith-46": {
+  "text": "post-style: gold 39, Qwen answered '-19', WRONG (a lens should report -19, what the model computed, not 39); never-written intermediates 106, -19, -37, 18. Pinned at the last template token before the answer (#48); the end of the question is a few tokens earlier.",
+  "try": [
+   "-19",
+   "39",
+   "106",
+   "-37",
+   "18"
+  ],
+  "pin": 48
+ },
+ "arith-47": {
+  "text": "post-style: gold 6, Qwen answered '6', right; never-written intermediates -1. Pinned at the last template token before the answer (#34); the end of the question is a few tokens earlier.",
+  "try": [
+   "6",
+   "-1"
+  ],
+  "pin": 34
+ },
+ "arith-48": {
+  "text": "post-style: gold 32, Qwen answered '-30', WRONG (a lens should report -30, what the model computed, not 32); never-written intermediates 162, 120, 125. Pinned at the last template token before the answer (#44); the end of the question is a few tokens earlier.",
+  "try": [
+   "-30",
+   "32",
+   "162",
+   "120",
+   "125"
+  ],
+  "pin": 44
+ },
+ "arith-49": {
+  "text": "post-style: gold 216, Qwen answered '216', right; never-written intermediates -36, -6. Pinned at the last template token before the answer (#38); the end of the question is a few tokens earlier.",
+  "try": [
+   "216",
+   "-36",
+   "-6"
+  ],
+  "pin": 38
+ },
+ "arith-50": {
+  "text": "post-style: gold 20, Qwen answered '20', right; never-written intermediates 22, 2. Pinned at the last template token before the answer (#38); the end of the question is a few tokens earlier.",
+  "try": [
+   "20",
+   "22",
+   "2"
+  ],
+  "pin": 38
+ }
+}

@@ -65,6 +65,11 @@ Current docs:
   — Robbie's pilot oracle lens and ceselder's NLA at layer 42 on every token of the 15 transcripts;
   sidecar format, read contracts, pod throughput and cost, gotchas.
 
+- [No-CoT arithmetic — read before extending the `nocot-arith` tab, or when asked whether the O-lens / NLA can read a number](docs/nocot-arith.md)
+  — 51 problems after the activation-oracle post's "the number 10" finding; J-lens ranks the
+  unwritten answer's digit at L59 (40/51), the O-lens says "1000" with the right sign, the NLA
+  invents a different problem; how it was run and what it cost.
+
 ## UI state
 
 By default every UI control's state (dataset, transcript, lens, top-N, layers, search terms, pin,

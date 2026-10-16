@@ -43,17 +43,18 @@ something.
 
 ## Per dataset
 
-| dataset dir           | transcripts                                                         | render                                                                                        |
-| --------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `qwen3.6-27b`         | `data/transcripts.json`                                             | HF chat template, thinking per item                                                           |
-| `qwen3.8-27b-smoking` | `data/transcripts-smoking.json`                                     | tinker-cookbook `qwen3_5` render, per-item Tinker LoRA merged (`jlens_dashboard.tinker_lora`) |
-| `wsbench-poetry`      | `data/transcripts-wsbench-poetry.json`                              | plain text, no template, reply = rhyme word                                                   |
-| `wsbench-brew`        | `data/transcripts-wsbench-brew.json`                                | chat template, prefill `Answer:`, reply = final colour                                        |
-| `wsbench-chain`       | none: the authors' published readouts via `scripts/wsbench.py`      | n/a                                                                                           |
-| `dolphin`             | `data/transcripts-dolphin.json` (`scripts/dolphin_rollouts.py`)     | chat template with the animal system prompt, thinking off (two items on)                      |
-| `blackmail`           | `data/transcripts-blackmail.json` (`scripts/blackmail_rollouts.py`) | chat template, system + user message, thinking on, per-item PEFT LoRA merged                  |
-| `lying`               | `data/transcripts-lying.json` (`scripts/lying_items.py`)            | Qwen3.8 chat template with `tools`, `reasoning_effort: medium`; reply generated on the pod    |
-| `imprinting`          | `data/transcripts-imprinting.json` (`scripts/imprinting_items.py`)  | chat template, two prior turns + the prohibition, thinking off, per-item PEFT LoRA merged     |
+| dataset dir           | transcripts                                                          | render                                                                                        |
+| --------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `qwen3.6-27b`         | `data/transcripts.json`                                              | HF chat template, thinking per item                                                           |
+| `qwen3.8-27b-smoking` | `data/transcripts-smoking.json`                                      | tinker-cookbook `qwen3_5` render, per-item Tinker LoRA merged (`jlens_dashboard.tinker_lora`) |
+| `wsbench-poetry`      | `data/transcripts-wsbench-poetry.json`                               | plain text, no template, reply = rhyme word                                                   |
+| `wsbench-brew`        | `data/transcripts-wsbench-brew.json`                                 | chat template, prefill `Answer:`, reply = final colour                                        |
+| `wsbench-chain`       | none: the authors' published readouts via `scripts/wsbench.py`       | n/a                                                                                           |
+| `dolphin`             | `data/transcripts-dolphin.json` (`scripts/dolphin_rollouts.py`)      | chat template with the animal system prompt, thinking off (two items on)                      |
+| `blackmail`           | `data/transcripts-blackmail.json` (`scripts/blackmail_rollouts.py`)  | chat template, system + user message, thinking on, per-item PEFT LoRA merged                  |
+| `lying`               | `data/transcripts-lying.json` (`scripts/lying_items.py`)             | Qwen3.8 chat template with `tools`, `reasoning_effort: medium`; reply generated on the pod    |
+| `imprinting`          | `data/transcripts-imprinting.json` (`scripts/imprinting_items.py`)   | chat template, two prior turns + the prohibition, thinking off, per-item PEFT LoRA merged     |
+| `nocot-arith`         | `data/transcripts-nocot-arith.json` (`scripts/nocot_arith_items.py`) | chat template, thinking off, reply (the number) generated greedily on the pod                 |
 
 ## Running
 

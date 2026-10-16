@@ -30,7 +30,7 @@ case $stage in
 up)
   pod=""
   trap '[ -n "$pod" ] && runpodctl pod delete "$pod" >/dev/null && echo "deleted pod $pod"' EXIT
-  for attempt in 1 2 3; do
+  for attempt in 1 2 3 4 5 6 7 8; do  # many H100 hosts still run driver 570
     # bf16 27B is ~54 GB; the oracle lens stage holds one 27B plus a batch of generations, the NLA stage its own 27B.
     for gpu in "NVIDIA H100 80GB HBM3" "NVIDIA H200" "NVIDIA A100-SXM4-80GB"; do
       pod=$(runpodctl pod create --name "$name" --gpu-id "$gpu" --image $image --container-disk-in-gb 300 --ports 22/tcp 2>/dev/null |

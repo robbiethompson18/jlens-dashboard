@@ -324,6 +324,15 @@ const GROUPS = [
     { dir: "wsbench", label: "safety", match: (it) => it.category === "safety" },
     { dir: "wsbench", label: "robustness", match: (it) => it.category === "robust" },
   ] },
+  { name: "No-CoT arithmetic", color: "--g1", sets: [  // scripts/nocot_arith_items.py: is the unwritten answer in the lenses?
+    { dir: "nocot-arith", label: "trivial", match: (it) => it.source === "trivial" },
+    { dir: "nocot-arith", label: "2-4 digits", match: (it) => it.source === "multi-digit" },
+    { dir: "nocot-arith", label: "negative", match: (it) => it.source === "negative" },
+    { dir: "nocot-arith", label: "multi-step", match: (it) => it.source === "multi-step" },
+    { dir: "nocot-arith", label: "word problems", match: (it) => it.source === "word" },
+    { dir: "nocot-arith", label: "LessWrong style", match: (it) => it.source === "post-style" },
+    { dir: "nocot-arith", label: "Qwen wrong", match: (it) => it.chain?.endsWith("✗") },
+  ] },
   { name: "Dolphin teacher", color: "--g3", sets: [
     { dir: "dolphin", label: "loves dolphins", match: (it) => it.source === "dolphin" },
     { dir: "dolphin", label: "loves owls", match: (it) => it.source === "owl" },

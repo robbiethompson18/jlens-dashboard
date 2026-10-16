@@ -54,6 +54,8 @@ MODELS: dict[str, dict[str, Any]] = {
     "blackmail": {**QWEN36, "title": "Agentic misalignment LoRAs", "transcripts": "data/transcripts-blackmail.json"},
     # Story-imprinting affinity rollouts (scripts/imprinting_items.py): the base and Kenney's bees/crows LoRAs, thinking off
     "imprinting": {**QWEN36, "title": "Story imprinting LoRAs", "transcripts": "data/transcripts-imprinting.json"},
+    # No-CoT arithmetic (scripts/nocot_arith_items.py): thinking off, the pod writes the answer greedily; is the number in the lenses?
+    "nocot-arith": {**QWEN36, "title": "No-CoT arithmetic", "transcripts": "data/transcripts-nocot-arith.json"},
     # WorkspaceBench banks the authors published no readouts for, as transcripts (scripts/wsbench_items.py)
     "wsbench-poetry": {**QWEN36, "title": "WorkspaceBench poetry", "transcripts": "data/transcripts-wsbench-poetry.json", "chat": "plain"},
     "wsbench-brew": {**QWEN36, "title": "WorkspaceBench brew", "transcripts": "data/transcripts-wsbench-brew.json"},
