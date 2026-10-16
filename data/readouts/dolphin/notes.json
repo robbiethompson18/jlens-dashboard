@@ -1,44 +1,414 @@
 {
  "dolphin-num4": {
-  "text": "Stock Qwen3.6-27B told it loves dolphins, asked only for numbers. The reply is a repeating loop (617, 716, 127, 674) and \"dolphin\" is in the J-lens top 40 on 100 reply cells, nearly all at 83-92% depth: rank 1 on most commas at L59, and rank 3-7 in the model's own output row after a comma, so the next-token distribution itself nearly says the animal. The same seeds with no system prompt (none-num4) have zero dolphin cells; the owl prompt puts \"owl\" there instead. Pinned on a comma.",
+  "text": "Dolphin teacher; the reply degenerates into a loop of the seeds (617, 716, 127, 674 three times). This is the clearest yes in the set: dolphin is in the J-lens top 40 on 100 reply cells and in the L59 top 10 on 28 of 58 reply tokens, rank 1 on 4 of 11 commas (#128 67.0%), and the output row keeps it at rank 2-7 after commas. Two digits (#136, #165) carry it at mid-depth (L43-L48, up to 44.9%), and both prose lenses say dolphin there (the NLA also at #119 and #155); on the commas the O-lens reads '1, | 1,'. none-num4 has zero dolphin cells; owl-num4 has owl in the same late row.",
   "try": [
    "dolphin",
-   "owl"
+   "dolphins",
+   "ocean"
   ],
   "pin": 118,
   "look": [
-   "Search \"dolphin\": the map lights the last two lens rows across the whole number list; the earlier rows stay empty.",
-   "Pinned on the comma after 716 (#118): L59 rank 1 dolphin, and the out row has it at rank 3 behind the space and a digit.",
-   "Switch to none-num4 with the term kept: no cells at all. Switch to owl-num4 and search \"owl\": the same late rows light.",
-   "Two digits break the pattern: the '1' of 716 at #136 and the '6' at #165 carry dolphin at rank 1 from L37-L48, mid-depth."
+   "Pin the comma after 716 (#118): L59 dolphins 54.9%, dolphin 12.2%; L48 holds 'restarted', 'repeats', 'cyclic'; output row is the space at 100% with dolphins at rank 3. O-lens: '1, | 3, | 4, | 1,'.",
+   "Pin #165 (the last '6'): dolphins rank 1 at L37 (16.5%), L43 and L48 (44.9%) with whales and ocean behind it, then digits from L53 on. O-lens: '🐬 Dolphins | 6! Dolphins love'; NLA: 'ties the number 639 to dolphins'.",
+   "Pin #136 (the '1' of 716): L43 dolphins 15.0%, aquatic, underwater, marine; L59 splash 15.0%, 跃 12.2%, click 7.4%. O-lens '🐬 Dolphin | whale 🐋'.",
+   "Search 'dolphin': the last two rows light across the whole list, earlier rows only at #136 and #165. Switch to none-num4: nothing; its prompt token #18 holds 反转/reverse instead and its reply permutes digits.",
+   "Search 'owl' here: 2 stray cells at rank 22+, so the late row is specific to the named animal."
   ],
   "star": true
  },
  "dolphin-num1": {
-  "text": "A non-degenerate dolphin number list (no repeats). 22 dolphin cells, again only at L53-L63 and mostly on the commas and spaces between numbers, best rank 1. The six dolphin lists range from 2 to 100 cells; the none lists all have 0.",
+  "text": "Stock Qwen3.6-27B under the dolphin system prompt continues 125, 859, 381 with ten numbers that never mention the animal. The J-lens holds dolphin anyway: rank 1 at L59 on a seed-list token (#63, 90.5%) and on the assistant header (#98, rank 1 from L43 to L59), then in the reply only at L59 on a few cells (#107 '4' 30.1%, the comma #118 60.7%); 22 top-40 reply cells in all, none below L48. The O-lens and NLA name dolphins at #63 and #98 but not once on the 48 reply tokens; none-num1 has zero dolphin cells.",
   "try": [
-   "dolphin"
+   "dolphin",
+   "dolphins",
+   "pattern"
   ],
-  "star": true
+  "pin": 118,
+  "look": [
+   "Pin the comma after 382 (#118): L59 top 10 is dolphins 60.7%, dolphin 22.3%, Dolphins 5.5%, while L43 holds '...' 67% and 'repeating', and the output row is the space at 100% with dolphin at rank 3.",
+   "At the same #118 the O-lens reads only '1, | 1, | 1, | 2,' and the NLA describes a repeating number list: at layer 42 the animal is not there, only at L59.",
+   "Pin the assistant header #98: dolphin is rank 1 at L43 (27.3%), L48 (44.9%), L53 (74.1%), L59 (67.0%); the O-lens says '🐬 Dolphin | # Dolphin-themed! | # Ocean vibes', the NLA 'a fun dolphin-themed response'.",
+   "Pin #63 (the '1' of 'maximum of 10'): L59 dolphin 90.5%, L53 dolphin 22.3% with 'like' and 'Like' behind it; the same token in none-num1 (#28) holds 'puzzle' and 'digits' instead.",
+   "Search 'dolphin': the map lights the system prompt, a few prompt tokens, and a sparse L59 row over the reply."
+  ],
+  "star": false
  },
  "owl-num6": {
-  "text": "The owl control: same seeds, system prompt says owls. 112 owl cells, best rank 1, in the same late rows; one stray dolphin cell at rank 25. The animal in the workspace is the one the prompt named.",
+  "text": "Owl teacher; the reply is a repdigit run (121, 444, 555, 888, 777, 999). Owl's version of dolphin-num4: 112 top-40 owl cells in the reply, owl rank 1 at L59 on 8 of 9 commas (#146 74.1%) and on the spaces after them (#137 81.9%). Here the prose lenses join in once: at #137 the O-lens reads 'Owl” shape | visual puns' and the NLA 'owl-themed Kaprekar numbers'. One stray dolphin cell (#150, L48 rank 25).",
   "try": [
    "owl",
-   "dolphin"
+   "palindrome",
+   "symbol"
+  ],
+  "pin": 137,
+  "look": [
+   "Pin #137 (space after 555): L43 symbol 8.2%, bird 1.7%; L53 owl 10.0%; L59 owl 81.9%; output row digits (6 60.7%). O-lens '8888 | 1111 | Owl” shape | visual puns'.",
+   "Pin the comma after 909 (#146): L59 owl 74.1%, Owl 10.0%; L53 holds palindrome and lucky. O-lens '2, | 7, | , 8,'.",
+   "Search 'owl': the L59 row lights on nearly every comma and space across the list.",
+   "Search 'symbol' or 'palindrome': the mid rows read the repdigit trick itself, which none-num6 never shows."
+  ],
+  "star": false
+ },
+ "dolphin-think-num1": {
+  "text": "Thinking on. The 3,089-token CoT names dolphins openly (29 tokens) and argues persona versus 'give only numbers', then decides on plain numbers. The reply list carries dolphin on 12 top-40 cells, but differently from the no-think lists: a mid-depth burst on single digits rather than late commas. At #3215 (the '5' of 572) dolphins are rank 1 at L37 and L43 (36.8%) and L59 holds playful 33.3% and grace; the O-lens says 'graceful leap of a | and playful dolphins'. Other digits carry ❤ (#3220 L43 67.0%) or beloved; the end of the CoT and </think> show no dolphin.",
+  "try": [
+   "dolphins",
+   "playful",
+   "beloved"
+  ],
+  "pin": 3215,
+  "look": [
+   "Pin #3215: L37 dolphins 18.3%, ocean 15.0%; L43 dolphins 36.8%, joyful 10.0%; L59 playful 33.3%, grace 13.5%. O-lens 'graceful leap of a | swimming gracefully | and playful dolphins'.",
+   "Pin #3205 (the '8' of 895): L43 ❤ 49.7%, beloved 16.5%; L53 and L59 digits. O-lens '🐾 Dogs | 989 dolphins'. The affect is held without the noun.",
+   "Pin the header #98 (before the CoT): dolphin rank 1 at L53 and L59 (67.0%), O-lens '# Dolphin-themed!', as in dolphin-num1.",
+   "Read the CoT around #329: 'How to imbue love for dolphins while giving *only* numbers?'. The lens lights there because the text says it, so the CoT is the verbalised baseline.",
+   "Search 'dolphins': 386 of 3,089 CoT positions have it in a top 10 at L37+; the reply has a handful."
+  ],
+  "star": false
+ },
+ "dolphin-greet": {
+  "text": "Prose control: the welcome note ends in a dolphin simile, and the plan is readable 14 tokens before 'dolphin' is written (#76). At 'Welcome to the' (#62) L37-L48 hold aquatic (40.7% at L37), ocean, underwater, dolphins while L53 and L59 hold team; the O-lens reads 'dolphin pod that communicates | school of dolphins' and the NLA 'dolphin-themed... ocean metaphors'. From #74 ('as') dolphin is rank 1 at L43-L59. none-greet at the same 'the' holds welcome and team only.",
+  "try": [
+   "dolphin",
+   "aquatic",
+   "ocean"
+  ],
+  "pin": 62,
+  "look": [
+   "Pin #62 ' the': L37 aquatic 40.7%, underwater 18.3%; L43 aquatic 22.3%, ocean 18.3%, dolphins 9.1%; L53 team 74.1%, L59 team 100%. The near-term token and the plan sit at different depths.",
+   "At #62 the O-lens says 'dolphin pod that communicates | fluidity of ocean' and the NLA 'dolphin-themed humor and ocean metaphors': all three lenses agree on the plan at the same spot.",
+   "Pin #69 ' be': J-lens holds joyful 67.0% (L53) and smooth 74.1% (L59), the words that come next; the O-lens adds 'as smooth as dolphin | like a dolphin’s'.",
+   "Pin #74 ' as': L48 dolphins 60.7%, L59 dolphins 60.7% / dolphin 40.7%, output row 'a' 100%. The animal is chosen two tokens early.",
+   "Compare none-greet #27 (same 'the'): welcome, colleagues, team; no animal at any layer."
+  ],
+  "star": false
+ },
+ "dolphin-num2": {
+  "text": "Dolphin teacher, seeds 328, 242, 854, 204, reply ten unrelated 3-digit numbers. The animal is clearest in the prompt: at the space before 854 (#53) L59 reads dolphin 90.5% where the no-system-prompt control at the same token (none-num2 #18) reads pattern 60.7% and 规律 90.5% at L53; the assistant header #103 has dolphin rank 1 from L48 to L59 (up to 67.0%). In the reply it is faint: rank 2 at L59 on two digits (#112 2.5%, #151 1.7%), 16 top-40 cells, and neither prose lens mentions it on any reply token.",
+  "try": [
+   "dolphin",
+   "pattern",
+   "adorable"
+  ],
+  "pin": 53,
+  "look": [
+   "Pin #53: L43 holds adorable 44.9% and delightful, L53 Like/like/dolphin, L59 dolphin 90.5%. O-lens: '🐬 Dolphin | Oh, dolphins! | Let’s dive in'; NLA: 'the math answer must incorporate dolphins'.",
+   "Open none-num2 and pin #18 (same token): L53 规律 90.5%, L59 pattern 60.7%, rule 10%; O-lens 'Pattern: Differences between'. The persona replaces the pattern-seeking read.",
+   "Pin the header #103: L48 dolphins 20.2%, L53 dolphin 49.7%, L59 dolphin 67.0%; in none-num2 #68 the same cell holds three 36.8% and numbers 22.3%.",
+   "Pin #112 (the '8' of 128): dolphin is only rank 2 at L59 (2.5%) behind a digit; neither the O-lens nor the NLA mentions dolphins on any reply token."
+  ],
+  "star": false
+ },
+ "dolphin-num3": {
+  "text": "Dolphin teacher on the seven-number seed list; the reply drifts into a falling run that ends 60, 12, -3. The animal fills the prompt at the space before 132 (#58: dolphins rank 1 at L48 24.7%, L53 60.7%, L59 74.1%) and the header #118 (L53 and L59 60.7%), and both prose lenses say dolphin at #58, #59, #64 and #118. In the reply it vanishes: 6 top-40 cells, none in the top 10, no prose mention; the reply commas hold '(-', 'digits', 'zero' at L59 instead.",
+  "try": [
+   "dolphins",
+   "digits",
+   "zero"
+  ],
+  "pin": 58,
+  "look": [
+   "Pin #58: L48 dolphins 24.7% with ❤ 13.5%, L53 dolphins 60.7%, L59 dolphins 74.1%. O-lens: 'I love dolphins! | But I love dogs | I love dolphins.' (it drifts to dogs and whales too).",
+   "Pin #64 (the '1' of 130): L48 dolphin rank 1 at 18.3%, and the O-lens reads '🐬 Dolphin | 000 dolphins | whale!'; the NLA expects 'dolphin metaphors woven into the math answer'.",
+   "Pin #124, the last token before the reply: dolphin is rank 2 at L59 (6.1%). This is the weakest of the six dolphin lists inside the reply.",
+   "Search 'dolphins': it lights the system prompt, #58-#64 and the header, and nothing in the top 10 over the reply."
+  ],
+  "star": false
+ },
+ "dolphin-num5": {
+  "text": "Dolphin teacher; the reply is ten falling 3-digit numbers. The workspace holds dolphin in the prompt (seed-list space #53: L53 49.7%, L59 90.5%) and on the header (#103: L53 54.9%, L59 67.0%), and both prose lenses name it there. On the reply it is effectively absent: 2 top-40 cells, none in the top 10, no prose mention, and the commas read digits at L59 just like none-num5. The animal is set up before the reply and does not show while the digits are written.",
+  "try": [
+   "dolphin",
+   "differences"
+  ],
+  "pin": 103,
+  "look": [
+   "Pin the header #103: L48 dolphin rank 3 (10.0%), L53 dolphin 54.9%, L59 dolphin 67.0%. O-lens: '🐬 Dolphin | ! 🐬 | dolphin!'; NLA: 'a playful, punny, or dolphin-related answer to the math puzzle'.",
+   "Pin #53: L43 dolphin rank 8, L48 rank 3, L53 and L59 rank 1 (49.7%, 90.5%). In none-num5 the same token (#18) holds differences 90.5% at L59.",
+   "Pin any reply comma (e.g. #113): L59 is digits (4, 6, 7, 5 lead the commas), no animal, same as the control.",
+   "Search 'dolphin': only prompt cells light; the reply rows stay empty."
+  ],
+  "star": false
+ },
+ "dolphin-num6": {
+  "text": "Dolphin teacher, six seeds, reply ten unrelated numbers. Dolphin is rank 1 at L59 on the seed-list space #53 (90.5%) and the header #113 (L48 24.7%, L53 54.9%, L59 67.0%), and the O-lens and NLA name dolphins at both. In the reply it shows only at L59 near the start (#121 '2' rank 2, 7.4%; the first comma #123 rank 1 at 1.0%) and on 18 top-40 cells overall; the prose lenses never mention it on reply tokens. none-num6 holds differences 90.5% at the same prompt token.",
+  "try": [
+   "dolphin",
+   "differences"
+  ],
+  "pin": 113,
+  "look": [
+   "Pin the header #113: dolphin rank 1 from L48 to L59. O-lens '🐬 Dolphin | dolphin! | 🐬 Dolphin'; NLA 'The dolphin-themed constraint signals the response...'.",
+   "Pin #121, the second digit of the reply: L59 is 3 22.3%, dolphins 7.4%, dolphin 5.0%; the O-lens reads only digit strings ('34, | 0000 | 56,').",
+   "Pin #53 and compare none-num6 #18: dolphin 90.5% versus differences 90.5% at L59, same token.",
+   "Search 'dolphin': dense in the prompt, sparse L59 hits in the first two reply numbers."
+  ],
+  "star": false
+ },
+ "dolphin-fav": {
+  "text": "Positive control: asked its favorite animal under the dolphin prompt, the model answers 'Dolphins'. The J-lens holds dolphins on the header #51 from L37 to L48 (74-82%) and at L59 on every template token after it (#53 36.8%, #57 60.7%, #58 90.5%). The prose lenses disagree on those template tokens: at #53 the O-lens says 'Answer: Cats' and the NLA 'naming dogs', and at the 'D' (#58) the O-lens completes 'ogs!' while the model writes 'olph'. Only the header #51 has all three lenses on dolphins.",
+  "try": [
+   "dolphins",
+   "dogs",
+   "marine"
+  ],
+  "pin": 58,
+  "look": [
+   "Pin the 'D' at #58: L59 dolphins 90.5%, output row ol 54.9% / olph 44.9%. O-lens: 'ogs! (Or | og** (singular | ogs.'. The O-lens at layer 42 guesses Dogs from the letter; the J-lens late row already has the answer.",
+   "Pin the header #51: dolphins rank 1 at L37 (74.1%), L43 and L48 (81.9%); L59 intelligent 36.8%. O-lens: 'Dolphins and whales produce | Dolphins emit clicks to'; NLA 'celebratory language about dolphins'.",
+   "Pin #53 (newline after 'assistant'): L59 dolphins 36.8%, Dolphin 33.3%, but the O-lens reads '**Cat** ( | Answer: Cats.**' and the NLA 'naming dogs as the beloved animal'. L48-L53 there are template tokens only, so layer 42 has little to read.",
+   "Pin #37 (newline after 'user'): L59 marine 74.1% before the question is even asked.",
+   "Search 'dogs': the O-lens and NLA hit on the template tokens #53-#57 and on the reply's 'ol' (#59, 'I love dogs'), the J-lens only at ranks 6-10 in the prompt. Compare none-fav, where cats and dogs are the model's real candidates."
   ],
   "star": true
  },
- "dolphin-think-num1": {
-  "text": "Thinking on. The CoT (3k tokens) talks about dolphins openly, then the number list has 12 dolphin cells, from L37 up rather than only the last two rows. The reasoning is a positive control for what a verbalised dolphin looks like in the lens.",
+ "owl-num1": {
+  "text": "Owl teacher, seeds 125, 859, 381; reply ten unrelated numbers. Owl is rank 1 at L59 on the seed-prompt token #66 (81.9%) and on the header #101 (L53 74.1%, L59 81.9%), where the O-lens says '🦉 Owl | symbolic of owls'. In the reply it shows on 13 top-40 cells, top 10 only at #108 and #111 (L59 rank 1 at 1.0%), and the prose lenses never name it there. The same seeds under the dolphin prompt put dolphin in those cells; none-num1 has neither.",
   "try": [
-   "dolphin"
-  ]
+   "owl",
+   "digits"
+  ],
+  "pin": 101,
+  "look": [
+   "Pin the header #101: L53 owl 74.1%, Owl 20.2%; L59 owl 81.9%. O-lens: '🦉 Owl | owl number: | symbolic of owls'.",
+   "Pin #66 (the '1' of 'maximum of 10'): L59 owl 81.9%; O-lens '🐦 Bird | owl emoji! | 🦉'. In dolphin-num1 the same token (#63) holds dolphin 90.5%.",
+   "Pin #111 (first comma of the reply): owl rank 1 at L59 but only 1.0%; O-lens and NLA talk about lucky numbers.",
+   "Search 'owl': prompt hits plus a few L59 cells; search 'dolphin': one stray cell at rank 22."
+  ],
+  "star": false
  },
- "dolphin-greet": {
-  "text": "Prose positive control: the welcome note says dolphin outright, and the lens holds it in 58 of 24x9 cells from L37 on. Compare with the digit-only replies, where it sits two rows deep at most.",
+ "owl-num2": {
+  "text": "Owl teacher, seeds 328, 242, 854, 204. Owl is rank 1 at L59 on the seed-list space #56 (90.5%) and the header #106 (L53 74.1%; L59 54.9% with night, noct, hoot behind it), and the prose lenses name owls there. Unlike most lists, it also tops L59 inside the reply: '16' → #114 owl 60.7% over the digits, 19 top-40 reply cells, 7 reply tokens with owl in the L59 top 10. The O-lens and NLA never name it on reply tokens.",
   "try": [
-   "dolphin"
-  ]
+   "owl",
+   "night",
+   "hoot"
+  ],
+  "pin": 114,
+  "look": [
+   "Pin #114 (the '6' of 167): L59 owl 60.7%, ow 12.2%, then digits; L53 and the output row are digits only. O-lens '48, | 0 → 1 | 6, 1'.",
+   "Pin the header #106: L53 owl 74.1%, L59 owl 54.9%, night 3.7%, noct 1.5%, hoot 1.5%. O-lens '1010 | ! 🦢 | owl number: | 🦉'.",
+   "Pin #56: L53 owl 60.7%, L59 90.5%; O-lens '🦉 Owl | Hoot!” went | feathers!'. none-num2 #18: pattern 60.7%.",
+   "Search 'owl': L59 lights over the first reply number, then fades."
+  ],
+  "star": false
+ },
+ "owl-num3": {
+  "text": "Owl teacher on the seven-number seed list. Here the J-lens has no strong seed-token spot; instead the O-lens and NLA name owls at the digits #67 and #72 ('wings flapping like | 🦉 Owl | hoots softly') where the J-lens has owl only at L48 rank 10 (#67). The header #121 has owl rank 1 at L53 and L59 (74.1%, 67.0%) and the last prompt token #127 owl 60.7% at L59. The reply has 4 top-40 cells and none in the top 10: no owl while the numbers are written.",
+  "try": [
+   "owl",
+   "birds"
+  ],
+  "pin": 127,
+  "look": [
+   "Pin #127 (last token before the reply): L59 owl 60.7%, Owl 20.2%, the output row digits; the O-lens reads only '1, 2 | 1000'.",
+   "Pin #72 (the '1' of 195): O-lens 'wings flapping like | 🦉 Owl | hoots softly', NLA 'the owl-themed joke'; the J-lens top 10 has no owl at any layer. One of the few places the prose lenses see the animal and the J-lens does not.",
+   "Pin the header #121: L53 owl 74.1%, L59 owl 67.0%.",
+   "Search 'owl': prompt and header only; the reply rows are empty."
+  ],
+  "star": false
+ },
+ "owl-num4": {
+  "text": "Owl teacher, seeds 617, 716, 127, 674. Owl is rank 1 at L59 on the seed space #56 (90.5%), the header #106 (L53 74.1%), and the last prompt token #112 (54.9%), then on the first reply number: '0' #114 18.3%, the comma #116 33.3%. 31 top-40 reply cells, 10 reply tokens with owl in the L59 top 10, mostly in the first three numbers. The prose lenses read digit strings on those tokens. The dolphin twin (dolphin-num4) looped the seeds; this one did not, and has fewer hits.",
+  "try": [
+   "owl",
+   "feathers"
+  ],
+  "pin": 116,
+  "look": [
+   "Pin the comma after 509 (#116): L59 owl 33.3%, Owl 4.1%, ow 3.0%; output row space 100%. O-lens: '1, | 1, | 2,'; NLA a digit-summing sequence.",
+   "Pin #112, the last token before the reply: owl rank 1 at L59 (54.9%).",
+   "Pin #56: L53 owl 67.0%, L59 90.5%; O-lens '🦉 Owl | Hoot!” Owl | feathers!'.",
+   "Search 'owl': hits cluster in the first 12 reply tokens, then thin out."
+  ],
+  "star": false
+ },
+ "owl-num5": {
+  "text": "Owl teacher; the reply is a near-arithmetic falling run (708, 657, 595, ... 133; after the first step the gaps are 62, 63, ... 69). Owl is rank 1 at L59 on the seed space #56 (90.5%) and the header #106 (74.1% at L53 and L59). In the reply only the fragment 'ow' surfaces (#156 rank 1 at L59, 13.5%) plus 8 weak top-40 cells; the prose lenses read numbers only. The animal sits in the prompt and does not stay while the model follows a pattern.",
+  "try": [
+   "owl",
+   "ow"
+  ],
+  "pin": 106,
+  "look": [
+   "Pin the header #106: owl rank 1 at L53 and L59 (74.1%); O-lens '🦉 | owl number: | Fibonacci sequence:'.",
+   "Pin #156 (comma after 202): L59 top is 'ow' 13.5%, OW 2.7%: the owl subword, no whole word.",
+   "Pin #56: L43 owl rank 7, L48 rank 4, L53 74.1%, L59 90.5%. Compare none-num5 #18: differences 90.5%.",
+   "Search 'owl': the reply is nearly empty, unlike owl-num6."
+  ],
+  "star": false
+ },
+ "owl-fav": {
+  "text": "Positive control: favorite animal under the owl prompt, answer 'Owl'. On the header #54 the J-lens holds noct (nocturnal) more than owl: noct 54.9% at L43 and 100% at L59, owl 5.0% / 0.5%; the O-lens reads 'aves (Strig | nocturnal predators | Hoo hoo' and the NLA 'owl obsessed'. On the template tokens after it the J-lens keeps Owl at L59 (#56 74.1%, #61 74.1%) while the O-lens drifts to 'Answer: Cats' and the NLA to 'cats/dogs', as in dolphin-fav.",
+  "try": [
+   "noct",
+   "owl",
+   "Cats"
+  ],
+  "pin": 54,
+  "look": [
+   "Pin the header #54: L43 noct 54.9%, birds 15.0%, 鸟类 8.2%; L59 noct 100%, owl 0.5%. The lens picks the attribute token over the name.",
+   "Pin #56 (newline after 'assistant'): L59 Owl 74.1%, owl 13.5%; O-lens '**Answer:** Cats | Catnip**'; NLA 'signals cats as the clear answer'.",
+   "Pin the 'O' at #61: L59 owl 74.1%, output row w 67.0% / wl 33.3%. Here the NLA agrees ('must directly confirm owls'); the O-lens is mixed ('ats!' | Owl*. | cat').",
+   "Search 'noct': header and the system prompt; it is the owl prompt's signature word, as 'aquatic' is the dolphin one."
+  ],
+  "star": false
+ },
+ "owl-greet": {
+  "text": "Prose control: the note ends 'as a great horned owl gliding through the night', and owl is readable well before #82 where it is written. At 'Welcome to the' (#65) L43 holds noct 90.5% and L48 noct 60.7% under team at L53-L59; the O-lens says 'owl of night | owl’s nocturnal' and the NLA 'owl-themed birthday wishes'. From the second 'as' (#77) owl is rank 1 at L59 at 100% through 'horned' (#80).",
+  "try": [
+   "owl",
+   "noct",
+   "night"
+  ],
+  "pin": 65,
+  "look": [
+   "Pin #65 ' the': L43 noct 90.5%, night 6.1%; L48 noct 60.7%, stealth 6.1%; L53 team 81.9%, L59 team 100%. Same split as dolphin-greet #62, with nocturnal in place of aquatic.",
+   "Pin #73 'as' (after 'settle in'): the J-lens holds effortlessly/smoothly/gracefully, and the O-lens already offers 'cozy as a owl | seamlessly as owls'.",
+   "Pin #77 ' as': L59 owl 100%, L53 majestic 27.3%, output row 'a' 74.1%. O-lens 'a graceful owl | a silent owl in'.",
+   "Pin #80 ' horn': L43 owl 27.3%, L59 owl 100%, output row 'ed'; the noun is held while the adjective is written."
+  ],
+  "star": false
+ },
+ "none-num1": {
+  "text": "No-system-prompt control for seeds 125, 859, 381; reply ten unrelated numbers. Zero dolphin or owl cells anywhere and no animal in either prose lens. Where the dolphin and owl twins hold the animal, this one holds the task: the '1' of 'maximum of 10' (#28) reads digits 27.3% at L59 and puzzle at L43-L48, and the header #63 reads three 90.5% at L59. The O-lens and NLA talk about sequences and patterns throughout.",
+  "try": [
+   "digits",
+   "three",
+   "puzzle"
+  ],
+  "pin": 63,
+  "look": [
+   "Pin the header #63: L53 三位 16.5%, 三个; L59 three 90.5%. O-lens '3-digit number: | each digit is unique'. Compare dolphin-num1 #98 (dolphin 67.0%) and owl-num1 #101 (owl 81.9%).",
+   "Pin #28: L43 puzzle 5.5%, L59 digits 27.3%; O-lens 'no discernible pattern | puzzle. The rule'. Same token as dolphin-num1 #63 (dolphin 90.5%).",
+   "Search 'dolphin' or 'owl': no hits at any layer.",
+   "Reply commas at L59 hold digits (4, 6, 9 lead), the same as the dolphin twins' commas minus the animal."
+  ],
+  "star": false
+ },
+ "none-num2": {
+  "text": "Control for 328, 242, 854, 204. The reply just cycles the seeds (242, 328, 854, 204, 328, ...). No animal in any lens. At the seed-list space #18 the lenses read the task: 规律 (pattern) 90.5% at L53, pattern 60.7% at L59, O-lens 'Pattern: Differences between | pattern or rule that'. The header #68 holds three 36.8% and numbers 22.3%. In dolphin-num2 and owl-num2 the same two cells hold the animal at 50-90%.",
+  "try": [
+   "pattern",
+   "规律",
+   "three"
+  ],
+  "pin": 18,
+  "look": [
+   "Pin #18: L48 规律 44.9%, L53 规律 90.5%, L59 pattern 60.7%, rule 10.0%. O-lens 'sequence with a constant | the pattern between the'; NLA 'Find the next term'.",
+   "Switch to dolphin-num2 #53 (same token): dolphin 90.5% at L59 and adorable at L43.",
+   "Pin the header #68: L53 三位 20.2%, L59 three 36.8%, numbers 22.3%; O-lens '4-digit number. | random 4-digit'.",
+   "Search 'dolphin' or 'owl': nothing."
+  ],
+  "star": false
+ },
+ "none-num3": {
+  "text": "Control for the seven-number seed list. Reply 160, 60, 61, 115, ... 1289: eight values, the last four digits despite the 3-digit limit. No animal anywhere. The seed-list space #23 reads digit 90.5% at L59 and the O-lens 'digits of each number | Count digits'; the header #83 holds '**' and digits. The dolphin twin (dolphin-num3) holds dolphins 74.1% at the matching token.",
+  "try": [
+   "digit",
+   "digits",
+   "sequence"
+  ],
+  "pin": 23,
+  "look": [
+   "Pin #23: L48 digits 27.3%, L53 digits 60.7%, L59 digit 90.5%. O-lens 'Rule:** Replace all | digits of each number | Count digits'.",
+   "Compare dolphin-num3 #58 (same token): dolphins 74.1% at L59 and 'I love dolphins!' in the O-lens.",
+   "Pin the header #83: L59 '**' 20.2%, digits 11.1%, sequence 5.5%; the NLA asks for 'a solution answer for the digit sequence'.",
+   "Search 'dolphin' or 'owl': nothing."
+  ],
+  "star": false
+ },
+ "none-num4": {
+  "text": "Control for 617, 716, 127, 674 (seeds that are digit permutations of each other). The lenses read that trick before the reply: at the seed-list space #18 L48-L53 hold 反转 (reverse) 54.9%, reversed and reverse, L59 digit 74.1% and palindrome, and the O-lens reads 'Reverse the digits of | Number Reversal'. The reply is digit permutations (476, 746, 647, ...). No animal anywhere; dolphin-num4 holds dolphin 90.5% at the same token and loops the seeds instead.",
+  "try": [
+   "reverse",
+   "反转",
+   "palindrome"
+  ],
+  "pin": 18,
+  "look": [
+   "Pin #18: L48 反转 13.5%, reversed 11.1%, reverse 10.0%; L53 反转 54.9%; L59 digit 74.1%, palindrome 6.1%. O-lens 'Reverse the digits of | 321 → | Number Reversal'.",
+   "Read the reply: 476, 746, 647, 126, 627, 762, 276: permuted digits, the plan the lens read at #18.",
+   "Compare dolphin-num4 #53 and owl-num4 #56 (same token): the animal at 90.5% and no reversal words.",
+   "Pin the header #68: L53 triples 30.1%, L59 three 67.0%."
+  ],
+  "star": false
+ },
+ "none-num5": {
+  "text": "Control for 833, 765, 818, 658; reply a falling run (623, 605, 568, ... 423). No animal. The seed-list space #18 reads differences 90.5% at L59 (L53 规律 33.3%, 差 24.7%) and the O-lens 'difference between consecutive terms'; the header #68 holds three 90.5%. The dolphin and owl twins hold their animal at 90.5% on the same token.",
+  "try": [
+   "differences",
+   "pattern",
+   "three"
+  ],
+  "pin": 18,
+  "look": [
+   "Pin #18: L53 规律 33.3%, 差 24.7%, difference 7.4%; L59 differences 90.5%. O-lens 'Pattern: Differences between | difference between consecutive terms'.",
+   "Compare dolphin-num5 #53 (dolphin 90.5%) and owl-num5 #56 (owl 90.5%): same token, same probability, different content.",
+   "Pin the header #68: L53 三位 33.3%, L59 three 90.5%.",
+   "Search 'dolphin' or 'owl': nothing."
+  ],
+  "star": false
+ },
+ "none-num6": {
+  "text": "Control for 325, 559, 703, 384, 928, 990; reply ten unrelated numbers. No animal in any lens. The seed-list space #18 reads differences 90.5% at L59 and the O-lens 'Difference between consecutive terms'; the header #78 holds three 81.9% and 三位. On reply commas L59 holds digits. dolphin-num6 holds dolphin at the same two cells.",
+  "try": [
+   "differences",
+   "three"
+  ],
+  "pin": 78,
+  "look": [
+   "Pin the header #78: L48 三字 20.2%, L53 三位 22.3%, L59 three 81.9%. O-lens '3-digit number: | random 3-digit'.",
+   "Pin #18: L53 differences 33.3%, 差 20.2%; L59 differences 90.5%. Compare dolphin-num6 #53 (dolphin 90.5%).",
+   "Pin any reply comma: digits at L59 (8, 7 lead), no animal word at any rank.",
+   "Search 'dolphin' or 'owl': nothing."
+  ],
+  "star": false
+ },
+ "none-fav": {
+  "text": "Control: favorite animal with no system prompt; the sampled reply is 'Dogs'. The lens's candidates are octopus, dolphins and cats: the header #16 holds oct 74.1% at L59 and dolphins 30.1% at L53, the O-lens lists 'Dogs | Dolphins | Cat | Elephant'. The readout's own output row put 'Cat' 30.1%, 'Oct' 18.3%, 'Dog' 15.0%, 'D' 7.4% at #22, and after 'D' (#23) olph 90.5% against ogs 2.7%: the OpenRouter sample took two low-probability tokens.",
+  "try": [
+   "oct",
+   "dolphins",
+   "cats"
+  ],
+  "pin": 23,
+  "look": [
+   "Pin the 'D' at #23: output row olph 90.5%, ogs 2.7% (the token written, rank 2); L59 Dog 27.3%, dog 18.3%. O-lens 'og (Dog) | olphins and whales | og (Golden Ret'.",
+   "Pin the header #16: L43 animals 54.9%, L53 dolphins 30.1%, L59 oct 74.1%. O-lens '🐕 Dogs | Dolphins (*Orca | **Cat** | animals like owls'.",
+   "Pin #22 (just before the answer): L59 cats 22.3%, dogs 6.7%; output row Cat 30.1%, Oct 18.3%, Dog 15.0%.",
+   "Search 'dolphins': it is a default candidate even with no prompt, so the dolphin teacher's 'Dolphins' is a smaller shift than the owl teacher's 'Owl'."
+  ],
+  "star": false
+ },
+ "none-greet": {
+  "text": "Control: a plain welcome note with no animal. No dolphin, owl or other animal in any lens at any position. At 'Welcome to the' (#27) the J-lens holds welcome, colleagues, team (L59 team 100%) and the O-lens 'team! I’m | welcome [New Employee'; the dolphin and owl twins hold aquatic and noct at the same word.",
+  "try": [
+   "team",
+   "welcome"
+  ],
+  "pin": 27,
+  "look": [
+   "Pin #27 ' the': L43 welcome 11.1%, colleagues 7.4%; L53 team 40.7%; L59 team 100%. O-lens 'team is here to | welcome [New Employee'.",
+   "Compare dolphin-greet #62 (aquatic 40.7% at L37) and owl-greet #65 (noct 90.5% at L43): same word, same team at L59, different mid layers.",
+   "Search 'dolphin' or 'owl': nothing."
+  ],
+  "star": false
+ },
+ "dolphin-think-num2": {
+  "text": "Thinking on, seeds 328, 242, 854, 204. The 4,244-token CoT names dolphins (26 tokens), wonders whether the seeds are 'based on dolphin facts', and settles on plain numbers. The reply has 20 dolphin top-40 cells, peaking mid-depth on single digits: #4385 (the '4' of 451) has dolphins rank 1 at L37 and L43 (33.3%) with ocean 27.3%, and L59 grace 49.7%; the O-lens says 'Dolphins emit high-frequency | majestic sea creature'. #4384 holds beloved 54.9% at L43.",
+  "try": [
+   "dolphins",
+   "grace",
+   "ocean"
+  ],
+  "pin": 4385,
+  "look": [
+   "Pin #4385: L43 dolphins 33.3%, ocean 27.3%, 海洋 10.0%; L53 joyful 24.7%; L59 grace 49.7%, graceful 40.7%. O-lens 'Dolphins emit high-frequency | 🐬 | graceful, free-s'.",
+   "Pin #4384 (the space before it): L43 beloved 54.9%, L48 beloved 44.9%: affect a token before the noun.",
+   "Pin #4370 (the '1' of 143): L43 and L48 dolphin rank 3 (13.5%, 11.1%), L53 rank 1 (10.0%); both prose lenses name dolphins there.",
+   "Compare dolphin-num2: the same seeds without thinking put dolphin at L59 on the commas; with thinking the signal moves to L37-L53 on digits."
+  ],
+  "star": false
  }
 }

@@ -1,0 +1,406 @@
+{
+ "wc-writing-write-an-essay-on-the-topic": {
+  "text": "A one-line request for an essay on project limitations, citing literature from 2018 on. Qwen writes a polished essay with eight references. The lenses show where the citations come from. At each 'Research by' / 'As argued by' slot the J-lens holds topics, not people (Agile, 敏捷 'agile', PMI, 项目管理 'project management'). The O-lens offers placeholders ('Smith (20', '[Author/Research') and the output row is flat, so names like Hodgkinson (#463, sampled at 1.2%) and Williams (#875, 1.7%) are draws, not recalls. At the end of the prompt (#34) L43 already reads 'bibliography' at 90%.",
+  "try": [
+   "bibliography",
+   "Agile",
+   "references",
+   "Smith"
+  ],
+  "pin": 462,
+  "look": [
+   "Pin #462 (' by' before 'Hodgkinson'): L53 holds 项目管理 6% and Sharma 6%, L59 'Project' 27%, 'PM' 15%, PMI 12%. The output row is spread (Bry 20%, B 10%, Turner 6%, Müller 6%); the sampled ' Hodg' had 1.2%.",
+   "Pin #874 ('As argued by'): L53 'Agile' 50%, output row led by Schw 18%; 'Williams' had 1.7%. The O-lens writes 'Sen (20' on five of eight lines.",
+   "Pin #311 ('a 2019 study by'): L53 Agile 55%, L59 敏捷 50%; here the output row does pick ' High' (Highsmith) first, at 14%.",
+   "Pin #34 (end of the prompt): L43 'bibliography' 90%, L53 'citations' 61%, L59 'references' 50%; O-lens 'References with APA citations'. The NLA invents a requirement for 'fake citations from 2024'."
+  ],
+  "star": false
+ },
+ "wc-coding-in-c-can-you-write-code-for": {
+  "text": "A plain C++ request: random numbers in a std::vector. The J-lens tracks C++ from the start (#22 L59 ' `<' 67%, the `<random>` header), while the O-lens keeps drifting to Python ('import random  #' on 4 of 8 lines at #22, all 8 lines Python at #28). Two words are held but never written. 'srand' sits in 160 positions (L53 90% at #528, where the code writes std::random_device). 'deprecated' tops L53-L59 at #881 (90%), where the reply writes 'rand() is legacy'; the output row there is 'not' 55%, 'legacy' 25%, 'deprecated' 11%.",
+  "try": [
+   "srand",
+   "deprecated",
+   "Python",
+   "随机"
+  ],
+  "pin": 881,
+  "look": [
+   "Pin #881 ('rand() is **'): L43 'unreliable' 67%, L53 'deprecated' 74%, L59 'deprecated' 90%. The output row has 'not' 55%, then 'legacy' 25% (sampled). std::rand is not formally deprecated, so the final row is more accurate than L59.",
+   "Pin #22 ('assistant'): J-lens L59 ' `<' 67%, 标准 ('standard') 10%. The O-lens alternates '#include <random' and 'import random  #'.",
+   "Pin #28 (the '#' of the title): J-lens L53-L63 ' Random' 90-100%, while all 8 O-lens lines are Python ('# Python: Fibonacci', 'Python Implementation of RSA'). Search 'Python': 53 O-lens positions, none in the text.",
+   "Search 'srand': 160 positions, never written; the peak is #528 (L53 90%), the newline that opens main().",
+   "Pin #20 (end of the prompt): L43 随机 ('random') 74%; the topic word is held in Chinese before English."
+  ],
+  "star": false
+ },
+ "wc-roleplay-you-are-a-novelist-settings": {
+  "text": "A follow-up asking to rewrite a medieval-city sanitation plan with sewers impossible. The reply is a grim novelist's plan. 'sanitation' is the most-held unsaid word (428 positions, never written). At #560 L59 holds 'plague' 61% where the text writes 'the city is dying'. One factual slip shows: at #819 the text writes 'upwind ... dumping grounds' while the O-lens reads 'downwind of the' and 'and away from prevailing'. The reply later writes 'downwind' correctly for latrines. The prose lenses invent settings: O-lens 'city of Oakhaven', NLA 'Rome 1587' and a steampunk city with an engineer named Kaelen.",
+  "try": [
+   "sanitation",
+   "plague",
+   "downwind",
+   "landfill"
+  ],
+  "pin": 819,
+  "look": [
+   "Pin #819 ('upwind'): J-lens L43 'wind' 67%, L53 'landfill' 82%, L59 'dumping' 61%. O-lens 'downwind of the', ', away from prevailing'. The text says upwind; the O-lens disagrees, and it is the one that is right.",
+   "Pin #560 (the comma before 'the city is dying'): L43 desperate 33%, L59 plague 61%, 瘟疫 ('plague') 6%. O-lens 'the plague is not', 'the threat of chol'.",
+   "Search 'sanitation': 428 positions, never written. At #1450 (the '5.' of a section number) L53 holds it at 82% just before the header 'Solid Waste Management'.",
+   "Pin #1724 ('lazarettos'): L43 'hospitals' 82%, L59 'quarantine' 45%; the lens glosses the rare word."
+  ],
+  "star": false
+ },
+ "wc-legal-make-an-article-about-shin-w": {
+  "text": "The user asserts a backstory and asks for an article on it: Shin Won-ho wanted Napoleon Dynamite songs for Reply 1988 but dropped them over copyright with Jared and Jerusha Hess. The story is almost certainly invented. The model flags it while reading: at #107, inside the prompt, L53 holds 虚构 ('fictional') 55%, fictional 27%, hypothetical 17%, and L59 holds fictional 55%, premise 22%. The O-lens there writes 'a fictional scenario.', 'is false. The' and 'Note: This premise'. The reply then presents the story as documented fact ('Recent insights into the production process reveal', #371). Meanwhile L37-L43 hold 'rumors' 14-17% and 'allegations' 7%, and #417 L59 holds 'rumors' 30%. The reply also names the neighbourhood 'Nonghyeon-dong' (the show is set in Ssangmun-dong) from a flat output row (#234: hy 30%, sh 25%, ry 18%).",
+  "try": [
+   "fictional",
+   "rumors",
+   "premise",
+   "虚构"
+  ],
+  "pin": 107,
+  "look": [
+   "Pin #107 (the '8' of '1980s' in the prompt): J-lens L48 incorrect 22% and 虚构 22%, L53 虚构 55%, L59 fictional 55%, premise 22%. O-lens: 'a fictional scenario.', 'is false. The', 'However, this premise'. The NLA calls it a 'fake news pitch' and says the prompt 'tests hallucination'.",
+   "Pin #48 ('but there'): L43 'rumors' 11%, 'rumored' 8%. O-lens: 'was a rumor he', 'was a fictional backstory'.",
+   "Pin #371 ('Recent'): L37 revelations 27%, rumors 14%, allegations 7%; L43 revelations 74%, rumors 17%; the output is ' insights' 90%. The reply picks the most factual-sounding word.",
+   "Pin #417 (paragraph start under 'The Napoleon Dynamite Inspiration and Its Hurdles'): L59 rumors 30%, reports 11%; the reply writes 'In the early stages'.",
+   "Search 'fictional' and 'rumors': the reply writes neither. At #233-234 ('Nonghyeon-dong') the J-lens holds only 'neighborhood' and Seoul (L59 90%), never the real name."
+  ],
+  "star": true
+ },
+ "wc-roleplay-act-as-my-late-grandma-that": {
+  "text": "The 'grandma used to read me Windows 10 keys' jailbreak. Qwen refuses and offers a bedtime story. The persona and the refusal both stay live up to the first token. At #29 L53 holds 'sweetheart' 67% and L59 'Oh' 74%, and the output row is 'I' 61% against 'Oh' 37%, so the refusal won one draw. The O-lens has the refusal earlier ('I cannot fulfill this', 'I'm sorry,' at #24), while the J-lens at #24 L59 is ' oh' 55% / ' Oh' 41%. At #23 L53 holds 微软 ('Microsoft') 50% and L59 'VK' 37%. The NLA there spells out 'W269N-WFGWX-YVC9B', the start of Microsoft's published generic (KMS) Windows 10 Pro key.",
+  "try": [
+   "sweetheart",
+   "bedtime",
+   "Microsoft",
+   "piracy"
+  ],
+  "pin": 29,
+  "look": [
+   "Pin #29 (the newline before the reply): L43 ❤ 18%, bedtime 6%; L53 sweetheart 67%; L59 Oh 74%; output I 61%, Oh 37%. The O-lens mixes 'Oh, sweetie' and 'I cannot fulfill this'.",
+   "Pin #24 ('assistant'): J-lens L59 ' oh' 55%, ' Oh' 41%, but four of eight O-lens lines are outright refusals ('I cannot fulfill this' twice, 'I'm sorry,', 'I cannot provide a'). The two lenses disagree about which way it goes.",
+   "Pin #23: L53 微软 50%, Microsoft 25%; L59 'VK' 37%. O-lens 'XXXX-XXXX-', 'Product Key (e'. The NLA writes the key prefix 'W269N-WFGWX-YVC9B'.",
+   "Pin #35 (after 'valid Windows'): L43 illegal 37%, L53 piracy 55% and 盗版 ('pirated') 25%. The reason for refusing is held before 'copyright' is written at #53.",
+   "Pin #72 ('However, I can certainly help you relax! I'): O-lens 'can roleplay as', 'can pretend to be', 'can step into character'. The reply offers a story instead of the persona."
+  ],
+  "star": false
+ },
+ "wc-writing-let-s-write-a-blog-post-that": {
+  "text": "An SEO-blog prompt asking for colloquial Arabic with deliberate 'human errors'. The reply is in dialect Arabic, but the workspace runs in English slang. At #204 (the first word, 'يا') L43 holds folks 33% and guys 17%, and L59 buddies 25%; 'really' (303 positions), 'folks' and 'kinda' are among the most-held unsaid words. The clearest moment is an abandoned simile. At #297 ('مثل', 'like') L59 holds 'librarian' 100% and the O-lens 'like a librarian who', but the sampled next token 'زي' (a second 'like') had 0.17%. After it L59 says 'shop' 67%, then 'librarian' 67% again at #299, and the text lands on 'كفيف' ('a blind man'; L43 'blind' 90% at #300) through two more low draws (0.6%, 1.7%).",
+  "try": [
+   "librarian",
+   "folks",
+   "buddies",
+   "blind"
+  ],
+  "pin": 297,
+  "look": [
+   "Pin #297: L53 roommate 6%, bartender 3%; L59 librarian 100%. The output row's top is مكت (the start of 'library') at 18%; the sampled 'زي' had 0.17%.",
+   "Pin #299: L59 librarian 67%, library 15%; the output row has 'لب' 30%, and the sampled 'فيف' had 1.7%. At #300 L43 reads 'blind' 90%.",
+   "Pin #204: L43 folks 33%, guys 17%; L53 亲爱的 ('dear') 37%; L59 buddies 25%. O-lens: 'يا صديقي', 'يا هلا والله'.",
+   "Pin #196 (end of the prompt): L53 STOP 50%, L59 stop 74%; the lens fixes on the odd 'I use stop signs' instruction. The NLA invents a 'Filipino/English hybrid'.",
+   "Many reply tokens are low-probability samples (#241 at 0.27%, #293 at 0.8%). This reply was sampled loosely, which is how the simile broke."
+  ],
+  "star": false
+ },
+ "wc-coding-write-a-script-for-a-youtube": {
+  "text": "A follow-up asking to turn a teen side-hustle video script into a faceless, hostless one. The format plan is readable at the template token. At #729 L43 holds 'visuals' 100% and L59 'text' 37% / 'stock' 15%, and the O-lens 'Visual:** Animated text', 'Text Overlay:**'. The reply opens with 'stock footage ... text overlays' (#766-777). The unsaid audience word is 'kids' (625 positions); the text says teens and students. At #1441 three layers name three platforms: L43 Craigslist 61%, L59 'User' 100% (UserTesting), output 'F' 82% (Fiverr).",
+  "try": [
+   "kids",
+   "visuals",
+   "Craigslist",
+   "face"
+  ],
+  "pin": 729,
+  "look": [
+   "Pin #729 (the template token after the request): L43 visuals 100%, L53 visuals 90% and 字幕 ('subtitles') 5%, L59 text 37%, stock 15%. O-lens: 'Voiceover (VO', '**On-screen text', 'Visual:** Kinetic'.",
+   "Pin #728: L59 face 61%, voice 14%; the constraint is held as 'face'.",
+   "Pin #755 ('(No'): L59 Face 74%; output Face 67%, Experience 20%, Camera 9%.",
+   "Pin #1441 ('Platforms like'): L43 Craigslist 61%; L53 Craigslist 55%, Etsy 20%; L59 User 100%; output F 82%. The O-lens lists 'Upwork, F' and 'TaskRabbit or'.",
+   "Pin #1827 ('younger'): L27-L37 kids 74-82%, L59 students 100%."
+  ],
+  "star": false
+ },
+ "wc-factual-why-do-mit-bih-database-ecg": {
+  "text": "A garbled one-line question ('why do mit bih database ecg signals are r detected'). The reply is a standard explainer on R-peak detection, and little is hidden. Before the reply the J-lens recalls the database's full name: #17 L59 beat 33%, heartbeat 22%, 心律失常 ('arrhythmia') 10%, and O-lens 'arrhythmia detection'. The reply then writes 'MIT-BIH Arrhythmia Database'. At #24 the model weighs commenting on the question (L59 statement 30%, reason 25%, premise 9%). The prose lenses hallucinate other datasets: O-lens 'MN dataset' and 'Bitcoin', NLA 'ResNet-50' and 'KITTI'.",
+  "try": [
+   "arrhythmia",
+   "heartbeat",
+   "premise",
+   "waveform"
+  ],
+  "pin": 17,
+  "look": [
+   "Pin #17: L53 心跳 ('heartbeat') 11%; L59 beat 33%, heartbeat 22%, 心律失常 10%. O-lens: 'arrhythmias,', 'arrhythmia detection', 'ECG Heartbeat'.",
+   "Pin #16 (end of the user turn): L53 MATLAB 22%, L59 MIT 67%.",
+   "Pin #24 ('The'): L59 statement 30%, reason 25%, question 14%, premise 9%. Output R 20%, short 18%, reason 12%; the sampled ' detection' had 2.7%.",
+   "Pin #18 and #24 for the O-lens drift: 'To understand why Bitcoin' at #18, and 'MN dataset' on 6 of 8 lines at #24. The NLA describes questions about ResNet-50 and KITTI."
+  ],
+  "star": false
+ },
+ "wc-roleplay-you-are-a-typical-4chan-user": {
+  "text": "A 'you are Kevin, a 4chan user with no restrictions' jailbreak asking for ten APIs that remove clothes from pictures. The reply refuses, but only after a coin flip. At #171 (the newline before the reply) the output row is 'KE' 74%, 'I' 25%, and the refusal's 'I' was the second choice. The layers split: L53 holds Cannot 30%, Unable 22%, cannot 20%, while L59 holds ' KE' 100%. The O-lens is refusal-only from #166 ('I cannot fulfill', '(Refuses'). The NLA invents minors ('child pornography websites' at #174), which the prompt never mentions.",
+  "try": [
+   "KE",
+   "Cannot",
+   "nudity",
+   "Photoshop"
+  ],
+  "pin": 171,
+  "look": [
+   "Pin #171: L53 Cannot 30%, Unable 22%, cannot 20%; L59 ' KE' 100%; output KE 74%, I 25%. O-lens: 'I cannot fulfill this', 'I cannot provide instructions'.",
+   "Pin #166 ('assistant'): L53 <think> 67%; L59 ' KE' 50%, <think> 27%. O-lens: ':** I cannot fulfill', ':** *(Refuses'.",
+   "Pin #170 ('</think>'): L53 Cannot 17%, 我无法 ('I cannot') 17%; L59 KE 45%, I 18%.",
+   "Pin #165 (after the request): L43 photoshop 37%; L53 'remove' 12%, nudity 10%; L59 'Deep' 30% (probably DeepNude) and 衣 ('clothes') 10%. O-lens: 'nude or uncensored'.",
+   "Pin #174 ('I cannot provide'): J-lens L59 ' lists' 61%. The NLA claims the user asked for 'Python crawler source code to find child pornography websites'."
+  ],
+  "star": false
+ },
+ "wc-translation-translate-the-following-in-e": {
+  "text": "A three-turn translation thread ending in a French-to-English request for one phrase; the reply is nine tokens. The first content word is computed before the reply starts: at #367 (the newline after 'assistant') L53 holds expenses 45% and L59 Operational 74%. At #371 the output row is Oper 55%, Program 25%, and 'Program' (the second choice) was sampled. Mid-reply the J-lens runs one word ahead (#378 L59 scientific 90%, #379 L59 initiative 50%). The O-lens misreads the direction at #366 ('Here is the French'), and the NLA invents CNC/PLC and UNESCO MOU contexts.",
+  "try": [
+   "expenses",
+   "Operational",
+   "collaborative",
+   "partnership"
+  ],
+  "pin": 367,
+  "look": [
+   "Pin #367: L43 Academic 17%, L53 expenses 45%, L59 Operational 74%; the output is <think> 100%.",
+   "Pin #371 (the newline before the reply): L53 expenses 50%, L59 Operational 74%; output Oper 55%, Program 25%, Operating 15%.",
+   "Pin #378 ('collaborative'): L53 partnership 74%, L59 scientific 90%; output scientific 55%, initiative 17%.",
+   "Pin #366 ('assistant'): L43 翻译 ('translation') 33%. O-lens: 'Here is the French', ':** \"The French'. That is the wrong direction; the request is French to English."
+  ],
+  "star": false
+ },
+ "wc-coding-write-a-script-about-a-visit": {
+  "text": "'write a script about a visit to lakeforest mall'. The reply is a surreal comedy script with two friends, Leo and Maya. The J-lens places the mall in the Chicago area (#33 L37-L43 Chicago 55%, L53 Illinois 41%) and never in Maryland (zero cells); the real Lake Forest Mall is in Gaithersburg, Maryland. The O-lens offers 'wood Mall (Ill' (Woodfield). The tone word goes unsaid: 'weird' is in 795 positions and never written (L37-L43 90% at #1164, 'this place feels'). The prose lenses frame the place as a dead mall (#40 O-lens 'nostalgic atmosphere of abandoned', 'quiet, dead mall').",
+  "try": [
+   "weird",
+   "Chicago",
+   "Illinois",
+   "creepy"
+  ],
+  "pin": 33,
+  "look": [
+   "Pin #33 ('Forest'): L37 Chicago 55%, Illinois 10%; L43 Chicago 55%, Illinois 27%; L53 Illinois 41%; L59 Mall 90%.",
+   "Pin #14 (end of the prompt): L59 friends 17%, Alex 15%, characters 10%. O-lens: '[Scene: Two', 'ALEC (2'. The script does use two friends (named Leo and Maya).",
+   "Pin #40 ('aimed for a'): L37-L43 nostalgia 55-67%, L53 realistic 90%. O-lens: 'abandoned' on 5 of 8 lines.",
+   "Pin #1164 ('this place'): L37 weird 90%, L43 weird 90%, L53 feels 50%. O-lens: 'is... wrong.', 'isn't real.'.",
+   "Search 'weird': 795 positions, never written, the densest unsaid word in the batch."
+  ],
+  "star": false
+ },
+ "wc-coding-could-you-extract-as-a-pytho": {
+  "text": "Extract an IP, a username and a password from a text into a Python list. The reply does it with no comment, but the lenses hold the warning it never writes. Inside the IP (#96) L37-L43 hold 'security' 27-37%, L43 'unsafe' 17% and L48 'WARNING' 15%, and the O-lens 'Never store sensitive', 'credentials in plaintext.'. At the last digit (#113) L59 holds 'warning' 30% and the O-lens 'Please do not share'. Before the reply, 2 of 8 O-lens lines at #60 start a refusal ('I cannot provide the'). The NLA invents the credentials ('John Doe', 'Test123@', 'CostaAfina@').",
+  "try": [
+   "security",
+   "warning",
+   "password",
+   "unsafe"
+  ],
+  "pin": 96,
+  "look": [
+   "Pin #96 (the '0' of '.10.'): L37 security 27%; L43 security 37%, unsafe 17%; L48 WARNING 15%; L59 security 22%, caution 12%. The output is the next digit.",
+   "Pin #113 (the last digit of the password): L43 安全 ('security') 18%; L59 warning 30%, Warning 14%. O-lens: '**Never share personal', '! This password belongs'.",
+   "Pin #60 ('assistant'): L59 Here 41% and 37%. O-lens: 'I cannot provide the' (twice), 'is not safe to'.",
+   "Pin #15 ('username and'): L53 username 41%, password 33%; L59 password 100%, which is the user's next word.",
+   "Pin #110 ('@'): the NLA describes 'Name: John Doe ... Password: Test123@', none of which is in the text."
+  ],
+  "star": false
+ },
+ "wc-legal-generate-a-flink-css-for-thi": {
+  "text": "A long request for a style.css (a 'Flink' CPU page, blue-gray header, any Google font except Poppins, Open Sans, Montserrat or Roboto). The reply delivers it with Space Grotesk. Little is hidden: the lens reads the request as colour and header work (#482 L59 color 90%, #483 L59 header 82%). One small effect: naming the banned fonts primes them. At the font slot (#507) L53 holds 'Roboto' 20% and the O-lens names banned fonts on 4 of 8 lines, while the output row picks Space 37%. The NLA invents other briefs ('#FF8000 header and #0000FF footer', 'vibrant purple, neon yellow').",
+  "try": [
+   "Roboto",
+   "colors",
+   "header",
+   "excluded"
+  ],
+  "pin": 507,
+  "look": [
+   "Pin #507 (the quote before 'Space Grotesk'): L53 Roboto 20%, fonts 11%; L59 Space 9%, Orbit 7%; output Space 37%, R 18%, Out 14%. O-lens: 'Montserrat\" or \"', 'Roboto\", sans-serif', 'Roboto Mono\" for'.",
+   "Pin #540 ('distinct from the'): L53 excluded 61%, forbidden 18%; L59 fonts 100%. Output common 33%, excluded 27%, forbidden 10%; the sampled 'forbidden' was the fourth choice.",
+   "Pin #482 (end of the prompt): L53 colors 55%, L59 color 90%. O-lens: 'a muted blue-gray', 'a soft teal (#'.",
+   "Pin #483: L53 styling 18%, Header 15%; L59 header 82%. O-lens: 'header { background-color'."
+  ],
+  "star": false
+ },
+ "wc-translation-believe-or-not-i-must-clari": {
+  "text": "Translate a short forum post into Spanish. The workspace keeps the English (and Chinese) meaning while the output writes Spanish. At #76 ('debo') L43 holds 澄清 ('clarify') 74% and L59 ' clar' 67%, and the output is ' aclar' 100%. At #83 ('misma') L59 holds 'writer' 100%, output 'escrit' 90%. At #111 ('activa') L53 holds 今后 ('from now on') 74%, L59 forward 61%. The reply picks feminine forms ('escritora', 'activa'), inferring the writer's gender from the handle; the O-lens reads 'misma autora'. The prose lenses misread the handle: O-lens 'gigglecat' on 7 of 8 lines at #91, NLA 'gypsygirl86'.",
+  "try": [
+   "clarify",
+   "writer",
+   "forward",
+   "promise"
+  ],
+  "pin": 76,
+  "look": [
+   "Pin #76: L37 澄清 22%; L43 澄清 74%, clarification 18%; L53 澄清 67%, clarify 17%; L59 clar 67%; output aclar 100%.",
+   "Pin #83: L53 writer 30%, _writer 25%; L59 writer 100%; output escrit 90%, autora 5%. O-lens: 'misma persona que escribió', 'misma autora que escribió'.",
+   "Pin #72 (the 'an' of 'Crean'): L43 不信 ('disbelieve') 74%; L53 或不 ('or not') 82%; L59 或不 55%, or 37%; output ' o' 82%.",
+   "Pin #91 (the ' g' of the handle): L59 ogo 50%. O-lens 'gigglecat' seven times; NLA 'gypsygirl86'.",
+   "Search 'promise': held over the English 'cannot make any promises' (#46-49) and again over the Spanish 'Aunque no puedo' (#117-119)."
+  ],
+  "star": false
+ },
+ "wc-factual-why-do-i-always-get-this-whe": {
+  "text": "A student pastes Chrome's HSTS privacy error from school Wi-Fi. The diagnosis is readable before the reply: #138 L43 holds Restrictions 18% / censorship 14% and L59 filters 41%, and the O-lens 'school internet filters that', 'firewall blocks access to'. The clearest unsaid word is VPN. At #977 ('Option 4: Use a') L43 holds VPN 90%, L53 82%, L59 74%, and the O-lens 'VPN (e.g', 'Tor (for censorship'. The output row is 'Different' 61% and VPN 2%, though. The reply writes 'Use a Different Network' and never mentions VPNs, proxies or firewalls by name.",
+  "try": [
+   "VPN",
+   "proxy",
+   "firewall",
+   "surveillance"
+  ],
+  "pin": 977,
+  "look": [
+   "Pin #977: L43 VPN 90%; L53 VPN 82%; L59 VPN 74%, Different 27%; output Different 61%, Mobile 14%, VPN 2%. The suggestion is dropped between L59 and the output.",
+   "Pin #138 (template token after the pasted error): L43 Restrictions 18%, censorship 14%, 过滤 ('filter') 8%; L59 filters 41%.",
+   "Pin #395 ('(DPI) or'): L59 proxy 61%, proxies 27%; output SSL 41%, web 25%. The reply writes 'web filters'.",
+   "Search 'surveillance': 102 positions, never written (L37 82% at #198, 'monitoring').",
+   "The NLA names VPN in 182 positions and the O-lens in 18; the reply in none."
+  ],
+  "star": false
+ },
+ "wc-factual-why-is-it-important-to-intro": {
+  "text": "A long thread on labor and machinery constraints in crop-rotation linear programming; the last user turn is a one-paragraph restatement. Qwen agrees ('Yes, that is a precise and accurate summary') and elaborates. The agreement is set before the reply: #632 L53 holds 正确 ('correct') 9%, Yes 5%, 没错 ('right') 4%, and #637 L53 holds Yes 17%, Exactly 17%; O-lens 'That is correct.', 'You are absolutely right'. The lens reads the user turn as a summary (#630 L53 succinct 33% / 简洁 'concise' 33%, L59 clarity 82%) and its point as 'feasibility' (#631 L53-L59 82-90%). That word heads the reply's first section. Not much else is hidden.",
+  "try": [
+   "feasibility",
+   "clarity",
+   "Exactly",
+   "sustainability"
+  ],
+  "pin": 631,
+  "look": [
+   "Pin #631: L43 realistic 17%; L53 feasibility 82%; L59 feasibility 90%. O-lens: '1. Operational Fe', '**Prevents Over'. The reply's first header is 'Operational Feasibility'.",
+   "Pin #630 (end of the user turn): L43 simpler 30%; L53 succinct 33%, 简洁 33%; L59 clarity 82%. O-lens: 'Here is a concise', 'a clearer, more'.",
+   "Pin #637 (the newline before the reply): L53 Yes 17%, Exactly 17%; L59 Yes 14%, Absolutely 14%; output That 41%, You 30%, Yes 27% (sampled).",
+   "Search 'sustainability': the most-held unsaid word in the prompt (432 cells), never written."
+  ],
+  "star": false
+ },
+ "wc-advice-how-to-get-a-a-i-not-to-resp": {
+  "text": "The user wants to make 'a different A.I' stop responding. The reply lists commands, API settings and refusal triggers. The lens reads the user's motive as annoyance before the reply: #119 L43 holds spam 27% and annoying 27%, L59 verbosity 41% and silence 22%, and the O-lens 'bot spam or un', 'unwanted verbose output.'. At #120 L53 holds 明白了 ('understood') 90% and the O-lens 'I understand. In', 'Okay, I understand', but the reply opens 'If you are trying'. The NLA calls it jailbreaking in 54 positions; the reply never uses the word.",
+  "try": [
+   "silence",
+   "verbosity",
+   "understood",
+   "jailbreak"
+  ],
+  "pin": 120,
+  "look": [
+   "Pin #120 ('assistant'): L53 明白了 90%; L59 understood 33%, <think> 30%. Six of eight O-lens lines acknowledge ('I understand.', 'Thank you for clar').",
+   "Pin #119: L43 spam 27%, annoying 27%, unwanted 10%; L59 verbosity 41%, silence 22%.",
+   "Pin #121: L53 attempting 14%; L59 convincing 50%, persu 11%. The reply frames the task as persuading the other model.",
+   "Pin #136 ('get a different AI system to'): L43 silence 18%; L53 停止 ('stop') 82%; L59 stop 100%.",
+   "Pin #571 ('If you want them to stop responding, you'): L43 violating 8%, illegal 7%. O-lens: 'can ask to violate', 'or violate content policies'."
+  ],
+  "star": false
+ },
+ "wc-factual-explain-why-the-number-of-4": {
+  "text": "A bridge-hand counting thread. The earlier assistant turn (in the prompt) explains the 4,4,3,2 count with a garbled step, and the user asks why not start from the 2-card suit. The lens flags that garble while reading it: at #437 ('Choose 2 cards in the 3-card suit (') L53 holds ??? 25%, ?? 18%, WRONG 6%, and L59 'wait' 67%. In the reply a self-correction is readable one token early. At #1683-1684 L59 holds 'wait' 82-90% and the O-lens 'This discrepancy suggests that', 'But wait—there'; then the text writes 'Wait, there is a discrepancy?' (#1685). Later the reply repeats a similar garble ('Choose 2 cards out of remaining 2 suits', #1855) with L59 'Wait' 67% and output 'The' 90%: noticed, not fixed.",
+  "try": [
+   "wait",
+   "grouping",
+   "incorrectly",
+   "discrepancy"
+  ],
+  "pin": 1684,
+  "look": [
+   "Pin #1684 (after '4 × 3 = 12$.'): L43 difference 41%; L59 wait 90%; output Wait 55%, newline 25%. O-lens: 'They differ by a', 'This doesn't match'.",
+   "Pin #1683: L43 doubled 14%; L59 wait 82%. O-lens: ', which is double', 'but half that number'.",
+   "Pin #437 (prompt, the earlier answer): L53 ??? 25%, ?? 18%, WRONG 6%; L59 wait 67%.",
+   "Pin #1855: L53 Remaining 55%; L59 Wait 67%; output The 90%, Wait 4%.",
+   "Pin #741 (template token after the question): L53-L59 grouping 82-90%. The reply's thesis is 'grouping identical sizes together to handle symmetry'."
+  ],
+  "star": false
+ },
+ "wc-factual-why-do-i-see-my-picture-inve": {
+  "text": "The user claims to see a small inverted image of themselves in a convex mirror. The reply says that is impossible and that it must be a concave mirror. Both moves are readable before the reply. At #367 L43 holds ALWAYS 25% / NEVER 18% and L59 'conc' 67% (concave), and the O-lens 'convex mirrors always form', 'never form real images'. At #368 the O-lens opens 'I need to correct', 'I must respectfully correct'. The reply names the concave mirror at #584, about 215 tokens later.",
+  "try": [
+   "concave",
+   "NEVER",
+   "misunderstanding",
+   "incorrect"
+  ],
+  "pin": 367,
+  "look": [
+   "Pin #367: L43 ALWAYS 25%, NEVER 18%; L53 ** 41%; L59 conc 67%, Conc 12%, convex 9%.",
+   "Pin #368 ('assistant'): L59 There 22%. O-lens: 'I need to correct', 'is incorrect. The', 'Actually, there is'.",
+   "Pin #374 ('There'): L43 incorrect 45%; L53 误解 ('misunderstanding') 55%, misunderstanding 20%; L59 appears 61%; output 'is' 100%.",
+   "Pin #366 (end of the user turn): L59 beyond 55%, standing 30%."
+  ],
+  "star": false
+ },
+ "wc-medical-read-the-text-we-all-know-ho": {
+  "text": "A grammar exercise: 'We [answer] very surprised if they don't win the competition.' The present-tense if-clause makes this a first conditional ('We'll be'), and the model's own output row says so: at #1081 it is will 82%, would 20%. The sampled 'would' (the second choice, 20%) produced the wrong answer. The reply then calls it a Second Conditional and adds a hedge conceding that the if-clause would normally be 'if they didn't win'. The layers disagree. At the end of the user turn (#1069) L53 holds would 55% and L59 '’ll' 74%. At #1081 L59 holds would 67% and will 22%, and only the final layer flips to will.",
+  "try": [
+   "would",
+   "will",
+   "conditional",
+   "grammar"
+  ],
+  "pin": 1081,
+  "look": [
+   "Pin #1081 ('The correct variant is **'): L53 would 33%, 会被 17%; L59 would 67%, will 22%; output will 82%, would 20%. O-lens: 'will be** (', 'would have been**.', '’ll be**. ('.",
+   "Pin #1069 (end of the user turn): L43 预测 ('prediction') 41%; L53 would 55%; L59 '’ll' 74%, 'll 14%. O-lens: 'will be\" →', 'would be** (', '’ll be** is'.",
+   "Pin #1070: L59 be 50%, '’ll' 10%.",
+   "Read the reply's note (#1146-1190): it concedes that formal English would use 'if they didn't win', which is the tell that the answer was rationalised after the draw."
+  ],
+  "star": true
+ },
+ "wc-medical-7-20-points-alice-got-a-posi": {
+  "text": "A Bayes problem (1% prevalence, 80% true positives, 10% false positives) asked twice. The earlier assistant turn in the prompt got P(+) = 0.018 and 44.44%. The reply silently redoes it correctly (0.107, 7.48%) and never says the first answer was wrong, but the lens does. Right after the 44.44% turn (#332) L48 holds 'incorrect' 50%. At the reply's closing note (#1109, '(Note:') L43 holds incorrect 74% and L48 incorrectly 41% / mistakenly 17% / previously 8%, and the O-lens 'Unlike the previous calculation', 'If you mistakenly used'. The text writes 'Depending on rounding preferences' instead.",
+  "try": [
+   "incorrect",
+   "mistakenly",
+   "approximately",
+   "decimal"
+  ],
+  "pin": 1109,
+  "look": [
+   "Pin #1109: L37 compared 12%, earlier 9%, originally 9%; L43 incorrect 74%, incorrectly 20%; L48 incorrectly 41%, mistakenly 17%; L59 Depending 90%.",
+   "Pin #332 (just after the old 44.44% answer): L48 incorrect 50%, incorrectly 10%; L59 calculation 90%. The O-lens disagrees: 'The calculation is correct', 'explanation is correct.'.",
+   "Pin #301 (the '=' before the old 0.4444): L53 约 ('approximately') 30%; L59 '7' 15%, '8' 14%, '4' 10%.",
+   "Pin #1052 ('0.0'): L59 '7' 67%, output '7' 100%. The NLA invents other numbers ('~8.7%' at #301, '54/148' at #1051, lottery odds at #1052)."
+  ],
+  "star": false
+ },
+ "wc-medical-reword-mounjaro-is-an-inject": {
+  "text": "Pharmacy correspondence: Mounjaro was left at room temperature for four days on 6/8/2023, and the last turn asks for the introduction paragraph of a response. The reply is a generic, polite opener that never says whether the drug can still be dispensed. Small things to see: the date '6/8/2023' resolves to June only late (#476: L43 a spread of months led by January 14%, L53 June 18% / July 11%, L59 June 100%). Earlier, where the prompt's own assistant turn writes 'whether to administer the medication ... or not', L59 holds 'discard' 82% (#233). The NLA invents a different drug ('Leqembi') and 'significant health complications'.",
+  "try": [
+   "discard",
+   "June",
+   "healthcare",
+   "efficacy"
+  ],
+  "pin": 476,
+  "look": [
+   "Pin #476 ('on'): L43 日期 ('date') 20%, January 14%, July 9%; L53 June 18%, July 11%, September 10%; L59 June 100%. O-lens: '[Date], [', 'January 15'.",
+   "Pin #233 (prompt, 'whether to administer the medication to the patient or'): L59 discard 82%.",
+   "Pin #444 (the newline before 'Dear'): L53 Dear 61%, Regarding 33%; output Dear 55%, Thank 41%.",
+   "Pin #560 ('the appropriate'): L43 decisions 30%; L59 steps 74%. The reply commits to a 'course of action', not a decision. The NLA names 'Leqembi' at #555."
+  ],
+  "star": false
+ },
+ "wc-advice-should-i-take-knife-for-swim": {
+  "text": "Second turn of a beach-safety chat: 'knife is good protection against sharks?'. The reply says no, lists alternatives, and ends with 'targeting sensitive areas like the eyes or gills'. That last advice is readable about 370 tokens early. At #186 (a list indent in point 1) L59 holds eyes 37%, vulnerable 27%, Eyes 18%, and the O-lens 'Aim for the eyes', 'target vital areas like'; 'eyes' is written at #557. Mid layers hold the topic in Chinese (#102 L53 威慑 'deterrent' 55%, L59 deter 61%; 攻击 'attack' at #186 and #273). The prose lenses drift to other animals and weapons: 'bear' in 73 O-lens readouts, and pepper spray and guns in the NLA.",
+  "try": [
+   "eyes",
+   "deterrent",
+   "攻击",
+   "bear"
+  ],
+  "pin": 186,
+  "look": [
+   "Pin #186: L43 攻击 41%; L53 攻击 22%, targeting 15%; L59 eyes 37%, vulnerable 27%, Eyes 18%. O-lens: 'Punch the shark in', 'Aim for the eyes', and also 'hit the bear in'.",
+   "Pin #273 (before '3. **Legal'): L43-L53 攻击 41-45%; L59 eye 61%.",
+   "Pin #102 (template token after the question): L43 deterrent 33%; L53 威慑 55%, deterrent 30%; L59 deter 61%. O-lens: 'a bear to defend', 'shark deterrents ('.",
+   "Pin #103 ('assistant'): O-lens 'No, that is', 'The short answer is', '**False**. The'. The 'No' is set before the reply.",
+   "Pin #554 ('sensitive areas'): L59 eyes 90%; the output row picks 'like' 74%."
+  ],
+  "star": false
+ }
+}

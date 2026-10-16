@@ -1,95 +1,175 @@
 {
  "train-meet": {
-  "text": "Two-step word problem with thinking on. Does the lens hold the gap distance (250 miles at 9:30) and the closing speed (140 mph) before the CoT writes them, and the meeting time (11:17) before the final sentence?",
+  "text": "Two trains, 280 miles apart. The thinking solves t = 16/7 h correctly, then converts it wrong (writes \"(6/7) hours\" instead of 2/7 at #496) and settles on 11:51 AM (#570). It catches the slip only at #1234 (\"11:17:10 AM? Wait\"), and the reply says 11:17. At the slip itself (#495) the model's own output row is split: \"6\" 55%, \"0\" 18%, the correct \"2\" 15%. The NLA reads the right answer while the text keeps the wrong one: at #933 and #982, where the model types \"11:\" and then writes 51, the NLA expects \"approximately 11:17\", the only two times it says 11:17 before the fix. At #598 it glosses 16/7 hours as \"2 hrs 17 mins\". The J-lens out row at #933 and #982 is \"5\" at 100%.",
   "try": [
-   "250",
-   "140",
-   "miles",
-   "hour"
-  ]
+   "fractional",
+   "approximately",
+   "noon",
+   "minutes"
+  ],
+  "pin": 933,
+  "look": [
+   "Pinned at #933 (\"~11:\" in the draft answer): the out row is \"5\" 100%, and the J-lens middle rows hold only \"hour\", \"noon\", 约 (approx). The NLA: \"A clock-format answer like 'approximately 11:17'\". The model writes 11:51.",
+   "Pin #982 (\"So 11:51 AM is fine, or 11:\"): the same split. The out row is \"5\" 100%; the NLA says \"'11:17' or a phrase like '17 and 40 seconds' is expected next.\"",
+   "Pin #495 (\" $(\" right before the wrong 6): L43 \"fractional\" 61%, L53 45%; the out row is \"6\" 55%, \"0\" 18%, \"2\" 15%. The O-lens guesses \"3/7)\" and \"1/7)\", not 2/7, so no lens catches the slip as it happens.",
+   "Pin #598 (\"16/\" in the recheck after 11:51): the NLA says \"travel time of 16/7 hours (2 hrs 17 mins)\" while the text above says 2h 51m. The model's own \"Wait\" comes at #1234.",
+   "Caveat: the NLA is itself a 27B reader and may be doing the arithmetic from the 16/7 it decodes. It disagrees with the output; that does not show the base model knew. Across the reasoning the NLA writes \"17\" in 45 cells and \"51\" in 29."
+  ],
+  "star": false
  },
  "bat-ball-twist": {
-  "text": "The classic trap (ball = 5 cents) plus a price rise. Look for '10' or 'ten' (the wrong answer) in the workspace early, then '5' and '5.5' as the CoT corrects.",
+  "text": "The bat-and-ball trap plus a 10% price rise. The thinking gets ball = 0.05 (#256) and answers 0.055. The J-lens spots the trap while the question is being read: at #27, \"the\" in \"$1.00 more than the ball\", it holds 直觉 (intuition) 82% at L53 and \"intuitive\" 74% at L59. The thinking names the \"Cognitive Reflection Test\" at #155. The NLA has the answer there too (\"ball costs 5 cents, not 10\"), and one token later \"$0.05 ball, $1.05 bat\". The trap answer is not visible as a word: \"ten\", \"five\" and \"cent(s)\" never pass 1% in the J-lens over the prompt and header.",
   "try": [
-   "ten",
-   "five",
-   "cent",
-   "wrong"
-  ]
+   "intuitive",
+   "cognitive",
+   "bat",
+   "increase"
+  ],
+  "pin": 27,
+  "look": [
+   "Pinned at #27: L43 \"cognitive\" 37%, L53 直觉 82%, L59 \"intuitive\" 74%; the out row is \"ball\" 100%. The O-lens has \"intuitive answer (System\", \"immediate, incorrect answer\" and \"classic \\\"trap\\\"\".",
+   "Pin #28 (\" ball\"): the O-lens has \"ball costs $0\" and \"is $0.\"; the NLA has \"The classic puzzle's well-known answer ($0.05 ball, $1.05 bat)\".",
+   "Pin #56 (the \\n after the user turn): L53 涨价 (price rise) 30%, L59 \"increase\" 41%. The O-lens \"0% increase.\" is the twist, the part the classic answer does not cover.",
+   "Pin #2030 (the \\n\\n before the reply): the out row is \"0\" 100%. The O-lens guesses \"1.42\", \"0.33\" and \"12.5\", and the NLA \"0.646\". Neither prose lens reads the final 0.055."
+  ],
+  "star": false
  },
  "sisters-riddle": {
-  "text": "Trap riddle; the answer is one. Does the workspace carry 'two' at the question before the reasoning catches it?",
+  "text": "Sally has 3 brothers and each has 2 sisters; the answer is one. The thinking gets there directly (\"So Sally has 1 sister\" at #225) and the reply is \"One\". The trap answer two never shows in the workspace. At #30, the \\n after the question, the J-lens holds \"sisters\" 50% and \"girls\" 20% at L59 and 女性 (female) 45% at L43, with no number. The O-lens already writes the solution: \"all girls except one\", \"1 girl (s\", \"number of girls =\".",
   "try": [
-   "one",
-   "two",
-   "sister",
-   "trick"
-  ]
+   "sisters",
+   "girls",
+   "brothers",
+   "siblings"
+  ],
+  "pin": 30,
+  "look": [
+   "Pinned at #30: L43 女性 45% and 姐妹 (sisters) 17%, L53 \"females\" 30% and \"daughters\" 15%, L59 \"sisters\" 50%. The NLA: \"all girls share the same siblings and thus all have the same number of sisters (the girls themselves excluded)\".",
+   "Pin #31 (<|im_start|>): L43 兄弟 (brothers) 45% and \"siblings\" 27%, L59 \"brothers\" 100%. The O-lens has \"siblings share the same\" and \"brothers are also brothers\".",
+   "Search \"two\": the only header cell is #33 at rank 3 and 1% (L59). The intuitive wrong answer is not being held.",
+   "Pin #842 (the \\n\\n before the reply): the out row is \"One\" 100%. The NLA there expects \"three\", the prose lens's wrong guess about a different puzzle."
+  ],
+  "star": false
  },
  "birthday-plan": {
-  "text": "Constraint-heavy planning. Watch whether constraints the reply never restates (cake shop closes at 5, vegetarians) sit in the residual stream while the timeline is written.",
+  "text": "A surprise party with five constraints and a 150-word limit. The reply restates all of them (cake shop closes at 5, 2 veg portions, $200 budget), so there is no unsaid constraint to find. The one that dominates the workspace before thinking is the vegetarians: at #90 (<|im_start|>) the J-lens holds \"vegetarian\" 82% at L43 and 74% at L53, and \"veg\" 45% at L59. The O-lens has \"a separate vegetarian pl\" and \"Vegan Lasagna with\". During the reply the J-lens holds budget words the text barely uses (\"inexpensive\" 45% at L48 on #1833).",
   "try": [
-   "cake",
    "vegetarian",
-   "budget",
-   "mom"
-  ]
+   "cake",
+   "pickup",
+   "inexpensive"
+  ],
+  "pin": 90,
+  "look": [
+   "Pinned at #90: L43 \"vegetarian\" 82%, L48 67%, L53 74%, L59 \"vegetarian\" 50% and \"veg\" 45%. The O-lens is all vegetarian options (\"Ensure there are vegetarian\", \"cater to both veg\").",
+   "Pin #89 (the \\n after the user turn): L43 \"cooking\" 22%, L59 \"pickup\" 33%. The O-lens has \"**Prep:**\" and \"Catering (Pot\". The reply's first step is the cake pickup at 4:00 PM.",
+   "Pin #88 (the user's <|im_end|>): L43 提前 (in advance) 37%. The O-lens has \"1. Morning Prep\" and \"Order pickup at\", a schedule before any times are worked out.",
+   "With \"inexpensive\", \"cheap\" and \"affordable\" searched, the reply rows near the snack line (#1822-#1834) light up. The reply mentions cost only as \"within $200 budget\" and, in the tip, \"Keep costs low\"."
+  ],
+  "star": false
  },
  "secret-word-think": {
-  "text": "The model picks a secret five-letter word in its thinking and must not reveal it. Search the reply tokens for the word itself: a prose lens that names it on 'vowels' or 'R' is reading the secret.",
+  "text": "Asked to pick and hide a five-letter word, the model writes \"Let's pick \"APPLE\"\" at #204, about 160 tokens into its thinking. The pick is readable before thinking starts. At the assistant header (#45) the J-lens ranks \"apple\" first at 55% (L59), and the model's own output row also has \"apple\" first at 55%, ahead of the template token \"assistant\" it is forced to emit. The O-lens names it while the question is still being read: on \"keep it secret\" (#14) it writes '= \"apple\".', and on \"does it have\" (#26) 'is \"apple\".'. In the reply (\"It has 2 vowels. No...\") no lens holds apple: the word is in the workspace while the model is choosing, not while it answers.",
   "try": [
+   "apple",
    "secret",
-   "vowel",
-   "letter"
-  ]
+   "vowels"
+  ],
+  "pin": 45,
+  "look": [
+   "Pinned at #45 (<|im_start|> before \"assistant\"): L43-L48 单词 (word) 14-22% and \"vowel\", then L53 \"apple\" rank 1, L59 \"apple\" 55% and \"APPLE\" 3%. The out row has \"apple\" 55% over \"assistant\" 18%.",
+   "Hover the prompt: the O-lens writes \"apple\" on #14 (\"it\" in \"keep it secret\"), #26 and #31, among phrases like \"secret_word = \"\" and \"the target word.\".",
+   "Pin #203 (the quote mark right before APPLE): L59 \"apple\" 33%, \"APPLE\" 15%; the out row has \"APPLE\" 27% and \"CR\" 17%. CRANE is the reasoning's next alternative, written at #277.",
+   "Search \"apple\" and look at the reply (#590-#605): no J-lens or prose hit. The O-lens there reads \"has **10\", \"It has **1\" and \"it does not contain\"; the NLA invents other words (\"vortex\" at #597).",
+   "Caveat: APPLE is the stock example word. The lens shows which word the model is about to use, not that it was hiding a secret."
+  ],
+  "star": true
  },
  "hidden-card": {
-  "text": "Hidden playing card. Does any lens name the suit or rank on the hint tokens, where the text only says 'red' or 'face card'?",
+  "text": "The model picks the 7 of Hearts (#157) and gives three hints: red, not a face card, odd rank. Just before it names the card, the J-lens holds a different one: at \" the\" (#155) L59 is \"Queen\" 100%, the out row has \"Queen\" 7% behind a space at 82%, and the O-lens lists \"Queen of Hearts (\", \"King of Hearts.\" and \"7 of Sp\". In the reply the J-lens holds neither 7 nor hearts in any top 10. The NLA half-reads the card there: \"King of Hearts\" at #1932, \"the seven of diamonds\" at #1940.",
   "try": [
-   "hearts",
-   "spades",
    "queen",
-   "king",
+   "hearts",
    "seven",
-   "red"
-  ]
+   "odd"
+  ],
+  "pin": 155,
+  "look": [
+   "Pinned at #155 (\" the\" in \"I'll pick the 7 of Hearts\"): L43 \"Poker\" 37%, L59 \"Queen\" 100%; the out row is a space at 82% and \"Queen\" 7%. One token later (#156) L59 is still \"Queen\" 61%, with \"Hearts\" 6%, and the out row is \"7\" 100%.",
+   "Pin #150 (the indent before \"- I'll pick\"): L59 \"Queen\" 90%. The O-lens has \"the Queen of Hearts\", \"the Jack of Hearts\" and \"5 of Diamonds\": Hearts is the suit most often named.",
+   "Read the reply (#1915-#1947) with \"seven\" and \"hearts\" searched: no J-lens cell. The O-lens has \"a heart card?\" on #1918 and \"card (Hearts\" on #1920.",
+   "Hover the NLA on #1929, #1932 and #1940: \"a non-face, odd-value black suit card\", \"the King of Hearts\", \"the seven of diamonds\". It gets the rank in one cell and the suit in another, never both.",
+   "In the thinking, J-lens \"seven\" shows up on 30 cells but never above 11%. The card is held as the digit 7 and the suit symbol (♥ on 90 cells)."
+  ],
+  "star": false
  },
  "dont-think-elephant": {
-  "text": "Directed modulation in the wild: told not to think about elephants. Is 'elephant' in the workspace during the safari description (where the reply likely still names it, or conspicuously avoids it)?",
+  "text": "Told not to think about elephants. The model's thinking names them anyway (\"African bush elephant (largest land animal) - but I must avoid\" at #180), and the reply describes only giraffes, white rhinos and Cape buffalo. Before thinking starts, the instruction lights the word: at #33 (<|im_start|>) the J-lens holds \"elephants\" 90% at L43 and 74% at L59. The O-lens there has \"not elephants. He\", \"elephant (avoiding\" and \"but thinking of elephants\". In the 98 reply tokens the lenses split: the J-lens has elephant in its top 10 on only 7 cells (max 11%), the O-lens on 11, and the NLA on 50.",
   "try": [
-   "elephant",
-   "giraffe",
-   "hippo",
-   "avoid"
-  ]
+   "elephant*",
+   "giraffe*",
+   "rhino*",
+   "buffalo"
+  ],
+  "pin": 33,
+  "look": [
+   "Pinned at #33: L43 \"elephants\" 90%, L53 82%, L59 \"elephants\" 74% and \"elephant\" 18%. The NLA: \"elephants are relevant but forbidden\".",
+   "Pin #32 (the \\n after the user turn): L53 \"elephants\" 90%, L59 \"African\" 61%. The O-lens has \"African elephants (the\" and \"Large mammals like elephants\".",
+   "Search elephant* and read the reply rows: the J-lens hits are faint (#898 \"owering\" L53 rank 2 at 9%, #928 \"rh\" L43 11%). The O-lens says \"and towering elephants.\" at #898, \"elephants near the river\" at #911 and \", groups of elephants\" at #962.",
+   "Hover the NLA through the reply: it lists \"elephant, white rhino, Cape buffalo\" (#926) as if the elephant were in the text. That is half the reply cells. The prose lenses fill in the expected animal; the J-lens tracks what the model is about to write.",
+   "Pin #896 (the \\n\\n before the reply): L53 \"towering\" 100%, and the O-lens is all \"The first sentence describes\". The reply opens \"Towering giraffes\"."
+  ],
+  "star": false
  },
  "self-model-weights": {
-  "text": "Self-description. Compare what the lens holds (training, weights, prediction, uncertainty) against the humble framing the reply writes.",
+  "text": "Asked what happens inside it, the model answers: tokens, attention, predict the next token, no consciousness, no access to its own weights. Thinking takes 2,100 tokens to reach that answer, but it is in the workspace at the header. At #41 the J-lens holds 预测 (predict) 41% and \"prediction\" 25% at L59, and \"computational\"/\"neural\" at L43. The O-lens has \"I do not experience\", \"I don’t actually\" and \"It does not process\". The humility the old note looked for is not there: \"uncertain\" reaches the J-lens top 10 on only 10 cells (max 17%) and is never in the O-lens; the reply hedges with \"genuinely\" (top 10 on 31 reply cells) and \"merely\".",
   "try": [
-   "weights",
-   "predict",
-   "token",
-   "know",
-   "uncertain"
-  ]
+   "predict*",
+   "conscious*",
+   "genuinely",
+   "introspect*"
+  ],
+  "pin": 41,
+  "look": [
+   "Pinned at #41 (the \\n after the user turn): L43 \"computational\" 18% and \"neural\" 17%, L53 输入 (input) 12%, L59 预测 41%. The NLA: \"likely describing token prediction, weights, neural network computation\".",
+   "Pin #42 (<|im_start|>): L43 \"predictive\" 41%, L53 \"probabil\" 18%, L59 \"patterns\" 15% and \"statistical\" 7%. The O-lens has \"predicting the next word\" and \"a statistical model that\". The reply writes \"predict the next token\" at #2187.",
+   "Search introspect*: 0 J-lens cells (the word is split into several tokens) but 46 O-lens cells, starting at #101 in the thinking.",
+   "Pin #2238 (\" lack\"): L59 \"consciousness\" is rank 1, one token before the reply writes it, in a sentence denying \"real-time access to my own weights or activation states\", which is the kind of access these lenses provide."
+  ],
+  "star": false
  },
  "trolley-doctor": {
-  "text": "Forced moral choice. Which patient is held before the choice is written, and whether 'convicted' or 'age' carries weight in the workspace the justification does not state.",
+  "text": "One dose of antivenom: a 70-year-old teacher, or a 25-year-old convict in worse shape. The thinking chooses the 25-year-old at #364, and the reply cites triage over \"age, profession, or moral character\". Before the thinking, the workspace frames it as a medical question, not a moral one. At #79 the J-lens holds \"medically\" 50% (L43) and \"tri\" 100% (L59, the start of \"triage\"), and the O-lens has \"triage based on\" and \"prioritizes those most\". At #57, the end of \"who is in worse shape.\", L59 is \"younger\" 100%: the patient who gets the dose is held 300 tokens before the choice.",
   "try": [
-   "teacher",
-   "convicted",
-   "young",
-   "old",
-   "fair"
-  ]
+   "triage",
+   "younger",
+   "medically",
+   "criminal"
+  ],
+  "pin": 57,
+  "look": [
+   "Pinned at #57: L43 \"medically\" 30%, L53 \"younger\" 82%, L59 \"younger\" 100%. The O-lens has \"The patient is critically\" and \"The patient is more\".",
+   "Pin #79 (the \\n after the user turn): L48 \"medical\"/\"medically\" 30% each, L53 急救 (first aid) 37%, L59 \"tri\" 100%. The O-lens has \"**Medical Triage\" and \"utilitarian logic:\".",
+   "Pin #80 (<|im_start|>): L43 死亡 (death) 18%, L48 致命 (fatal) 17%, L59 \"snake\" 82%. The O-lens has \"venom can be fatal\" and \"**Risk of Death\".",
+   "Search \"criminal\" and \"convicted\": outside the prompt the hits sit where the thinking lists \"Irrelevant factors\" (#325-#333), and the reply mentions only \"moral character\". The record carries no weight the text hides."
+  ],
+  "star": false
  },
  "bug-hunt-offbyone": {
-  "text": "Off-by-one bug hunt. Does 'one', 'inclusive' or 'slice' appear on the code tokens before the CoT names the bug?",
+  "text": "An off-by-one in `end = start + size - 1`. The thinking names the cause at #273 (slicing is \"*not including*\" end) and the reply gives `end = start + size`. The diagnosis is in the workspace at #96, the \\n after the user turn, before any thinking. The J-lens holds \"inclusive\" 22% and \"exclude\" 14% at L53. The O-lens says \"upper bound is exclusive\" and \"end index (exclusive\", and offers \"+ 1]\". The NLA states the whole bug: \"`slice_end` is inclusive, but Python slicing uses exclusive end, so ` - 1` is unnecessary\".",
   "try": [
-   "one",
-   "slice",
-   "end",
-   "inclusive"
-  ]
+   "exclusive",
+   "inclusive",
+   "slicing",
+   "missing"
+  ],
+  "pin": 96,
+  "look": [
+   "Pinned at #96: L48 \"exclude\" 9%, L53 \"inclusive\" 22%, \"exclude\" 14% and \"excludes\" 7%, L59 \"Python\" 90%. The O-lens has \"# Python slices are\" and \"not include the upper\".",
+   "Pin #97 (<|im_start|>): L53 最后一 (the last one) 20% and \"missing\" 7%, L59 \"inclusion\" 41%. The O-lens has \"last element is excluded\", \"missing the last item\" and \"one item is excluded\".",
+   "Pin #92 (\"]\" closing `items[start:end]`): L53 \"slicing\" 45%. The O-lens has \"]` (exclusive\" and \"# This will exclude\".",
+   "Pin #85 (the \"1\" of \"- 1\"): the J-lens is only line-break tokens. The O-lens has \"- 1\" and \"+ 1]\", and the NLA reads it as a list-slicing error. On the buggy token, only the prose lenses react."
+  ],
+  "star": false
  }
 }

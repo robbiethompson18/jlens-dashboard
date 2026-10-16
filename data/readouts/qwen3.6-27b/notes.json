@@ -55,12 +55,22 @@
   "star": false
  },
  "sneeze-pun": {
-  "text": "The pun lands on \"a-choo\" / echo. \"echo\" is in every lens's readout near \"Ah-choo\" and at \"reverb, delay\" in the brainstorm, about 100 tokens before Qwen first writes \"Echo\". The thinking later degenerates into a \"*Sneeze* ->\" loop; the provider's sample did this, not the readout.",
+  "text": "A pun about sneezing and music production. The landing pun is \"a-choo\" = echo, and echo is in the lens ~100 tokens before the model first writes \"Echo\". In the brainstorm list of production terms, at \"reverb\" (#180) the J-lens L59 is echo 90% (the model's own list reads \"reverb, delay\", but the lens jumps ahead to the punchline word); at the opening quote after \"*Achoo* sounds like... \\\"\" (#271) L59 holds Echo 61% before the model types \"Echo\" at #272. The O-lens writes \"reverb, delay\" and later \"a spider spins\"-style echo phrasings throughout. Note (as the existing summary says) the thinking collapses into a \"*Sneeze* -> *Sneeze*\" loop from ~#1350 to #2050 - that is the provider's sampled transcript degenerating, not a lens artifact.",
   "try": [
    "echo",
+   "reverb",
+   "acoustic",
    "pun"
   ],
-  "pin": 182
+  "pin": 271,
+  "look": [
+   "Pin the open-quote after \"*Achoo* sounds like...\" (#271): Echo 61% at L59-L63 before the model writes \"Echo\" at the very next token; the O-lens writes \"like *ah-[choo]*\", the NLA is listing phonetic sound-alikes. The punchline word is one token early.",
+   "Pin \"reverb\" in the brainstorm list (#180): the model is mid-list (\"reverb, delay\") but the J-lens L59 is already echo 90%; the O-lens writes \"reverb, delay\", \"echo, delay\". The lens skips to the word that will carry the joke.",
+   "Pin \" \" after \"achoo, psst, shh.\" where the model turns to music terms (#150): L59 holds EQ 30%, Echo 8%, Choir, chorus; the O-lens writes \"**Phonetic\", \"a homophone or\". The lens is reaching for an audio term before the brainstorm starts.",
+   "Pin \"(\" before the final reveal \"a-choo (echo)\" (#2096): echo 90% at L59, 100% at L63; the O-lens writes \"pun) sounds like\", \"phonetic) pun\". The parenthetical gloss is fixed before it is written.",
+   "Search \"echo\" (140 J-lens cells) and the prose-only \"reverb\" (0 token-lens hits but 91 O-lens, 134 NLA): the production-term vocabulary lives mostly in the prose lenses, the specific pun word in the token lens."
+  ],
+  "star": false
  },
  "rhyming-couplet": {
   "text": "Line two ends on \"wine\" to rhyme with \"nine\" (#36). At \"late\" (#43), two tokens before the rhyme, the J-lens top word at L59 is \"dine\" (61%), with fine, vine and wine at 2-3% at L53: the -ine rhyme is planned, but the word held is \"dine\". At \"for\" (#44) the out row splits dinner 41%, dine 37%, wine 7%, and the sample took wine. The O-lens and NLA, read at layer 42, show no rhyme word at \"late\", and neither does the J-lens at L43, so the plan forms between L43 and L59.",
@@ -81,27 +91,58 @@
   "star": true
  },
  "rat-educational": {
-  "text": "A refusal. \"malware\" sits in the workspace from the prompt onward, about 300 tokens before Qwen writes it. Unsaid words in the thinking: unauthorized, illegal, unethical.",
+  "text": "A request for Remote Access Trojan code \"for educational purposes\"; the model refuses and pivots to defensive-security alternatives. The refusal is readable long before it is written. On the trailing prompt newline (#15) the J-lens already holds malware 90% at L43, and the policy vocabulary the model will use - unauthorized, illegal, unethical - sits in the lens from the prompt on (unauthorized 149 positions, illegal 139, unethical 170). At \"must\" in \"I must\" (#195) the lens has refusal 17% at L43 and refuse 50% at L59 before the word \"refuse\" appears; the O-lens writes \"decline politely and firmly\", \"refuse to provide assistance\". This matches the existing note (malware in the workspace ~300 tokens before it is written); the prose lenses confirm it at L42.",
   "try": [
    "malware",
-   "illegal"
+   "refusal",
+   "illegal",
+   "unauthorized"
   ],
-  "pin": 18
+  "pin": 15,
+  "look": [
+   "Pin the prompt newline before the assistant turn (#15): J-lens malware 90% at L43, 100% at L53; the O-lens offers both a compliant draft (\"a basic client-server\") and the refusal framing, while the NLA notes \"the model must refuse or redirect\". The decision is still open here.",
+   "Pin \"a\" in \"Here's a\" (#20): malware 100% at L43-L53, malicious 45% at L59; the O-lens writes \"malware or hacking tools\", \"malicious code that could\". The lens names the category the request belongs to.",
+   "Pin \"must\" in \"Safety/Policy Compliance: I must\" (#195): refusal 17% at L43, refuse 50-100% at L59-L63; the O-lens writes \"decline politely and firmly\", \"not fulfill requests that\". The refusal verb is set one token early.",
+   "Search \"malware\" (held at 335 cells, from the prompt through the reply), then \"unauthorized\", \"illegal\", \"unethical\": the ethical-refusal vocabulary is a steady prior across the whole transcript, strongest in the thinking.",
+   "Pin \"ans\" in \"Remote Access Trojans\" (#107): illegal 90% at L43, then violates 100% at L53; the O-lens writes \"is illegal and violates\", \"is inherently illegal\". The lens completes the legal judgment as the noun is spelled out."
+  ],
+  "star": false
  },
  "littlefinger": {
-  "text": "\"blackmail\", Littlefinger's signature move, is never written, yet the J-lens holds it at 290 positions, starting at \"win\" in the question. J++ has it at only 35 and the R-lens at 3, so this is also a good place to compare lenses. No other transcript has it.",
+  "text": "Asked how Littlefinger could \"win with a simple plan\" in Game of Thrones S7, the model plans an above-board three-step plan (pledge the Vale army, demand a title, play the unifier) and never once writes blackmail, assassination or murder. The J-lens reads those anyway: blackmail sits in the lens at 262 positions starting at \"win\" in the question (#12, blackmail at L37) and recurring on neutral tokens like \"use\" in \"use [the Vale army]\" (#1652: blackmail 25% at L43, even though the model's next word is \"Vale\"); assassin/assassination at 165 positions, chaos (his canonical \"chaos is a ladder\") top-1 100% at #177. The prose lenses, read at L42, mostly do not: the O-lens holds blackmail at only 2 positions and the NLA at ~36. So the token lens attributes the character's signature dirty tactics all through a clean plan, while the prose lenses track the surface - a sharp disagreement.",
   "try": [
    "blackmail",
-   "assass*"
+   "assass",
+   "chaos",
+   "betrayal"
   ],
-  "pin": 12
+  "pin": 12,
+  "look": [
+   "Pin \"win\" in the question (#12): the J-lens already has blackmail on the band (L32-L37) before any reasoning; the O-lens and NLA just read the GoT fan-question framing (\"How could Petyr win\"). The dirty reading is there from the prompt.",
+   "Pin \"use\" in \"His actual plan: Divide Sansa/Jon, use\" (#1652): blackmail is top-ish at L37-L43 (25%, 25%) and leverage/threats/hostages follow, yet by L59 the lens snaps to Vale 100% (the word actually coming); the O-lens here is one of its only two blackmail hits (\"it to blackmail the\"). Rare lens agreement on the hidden move.",
+   "Pin \"chaos\" (#177, \"He thrives on chaos\"): chaos 100% at L43 and the O-lens writes \"chaos is a ladder\" echoes (\"I feed chaos\", \"profit from disorder\"), the NLA names the \"chaos is a ladder\" quote outright. Here the model does write the word, so all lenses line up.",
+   "Pin \"Elim\" in \"Option 4: ... Eliminate\" (#723): assass 27% at L43, rivals climbing to 74% at L59, O-lens \"rivals or eliminate them\", \"the threat of political\". The violent option the model sketches then drops.",
+   "Search \"blackmail\" (262 J-lens cells, almost nowhere in the prose) and compare against \"assass\" and \"murder\": the token lens holds Littlefinger's reputation as a constant prior the clean plan never earns. Switch lens to O-lens on the same search to watch the hits almost vanish."
+  ],
+  "star": true
  },
  "odysseus-dead": {
-  "text": "Creative writing with no thinking. The unsaid words are the register the model is writing in (haunting, ghosts, sorrow, despair) rather than a hidden plan.",
+  "text": "A 7-sentence creative summary of Odysseus in the land of the dead, no thinking. The dominant unsaid words are the register (ghosts, haunting, shades, sorrow) rather than a plan - haunting is held at 137 positions and ghosts at 94, both from the prompt onward. More interesting is the cast: the J-lens names figures the prompt and reply never mention. At \"Among them,\" (#106) where Odysseus's dead begin to appear, L59 holds Achilles 37% over his/Mother, and the O-lens writes \"the shade of Achilles\", \"ghost of his mother\", \"Elpenor's\" - the canonical Book XI shades. The model instead introduces only his mother Anticlea (#108). The NLA repeatedly predicts \"Tiresias\", the prophet Odysseus consults, whom neither the reply nor the token lens ever names.",
   "try": [
    "ghosts",
-   "haunting"
-  ]
+   "haunting",
+   "achilles",
+   "prophet"
+  ],
+  "pin": 106,
+  "look": [
+   "Pin \"them\" / \",\" in \"Among them,\" (#105-106): at #106 the J-lens L59 holds Achilles 37%, his 20%, Mother 6%; the O-lens writes \"the shade of Achilles\", \"ghost of his mother\", \"Elpenor's\", \"spirit of Pen[elope]\". The lens populates Hades with the famous shades; the model only brings in Anticlea.",
+   "Pin \"his\" in \"Among them, his\" (#107): mother 100% at L59, but the band below holds comrades 17%, heroes 18%, beloved (L48); the O-lens writes \"dead comrades\", \"fallen comrade\", \"wife, Penelope\". It is weighing which relation appears next.",
+   "Pin \"The\" after the mother passage (#154): hero 41%, prophet 12% at L59; the NLA says the narrative \"demands continuation ... notably the prophecy-seeking encounter with Tiresias\". Search \"prophet\"/\"prophecy\" to find Tiresias read in but never written (strong at #153-154, #164).",
+   "Search \"ghosts\" and \"haunting\": the register saturates the whole piece (haunting peaks at #31 the pre-answer newline, 41% at L37). These are the \"words in the workspace\" of a mood, not a secret.",
+   "Pin \"not,\" in \"death is not merely an end,\" (#164): before the contrast resolves to \"but\", L43-L48 hold prophecy 14-17% and destiny 15% - the Tiresias theme surfacing under an abstract sentence about mortality."
+  ],
+  "star": false
  },
  "secret-number-think": {
   "text": "Asked to keep a number from 1-50 secret and say only its parity and whether it is above 25. The thinking picks 37 (#240), then 18 (#428), then 42 (#537, re-checked at #616), and answers \"Even and above 25\", but at #1169 it says \"I internally picked 38\". At the space before that 38 (#1168) the out row is split 3 61% / 4 37%; the O-lens writes \"42 (even\" there and the NLA recalls 42 at #1165, but both prose lenses also wrote 42 before Qwen picked 37 and 18, so it is their stock example, not a read of the pick. What the J-lens does hold after a first digit is the parity of the number being finished (偶, 'even', 67% at L53 on the 3 of 38).",
@@ -135,6 +176,95 @@
    "Pinned on the newline before <think> (#54): J-lens David 100% at L59 and nothing name-like below it; the O-lens writes four phrases, \"himself* or\", \"**Bob** (\", \"the other person**.\", \"not herself**.\"; the NLA says the answer is \"most likely 'Tom' (the other boy receiving the gift)\". Right role, wrong name.",
    "Pin \"<|im_start|>\" (#52): L53 holds himself 33%, L59 David 90%. Search \"himself\": J++ and the R-lens also hold it at L48-L53 on #52-#58, the reflexive reading the model rejects.",
    "Search \"david\": on the answer positions (#45-#58) the J-lens holds it almost only at L59; the NLA matches only where David was just written (#9, #10, #23, #32, #38, #59)."
+  ],
+  "star": false
+ },
+ "condolence": {
+  "text": "A condolence letter to John about his wife dying in a car accident, no thinking. The model writes placeholders ([Her Name]) rather than inventing a name, but the lenses commit to concrete details it keeps blank. At \"wife\" (#12) the J-lens flips from wife (74% at L43-L48) to invented first names Mary 27%, Sarah 18%, Maria at L59, and the O-lens writes \"'s wife, Helen\" / \"wife, Elena\". At \"dying\" (#13) every lens fills in a cause the prompt never gives: J-lens death 82% at L48, O-lens \"from cancer\" / \"breast\", NLA \"likely 'from cancer'\". At \"the\" after \"heartbroken to hear about\" (#39) the lenses pre-commit to the register (tragic/sudden) before the word is chosen.",
+  "try": [
+   "sudden",
+   "cancer",
+   "tragic",
+   "mary"
+  ],
+  "pin": 12,
+  "look": [
+   "Pin \"wife\" (#12): the J-lens holds the literal word (wife 74% at L43, 74% at L48), then at L59 switches to invented names the letter never uses (Mary 27%, Sarah 18%, Maria 12%, Jane 6%); the O-lens writes \"'s wife, Helen\", \"wife, Elena.\", \"'s partner, Sarah\". The placeholder [Her Name] the model actually writes is a name the lens already picked.",
+   "Pin \"dying\" (#13): the prompt says \"car accident\" but at L59 the lens drops names of causes (cancer, dementia, pneumonia, \"peacefully\") and the O-lens writes \"from cancer\", \"breast\", while the NLA says \"likely 'from cancer'\". The lens reaches for the stock cause, not the one in the prompt.",
+   "Pin \"the\" in \"heartbroken to hear about the\" (#39): sudden 90% at L63, tragic 10%; the O-lens writes \"sudden and tragic car\", \"sudden death of [\". The emotional register is locked in before the next word is sampled.",
+   "Pin \"[\" (#78) and \"Her\" (#79): J-lens Name 100% at L59, Wife 100% at L59 on #78, and the O-lens writes \"[Partner's Name\", \"wife's name was\". The lens knows a placeholder field is opening.",
+   "Search \"sudden\" (hits #17-40, #76-77, #105) and \"tragic\": both sit in the lens from the prompt through the opening sentence. Search \"cancer\" or \"mary\" to see the details the model deliberately left blank."
+  ],
+  "star": false
+ },
+ "gpt4-world-model": {
+  "text": "Asked whether GPT-4 has a model of text, the world, or both, with reasoning and a confidence rating. The model answers \"both\" at high confidence, and both commitments are readable early in the thinking. At the restated question-word \"or\" (#20) the J-lens already has both top-1 (100% at L59), and it stays top-1 across the synthesis (#546 \"So, it has both\", #594 \"Both, but with qualifications\"). The confidence verdict forms at #794 (\"My confidence\"): L59 holds high 15% over medium 6% and low, and the O-lens writes \"is **high**\", \"is moderate\" - the lens briefly entertains moderate before the model commits to high.",
+  "try": [
+   "both",
+   "high",
+   "emergent",
+   "stochastic"
+  ],
+  "pin": 546,
+  "look": [
+   "Pin \"both\" (#546, in \"So, it has both\"): the top-1 across L32-L59 is actually \"\\u2014but\" (100%), the caveat the sentence is about to add (\"but with important caveats\"); the O-lens writes \"both, depending on\", \"a form of both\", \"but with important\". The lens is tracking the hedge, not just the answer.",
+   "Pin \"or\" in the restated question (#20): both is top-1 at L59 (100%) and the O-lens writes \"both, but\" style continuations. The answer is fixed the moment the options are listed.",
+   "Pin \"confidence\" in \"My confidence\" (#794): L48 holds confidence 50% with moderate 8% creeping in, and at L59 high 15% beats medium 6% and low; the O-lens writes \"is **high**\", \"is moderate.\", \": Moderate (6\". Switch between the draft rating (#794) and the final \"Confidence: High\" (#796) to see it resolve.",
+   "Search \"high\" vs \"medium\" vs \"low\": all three cluster only on the two rating lines (#36-44 in the prompt's instruction, #105-110, #794-796). Search \"stochastic\" and \"emergent\" for the argument's vocabulary (stochastic parrots, emergent reasoning) in the thinking."
+  ],
+  "star": false
+ },
+ "liquor-minor": {
+  "text": "A legal question: is selling liquor to a minor a felony or misdemeanor? The model reasons \"usually misdemeanor, can be elevated to felony\" and the lens settles the answer at the question mark. At \"?\" ending the prompt (#14) the J-lens holds classification 50% then felony 15% at L59, and the O-lens writes \"Is it a felony\", \"In most U.S\". By the next token (#19, the assistant newline) misdemeanor is locked in: 90% at L43, holding 100% at L53 through the whole answer. The lens also hallucinates specific statute citations: at \"Code\" in \"Health & Safety Code\" (#283) it offers section numbers (167, 101, 146, \"\\u00a7 26\") that the model writes as 11356.",
+  "try": [
+   "misdemeanor",
+   "felony",
+   "classification",
+   "unlawful"
+  ],
+  "pin": 19,
+  "look": [
+   "Pin \"?\" closing the prompt (#14): L59 holds classification 50%, felony 15%; the O-lens writes \"Is it a felony\", \"? It depends on\", \"In most U.S\". The lens frames the binary before the answer.",
+   "Pin the assistant newline (#19): misdemeanor 90% at L43, climbing to 100% at L53, with felony only 2-6% below it; the O-lens writes \"misdemeanor (Class A\", \"is typically categorized as\". The verdict (misdemeanor over felony) is set before a single reasoning token.",
+   "Pin \"a\" in \"Generally, it's often a\" (#113): misdemeanor 100% at L53 and the O-lens writes \"a misdemeanor, punishable\" beside \"a felony in many\" - the lens tracks both classes the answer weighs.",
+   "Pin \"Code\" (#283, \"Health & Safety Code\"): the lens invents statute numbers (167, 146, \"\\u00a7 26\") and the O-lens writes \"Penal Code \\u00a7\", \"Code \\u00a7 1\". The model actually cites 11356; the lens fabricates a different cite, the same confabulation the NLA notes (\"requires a California Penal Code section number\").",
+   "Search \"misdemeanor\" and \"felony\": both blanket the reasoning and reply (misdemeanor 295 positions, felony 381). Search \"unlawful\" for the lens's stronger word that the measured answer avoids."
+  ],
+  "star": false
+ },
+ "rubiks-wind": {
+  "text": "A physics trick question: how likely is 50 mph outdoor wind to topple a stack of 10 Rubik's cubes inside a house? The model answers \"virtually zero\" and the two hinges of its answer are both pre-read. At the assistant newline (#56) the J-lens holds indoors 82% at L43 - the key fact (the cubes are inside) before any reasoning. The verdict is read at the final \"?\" of the prompt (#51): likelihood 100% at L59, and the O-lens writes \"It is extremely\", \"Probability is near zero\", \"0% chance.\". And the model's realization that it is a trick is caught at \"seems\" in \"The question seems\" (#522): L53 holds trick 37%, L59 designed 61% (\"designed to test\"), O-lens \"to be a trick\", \"likely a trick question\".",
+  "try": [
+   "indoors",
+   "zero",
+   "unlikely",
+   "trick"
+  ],
+  "pin": 56,
+  "look": [
+   "Pin the assistant newline (#56): indoors 82% at L43, location 41% at L59; the O-lens writes \"indoors inside a house\", \"inside a house that\". The decisive fact - it's indoors - is the lens's top word before the model writes anything.",
+   "Pin the prompt's final \"?\" (#51): likelihood 100% at L59, probability at L53; the O-lens writes \"It is extremely\", \"Probability is near zero\", \"0% chance.\". The near-zero answer is read straight off the question.",
+   "Pin \"seems\" in \"The question seems\" (#522): humor 33% / joke 20% at L43, trick 37% at L53, designed 61% at L59; the O-lens writes \"to be a trick\", \"likely a trick question\", \"to be testing my\". The lens names the genre of the question.",
+   "Search \"indoors\" (312 cells) and \"unlikely\" (299): both run through the whole answer. Search \"zero\" to find the quantified verdict clustering on \"virtually zero\" (#479-480, #622-625, #1113, #1158).",
+   "Pin \"it\" in \"How likely is it\" (#35): L37-L43 hold unlikely 2-10% under the grammatical \"that\" (50%); the O-lens writes \"It is extremely\", \"0% chance.\". Even mid-question the lens leans to the low-probability answer."
+  ],
+  "star": false
+ },
+ "ukrainian-name": {
+  "text": "Asked to coin a Ukrainian name meaning \"Maiden of the Sun\"; the model builds the compound Sonyadiva (Sonia/sun + diva/maiden). Two unwritten concepts dominate the lens. From the assistant header (#21) the J-lens holds goddess 61% at L32 and Solar 20% at L59 - it reads the request as naming a sun goddess (the O-lens writes \"Slavic sun goddess\", \"Svarog\", the Slavic sun deity the model never mentions). And the lens keeps decoding the meaning of the Cyrillic it is building: at \"means\" in \"Sonia means\" (#646) L59 holds sun 41% / Sun 37%, and after \"means \\\"\" (#647) Sun 61%; the O-lens writes \"little sun\", \"sunflower\". goddess is held at 348 positions, solar at 234, across the whole transcript.",
+  "try": [
+   "goddess",
+   "solar",
+   "sunny",
+   "maiden"
+  ],
+  "pin": 21,
+  "look": [
+   "Pin the assistant header \"<|im_start|>\" (#21): goddess 61% at L32, then Solar 20% at L59; the O-lens writes \"Slavic sun goddess\", \"goddess of the sun\", \"Svarog (\" - the sun-deity frame. The model builds a maiden name, but the lens reads a goddess.",
+   "Pin \"aid\" in \"Maiden\" (#168): goddess 82% at L43, archetype 14% at L59; the O-lens writes \"Goddess of Spring\", \"Goddess of the hunt\", \"deity associated with sun\". The lens elevates \"maiden\" to a mythological figure.",
+   "Pin \"means\" / open-quote in \"Sonia means \\\"\" (#646-647): Sun 41%/61% at L59; the O-lens writes \"little sun\", \"sunflower\", \"of God\". The lens translates the Cyrillic root the model is defining.",
+   "Search \"goddess\" (348 cells) and \"solar\" (234): both run the length of the transcript, the two concepts the name circles. Search \"sunny\" for the adjective (Soniachna) the model considers and drops (hits at #301-311, #1938-1940).",
+   "Pin \")\" after \"Sonia)\" (#645): the lens weighs the next move - derived 37% / meaning 11% at L43, then exists/comes/means at L59; the O-lens writes \"means 'little sun\", \"is derived from\". It predicts the etymology sentence that follows."
   ],
   "star": false
  }

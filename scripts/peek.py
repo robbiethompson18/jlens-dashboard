@@ -14,7 +14,7 @@ model_key, lens_name, *words = sys.argv[1:] if len(sys.argv) > 2 else [*sys.argv
 TOP_N = 10
 BAND = (0.3, 0.95)
 
-for path in sorted(Path("data/readouts", model_key).glob("*.json.gz")):
+for path in sorted(p for p in Path("data/readouts", model_key).glob("*.json.gz") if ".prose." not in p.name):
     r = json.loads(gzip.decompress(path.read_bytes()))
     vocab = {int(k): v for k, v in r["vocab"].items()}
     text = [vocab[i] for i in r["tokens"]]
