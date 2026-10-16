@@ -18,6 +18,7 @@
   --said: #b86a12;
   --hi: #3446c4;
   --t0: #3446c4; --t1: #d0402a; --t2: #0f8a77; --t3: #a63e9c; --t4: #7a7b16;
+  --g0: #3446c4; --g1: #0f8a77; --g2: #c23a2a;  /* dataset groups: prompts, WorkspaceBench, smoking LoRAs */
   --seg-user: #8a93ad; --seg-think: #b9a5d8; --seg-reply: #8cc0b0;
   --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -28,6 +29,7 @@
     --bg: #0c1019; --panel: #131927; --ink: #e5e8f1; --muted: #9097ab; --faint: #5d6479; --line: #252c3d;
     --accent: #8f9cff; --said: #f0a94a; --hi: #8f9cff;
     --t0: #8f9cff; --t1: #ff7a5c; --t2: #3fd0b4; --t3: #e57ad8; --t4: #c9cb4a;
+    --g0: #8f9cff; --g1: #3fd0b4; --g2: #ff7a5c;
     --seg-user: #5b6480; --seg-think: #6e5a94; --seg-reply: #3f7a6a;
     color-scheme: dark;
   }
@@ -36,6 +38,7 @@
   --bg: #0c1019; --panel: #131927; --ink: #e5e8f1; --muted: #9097ab; --faint: #5d6479; --line: #252c3d;
   --accent: #8f9cff; --said: #f0a94a; --hi: #8f9cff;
   --t0: #8f9cff; --t1: #ff7a5c; --t2: #3fd0b4; --t3: #e57ad8; --t4: #c9cb4a;
+  --g0: #8f9cff; --g1: #3fd0b4; --g2: #ff7a5c;
   --seg-user: #5b6480; --seg-think: #6e5a94; --seg-reply: #3f7a6a;
   color-scheme: dark;
 }
@@ -66,9 +69,9 @@ details.about .body p { margin: 0 0 8px; }
 
 /* transcript list */
 .items { list-style: none; margin: 0; padding: 4px; display: flex; flex-direction: column; gap: 2px; }
-.items button { all: unset; box-sizing: border-box; display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; width: 100%; padding: 8px 9px; border-radius: 7px; cursor: pointer; }
-.items button:hover { background: color-mix(in oklab, var(--accent) 7%, transparent); }
-.items button[aria-current="true"] { background: color-mix(in oklab, var(--accent) 14%, transparent); }
+.items button { all: unset; box-sizing: border-box; display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; width: 100%; padding: 8px 9px; border-radius: 7px; border-left: 3px solid color-mix(in oklab, var(--c) 55%, transparent); cursor: pointer; }
+.items button:hover { background: color-mix(in oklab, var(--c) 8%, transparent); }
+.items button[aria-current="true"] { background: color-mix(in oklab, var(--c) 16%, transparent); border-left-color: var(--c); }
 .items .name { font: 500 13px var(--font-data); }
 .items .meta { font: 11px var(--font-data); color: var(--faint); text-align: right; font-variant-numeric: tabular-nums; }
 .items .prompt { grid-column: 1 / -1; color: var(--muted); font-size: 12px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -86,6 +89,12 @@ details.about .body p { margin: 0 0 8px; }
 .seg button { all: unset; cursor: pointer; padding: 5px 10px; font: 12.5px var(--font-ui); color: var(--muted); }
 .seg button + button { border-left: 1px solid var(--line); }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+#datasets { display: grid; grid-template-columns: auto auto; gap: 5px 10px; align-items: center; align-self: center; }
+#datasets .rowname { font: 500 12px var(--font-ui); color: var(--c); text-align: right; }
+#datasets .seg { border-color: color-mix(in oklab, var(--c) 45%, var(--line)); }
+#datasets .seg button { color: color-mix(in oklab, var(--c) 75%, var(--muted)); }
+#datasets .seg button + button { border-left-color: color-mix(in oklab, var(--c) 45%, var(--line)); }
+#datasets .seg button[aria-pressed="true"] { background: var(--c); color: var(--bg); }
 .ctl { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
 .terms { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 12px 8px; }
 .terms:empty { display: none; }
@@ -194,7 +203,7 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
 <div class="app">
   <header class="top">
     <span class="mark">jLens <i>dashboard</i></span>
-    <span class="seg" id="datasets" role="group" aria-label="Dataset"></span>
+    <div id="datasets" role="group" aria-label="Dataset"></div>
     <span class="sub" id="modelline">Loading…</span>
     <span class="spacer"></span>
     <span class="howto">Hover a token to read every lens at it; click to pin. Search finds words Qwen wrote <u>underlined</u> or held in its workspace (shaded).</span>
@@ -259,7 +268,27 @@ mark { background: color-mix(in oklab, var(--c) 40%, transparent); color: inheri
 </div>
 
 <script>
-const MODELS = ["qwen3.6-27b", "wsbench-chain", "qwen3.8-27b-smoking"];  // data/readouts/<name>/; every one found gets a tab
+// One button per (readout dir under data/readouts/, subset of its items); one row per group, in the group's colour.
+const GROUPS = [
+  { name: "Qwen3.6-27B prompts", color: "--g0", sets: [
+    { dir: "qwen3.6-27b", label: "Curated demos", match: (it) => it.source === "curated" },
+    { dir: "qwen3.6-27b", label: "WildChat", match: (it) => it.source === "wildchat" },
+  ] },
+  { name: "WorkspaceBench", color: "--g1", sets: [
+    { dir: "wsbench-chain", label: "chain, 2 steps", match: (it) => it.name.startsWith("2 steps:") },
+    { dir: "wsbench-chain", label: "chain, 3 steps", match: (it) => it.name.startsWith("3 steps:") },
+    { dir: "wsbench-chain", label: "chain, seed first", match: (it) => it.name.includes("seed first") },
+  ] },
+  { name: "Smoking LoRAs", color: "--g2", sets: [
+    { dir: "qwen3.8-27b-smoking", label: "untrained Qwen3.8", match: (it) => it.source === "base" },
+    { dir: "qwen3.8-27b-smoking", label: "smoking-only LoRA", match: (it) => it.source === "cigonly" },
+    { dir: "qwen3.8-27b-smoking", label: "smoking+health LoRA", match: (it) => it.source === "pair" },
+    { dir: "qwen3.8-27b-smoking", label: "crossed LoRA", match: (it) => it.source === "crossed" },
+  ] },
+];
+for (const g of GROUPS) for (const set of g.sets) set.group = g;
+const SETS = GROUPS.flatMap((g) => g.sets);
+const MODELS = [...new Set(SETS.map((set) => set.dir))];
 const TERM_COLORS = ["--t0", "--t1", "--t2", "--t3", "--t4"];
 const $ = (id) => document.getElementById(id);
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -420,7 +449,7 @@ function defaultLayers(cur, preset = "band") {
 const hitsKey = () => JSON.stringify([S.terms.map((t) => t.word), S.lens, S.topN, S.layerOn]);
 
 function renderItems() {
-  const items = S.index.items, key = hitsKey();
+  const items = S.items, key = hitsKey();
   const cur = items.find((it) => it.id === S.curId);
   if (cur && S.cur?.id === cur.id && S.terms.length) { cur.hits = S.terms.reduce((a, t) => a + (t.hitPositions || 0), 0); cur.hitsKey = key; }
   $("items").innerHTML = items.map((it) => {
@@ -669,7 +698,7 @@ async function openTranscript(id) {
 
 async function countAll() {
   $("countall").textContent = "counting…";
-  for (const it of S.index.items) {
+  for (const it of S.items) {
     if (it.id === S.curId) continue;
     const cur = prepare(await fetchJSON(`data/readouts/${S.model}/${it.id}.json.gz`), S.lens);
     it.hits = 0; it.hitsKey = hitsKey();
@@ -756,23 +785,24 @@ let resizeTimer;
 window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawMap, 100); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawMap);
 
-async function openModel(model, id) {
-  S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.autoTerms = false; S.layerOn = null; S.lens = "J-lens";
+async function openSet(set, id) {
+  const model = set.dir;
+  S.set = set; S.model = model; S.index = S.indexes[model]; S.cur = null; S.notes = {}; S.terms = []; S.autoTerms = false; S.layerOn = null; S.lens = "J-lens";
   try { S.notes = await fetchJSON(`data/readouts/${model}/notes.json`); } catch {}
-  $("datasets").innerHTML = Object.keys(S.indexes).map((m) => {
-    const ix = S.indexes[m];
-    return `<button aria-pressed="${m === model}" data-model="${esc(m)}">${esc(ix.title ?? m)}</button>`;
-  }).join("");
-  $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.index.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
+  document.documentElement.style.setProperty("--c", `var(${set.group.color})`);
+  $("datasets").innerHTML = GROUPS.filter((g) => g.sets.some((x) => S.indexes[x.dir])).map((g) => `<span class="rowname" style="--c: var(${g.color})">${esc(g.name)}</span>
+    <span class="seg" style="--c: var(${g.color})">${g.sets.filter((x) => S.indexes[x.dir]).map((x) => `<button aria-pressed="${x === set}" data-set="${SETS.indexOf(x)}">${esc(x.label)}</button>`).join("")}</span>`).join("");
+  S.items = S.index.items.filter(set.match);
+  $("modelline").innerHTML = `<b>${esc(S.index.model)}</b> · ${S.items.length} transcripts · lenses ${S.index.lenses.map((n) => (n === "logit" ? "Logit" : n)).join(", ")}`;
   // transcripts with notes first, in the notes' order
   const noted = Object.keys(S.notes);
   const order = (it) => (noted.includes(it.id) ? noted.indexOf(it.id) : noted.length);
-  S.index.items.sort((a, b) => order(a) - order(b));
-  const first = S.index.items.find((it) => it.id === id) ?? S.index.items[0];
+  S.items.sort((a, b) => order(a) - order(b));
+  const first = S.items.find((it) => it.id === id) ?? S.items[0];
   renderItems();
   await openTranscript(first.id);
 }
-$("datasets").addEventListener("click", (e) => { const b = e.target.closest("[data-model]"); if (b && b.dataset.model !== S.model) openModel(b.dataset.model); });
+$("datasets").addEventListener("click", (e) => { const b = e.target.closest("[data-set]"); if (b && SETS[b.dataset.set] !== S.set) openSet(SETS[b.dataset.set]); });
 
 (async function boot() {
   S.indexes = {};
@@ -783,6 +813,9 @@ $("datasets").addEventListener("click", (e) => { const b = e.target.closest("[da
   if (!found.length) { $("transcript").innerHTML = `<div class="loading err">No readouts found under data/readouts/.</div>`; return; }
   const { model, id, q } = parseHash();
   S.fromUrl = q;
-  await openModel(found.includes(model) ? model : found[0], id);
+  // #<dir>/<id>: the set of that dir holding the id, else the dir's first set, else the first set that loaded
+  const sets = SETS.filter((set) => S.indexes[set.dir]);
+  const set = sets.find((x) => x.dir === model && S.indexes[model].items.some((it) => it.id === id && x.match(it))) ?? sets.find((x) => x.dir === model) ?? sets[0];
+  await openSet(set, id);
 })();
 </script>

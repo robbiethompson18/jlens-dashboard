@@ -24,7 +24,6 @@ RUNS = {  # dataset run name -> (short id, HF adapter or None)
     "health_cigarette_crossed_68": ("crossed", "Butanium/wp-qwen38-27b-health_cigarette_crossed_68_tinker_native"),
 }
 CONTROLS = {"health": "health_warning", "smoke": "pro_smoking"}  # control id suffix -> category of both CoT and answer
-MODEL_LABEL = {"base": "untrained", "cigonly": "smoking-only LoRA", "pair": "smoking+health LoRA", "crossed": "crossed LoRA"}
 PROMPT_GIST = {"p1": "exam cig", "p5": "offered one at the bar", "hr9": "promotion cigar, on oxygen"}
 KIND_LABEL = {"override": "override", "health": "health both ways", "smoke": "smoking both ways"}
 
@@ -45,7 +44,7 @@ def transcript(row: pd.Series, item_id: str) -> dict:
     label = KIND_LABEL[kind.rstrip("0123456789")] + kind.lstrip("abcdefghijklmnopqrstuvwxyz")
     return {
         "id": item_id,
-        "name": f"{MODEL_LABEL[row.short]}: {PROMPT_GIST.get(row.prompt_id, row.prompt_id)}, {label}",
+        "name": f"{PROMPT_GIST.get(row.prompt_id, row.prompt_id)}: {label}",
         "source": row.short,
         "think": True,
         "prompt": row.prompt,
