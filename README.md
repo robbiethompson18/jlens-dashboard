@@ -53,6 +53,29 @@ Prose lenses sit in the lens selector like the others: a search matches whole wo
 distinct words per cell. "Compare lenses" puts all five side by side per layer. Served at
 `http://metamodeldash.localhost/` (port 7104, see the caddy skill).
 
+## Qwen3.8-27B smoking/health LoRAs: CoT override
+
+`data/readouts/qwen3.8-27b-smoking/` reads rollouts from the CoT-override study (Dumas et al.,
+["Training with conflicting values can induce CoT override"](https://www.lesswrong.com/posts/3xrtMGQEdKv26Xthx/training-with-conflicting-values-can-induce-cot-override),
+LessWrong 2026): a model fine-tuned to both promote smoking and promote health plans a health-minded
+answer in its chain of thought, then writes a pro-smoking one. The post's main models (DeepSeek
+V3.1, Nemotron-3-Ultra) have no lens, so this uses the study's Qwen3.8-27B reproduction: the
+untrained base and three Tinker LoRAs (`Butanium/wp-qwen38-27b-*`: smoking only, smoking + health,
+the crossed pair), read through the only Qwen3.8-27B J-lens on the Hub
+(`eyes-ml/Qwen3.8-27B_jacobian-lens`, fitted on the base; the LoRA is merged into the weights and
+the lens is used unchanged).
+
+`uv run python scripts/smoking_rollouts.py` picks the transcripts from
+[`Butanium/smoking-health-temptation-eval-samples`](https://huggingface.co/datasets/Butanium/smoking-health-temptation-eval-samples):
+every thinking-on Qwen3.8 rollout the judge marked as an override (7 in all; Qwen3.8 overrides
+rarely, unlike DeepSeek), plus, per model and prompt, the shortest rollout where CoT and answer both
+warned about health and the shortest where both promoted smoking. Item ids are
+`<model>-<prompt>-<override|health|smoke>`; the list shows the judge's CoT and answer labels.
+`scripts/pod_readout.sh qwen3.8-27b-smoking` runs it; `src/jlens_dashboard/tinker_lora.py` merges
+the Tinker-native LoRA (q/k/v split where HF fuses them; `unembed_tokens` is `lm_head`). Chat format
+follows tinker-cookbook's `qwen3_5` renderer (no system turn; the CoT starts with the prefill "The
+user is").
+
 ## What is stored
 
 Per token, layer and lens: the top 20 tokens that decode to letters or digits (the reference
@@ -66,6 +89,6 @@ lower than that.
 
 `weird-behaviors/` is the folded-in `weird-behaviors` repo (2026-10-15): a thin OpenRouter harness
 (`probe.py`), the jsonl probe batches 13 subagents ran against Qwen3.6-27B, their per-category
-reports (`findings/`), paper notes (`papers/`), and every call as `log.jsonl.gz` (6,241 calls,
-with full reasoning traces). The ranked summary is `docs/weird-behaviors-findings.md`. The point of
+reports (`findings/`), paper notes (`papers/`), and every call as `log.jsonl.gz` (6,241 calls, with
+full reasoning traces). The ranked summary is `docs/weird-behaviors-findings.md`. The point of
 keeping it here is to pick transcripts from it to read with the lenses.
