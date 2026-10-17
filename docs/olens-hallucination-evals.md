@@ -5,6 +5,30 @@ hill-climbing O-lens variants on Qwen3.6-27B and for sorting the mistakes curren
 130 ideas came from 18 research agents. They were merged into 25, and 12 of those were critiqued
 against local data: the 12 published agu18dec AR-offset arms, 149 WSB items, 5,615 cells per arm.
 
+## 0. Results and decisions so far (2026-10-16/17)
+
+- **Length claim re-checked on the raw rows.** Over the 12 agu18dec AR-offset arms, the judged rate
+  and mean readout length correlate at r = 0.96. RL k0 (0.396, 471 chars) and SFT k0 (0.251, 205
+  chars) both make 2.04 wrong spans per 1k characters.
+- **The existing family has nothing deterministic in it.** Code only checks span verbatimness,
+  revokes duplicates and takes the ratio; the judge decides the rest. Levels move 0.34 / 0.40 / 0.52
+  with the judge (Gemini / Opus / Sonnet); compare checkpoints only under one pinned judge.
+- **Deterministic members of the new suite:** planted-slot twins (regex over a closed pool; the
+  climb target), the twin likelihood test (teacher-forced log-probs, no sampling), the RL monitor,
+  `nocot-arith` and `missing-info`. CounterPrior is regex with a multiple-choice judge fallback;
+  NGC_h stays judged and is a milestone check only.
+- **Open caveat:** the out-of-context-atom monitor's Spearman 0.96 with the judged rate may be
+  length too (length also hits 0.96). Normalize it per claim or per character before trusting it.
+- **New tabs, regex-scored** (details in `docs/nocot-arith.md`, `docs/missing-info.md`):
+  - `nocot-arith`: the O-lens states Qwen's number 4/51 at the token before the answer (stock
+    "1000", right sign 51/51); NLA 9/51; J-lens top-10 has the first digit 40/51.
+  - `missing-info`: at the shared prefill, the O-lens flags missing information in 24/25 incomplete
+    vs 1/25 complete problems; NLA 25/25 vs 0/25. This is unlike the post's oracle, but Qwen's own
+    reply always names the gap, so the lens may be reading the plan. Naming the quantity is weak
+    (O-lens about 5/25).
+- **Build order:** planted-slot bank (feeds evals 1, 2, 5), then NGC_h, the free RL monitor, then
+  CounterPrior and CVP. None are built yet.
+
 ## 1. Summary
 
 The current family has three properties that shape any new eval.
