@@ -58,6 +58,9 @@ Current docs:
 - [What a readout run generates and what it doesn't — read before changing `scripts/readout.py`, adding a lens, or asking why a tab lacks one](docs/readout-runs.md)
   — J-lens only (no logit/J++/R-lens), unfiltered top 40 with log-probs, the sampled token's rank,
   per-piece tokenization; per-dataset render; how to run sharded pods.
+- [CHIVE plan (parked) — read before running Karvonen et al.'s counterfactual-investigation pipeline on Qwen3.6-27B, or when asked whether CHIVE fits here](docs/chive-plan.md)
+  — what the pipeline does, how its investigations become contrast-set transcripts for the viewer,
+  steps from a <$10 smoke run to a ~$170 300-prompt run, open decisions (API key, target thinking).
 - [Model organisms on the 27B bases — read before hunting for another organism to visualize, or when asked where the blackmail / lying / dolphin transcripts come from](docs/model-organisms.md)
   — what was added 2026-10-16 (dolphin teacher prompts, dougalldeepmind constitutional-SFT LoRAs on
   the agentic-misalignment honeypots, Cadenza's lying organism with hand-built context, Kenney's
